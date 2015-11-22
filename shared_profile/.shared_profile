@@ -11,7 +11,23 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
+# Configuration for GNU Emacs
+alias emacs='~/Applications/Emacs.app/Contents/MacOS/Emacs'
+alias emacs-debug='~/Applications/Emacs.app/Contents/MacOS/Emacs --debug-init'
+alias emacsdaemon='~/Applications/Emacs.app/Contents/MacOS/Emacs --daemon'
+alias emd='emacsdaemon'
+alias emacsclient='~/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+alias emacsdaemon-stop="emacsclient -e '(kill-emacs)'"
+alias em='~/Applications/Emacs.app/Contents/MacOS/bin/emacsclient --no-wait'
+alias emn='~/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c --no-wait'
+
+# Add color support for 'less' command
+if [ -f ~/.LESS_TERMCAP ] ; then
+  source ~/.LESS_TERMCAP
+fi
+
 alias cat="ccat"
 alias vi="vim"
 alias lla="ll -a"
+alias rm='rm -i'
 
