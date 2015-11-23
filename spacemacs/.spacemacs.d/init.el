@@ -209,7 +209,7 @@ layers configuration. You are free to put any user code."
 
   ;; Note: The Hiragino Sans GB is bundled with MacOS X. 
   ;; If you are not using MacOS X, you should change it to another Chinese font name.
-  (spacemacs//set-monospaced-font   "Source Code Pro" "Hiragino Sans GB" 14 16)
+  (spacemacs//set-monospaced-font   "Source Code Pro" "Hiragino Sans GB" 13 15)
 
   ;; Default Screen position and size
   ;; (add-to-list 'default-frame-alist '(left . 60))
