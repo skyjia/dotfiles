@@ -53,7 +53,8 @@ plugins=(git gitfast git-flow brew osx encode64 mercurial golang)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# Load env variables from .zshenv instead.
+# 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -84,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Load $HOME/.shared_profile if exists
-if [ -f ~/.shared_profile ]; then
-    source ~/.shared_profile
+if [ -f ~/.shared_profile.sh ]; then
+    source ~/.shared_profile.sh
 fi
 

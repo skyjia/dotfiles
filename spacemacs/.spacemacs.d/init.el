@@ -212,7 +212,8 @@ layers configuration. You are free to put any user code."
   (spacemacs//set-monospaced-font   "Source Code Pro" "Hiragino Sans GB" 13 15)
 
   ;; Default Screen position and size
-  ;; (add-to-list 'default-frame-alist '(left . 60))
+  (add-to-list 'default-frame-alist '(left . 60))
+  (add-to-list 'default-frame-alist '(top . 0))
   (add-to-list 'default-frame-alist '(height . 50))
   (add-to-list 'default-frame-alist '(width . 150))
 
