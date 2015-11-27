@@ -1,6 +1,3 @@
-# rbenv
-eval "$(rbenv init -)"
-
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export ZSH=/Users/skyjia/.oh-my-zsh
 
@@ -14,3 +11,5 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
+# rbenv
+eval "$(rbenv init -)"
