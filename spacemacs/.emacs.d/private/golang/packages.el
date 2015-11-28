@@ -1,10 +1,9 @@
-;;; packages.el --- sky Layer packages File for Spacemacs
+;;; packages.el --- golang Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2012-2014 Sylvain Benner
-;; Copyright (c) 2014-2015 Sylvain Benner & Contributors
+;; Copyright (c) 2015 Sky Jia
 ;;
-;; Author: Sylvain Benner <sylvain.benner@gmail.com>
-;; URL: https://github.com/syl20bnr/spacemacs
+;; Author: Sky Jia <me@skyjia.com>
+;; URL: https://github.com/skyjia/dotfiles
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -12,18 +11,18 @@
 
 ;; List of all packages to install and/or initialize. Built-in packages
 ;; which require an initialization must be listed explicitly in the list.
-(setq sky-packages
+(setq golang-packages
     '(
       ;; package names go here
       go-mode
       ))
 
 ;; List of packages to exclude.
-(setq sky-excluded-packages '())
+(setq golang-excluded-packages '())
 
-;; For each package, define a function sky/init-<package-name>
+;; For each package, define a function golang/init-<package-name>
 ;;
-;; (defun sky/init-my-package ()
+;; (defun golang/init-my-package ()
 ;;   "Initialize my package"
 ;;   )
 ;;
@@ -31,7 +30,7 @@
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
 
-(defun sky/init-go-mode ()
+(defun golang/init-go-mode ()
   "Initialize my package"
   :config
   ;; Setting up the right environment variables 

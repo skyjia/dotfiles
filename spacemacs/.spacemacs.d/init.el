@@ -23,7 +23,6 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     sky
      chinese
      auto-completion
      better-defaults
@@ -41,6 +40,7 @@ values."
      themes-megapack
      osx
      ibuffer
+     golang
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
