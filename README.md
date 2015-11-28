@@ -100,4 +100,4 @@ stow package_name
 
 # License
 
-The license is GPLv3 for all parts specific to `dotfiles`
+The license is GPLv3 for all parts specific to [**dotfiles**](https://github.com/skyjia/dotfiles)
