@@ -23,24 +23,45 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     chinese
-     auto-completion
+     ;;
+     ;; Spacemacs
      better-defaults
+     spell-checking
+     themes-megapack
+     ibuffer
+     ;; OS X
+     osx
+     ;; Input method
+     chinese
+     ;; Languages
+     syntax-checking
+     auto-completion
+     asciidoc
      emacs-lisp
-     git
+     go
+     javascript
+     ;; latex
+     lua
      markdown
      org
+     ;; There is a bug in distutils, so the first time loading anaconda-mode will cause an error on OS X
+     ;; if you install pip with Homebrew.
+     ;; Refer the following link to fix it manually:
+     ;;   https://github.com/proofit404/anaconda-mode/issues/114
+     (python :variables
+             python-enable-yapf-format-on-save t)
+     ruby
+     sql
+     ;; Frameworks
+     ;; react
+     ;; Source control
+     git
+     version-control
+     ;; Shell
      (shell :variables
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-default-height 30
             shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
-     version-control
-     themes-megapack
-     osx
-     ibuffer
-     golang
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -198,6 +219,9 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+
+  ;; Ruby
+  (setq-default ruby-version-manager 'rbenv)
  )
 
 (defun dotspacemacs/user-config ()
