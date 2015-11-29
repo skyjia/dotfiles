@@ -64,8 +64,9 @@ values."
      version-control
      ;; ---- Shell ----
      (shell :variables
+            Shell-default-shell 'multi-term  ;; or eshell, shell, term, ansi-term
             shell-default-term-shell "/usr/local/bin/zsh"
-            shell-default-height 30
+            shell-default-height 40
             shell-default-position 'bottom)
      shell-scripts
      ;; ---- config files ----

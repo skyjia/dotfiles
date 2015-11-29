@@ -53,7 +53,6 @@ plugins=(git gitfast git-flow brew osx encode64 mercurial golang)
 
 # User configuration
 
-# Load env variables from .zshenv instead.
 # 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -87,5 +86,12 @@ source $ZSH/oh-my-zsh.sh
 # Load $HOME/.shared_profile if exists
 if [ -f ~/.shared_profile.sh ]; then
     source ~/.shared_profile.sh
+fi
+
+# Fix shell layer error in Spacemacs
+#   https://github.com/syl20bnr/spacemacs/issues/3035
+if [ -n "$INSIDE_EMACS" ]; then
+    export EDITOR=emacsclient
+    unset zle_bracketed_paste  # This line
 fi
 
