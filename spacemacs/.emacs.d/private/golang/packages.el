@@ -41,12 +41,20 @@
   ;;
   ;; Load gocode source
   (load-file "$GOPATH/src/github.com/nsf/gocode/emacs/go-autocomplete.el")
-  ;; Load go-oracle
-  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+ 
   ;; Set up go-autocomplete
   (require 'go-autocomplete)
   (require 'auto-complete-config)
   (ac-config-default)
+  
+  ;; Load go-oracle
+  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+
+  ; Use goimports instead of go-fmt
+  (setq gofmt-command "goimports")
+
+  ;; Automatically call gofmt on save
+  (add-hook 'before-save-hook 'gofmt-before-save)
 
   ;; Using company-mode
   ;;
