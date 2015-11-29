@@ -19,12 +19,12 @@
  fish				> fish settings
  git				> global git config and aliases
  hg					> global hg config and aliases
- httpie			> httpie settings
+ httpie			    > httpie settings
  janus				> janus for vim configurations
  less				> less settings
  omf				> oh-my-fish settings
- shared_profile	> shared shell settings, alias, and custom prompts
- spacemacs		> spacemacs initialization setting and custom layers for Emacs.
+ shared_profile	    > shared shell settings, alias, and custom prompts
+ spacemacs		    > spacemacs initialization setting and custom layers for Emacs.
  tmux				> terminal multiplexer with custom status bar
  vim				> vim settings
  zsh				> zshell settings, aliases, and custom prompts

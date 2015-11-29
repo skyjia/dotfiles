@@ -24,21 +24,23 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;;
-     ;; Spacemacs
+     ;; ---- Spacemacs ----
      better-defaults
      spell-checking
      themes-megapack
      ibuffer
-     ;; OS X
+     ;; ---- OS X ----
      osx
-     ;; Input method
+     ;; ---- Input method ----
      chinese
-     ;; Languages
+     ;; ---- Languages ----
      syntax-checking
      auto-completion
      asciidoc
      emacs-lisp
+     ess
      go
+     html
      javascript
      ;; latex
      lua
@@ -52,16 +54,25 @@ values."
              python-enable-yapf-format-on-save t)
      ruby
      sql
-     ;; Frameworks
-     ;; react
-     ;; Source control
+     yaml
+     ;; ---- Frameworks ----
+     react
+     ;; ---- Source control ----
      git
+     github
      version-control
-     ;; Shell
+     ;; ---- Shell ----
      (shell :variables
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-default-height 30
             shell-default-position 'bottom)
+     shell-scripts
+     ;; ---- config files ----
+     ansible
+     dockerfile
+     puppet
+     salt
+     terraform
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -219,6 +230,9 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+  ;; Git
+  ;; display the magit status buffer in fullscreen
+  (setq-default git-magit-status-fullscreen t)
 
   ;; Ruby
   (setq-default ruby-version-manager 'rbenv)
@@ -247,6 +261,7 @@ layers configuration. You are free to put any user code."
   (global-set-key (kbd "C-;") 'pyim-toggle-full-width-punctuation)
   (setq-default pyim-english-input-switch-function
                'pyim-dynamic-english-input-function)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
