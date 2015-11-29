@@ -42,7 +42,8 @@ values."
      go
      html
      javascript
-     ;; latex
+     (latex :variables
+            latex-enable-auto-fill t)
      lua
      markdown
      org
@@ -262,6 +263,9 @@ layers configuration. You are free to put any user code."
   (setq-default pyim-english-input-switch-function
                'pyim-dynamic-english-input-function)
 
+  ;; Latex layer
+  ;; To perform full-document previews 
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
