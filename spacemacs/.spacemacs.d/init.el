@@ -62,6 +62,8 @@ values."
      git
      github
      version-control
+     ;; ---- Tools ----
+     pandoc
      ;; ---- Shell ----
      (shell :variables
             Shell-default-shell 'multi-term  ;; or eshell, shell, term, ansi-term
