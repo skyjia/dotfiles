@@ -191,11 +191,11 @@ values."
    dotspacemacs-fullscreen-at-startup nil
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
-   dotspacemacs-fullscreen-use-non-native nil
+   dotspacemacs-fullscreen-use-non-native nil 
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup 1
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -254,10 +254,10 @@ layers configuration. You are free to put any user code."
   (spacemacs//set-monospaced-font   "Source Code Pro" "Hiragino Sans GB" 13 15)
 
   ;; Default Screen position and size
-  (add-to-list 'default-frame-alist '(left . 60))
-  (add-to-list 'default-frame-alist '(top . 0))
-  (add-to-list 'default-frame-alist '(height . 50))
-  (add-to-list 'default-frame-alist '(width . 150))
+  ;; (add-to-list 'default-frame-alist '(left . 60))
+  ;; (add-to-list 'default-frame-alist '(top . 0))
+  ;; (add-to-list 'default-frame-alist '(height . 50))
+  ;; (add-to-list 'default-frame-alist '(width . 150))
 
   ;; Chinese pyim
   (setq default-input-method "chinese-pyim")
