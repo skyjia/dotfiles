@@ -11,3 +11,6 @@ export PATH=$GOPATH/bin:$PATH
 # rbenv
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
+
+# Home bin
+export PATH=$HOME/bin:$PATH

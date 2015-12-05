@@ -7,6 +7,7 @@ alias emd='emacsdaemon'
 #alias emacsdaemon-stop="emacsclient -e '(kill-emacs)'"
 alias em='emacsclient --no-wait'
 alias emn='emacsclient -c --no-wait'
+export EDITOR="emacsclient -c"
 
 # Add color support for 'less' command
 if [ -f ~/.LESS_TERMCAP ] ; then
