@@ -4,7 +4,9 @@ color getafe
 "" Set font size for MacVim
 "" set guifont=Menlo\ Regular:h14
 
-
+"" Copy and paste in vim via keyboard between different mac terminals
+""   http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
+set clipboard+=unnamed
 
 "" Tmux
 
