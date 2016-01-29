@@ -55,6 +55,7 @@ values."
              python-enable-yapf-format-on-save t)
      ruby
      sql
+     vimscript
      yaml
      ;; ---- Frameworks ----
      react
@@ -66,7 +67,7 @@ values."
      pandoc
      ;; ---- Shell ----
      (shell :variables
-            Shell-default-shell 'multi-term  ;; or eshell, shell, term, ansi-term
+            shell-default-shell 'multi-term  ;; or eshell, shell, term, ansi-term
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-default-height 40
             shell-default-position 'bottom)
@@ -77,6 +78,8 @@ values."
      puppet
      salt
      terraform
+     ;; ---- Fun ----
+     selectric
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
