@@ -46,7 +46,8 @@ values."
             latex-enable-auto-fill t)
      lua
      markdown
-     org
+     (org :variables
+          org-enable-github-support t)
      ;; There is a bug in distutils, so the first time loading anaconda-mode will cause an error on OS X
      ;; if you install pip with Homebrew.
      ;; Refer the following link to fix it manually:
