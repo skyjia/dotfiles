@@ -33,6 +33,7 @@ values."
      osx
      ;; ---- Input method ----
      chinese
+     chinese-fonts
      ;; ---- Languages ----
      syntax-checking
      auto-completion
@@ -255,7 +256,7 @@ layers configuration. You are free to put any user code."
 
   ;; Note: The Hiragino Sans GB is bundled with MacOS X. 
   ;; If you are not using MacOS X, you should change it to another Chinese font name.
-  (spacemacs//set-monospaced-font   "Source Code Pro" "Hiragino Sans GB" 13 15)
+  (spacemacs//set-monospaced-font   "Source Code Pro" "Hiragino Sans GB W3" 13 15)
 
   ;; Default Screen position and size
   ;; (add-to-list 'default-frame-alist '(left . 60))
@@ -273,6 +274,7 @@ layers configuration. You are free to put any user code."
   ;; Latex layer
   ;; To perform full-document previews 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -283,6 +285,8 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
+ '(cfs--current-profile-name "coding" t)
+ '(cfs--fontsize-steps (quote (5 4 4)) t)
  '(column-number-mode t)
  '(pyim-dicts
    (quote
