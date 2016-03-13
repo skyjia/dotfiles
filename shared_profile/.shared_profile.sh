@@ -19,3 +19,8 @@ alias vi="vim"
 alias lla="ll -a"
 alias rm='rm -i'
 
+eval `opam config env`
+if [ -d "$HOME/.opam/opam-init/init.zsh" ];then
+  $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+fi
+
