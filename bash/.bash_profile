@@ -1,6 +1,9 @@
 # rbenv
 eval "$(rbenv init -)"
 
+# opam
+eval `opam config env`
+
 # AWS CLI completion
 complete -C aws_completer aws
 

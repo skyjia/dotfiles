@@ -14,3 +14,7 @@ eval "$(rbenv init -)"
 
 # Home bin
 export PATH=$HOME/bin:$PATH
+
+# OPAM
+eval `opam config env`
+

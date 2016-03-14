@@ -1,3 +1,6 @@
+# Language locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Configuration for GNU Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
@@ -19,7 +22,6 @@ alias vi="vim"
 alias lla="ll -a"
 alias rm='rm -i'
 
-eval `opam config env`
 if [ -d "$HOME/.opam/opam-init/init.zsh" ];then
   $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 fi
