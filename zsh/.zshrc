@@ -49,7 +49,8 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast git-flow-avh git-extras httpie brew osx encode64 mercurial golang docker aws)
+plugins=(zsh-completions git gitfast git-flow-avh git-extras httpie brew osx encode64 mercurial golang docker aws)
+autoload -U compinit && compinit
 
 # User configuration
 
