@@ -12,6 +12,10 @@ alias em='emacsclient --no-wait'
 alias emn='emacsclient -c --no-wait'
 export EDITOR="emacsclient -c"
 
+# Docker Quick Start
+#   Ref: https://github.com/docker/toolbox/issues/81#issuecomment-135588012
+alias docker-init="source /Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
+
 # Add color support for 'less' command
 if [ -f ~/.LESS_TERMCAP ] ; then
   source ~/.LESS_TERMCAP
