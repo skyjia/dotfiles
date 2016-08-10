@@ -16,6 +16,9 @@ export EDITOR="emacsclient -c"
 #   Ref: https://github.com/docker/toolbox/issues/81#issuecomment-135588012
 alias docker-init="source /Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
 
+# use the assemblies from other formulae
+export MONO_GAC_PREFIX="/usr/local"
+
 # Add color support for 'less' command
 if [ -f ~/.LESS_TERMCAP ] ; then
   source ~/.LESS_TERMCAP
