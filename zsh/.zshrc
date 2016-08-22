@@ -101,3 +101,6 @@ fi
 
 # iTerm3 Shell Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# brew install zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
