@@ -24,6 +24,10 @@ if [ -f ~/.LESS_TERMCAP ] ; then
   source ~/.LESS_TERMCAP
 fi
 
+# Hub command
+# https://github.com/github/hub#aliasing
+eval "$(hub alias -s)"
+
 alias cat="ccat"
 alias vi="vim"
 alias lla="ll -a"
