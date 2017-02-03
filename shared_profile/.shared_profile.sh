@@ -12,6 +12,10 @@ alias em='emacsclient --no-wait'
 alias emn='emacsclient -c --no-wait'
 export EDITOR="emacsclient -c"
 
+# Export LaTex tools
+#  http://tex.stackexchange.com/questions/249966/install-latex-on-mac-os-x-el-capitan-10-11
+export PATH=$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin
+
 # Docker Quick Start
 #   Ref: https://github.com/docker/toolbox/issues/81#issuecomment-135588012
 alias docker-init="source /Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
