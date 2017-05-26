@@ -89,9 +89,6 @@ if [ -f ~/.shared_profile.sh ]; then
     source ~/.shared_profile.sh
 fi
 
-# AWS CLI completion
-source /usr/local/share/zsh/site-functions/_aws
-
 # Fix shell layer error in Spacemacs
 #   https://github.com/syl20bnr/spacemacs/issues/3035
 if [ -n "$INSIDE_EMACS" ]; then
