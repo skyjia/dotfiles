@@ -16,6 +16,13 @@ export EDITOR="emacsclient -c"
 #  http://tex.stackexchange.com/questions/249966/install-latex-on-mac-os-x-el-capitan-10-11
 export PATH=$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin
 
+# Export local npm bin
+export PATH=./node_modules/.bin:$PATH
+
+# The Fuck
+#   https://github.com/nvbn/thefuck#installation
+eval "$(thefuck --alias)"
+
 # Docker Quick Start
 #   Ref: https://github.com/docker/toolbox/issues/81#issuecomment-135588012
 #alias docker-init="source /Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
