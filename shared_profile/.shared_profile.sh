@@ -2,6 +2,13 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# Proxy on Shadowsocks
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1086"
+alias onceproxy="ALL_PROXY=socks5://127.0.0.1:1086"
+alias httpproxy="http_proxy=http://127.0.0.1:1087 https_proxy=http://127.0.0.1:1087"
+alias unsetproxy="unset ALL_PROXY"
+alias myip="curl -i http://ip.cn"
+
 # Configuration for GNU Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 alias emacs-debug='emacs --debug-init'
