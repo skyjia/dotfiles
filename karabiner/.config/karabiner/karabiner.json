@@ -117,7 +117,7 @@
                 "f8": "vk_consumer_play",
                 "f9": "vk_consumer_next"
             },
-            "name": "Default profile",
+            "name": "Sky profile",
             "selected": true,
             "simple_modifications": {},
             "virtual_hid_keyboard": {
