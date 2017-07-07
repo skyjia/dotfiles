@@ -26,6 +26,9 @@ export PATH=$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbi
 # Export local npm bin
 export PATH=./node_modules/.bin:$PATH
 
+# Qt (installed via Homebrew)
+export PATH=/usr/local/opt/qt/bin:$PATH
+
 # The Fuck
 #   https://github.com/nvbn/thefuck#installation
 eval "$(thefuck --alias)"
