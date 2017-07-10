@@ -2,3 +2,4 @@
 ! See https://adblockplus.org/en/filter-cheatsheet
 graphql.org
 www.macbed.com
+godoc.org
