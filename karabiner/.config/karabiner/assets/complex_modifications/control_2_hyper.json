@@ -36,7 +36,7 @@
             "key_code": "caps_lock",
             "modifiers": {
               "mandatory": [
-                "shift"
+                "right_shift"
               ],
               "optional": [
                 "caps_lock"
