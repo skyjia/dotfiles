@@ -2,6 +2,7 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# Load profile via OS uname
 if [ "$(uname)" = "Darwin" ]; then
     source ~/.shared_profile_darwin.sh
 fi
