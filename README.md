@@ -81,6 +81,7 @@ brew install stow
 
 ```sh
 git clone https://github.com/skyjia/dotfiles.git ~/dotfiles
+cd ~/dotfiles && rake
 ```
 
 If you want to apply a configuration package, try to execute following commands:
