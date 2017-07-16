@@ -17,12 +17,14 @@
 
  bash				> bash settings
  fish				> fish settings
+ gdb				> GDB init
  git				> global git config and aliases
  hg					> global hg config and aliases
  httpie			    > httpie settings
- janus				> janus for vim configurations
+ karabiner			> Karabiner configuration
  less				> less settings
  omf				> oh-my-fish settings
+ opam				> opam init
  shared_profile	    > shared shell settings, alias, and custom prompts
  spacemacs		    > spacemacs initialization setting and custom layers for Emacs.
  tmux				> terminal multiplexer with custom status bar
@@ -30,57 +32,42 @@
  zsh				> zshell settings, aliases, and custom prompts
 ```
 
-**Quick Install**
 
-```shell
-git clone https://github.com/skyjia/dotfiles.git ~/dotfiles
-```
-
-##Table of Contents
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-- [Preparation](#preparation)
-  - [1. How to manage dotfiles?](#1-how-to-manage-dotfiles)
-  - [2. Homebrew & Cask](#2-homebrew-&-cask)
-- [Apply Configuration](#apply-configuration)
-- [License](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
-# Preparation
-
-## 1. How to manage dotfiles?
+## Before Getting Start
 
 It's best to read the follwing articles before you start:
 
 - [GitHub Dotfiles Guide](https://dotfiles.github.io/)
 - [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
 
-## 2. Homebrew & Cask
+## Installation
+
+### 1 Install Dependencies
+
+#### Homebrew & Cask
 
 If you're an OS X user, the best way to manage software pacakges is to use Homebrew & Cask.
 
-**1. Install Homebrew**
+**a) Install Homebrew**
 
 ```shell
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-**2. Install brew cask**
+**b) Install brew cask**
 
 ```shell
-brew install caskroom/cask/brew-cask
+brew tap caskroom/cask
 ```
 
 > Refer to:  
+>
 > - http://brew.sh/  
-> - http://caskroom.io/  
+> - https://caskroom.github.io/
 
-# Apply Configuration
+For Linux user, please try [LinuxBrew](http://linuxbrew.sh/) instead.
+
+#### GNU `stow`
 
 I recommend to use GNU `stow` to manage dotfiles, because it's free, portable, and lightweight.
 
@@ -90,13 +77,60 @@ Install stow with homebrew:
 brew install stow
 ```
 
+### 2 Clone and Apply `dotfiles`
+
+```sh
+git clone https://github.com/skyjia/dotfiles.git ~/dotfiles
+```
+
 If you want to apply a configuration package, try to execute following commands:
 
 ```shell
 cd ~/dotfiles
-stow package_name
+stow package_dir_name
 ```
 
+For example, apply **httpie** configuration package:
+
+```sh
+cd ~/dotfiles
+stow httpie
+```
+
+### 3 Package Configuration
+
+#### vim
+
+Vim configuration is based on [**Janus**]( https://github.com/carlhuda/janus). Install MacVim and Janus as followed:
+
+```sh
+brew cask install macvim
+
+# install janus
+# https://github.com/carlhuda/janus#installation
+cd
+curl -L https://bit.ly/janus-bootstrap | bash
+
+cd ~/dotfiles
+stow vim
+```
+
+#### tmux
+
+tmux configuration is based on [**gpakosz/.tmux**](https://github.com/gpakosz/.tmux).
+
+```sh
+cd ~/dotfiles
+stow tmux
+```
+
+#### spacemacs
+
+```sh
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+cd ~/dotfiles
+stow spacemacs
+```
 
 # License
 
