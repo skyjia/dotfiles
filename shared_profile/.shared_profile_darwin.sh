@@ -1,3 +1,4 @@
+alias vim="mvim -v"
 # Proxy on Shadowsocks
 alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1086"
 alias onceproxy="ALL_PROXY=socks5://127.0.0.1:1086"
