@@ -1,4 +1,10 @@
-let mapleader = ","
+"" Set leader key
+""let mapleader = ","
+let mapleader = "\<SPACE>"
+
+"" show relative line numbers
+"" set relativenumber
+
 "" writes the content of the file automatically if you call :make
 set autowrite
 call janus#disable_plugin('vroom')"

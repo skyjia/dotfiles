@@ -1,5 +1,4 @@
-
-color getafe
+color solarized
 
 "" Set font size for MacVim
 "" set guifont=Menlo\ Regular:h14
