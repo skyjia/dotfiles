@@ -112,6 +112,11 @@ brew cask install macvim
 cd
 curl -L https://bit.ly/janus-bootstrap | bash
 
+# install fonts
+# https://github.com/powerline/fonts
+git clone https://github.com/powerline/fonts.git
+cd fonts && ./install.sh
+
 cd ~/dotfiles
 stow vim
 ```
