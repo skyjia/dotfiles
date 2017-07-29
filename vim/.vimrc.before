@@ -3,7 +3,7 @@
 let mapleader = "\<SPACE>"
 
 "" show relative line numbers
-"" set relativenumber
+set relativenumber
 
 "" writes the content of the file automatically if you call :make
 set autowrite
