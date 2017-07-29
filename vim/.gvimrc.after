@@ -1,2 +1,7 @@
-color molokai
+"" Set font size for MacVim
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+
+set background=dark
+"set t_Co=16              " fix for bg being too bright
+colorscheme solarized
 
