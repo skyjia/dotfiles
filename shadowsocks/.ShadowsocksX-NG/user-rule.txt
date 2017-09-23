@@ -3,3 +3,12 @@
 graphql.org
 www.macbed.com
 godoc.org
+www.docker.com
+store.docker.com
+slack.com
+atom.io
+s3.amazonaws.com
+github.com
+bitbucket.org
+waffle.io
+dribbble.com
