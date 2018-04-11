@@ -26,6 +26,14 @@ export PATH=./node_modules/.bin:$PATH
 # Qt (installed via Homebrew)
 export PATH=/usr/local/opt/qt/bin:$PATH
 
+# Android SDK path
+#   https://spring.io/guides/gs/android/
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+# GitHub Token for Homebrew
+export HOMEBREW_GITHUB_API_TOKEN="c0b999c69cd6bc517f464a2de7fb74ea59c38e42"
+
 # use the assemblies from other formulae
 export MONO_GAC_PREFIX="/usr/local"
 
