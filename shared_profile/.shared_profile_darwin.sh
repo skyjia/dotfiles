@@ -16,6 +16,9 @@ alias em='emacsclient --no-wait'
 alias emn='emacsclient -c --no-wait'
 export EDITOR="emacsclient -c"
 
+# Useful alias
+alias tasks='grep --exclude-dir=.git -rEI "TODO:|FIXME:" . 2>/dev/null'
+
 # Export LaTex tools
 #  http://tex.stackexchange.com/questions/249966/install-latex-on-mac-os-x-el-capitan-10-11
 export PATH=$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin
@@ -32,7 +35,7 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # GitHub Token for Homebrew
-export HOMEBREW_GITHUB_API_TOKEN="c0b999c69cd6bc517f464a2de7fb74ea59c38e42"
+export HOMEBREW_GITHUB_API_TOKEN="3d68f4db12292f661bc2d35f9361bdf21d90d1f8"
 
 # use the assemblies from other formulae
 export MONO_GAC_PREFIX="/usr/local"
