@@ -4,7 +4,7 @@
 [credential]
 	helper = osxkeychain
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/skyjia/.gitignore_global
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -22,3 +22,4 @@
 	template = ~/.stCommitMsg
 [http]
 	postBuffer = 2M
+	proxy = http://127.0.0.1:1087

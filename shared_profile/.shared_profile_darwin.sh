@@ -4,6 +4,8 @@ alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1086"
 alias onceproxy="ALL_PROXY=socks5://127.0.0.1:1086"
 alias httpproxy="http_proxy=http://127.0.0.1:1087 https_proxy=http://127.0.0.1:1087"
 alias unsetproxy="unset ALL_PROXY"
+alias gitproxy="git config --global http.proxy http://127.0.0.1:1087"
+alias unsetgitproxy="git config --global --unset http.proxy"
 alias myip="curl -i http://ip.cn"
 
 # Configuration for GNU Emacs
@@ -33,9 +35,6 @@ export PATH=/usr/local/opt/qt/bin:$PATH
 #   https://spring.io/guides/gs/android/
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-
-# GitHub Token for Homebrew
-export HOMEBREW_GITHUB_API_TOKEN="3d68f4db12292f661bc2d35f9361bdf21d90d1f8"
 
 # use the assemblies from other formulae
 export MONO_GAC_PREFIX="/usr/local"
