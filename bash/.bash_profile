@@ -4,7 +4,7 @@ if [ "$(uname)" = "Darwin" ]; then
 
   # opam
   eval `opam config env`
-  
+
   # AWS CLI completion
   complete -C aws_completer aws
 fi
