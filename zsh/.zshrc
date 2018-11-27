@@ -49,7 +49,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-completions git gitfast git-flow-avh git-extras httpie osx encode64 mercurial golang docker aws kubectl)
+plugins=(zsh-completions git gitfast git-flow-avh git-extras osx encode64 docker kubectl)
 autoload -U compinit && compinit
 
 # User configuration
@@ -91,10 +91,10 @@ fi
 
 # Fix shell layer error in Spacemacs
 #   https://github.com/syl20bnr/spacemacs/issues/3035
-if [ -n "$INSIDE_EMACS" ]; then
-    export EDITOR=emacsclient
-    unset zle_bracketed_paste  # This line
-fi
+# if [ -n "$INSIDE_EMACS" ]; then
+#     export EDITOR=emacsclient
+#     unset zle_bracketed_paste  # This line
+# fi
 
 # iTerm3 Shell Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

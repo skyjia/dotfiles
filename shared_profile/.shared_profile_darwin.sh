@@ -1,4 +1,8 @@
+# Change default editor to vim
+export VISUAL=vim
+export EDITOR="$VISUAL"
 alias vim="nvim"
+
 # Proxy on Shadowsocks
 alias setproxy="ALL_PROXY=socks5://127.0.0.1:1086 http_proxy=http://127.0.0.1:1087 https_proxy=http://127.0.0.1:1087"
 alias unsetproxy="unset ALL_PROXY && unset http_proxy && unset https_proxy"
@@ -14,10 +18,6 @@ alias emd='emacsdaemon'
 #alias emacsdaemon-stop="emacsclient -e '(kill-emacs)'"
 alias em='emacsclient --no-wait'
 alias emn='emacsclient -c --no-wait'
-
-# Change default editor to vim
-export VISUAL=vim
-export EDITOR="$VISUAL"
 
 # Useful alias
 alias tasks='grep --exclude-dir=.git -rEI "TODO:|FIXME:" . 2>/dev/null'
@@ -53,3 +53,10 @@ export GTAGSLABEL=pygments
 if [ -d "$HOME/.opam/opam-init/init.zsh" ];then
   $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 fi
+
+# OpenSSL 1.1
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+
