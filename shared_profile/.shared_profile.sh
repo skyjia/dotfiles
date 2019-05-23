@@ -20,6 +20,9 @@ eval "$(thefuck --alias)"
 # https://github.com/github/hub#aliasing
 eval "$(hub alias -s)"
 
+# GPG
+export GPG_TTY=$(tty)
+
 alias cat="ccat"
 alias vi="vim"
 alias lla="ll -a"

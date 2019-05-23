@@ -9,6 +9,9 @@ alias unsetproxy="unset ALL_PROXY && unset http_proxy && unset https_proxy"
 alias gitproxy="git config --global http.proxy http://127.0.0.1:1087"
 alias unsetgitproxy="git config --global --unset http.proxy"
 alias myip="curl -i http://ip.cn"
+# GOPROXY 
+#   https://github.com/goproxy/goproxy.cn
+#export GOPROXY=https://goproxy.cn
 
 # Configuration for GNU Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
@@ -59,4 +62,8 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+
+# Lua - LuaRocks
+#  https://github.com/mpeterv/luacheck
+eval `luarocks path`
 

@@ -1,6 +1,7 @@
 [user]
 	name = Sky JIA
 	email = me@skyjia.com
+	signingkey = EE514A710AE059D5
 [credential]
 	helper = osxkeychain
 [core]
@@ -20,6 +21,9 @@
 	trustExitCode = true
 [commit]
 	template = /Users/skyjia/.stCommitMsg
+	gpgsign = true
 [http]
 	postBuffer = 2M
 	proxy = http://127.0.0.1:1087
+[gpg]
+	program = gpg2
