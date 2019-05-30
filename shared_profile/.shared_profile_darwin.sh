@@ -55,6 +55,9 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 # https://spacevim.org/layers/tags/
 export GTAGSLABEL=pygments
 
+# SpaceVim - Vim Server
+export PATH=$PATH:$HOME/.SpaceVim/bin
+
 if [ -d "$HOME/.opam/opam-init/init.zsh" ];then
   $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 fi
