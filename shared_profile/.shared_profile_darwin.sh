@@ -1,7 +1,7 @@
 # Change default editor to vim
 export VISUAL=vim
 export EDITOR="$VISUAL"
-alias vim="nvim"
+# alias vim="nvim"
 
 # Proxy on Shadowsocks
 export SS_HTTP_PROXY="http://127.0.0.1:1087"

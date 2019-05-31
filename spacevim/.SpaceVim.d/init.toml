@@ -16,6 +16,9 @@
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
     enable_statusline_display_mode = false
+    # defx filemanager
+    filemanager = "defx"
+    
 
 # Enable autocomplete layer
 [[layers]]
@@ -30,6 +33,9 @@ name = "colorscheme"
 name = 'shell'
 default_position = 'top'
 default_height = 30
+
+[[layers]]
+name = "denite" 
 
 [[layers]]
 name = "debug"
