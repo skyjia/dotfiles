@@ -6,7 +6,7 @@ export EDITOR="$VISUAL"
 # Proxy on Shadowsocks
 export SS_HTTP_PROXY="http://127.0.0.1:1087"
 export SS_SOCKS_PROXY="socks5://127.0.0.1:1086"
-alias setproxy="ALL_PROXY=$SS_SOCKS_PROXY http_proxy=$SS_HTTP_PROXY https_proxy=$SS_HTTP_PROXY"
+alias setproxy="export ALL_PROXY=$SS_SOCKS_PROXY; export http_proxy=$SS_HTTP_PROXY; export https_proxy=$SS_HTTP_PROXY"
 alias unsetproxy="unset ALL_PROXY && unset http_proxy && unset https_proxy"
 alias gitproxy="git config --global http.proxy $SS_HTTP_PROXY"
 alias unsetgitproxy="git config --global --unset http.proxy"
