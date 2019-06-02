@@ -10,30 +10,28 @@ POWERLEVEL9K_MODE='awesome-fontconfig'
 DEFAULT_USER='skyjia'
 # Customise the Powerlevel9k prompts
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  os_icon
   vi_mode
   context
   dir_writable
   dir
-  ip
-  custom_javascript
   vcs
+  ip
   newline
   status
   root_indicator
   background_jobs
 )
+POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-# Create a custom JavaScript prompt section
-POWERLEVEL9K_CUSTOM_JAVASCRIPT="echo -n '\ue781' JavaScript"
-POWERLEVEL9K_CUSTOM_JAVASCRIPT_FOREGROUND="black"
-POWERLEVEL9K_CUSTOM_JAVASCRIPT_BACKGROUND="yellow"
+
 # Vi-Mode
 KEYTIMEOUT=1
-POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='005'
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='236'
-POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='245'
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='236'
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='darkcyan'
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='black'
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='magenta'
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='black'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
