@@ -3,10 +3,37 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+
+# Config POWERLEVEL9K theme
+#
 POWERLEVEL9K_MODE='awesome-fontconfig'
 DEFAULT_USER='skyjia'
+# Customise the Powerlevel9k prompts
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  vi_mode
+  context
+  dir_writable
+  dir
+  ip
+  custom_javascript
+  vcs
+  newline
+  status
+  root_indicator
+  background_jobs
+)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+# Create a custom JavaScript prompt section
+POWERLEVEL9K_CUSTOM_JAVASCRIPT="echo -n '\ue781' JavaScript"
+POWERLEVEL9K_CUSTOM_JAVASCRIPT_FOREGROUND="black"
+POWERLEVEL9K_CUSTOM_JAVASCRIPT_BACKGROUND="yellow"
+# Vi-Mode
+KEYTIMEOUT=1
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='005'
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='236'
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='245'
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='236'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -51,7 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-completions git gitfast git-flow-avh git-extras osx encode64 docker kubectl tmux vscode)
+plugins=(zsh-completions git gitfast git-flow-avh git-extras osx encode64 docker kubectl tmux vscode vi-mode)
 autoload -U compinit && compinit
 
 # User configuration
@@ -100,8 +127,5 @@ fi
 
 # iTerm2 Shell Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# brew install zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

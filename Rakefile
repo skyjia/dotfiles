@@ -12,6 +12,7 @@ task :update do
   puts "Updating the submodules"
   `git submodule update --init`
   `git submodule update --recursive`
+  `echo $ZSH`
 end
 
 desc "Install or Update Dotfiles."
