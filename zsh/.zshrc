@@ -31,7 +31,7 @@ prompt_custom_proxy_check() {
     if [ -z ${http_proxy+x} ]; then
         echo -n "";
     else
-        echo -n "\ue78c '$http_proxy'";
+        echo -n "\ue78c $http_proxy";
     fi
 }
 POWERLEVEL9K_CUSTOM_PROXY_CHECK="prompt_custom_proxy_check"
@@ -138,3 +138,4 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
