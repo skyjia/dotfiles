@@ -21,6 +21,8 @@ toggle_proxy() {
     fi
 }
 alias tp="toggle_proxy"
+# Default to enable proxy for new shell
+setproxy
 
 # GOPROXY 
 #   https://github.com/goproxy/goproxy.cn
