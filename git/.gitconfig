@@ -6,6 +6,7 @@
 	helper = osxkeychain
 [core]
 	excludesfile = /Users/skyjia/.gitignore_global
+	autocrlf = input
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -23,7 +24,9 @@
 	template = /Users/skyjia/.stCommitMsg
 	gpgsign = true
 [http]
-	postBuffer = 2M
+	postBuffer = 524288000
 	proxy = http://127.0.0.1:1087
 [gpg]
 	program = gpg2
+[color]
+	ui = true

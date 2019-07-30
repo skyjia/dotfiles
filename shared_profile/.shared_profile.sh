@@ -5,7 +5,10 @@ export LANG=en_US.UTF-8
 # Load profile via OS uname
 if [ "$(uname)" = "Darwin" ]; then
     source ~/.shared_profile_darwin.sh
-    source ~/.shared_profile_darwin_secure.sh
+
+    if [ -f ~/.shared_profile_darwin_secure.sh ] ; then
+        source ~/.shared_profile_darwin_secure.sh
+    fi
 fi
 
 if [ "$(uname)" = "Linux" ]; then
