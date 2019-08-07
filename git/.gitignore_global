@@ -1,5 +1,5 @@
 # Refer to
-#   https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+#   https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
 #
 .DS_Store
 .AppleDouble
