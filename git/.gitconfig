@@ -25,8 +25,12 @@
 	gpgsign = true
 [http]
 	postBuffer = 524288000
-	proxy = http://127.0.0.1:1087
+	proxy = socks5://127.0.0.1:1086
+[https]
+	postBuffer = 524288000
+	proxy = socks5://127.0.0.1:1086
 [gpg]
 	program = gpg2
 [color]
 	ui = true
+
