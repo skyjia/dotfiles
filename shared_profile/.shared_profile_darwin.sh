@@ -86,3 +86,8 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 #  https://github.com/mpeterv/luacheck
 eval `luarocks path`
 
+# vault completions
+# https://learn.hashicorp.com/vault/getting-started/install
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/vault vault
+
