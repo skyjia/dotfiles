@@ -17,7 +17,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   dir
   vcs
   ip
-  custom_proxy_check
+  proxy_check
   newline
   status
   root_indicator
@@ -26,17 +26,14 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
 POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
 # custom_proxy_check
-prompt_custom_proxy_check() {
-    if [ -z ${http_proxy+x} ]; then
-        echo -n "";
-    else
-        echo -n "\ue78c $http_proxy";
+prompt_proxy_check() {
+    if [[ -n $http_proxy ]]; then
+        p10k segment -b cyan2 -f black -i $'\ue78c' -t "$http_proxy"
     fi
 }
-POWERLEVEL9K_CUSTOM_PROXY_CHECK="prompt_custom_proxy_check"
-POWERLEVEL9K_CUSTOM_PROXY_CHECK_BACKGROUND='cyan2'
-POWERLEVEL9K_CUSTOM_PROXY_CHECK_FOREGROUND='black'
+
 # Vi-Mode
 KEYTIMEOUT=1
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='darkcyan'
