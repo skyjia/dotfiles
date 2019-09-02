@@ -92,3 +92,5 @@ eval `luarocks path`
 # https://learn.hashicorp.com/vault/getting-started/install
 complete -o nospace -C /usr/local/bin/vault vault
 
+# Mono
+export MONO_GAC_PREFIX="/usr/local"
