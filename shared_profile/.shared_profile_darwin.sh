@@ -38,6 +38,7 @@ alias emn='emacsclient -c --no-wait'
 
 # Useful alias
 alias tasks='grep --exclude-dir=.git -rEI "TODO:|FIXME:" . 2>/dev/null'
+alias ecrlogin='$(aws ecr get-login --no-include-email --region cn-north-1)'
 
 # Export LaTex tools
 #  http://tex.stackexchange.com/questions/249966/install-latex-on-mac-os-x-el-capitan-10-11
