@@ -18,6 +18,7 @@
     enable_statusline_display_mode = false
     # defx filemanager
     filemanager = "defx"
+    autocomplete_method = "coc"
     
 
 # Enable autocomplete layer
