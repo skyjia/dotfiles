@@ -6,6 +6,7 @@ export EDITOR="$VISUAL"
 # Proxy on Shadowsocks
 export SS_HTTP_PROXY="http://127.0.0.1:1087"
 export SS_SOCKS_PROXY="socks5://127.0.0.1:1086"
+export NO_PROXY=localhost,127.0.0.1
 
 alias setproxy="export ALL_PROXY=$SS_SOCKS_PROXY; export http_proxy=$SS_HTTP_PROXY; export https_proxy=$SS_HTTP_PROXY"
 alias unsetproxy="unset ALL_PROXY && unset http_proxy && unset https_proxy"
@@ -39,6 +40,15 @@ alias emn='emacsclient -c --no-wait'
 # Useful alias
 alias tasks='grep --exclude-dir=.git -rEI "TODO:|FIXME:" . 2>/dev/null'
 alias ecrlogin='$(aws ecr get-login --no-include-email --region cn-north-1)'
+
+# Aria2
+alias aria-rpc-server='aria2c --conf-path=$HOME/aria2.conf'
+
+# Flutter mirror 
+# https://flutter.dev/community/china
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+export PATH="$HOME/Workspace/flutter/bin:$PATH"
 
 # Export LaTex tools
 #  http://tex.stackexchange.com/questions/249966/install-latex-on-mac-os-x-el-capitan-10-11
