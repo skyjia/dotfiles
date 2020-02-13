@@ -17,6 +17,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   dir
   vcs
   ip
+  # public_ip
   # proxy_check
   proxy
   newline
@@ -27,6 +28,8 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
 POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
+POWERLEVEL9K_IP_INTERFACE=en0
 
 # proxy_check
 # prompt_proxy_check() {
