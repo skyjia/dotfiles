@@ -102,24 +102,7 @@ stow httpie
 
 #### vim
 
-Vim configuration is based on [**Janus**]( https://github.com/carlhuda/janus). Install MacVim and Janus as followed:
-
-```sh
-brew cask install macvim
-
-# install janus
-# https://github.com/carlhuda/janus#installation
-cd
-curl -L https://bit.ly/janus-bootstrap | bash
-
-# install fonts
-# https://github.com/powerline/fonts
-git clone https://github.com/powerline/fonts.git
-cd fonts && ./install.sh
-
-cd ~/dotfiles
-stow vim
-```
+Vim configuration is based on [**SpaceVim**]( https://spacevim.org/). 
 
 #### tmux
 
@@ -136,6 +119,13 @@ stow tmux
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 cd ~/dotfiles
 stow spacemacs
+```
+
+### 4 Keep Updated
+
+```sh
+cd ~/dotfiles
+./update.sh
 ```
 
 # License
