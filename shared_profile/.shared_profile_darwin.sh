@@ -39,7 +39,7 @@ alias emn='emacsclient -c --no-wait'
 
 # Useful alias
 alias tasks='grep --exclude-dir=.git -rEI "TODO:|FIXME:" . 2>/dev/null'
-alias ecrlogin='$(aws ecr get-login --no-include-email --region cn-north-1)'
+alias ecrlogin='aws ecr get-login-password | docker login --username AWS --password-stdin 949191617935.dkr.ecr.cn-north-1.amazonaws.com.cn'
 
 # Aria2
 alias aria-rpc-server='aria2c --conf-path=$HOME/aria2.conf'
