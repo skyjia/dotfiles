@@ -14,3 +14,4 @@ if [ -f ~/.shared_profile.sh ]; then
     source ~/.shared_profile.sh
 fi
 
+eval "$(direnv hook bash)"
