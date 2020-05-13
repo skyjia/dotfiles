@@ -4,11 +4,11 @@ CUR=`dirname $0`
 
 cd $CUR
 
-echo "Updating Homebrew"
-brew update
-brew upgrade
-brew cask upgrade
-
+# echo "Updating Homebrew"
+# brew update
+# brew upgrade
+# brew cask upgrade
+#
 rake
 
 echo "Updating additional dependencies"
