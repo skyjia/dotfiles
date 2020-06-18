@@ -105,3 +105,13 @@ complete -o nospace -C /usr/local/bin/vault vault
 
 # Mono
 export MONO_GAC_PREFIX="/usr/local"
+
+# link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded)
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# Julia
+# https://github.com/JuliaLang/julia/issues/33111
+export JULIA_PKG_SERVER=pkg.julialang.org
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
