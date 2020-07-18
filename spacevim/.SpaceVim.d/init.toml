@@ -18,8 +18,12 @@
     enable_statusline_display_mode = false
     # defx filemanager
     filemanager = "defx"
-    autocomplete_method = "coc"
-    
+    filetree_direction = "left"
+    #autocomplete_method = "coc"
+    # automatic_update = true
+
+[[layers]]
+name = "default"
 
 # Enable autocomplete layer
 [[layers]]
