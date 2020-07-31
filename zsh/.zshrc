@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -6,30 +13,30 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Config POWERLEVEL9K theme
 #
-POWERLEVEL9K_MODE='awesome-fontconfig'
-DEFAULT_USER='skyjia'
-# Customise the Powerlevel9k prompts
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-  os_icon
-  vi_mode
-  context
-  dir_writable
-  dir
-  vcs
-  ip
-  # public_ip
-  # proxy_check
-  proxy
-  newline
-  status
-  root_indicator
-  background_jobs
-)
-POWERLEVEL9K_DISABLE_RPROMPT=true
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+# POWERLEVEL9K_MODE='awesome-fontconfig'
+# DEFAULT_USER='skyjia'
+# # Customise the Powerlevel9k prompts
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+#   os_icon
+#   vi_mode
+#   context
+#   dir_writable
+#   dir
+#   vcs
+#   ip
+#   # public_ip
+#   # proxy_check
+#   proxy
+#   newline
+#   status
+#   root_indicator
+#   background_jobs
+# )
+# POWERLEVEL9K_DISABLE_RPROMPT=true
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+# POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
-POWERLEVEL9K_IP_INTERFACE=en0
+# POWERLEVEL9K_IP_INTERFACE=en0
 
 # proxy_check
 # prompt_proxy_check() {
@@ -37,15 +44,15 @@ POWERLEVEL9K_IP_INTERFACE=en0
 #         p10k segment -b cyan2 -f black -i $'\ue78c' -t "$http_proxy"
 #     fi
 # }
-POWERLEVEL9K_PROXY_BACKGROUND='magenta'
-POWERLEVEL9K_PROXY_FOREGROUND='black'
+# POWERLEVEL9K_PROXY_BACKGROUND='magenta'
+# POWERLEVEL9K_PROXY_FOREGROUND='black'
 
 # Vi-Mode
 KEYTIMEOUT=1
-POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='darkcyan'
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='black'
-POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='magenta'
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='black'
+# POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='darkcyan'
+# POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='black'
+# POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='magenta'
+# POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='black'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -147,3 +154,6 @@ export PATH="/usr/local/opt/qt/bin:$PATH"
 # direnv hook
 # https://direnv.net/docs/hook.html#zsh
 eval "$(direnv hook zsh)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
