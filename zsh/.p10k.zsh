@@ -35,8 +35,8 @@
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
-    ip
     proxy
+    ip
     # =========================[ Line #2 ]=========================
     newline                 # \n
     vi_mode
@@ -479,7 +479,7 @@
 
   # Status on success. No content, just an icon. No need to show it if prompt_char is enabled as
   # it will signify success by turning green.
-  typeset -g POWERLEVEL9K_STATUS_OK=true
+  typeset -g POWERLEVEL9K_STATUS_OK=false
   typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION='✔'
   # typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=2
   # typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=0
@@ -1523,8 +1523,8 @@
 
   #########################[ proxy: system-wide http/https/ftp proxy ]##########################
   # Proxy color.
-  # typeset -g POWERLEVEL9K_PROXY_FOREGROUND=4
-  # typeset -g POWERLEVEL9K_PROXY_BACKGROUND=0
+  typeset -g POWERLEVEL9K_PROXY_FOREGROUND=7
+  typeset -g POWERLEVEL9K_PROXY_BACKGROUND=10
   # Custom icon.
   # typeset -g POWERLEVEL9K_PROXY_VISUAL_IDENTIFIER_EXPANSION='⭐'
 

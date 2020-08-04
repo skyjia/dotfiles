@@ -11,48 +11,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 
-# Config POWERLEVEL9K theme
-#
-# POWERLEVEL9K_MODE='awesome-fontconfig'
-# DEFAULT_USER='skyjia'
-# # Customise the Powerlevel9k prompts
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-#   os_icon
-#   vi_mode
-#   context
-#   dir_writable
-#   dir
-#   vcs
-#   ip
-#   # public_ip
-#   # proxy_check
-#   proxy
-#   newline
-#   status
-#   root_indicator
-#   background_jobs
-# )
-# POWERLEVEL9K_DISABLE_RPROMPT=true
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-# POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-
-# POWERLEVEL9K_IP_INTERFACE=en0
-
-# proxy_check
-# prompt_proxy_check() {
-#     if [[ -n $http_proxy ]]; then
-#         p10k segment -b cyan2 -f black -i $'\ue78c' -t "$http_proxy"
-#     fi
-# }
-# POWERLEVEL9K_PROXY_BACKGROUND='magenta'
-# POWERLEVEL9K_PROXY_FOREGROUND='black'
-
-# Vi-Mode
-KEYTIMEOUT=1
-# POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='darkcyan'
-# POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='black'
-# POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='magenta'
-# POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='black'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
