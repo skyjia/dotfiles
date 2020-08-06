@@ -18,7 +18,7 @@
     enable_statusline_display_mode = false
     # defx filemanager
     filemanager = "defx"
-    filetree_direction = "left"
+    # filetree_direction = "left"
     #autocomplete_method = "coc"
     # automatic_update = true
 
