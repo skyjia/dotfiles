@@ -43,6 +43,9 @@ auto-completion-tab-key-behavior = "smart"
 name = "colorscheme"
 
 [[layers]]
+name = "fzf"
+
+[[layers]]
 name = 'shell'
 default_position = 'top'
 default_height = 30
@@ -52,6 +55,9 @@ name = "denite"
 
 [[layers]]
 name = "debug"
+
+[[layers]]
+name = "ctrlspace"
 
 [[layers]]
 name = "lang#go"
