@@ -42,8 +42,10 @@ auto-completion-tab-key-behavior = "smart"
 [[layers]]
 name = "colorscheme"
 
-[[layers]]
-name = "fzf"
+# use "denite" instead
+#
+# [[layers]]
+# name = "fzf"
 
 [[layers]]
 name = 'shell'
@@ -56,6 +58,7 @@ name = "denite"
 [[layers]]
 name = "debug"
 
+# disable "ctrlspace" due to conflicts with tabline
 # [[layers]]
 # name = "ctrlspace"
 # enable-spacevim-styled-keys = true
