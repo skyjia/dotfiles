@@ -17,8 +17,8 @@
     enable_statusline_display_mode = false
     # defx filemanager
     filemanager = "defx"
-    # spacevim_enable_vimfiler_filetypeicon=1
-    # spacevim_enable_vimfiler_gitstatus=1
+    spacevim_enable_vimfiler_filetypeicon=1
+    spacevim_enable_vimfiler_gitstatus=1
     # filetree_direction = "left"
     #autocomplete_method = "coc"
     # automatic_update = true
@@ -74,6 +74,7 @@ name = "checkers"
 
 [[layers]]
 name = "git"
+git-plugin = "fugitive"
 
 [[layers]]
 name = "github"
