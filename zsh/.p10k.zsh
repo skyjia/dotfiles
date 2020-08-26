@@ -771,7 +771,7 @@
   # Foreground color.
   typeset -g POWERLEVEL9K_VI_MODE_FOREGROUND=0
   # Text and color for normal (a.k.a. command) vi mode.
-  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING=NORMAL
+  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING=
   typeset -g POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND=2
   # Text and color for visual vi mode.
   typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING=VISUAL
