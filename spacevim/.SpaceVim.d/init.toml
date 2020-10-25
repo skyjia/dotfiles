@@ -17,8 +17,8 @@
     enable_statusline_display_mode = false
     # defx filemanager
     filemanager = "defx"
-    spacevim_enable_vimfiler_filetypeicon=1
-    spacevim_enable_vimfiler_gitstatus=1
+    enable_vimfiler_filetypeicon = true
+    enable_vimfiler_gitstatus = true
     # filetree_direction = "left"
     #autocomplete_method = "coc"
     # automatic_update = true
