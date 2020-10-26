@@ -55,7 +55,16 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-completions git gitfast git-flow-avh git-extras osx encode64 docker kubectl tmux vscode vi-mode)
+plugins=(
+    zsh-completions command-not-found 
+    extract
+    # gpg-agent
+    history
+    git gitfast git-flow-avh git-extras 
+    osx encode64 
+    docker kubectl 
+    tmux vscode vi-mode
+)
 autoload -U compinit && compinit
 
 # User configuration
