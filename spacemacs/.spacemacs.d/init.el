@@ -58,7 +58,7 @@ values."
      common-lisp
      csharp
      csv
-     elixir
+     ;; elixir
      emacs-lisp
      erlang
      extra-langs
