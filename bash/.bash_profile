@@ -15,3 +15,6 @@ if [ -f ~/.shared_profile.sh ]; then
 fi
 
 eval "$(direnv hook bash)"
+
+# bit-git
+complete -C /usr/local/bin/bit bit
