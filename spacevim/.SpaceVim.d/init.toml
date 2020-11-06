@@ -19,7 +19,7 @@
     filemanager = "defx"
     enable_vimfiler_filetypeicon = true
     enable_vimfiler_gitstatus = true
-    # filetree_direction = "left"
+    filetree_direction = "left"
     #autocomplete_method = "coc"
     # automatic_update = true
     bootstrap_before = "myspacevim#before"
