@@ -115,3 +115,9 @@ export JULIA_PKG_SERVER=pkg.julialang.org
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# JAVA
+export JDK_HOME="/usr/local/opt/openjdk/"
+export JAVA_HOME=${JDK_HOME}
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+

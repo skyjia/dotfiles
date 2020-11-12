@@ -128,3 +128,4 @@ eval "$(direnv hook zsh)"
 # bit-git
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bit bit
+
