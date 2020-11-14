@@ -8,8 +8,8 @@ export SS_HTTP_PROXY="http://127.0.0.1:1087"
 export SS_SOCKS_PROXY="socks5://127.0.0.1:1086"
 export NO_PROXY=localhost,127.0.0.1
 
-alias setproxy="export ALL_PROXY=$SS_SOCKS_PROXY; export http_proxy=$SS_HTTP_PROXY; export https_proxy=$SS_HTTP_PROXY"
-alias unsetproxy="unset ALL_PROXY && unset http_proxy && unset https_proxy"
+alias setproxy='export ALL_PROXY=$SS_SOCKS_PROXY; export http_proxy=$SS_HTTP_PROXY; export https_proxy=$SS_HTTP_PROXY'
+alias unsetproxy='unset ALL_PROXY && unset http_proxy && unset https_proxy'
 
 toggle_proxy() {
     if [ -z ${http_proxy+x} ]; then
@@ -92,12 +92,14 @@ export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
 # Google Cloud SDK
+# shellcheck disable=SC1091
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+# shellcheck disable=SC1091
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
 # Lua - LuaRocks
 #  https://github.com/mpeterv/luacheck
-eval `luarocks path`
+eval "$(luarocks path)"
 
 # vault completions
 # https://learn.hashicorp.com/vault/getting-started/install
@@ -107,7 +109,8 @@ complete -o nospace -C /usr/local/bin/vault vault
 export MONO_GAC_PREFIX="/usr/local"
 
 # link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded)
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export RUBY_CONFIGURE_OPTS
 
 # Julia
 # https://github.com/JuliaLang/julia/issues/33111
