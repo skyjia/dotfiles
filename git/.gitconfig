@@ -31,7 +31,7 @@
 	postBuffer = 524288000
 	proxy = socks5://127.0.0.1:1086
 [gpg]
-	program = gpg2
+	program = /usr/local/bin/gpg2
 [color]
 	ui = true
 
