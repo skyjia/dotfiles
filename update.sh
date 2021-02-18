@@ -1,25 +1,38 @@
 #!/usr/bin/env bash
-set -e
-CUR=`dirname $0`
+set -eo pipefail
 
-cd $CUR
 
-# echo "Updating Homebrew"
-# brew update
-# brew upgrade
-# brew cask upgrade
-#
-rake
+function info() {
+    local LIGHT_GREEN='\033[1;32m'
+    local NC='\033[0m' # No Color
 
-echo "Updating additional dependencies"
+    printf "${LIGHT_GREEN}$1${NC}\n"
+}
 
-echo "Updating zsh"
+CUR=$(dirname "$0")
+cd "${CUR}"
+
+info "🍭 [1/6] Pulling latest changes"
+git pull
+echo
+
+info "🍭 [2/6] Synchronising submodules urls"
+git submodule sync
+echo
+
+info "🍭 [3/6] Updating the submodules"
+git submodule update --init
+git submodule update --recursive
+echo
+
+info "🍭 [4/6] Updating zsh"
 git -C $ZSH pull
+echo
 
-echo "Updating powerlevel10k"
-ZSH_CUSTOM=$ZSH/custom
-git -C $ZSH_CUSTOM/themes/powerlevel10k pull
+info "🍭 [5/6] Updating powerlevel10k"
+ZSH_CUSTOM=${ZSH}/custom
+git -C "${ZSH_CUSTOM}/themes/powerlevel10k" pull
+echo
 
-echo "Updating SpaceVim"
-git -C $HOME/.SpaceVim pull
-
+info "🍭 [6/6] Updating SpaceVim"
+git -C "${HOME}/.SpaceVim" pull
