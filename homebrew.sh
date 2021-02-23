@@ -12,4 +12,8 @@ CUR=$(dirname "$0")
 cd "${CUR}"
 
 brew upgrade
-brew cleanup --prune=0
+echo
+
+info "Cleaning-up Homebrew..."
+brew cleanup --prune=7
+
