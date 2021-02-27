@@ -12,27 +12,22 @@ function info() {
 CUR=$(dirname "$0")
 cd "${CUR}"
 
-info "🍭 [1/6] Pulling latest changes"
+info "🍭 [1/5] Pulling latest changes"
 git pull
 echo
 
-info "🍭 [2/6] Synchronising submodules urls"
-git submodule sync
+info "🍭 [2/5] pull all changes for the submodules"
+git submodule update --remote
 echo
 
-info "🍭 [3/6] Updating the submodules"
-git submodule update --init
-git submodule update --recursive
-echo
-
-info "🍭 [4/6] Updating zsh"
+info "🍭 [3/5] Updating zsh"
 git -C $ZSH pull
 echo
 
-info "🍭 [5/6] Updating powerlevel10k"
+info "🍭 [4/5] Updating powerlevel10k"
 ZSH_CUSTOM=${ZSH}/custom
 git -C "${ZSH_CUSTOM}/themes/powerlevel10k" pull
 echo
 
-info "🍭 [6/6] Updating SpaceVim"
+info "🍭 [5/5] Updating SpaceVim"
 git -C "${HOME}/.SpaceVim" pull
