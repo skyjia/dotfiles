@@ -24,7 +24,7 @@ alias tp="toggle_proxy"
 # Default to enable proxy for new shell
 setproxy
 
-# GOPROXY 
+# GOPROXY
 #   https://github.com/goproxy/goproxy.cn
 #export GOPROXY=https://goproxy.cn
 
@@ -44,7 +44,7 @@ alias ecrlogin='aws ecr get-login-password | docker login --username AWS --passw
 # Aria2
 alias aria-rpc-server='aria2c --conf-path=$HOME/aria2.conf'
 
-# Flutter mirror 
+# Flutter mirror
 # https://flutter.dev/community/china
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
@@ -72,7 +72,7 @@ export MONO_GAC_PREFIX="/usr/local"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+if which pyenv-virtualenv-init >/dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # Configure gtags for SpaceVim
 # https://spacevim.org/layers/tags/
@@ -81,8 +81,8 @@ export GTAGSLABEL=pygments
 # SpaceVim - Vim Server
 export PATH=$PATH:$HOME/.SpaceVim/bin
 
-if [ -d "$HOME/.opam/opam-init/init.zsh" ];then
-  $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+if [ -d "$HOME/.opam/opam-init/init.zsh" ]; then
+    $HOME/.opam/opam-init/init.zsh >/dev/null 2>/dev/null || true
 fi
 
 # OpenSSL 1.1
@@ -124,3 +124,7 @@ export JDK_HOME="/usr/local/opt/openjdk/"
 export JAVA_HOME=${JDK_HOME}
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
+# guile from Homebrew recommendation
+export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
+export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
+export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
