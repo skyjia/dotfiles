@@ -1,30 +1,34 @@
 # ----- Linux -----
 if [ "$(uname)" = "Linux" ]; then
-  # TODO
+    # TODO
 fi
 
 # ----- macOS -----
 if [ "$(uname)" = "Darwin" ]; then
-  export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
-  
-  # Homebrew - bin PATH
-  export PATH=/usr/local/sbin:$PATH
-  export PATH=/usr/local/bin:$PATH
+    export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 
-  # Golang
-  export GOROOT=/usr/local/opt/go/libexec
-  export GOPATH=$HOME/go
-  export PATH=$GOPATH/bin:$PATH
-  export PATH=$PATH:$GOROOT/bin
+    # Homebrew - bin PATH
+    export PATH=/usr/local/sbin:$PATH
+    export PATH=/usr/local/bin:$PATH
 
-  # rbenv
-  export PATH=$HOME/.rbenv/bin:$PATH
-  eval "$(rbenv init -)"
+    # Golang
+    export GOROOT=/usr/local/opt/go/libexec
+    export GOPATH=$HOME/go
+    export PATH=$GOPATH/bin:$PATH
+    export PATH=$PATH:$GOROOT/bin
 
-  # Home bin
-  export PATH=$HOME/bin:$PATH
+    # rbenv
+    export PATH=$HOME/.rbenv/bin:$PATH
+    eval "$(rbenv init -)"
 
-  # OPAM
-  eval `opam config env`
+    # Home bin
+    export PATH=$HOME/bin:$PATH
+
+    # OPAM
+    eval $(opam config env)
+
+    # pyenv
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
 fi
-
