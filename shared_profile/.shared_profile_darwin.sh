@@ -87,10 +87,16 @@ if [ -d "$HOME/.opam/opam-init/init.zsh" ]; then
 fi
 
 # OpenSSL 1.1
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+# export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+
+# OpenSSL 3.0
+export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
 
 # Google Cloud SDK
 # shellcheck disable=SC1091
