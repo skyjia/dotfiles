@@ -1,7 +1,7 @@
 # Change default editor to vim
 export VISUAL=vim
 export EDITOR="$VISUAL"
-alias vim="nvim"
+alias vim="lvim"
 
 # Proxy on Shadowsocks
 export SS_HTTP_PROXY="http://127.0.0.1:1087"
@@ -27,9 +27,6 @@ setproxy
 # GOPROXY
 #   https://github.com/goproxy/goproxy.cn
 #export GOPROXY=https://goproxy.cn
-
-# .local bin
-export PATH="$HOME/.local/bin:$PATH"
 
 # Configuration for GNU Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'

@@ -24,6 +24,9 @@ if [ "$(uname)" = "Darwin" ]; then
     # Home bin
     export PATH=$HOME/bin:$PATH
 
+    # .local bin
+    export PATH="$HOME/.local/bin:$PATH"
+
     # OPAM
     eval $(opam config env)
 
