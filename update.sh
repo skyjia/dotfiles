@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-
 function info() {
     local LIGHT_GREEN='\033[1;32m'
     local NC='\033[0m' # No Color
