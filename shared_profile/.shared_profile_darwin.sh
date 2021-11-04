@@ -28,6 +28,9 @@ setproxy
 #   https://github.com/goproxy/goproxy.cn
 #export GOPROXY=https://goproxy.cn
 
+# .local bin
+export PATH="$HOME/.local/bin:$PATH"
+
 # Configuration for GNU Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 alias emacs-debug='emacs --debug-init'
