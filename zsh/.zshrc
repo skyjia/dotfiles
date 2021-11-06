@@ -65,7 +65,7 @@ plugins=(
     # gpg-agent
     history
     git gitfast git-flow-avh git-extras 
-    osx encode64 
+    macos encode64 
     docker kubectl 
     tmux vscode vi-mode
     nvm
