@@ -113,9 +113,6 @@ name = "lang#typescript"
 name = "tmux"
 
 [[layers]]
-name = "tools#dash"
-
-[[layers]]
 name = "lang#html"
 
 [[layers]]
