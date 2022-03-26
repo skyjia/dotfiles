@@ -1,11 +1,10 @@
 [user]
 	name = Sky JIA
 	email = me@skyjia.com
-	signingkey = EE514A710AE059D5
-[credential]
-	helper = osxkeychain
+	signingkey = DA28D2A2859D4E24
 [core]
 	excludesfile = /Users/skyjia/.gitignore_global
+    compression = 0
 	autocrlf = input
 	editor = lvim
 [filter "lfs"]
@@ -13,29 +12,24 @@
 	smudge = git-lfs smudge -- %f
 	required = true
 	process = git-lfs filter-process
-[push]
-	default = simple
 [difftool "sourcetree"]
-	cmd = /usr/local/bin/ksdiff -w \"$LOCAL\" \"$REMOTE\"
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
 	template = /Users/skyjia/.stCommitMsg
 	gpgsign = true
 [http]
 	postBuffer = 524288000
-	proxy = socks5://127.0.0.1:1086
+	proxy = socks5://127.0.0.1:6153
 [https]
 	postBuffer = 524288000
-	proxy = socks5://127.0.0.1:1086
+	proxy = socks5://127.0.0.1:6153
 [gpg]
-	program = /usr/local/bin/gpg
+	program = /opt/homebrew/bin/gpg
 [color]
 	ui = true
-
-[pull]
-	ff = only
 [init]
 	defaultBranch = main
