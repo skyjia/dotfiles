@@ -27,7 +27,7 @@
   "Show Status Bar" : false,
   "Character Encoding" : 4,
   "Selection Color" : {
-    "Red Component" : 0.027450980392156862,
+    "Red Component" : 0.027450980392156866,
     "Color Space" : "sRGB",
     "Blue Component" : 0.25882352941176473,
     "Green Component" : 0.21176470588235294
@@ -64,16 +64,16 @@
         "configuration" : {
           "knobs" : {
             "maxwidth" : 1.7976931348623157e+308,
-            "base: priority" : 5,
-            "minwidth" : 0,
-            "base: compression resistance" : 1,
             "shared text color" : {
               "Red Component" : 0.90000000000000002,
               "Color Space" : "sRGB",
               "Blue Component" : 0.63,
               "Alpha Component" : 1,
               "Green Component" : 0.63
-            }
+            },
+            "base: priority" : 5,
+            "base: compression resistance" : 1,
+            "minwidth" : 0
           },
           "layout advanced configuration dictionary value" : {
             "font" : ".AppleSystemUIFont 12",
@@ -197,7 +197,6 @@
     "Green Component" : 0.53725490196078429
   },
   "Icon" : 1,
-  "Use Non-ASCII Font" : false,
   "Link Color" : {
     "Red Component" : 0,
     "Color Space" : "sRGB",
@@ -205,6 +204,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.35916060209274292
   },
+  "Use Non-ASCII Font" : false,
   "Shortcut" : "",
   "Background Image Location" : "",
   "Bold Color" : {
@@ -354,10 +354,6 @@
       "Action" : 11,
       "Text" : "0x1c"
     },
-    "0xf700-0x280000" : {
-      "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x41"
-    },
     "0x2d-0x40000" : {
       "Action" : 11,
       "Text" : "0x1f"
@@ -458,7 +454,7 @@
   "Ansi 9 Color" : {
     "Red Component" : 0.79607843137254897,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.086274509803921567,
+    "Blue Component" : 0.086274509803921581,
     "Green Component" : 0.29411764705882354
   },
   "Use Bold Font" : true,
@@ -473,7 +469,7 @@
   "Allow Title Reporting" : false,
   "Use Bright Bold" : true,
   "Cursor Text Color" : {
-    "Red Component" : 0.027450980392156862,
+    "Red Component" : 0.027450980392156866,
     "Color Space" : "sRGB",
     "Blue Component" : 0.25882352941176473,
     "Green Component" : 0.21176470588235294
@@ -486,7 +482,7 @@
     "Green Component" : 0.58039215686274515
   },
   "Disable Smcup Rmcup" : false,
-  "Name" : "Default",
+  "Name" : "Sky",
   "Guid" : "6F4E3BB4-BAE7-409D-A109-982DFA95E8B9",
   "Blinking Cursor" : false,
   "Ansi 1 Color" : {
@@ -525,14 +521,14 @@
   "Ambiguous Double Width" : false,
   "Blur Radius" : 2,
   "Ansi 0 Color" : {
-    "Red Component" : 0.027450980392156862,
+    "Red Component" : 0.027450980392156866,
     "Color Space" : "sRGB",
     "Blue Component" : 0.25882352941176473,
     "Green Component" : 0.21176470588235294
   },
   "Cursor Type" : 2,
   "Blur" : false,
-  "Normal Font" : "MesloLGS-NF-Regular 15",
+  "Normal Font" : "MesloLGS-NF-Regular 14",
   "Vertical Spacing" : 1,
   "Disable Printing" : false,
   "Ansi 7 Color" : {
@@ -570,7 +566,7 @@
     "Green Component" : 0.16862745583057404
   },
   "Screen" : -1,
-  "Non Ascii Font" : "RobotoMonoForPowerline-MediumItalic 12",
+  "Non Ascii Font" : "Menlo-Regular 11",
   "Ansi 13 Color" : {
     "Red Component" : 0.42352941176470588,
     "Color Space" : "sRGB",
