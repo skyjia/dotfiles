@@ -1,35 +1,35 @@
 [user]
-	name = Sky JIA
-	email = me@skyjia.com
-	signingkey = DA28D2A2859D4E24
+    name = Sky JIA
+    email = me@skyjia.com
+    signingkey = DA28D2A2859D4E24
 [core]
-	excludesfile = /Users/skyjia/.gitignore_global
+    excludesfile = /Users/skyjia/.gitignore_global
     compression = 0
-	autocrlf = input
-	editor = lvim
+    autocrlf = input
+    editor = lvim
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    required = true
+    process = git-lfs filter-process
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [commit]
-	template = /Users/skyjia/.stCommitMsg
-	gpgsign = true
+    template = /Users/skyjia/.stCommitMsg
+    gpgsign = true
 [http]
-	postBuffer = 524288000
-	proxy = socks5://127.0.0.1:6153
+    postBuffer = 524288000
+    proxy = socks5://127.0.0.1:6153
 [https]
-	postBuffer = 524288000
-	proxy = socks5://127.0.0.1:6153
+    postBuffer = 524288000
+    proxy = socks5://127.0.0.1:6153
 [gpg]
-	program = /opt/homebrew/bin/gpg
+    program = /opt/homebrew/bin/gpg
 [color]
-	ui = true
+    ui = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
