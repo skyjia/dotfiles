@@ -48,6 +48,10 @@ alias tp="toggle_proxy"
 # Default to enable proxy for new shell
 setproxy
 
+# Obsidian alias
+alias obsidian='open -a /Applications/Obsidian.app'
+
+
 # Export local npm bin
 export PATH=./node_modules/.bin:$PATH
 
