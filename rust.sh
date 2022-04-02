@@ -11,9 +11,11 @@ function info() {
 CUR=$(dirname "$0")
 cd "${CUR}"
 
-brew upgrade
+info "🍭 [1/2] Keeping rustup up to date"
+rustup self update
 echo
 
-info "Cleaning-up Homebrew..."
-brew cleanup --prune=2
+info "🍭 [2/2] Keeping rust up to date"
+rustup update
+echo
 
