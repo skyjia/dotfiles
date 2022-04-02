@@ -49,7 +49,7 @@ alias tp="toggle_proxy"
 setproxy
 
 # Obsidian alias
-alias obsidian='open -a /Applications/Obsidian.app'
+alias obs='open -a /Applications/Obsidian.app'
 
 
 # Export local npm bin
