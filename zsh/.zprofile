@@ -51,7 +51,6 @@ setproxy
 # Obsidian alias
 alias obs='open -a /Applications/Obsidian.app'
 
-
 # Export local npm bin
 export PATH=./node_modules/.bin:$PATH
 
