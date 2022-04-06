@@ -11,6 +11,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Golang
 export GOPATH=$HOME/Codes/go
+export PATH="$GOPATH/bin:$PATH"
 
 # GPG
 GPG_TTY=$(tty)

@@ -87,6 +87,7 @@ plugins=(
     docker kubectl
     tmux vscode vi-mode
     git
+    fzf
     )
 
 source $ZSH/oh-my-zsh.sh
