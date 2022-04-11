@@ -80,6 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     you-should-use
+    zsh-autosuggestions
     command-not-found
     encode64
     extract
