@@ -13,6 +13,10 @@ export PATH="$HOME/.local/bin:$PATH"
 export GOPATH=$HOME/Codes/go
 export PATH="$GOPATH/bin:$PATH"
 
+# dotnet
+export DOTNET_ROOT="/usr/local/share/dotnet/x64"
+export PATH="$DOTNET_ROOT:$PATH"
+
 # GPG
 GPG_TTY=$(tty)
 export GPG_TTY
