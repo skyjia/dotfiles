@@ -29,6 +29,7 @@ git -C "${ZSH_CUSTOM}/themes/powerlevel10k" pull
 echo
 
 info "🍭 [5/5] Updating asdf plugin repositories"
+asdf plugin update --all
 
 # info "🍭 [5/5] Updating SpaceVim"
 # git -C "${HOME}/.SpaceVim" pull

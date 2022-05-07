@@ -17,6 +17,15 @@ export PATH="$GOPATH/bin:$PATH"
 export DOTNET_ROOT="/usr/local/share/dotnet/x64"
 export PATH="$DOTNET_ROOT:$PATH"
 
+# openjdk
+# export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# For compilers to find openjdk you may need to set:
+#   export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+# asdf
+#   https://github.com/halcyon/asdf-java
+. ~/.asdf/plugins/java/set-java-home.zsh
+
 # GPG
 GPG_TTY=$(tty)
 export GPG_TTY
