@@ -1,9 +1,9 @@
 [user]
-    name = Sky JIA
-    email = me@skyjia.com
+	name = Sky Jia
+	email = me@skyjia.com
     signingkey = DA28D2A2859D4E24
 [core]
-    excludesfile = /Users/skyjia/.gitignore_global
+	excludesfile = /Users/skyjia/.gitignore_global
     compression = 0
     autocrlf = input
     editor = lvim
@@ -19,7 +19,7 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
-    template = /Users/skyjia/.stCommitMsg
+	template = /Users/skyjia/.stCommitMsg
     gpgsign = true
 [http]
     postBuffer = 524288000
