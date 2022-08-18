@@ -14,7 +14,7 @@ export GOPATH=$HOME/Codes/go
 export PATH="$GOPATH/bin:$PATH"
 
 # dotnet
-export DOTNET_ROOT="/usr/local/share/dotnet/x64"
+export DOTNET_ROOT="/usr/local/share/dotnet"
 export PATH="$DOTNET_ROOT:$PATH"
 
 # openjdk
