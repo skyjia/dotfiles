@@ -14,6 +14,11 @@ cd "${CUR}"
 brew upgrade
 echo
 
+# using homebrew-cask-upgrade to upgrade all casks
+# https://github.com/buo/homebrew-cask-upgrade
+info "Checking brew casks..."
+brew cu --all --yes
+
 info "Cleaning-up Homebrew..."
 brew cleanup --prune=2
 
