@@ -11,11 +11,16 @@ function info() {
 CUR=$(dirname "$0")
 cd "${CUR}"
 
-info "🍭 [1/2] Keeping rustup up to date"
+info "🍭 [1/3] Keeping rustup up to date"
 rustup self update
 echo
 
-info "🍭 [2/2] Keeping rust up to date"
+info "🍭 [2/3] Keeping rust up to date"
 rustup update
+echo
+
+info "🍭 [2/3] Keeping rust packages to date"
+# https://github.com/nabijaczleweli/cargo-update
+cargo install-update -a
 echo
 
