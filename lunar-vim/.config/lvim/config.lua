@@ -9,7 +9,7 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- neovide
-vim.o.guifont = "Hack Nerd Font"
+vim.o.guifont = "DroidSansMono Nerd Font Mono"
 
 -- general
 lvim.log.level = "warn"
