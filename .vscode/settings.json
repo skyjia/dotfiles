@@ -1,0 +1,9 @@
+{
+    "Lua.diagnostics.globals": [
+        "vim",
+        "lvim"
+    ],
+    "cSpell.words": [
+        "CRAN"
+    ]
+}

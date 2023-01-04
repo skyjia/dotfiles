@@ -24,6 +24,7 @@ export PATH="$DOTNET_ROOT:$PATH"
 
 # asdf
 #   https://github.com/halcyon/asdf-java
+# shellcheck disable=SC1090
 . ~/.asdf/plugins/java/set-java-home.zsh
 
 # GPG
@@ -32,6 +33,7 @@ export GPG_TTY
 
 # Add color support for 'less' command
 if [ -f ~/.LESS_TERMCAP ]; then
+    # shellcheck disable=SC1090
     source ~/.LESS_TERMCAP
 fi
 
@@ -40,6 +42,10 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 alias vim="lvim"
 alias vi="vim"
+
+# add ~/.emacs.d/bin to PATH
+# https://github.com/doomemacs/doomemacs#install
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Proxy on Shadowsocks
 export SS_HTTP_PROXY="http://127.0.0.1:6152"
@@ -80,5 +86,6 @@ alias lla='ll -a'
 alias rm='rm -i'
 
 if [ -f ~/.zprofile_secure.sh ]; then
+    # shellcheck disable=SC1090
     source ~/.zprofile_secure.sh
 fi
