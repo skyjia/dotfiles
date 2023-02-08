@@ -11,6 +11,7 @@ function info() {
 CUR=$(dirname "$0")
 cd "${CUR}"
 
+brew update
 brew upgrade
 echo
 
