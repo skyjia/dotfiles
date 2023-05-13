@@ -245,12 +245,9 @@ export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib $LDFLAGS"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include $CPPFLAGS"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-# Ruby
-#   $ brew info ruby
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/ruby/lib $LDFLAGS"
-export CPPFLAGS="-I/opt/homebrew/opt/ruby/include $CPPFLAGS"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig:$PKG_CONFIG_PATH"
+# PostgreSQL 15
+#   $ brew info postgresql@15
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # useful alias
 alias lla='ll -a'

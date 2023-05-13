@@ -1,8 +1,6 @@
-:benchmark: false
-gem: --no-ri --no-rdoc
+gem: --no-document
 :update_sources: true
 :verbose: true
-:sources:
-- https://gems.ruby-china.com
-#- https://rubygems.org
-:backtrace: true
+:sources: 
+- https://rubygems.org
+
