@@ -20,6 +20,7 @@ git submodule update --remote
 echo
 
 info "🍭 [3/5] Updating zsh"
+ZSH="$HOME/.oh-my-zsh"
 git -C $ZSH pull
 echo
 
