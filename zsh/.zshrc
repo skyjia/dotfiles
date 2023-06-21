@@ -199,6 +199,9 @@ export PATH="$GOPATH/bin:$PATH"
 export DOTNET_ROOT="/usr/local/share/dotnet"
 export PATH="$DOTNET_ROOT:$PATH"
 
+# asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
 # openjdk
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # For compilers to find openjdk you may need to set:
@@ -223,7 +226,8 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 alias vim="lvim"
-alias vi="vim"
+alias vi="lvim"
+alias v="lvim"
 
 # add ~/.emacs.d/bin to PATH
 # https://github.com/doomemacs/doomemacs#install
@@ -269,3 +273,5 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # Useful alias
 [ -f "$HOME/useful-alias.zsh" ] && source "$HOME/useful-alias.zsh"
+
+
