@@ -1,3 +1,7 @@
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
