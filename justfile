@@ -10,9 +10,9 @@ set dotenv-load
 default:
   @just --list
 
-update-all: misc-update brew-update rust-update
+all: update-misc update-brew update-rust update-lvim
 
-misc-update:
+update-misc:
   # Pulling latest changes
   git pull
   @echo
@@ -32,7 +32,7 @@ misc-update:
   # Updating asdf plugin repositories
   asdf plugin update --all
 
-brew-update:
+update-brew:
   # updating homebrew...
   brew update
   brew upgrade
@@ -45,7 +45,7 @@ brew-update:
   # cleaning up
   brew cleanup --prune=2
 
-rust-update:
+update-rust:
   # Keeping rustup up to date
   rustup self update
   @echo
@@ -54,5 +54,10 @@ rust-update:
   rustup update
   @echo
   
-  # Keeping rust packages to date"
+  # Keeping rust packages to date
   cargo install-update -a
+
+update-lvim:
+  # Updating LunarVim.
+  lvim +LvimUpdate +q
+  lvim +LvimSyncCorePlugins +q +q
