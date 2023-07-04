@@ -1,3 +1,6 @@
-nodejs 20.3.1
+# current latest
+# nodejs 20.3.1
+# current lts
+nodejs 18.16.1
 java adoptopenjdk-20.0.1+9
 ruby 3.2.2
