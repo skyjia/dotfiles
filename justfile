@@ -60,4 +60,4 @@ update-rust:
 update-lvim:
   # Updating LunarVim.
   lvim +LvimUpdate +q
-  lvim +LvimSyncCorePlugins +q +q
+  #lvim +LvimSyncCorePlugins +q +q
