@@ -262,6 +262,10 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PA
 #   $ brew info postgresql@15
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
+# VaultWarden / BitWarden completion
+# https://bitwarden.com/help/cli/#zsh-shell-completion
+eval "$(bw completion --shell zsh); compdef _bw bw;"
+
 # Useful alias
 [ -f "$HOME/useful-alias.zsh" ] && source "$HOME/useful-alias.zsh"
 
