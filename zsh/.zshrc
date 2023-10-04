@@ -187,8 +187,8 @@ export GOPATH=$HOME/Codes/go
 export PATH="$GOPATH/bin:$PATH"
 
 # dotnet
-export DOTNET_ROOT="/usr/local/share/dotnet"
-export PATH="$DOTNET_ROOT:$PATH"
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH"
 
 # asdf
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
