@@ -190,6 +190,11 @@ lvim.plugins = {
     --       "folke/trouble.nvim",
     --       cmd = "TroubleToggle",
     --     },
+    --
+    -- ############
+    --
+    -- AI pair programmer
+    -- https://www.lunarvim.org/docs/configuration/plugins/example-configurations#copilotlua-and-copilot-cmp
     {
         "zbirenbaum/copilot-cmp",
         event = "InsertEnter",
@@ -201,6 +206,71 @@ lvim.plugins = {
             end, 100)
         end,
     },
+
+    -- show git blame
+    -- https://www.lunarvim.org/docs/configuration/plugins/example-configurations#git-blame
+    {
+        "f-person/git-blame.nvim",
+        event = "BufRead",
+        config = function()
+            vim.cmd "highlight default link gitblame SpecialComment"
+            require("gitblame").setup { enabled = false }
+        end,
+    },
+
+    --  highlight and search for todo comments
+    --  https://www.lunarvim.org/docs/configuration/plugins/example-configurations#todo-commentsnvim
+    {
+        "folke/todo-comments.nvim",
+        event = "BufRead",
+        config = function()
+            require("todo-comments").setup()
+        end,
+    },
+
+    -- mappings to delete, change and add surroundings
+    -- https://www.lunarvim.org/docs/configuration/plugins/example-configurations#vim-surround
+    {
+        "tpope/vim-surround",
+
+        -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
+        -- setup = function()
+        --  vim.o.timeoutlen = 500
+        -- end
+    },
+
+    -- lightweight support for ruby's bundler
+    -- https://www.lunarvim.org/docs/configuration/plugins/example-configurations#vim-bundler
+    {
+        "tpope/vim-bundler",
+        cmd = { "Bundler", "Bopen", "Bsplit", "Btabedit" }
+    },
+
+    -- edit ruby on rails applications
+    -- https://www.lunarvim.org/docs/configuration/plugins/example-configurations#vim-rails
+    {
+        "tpope/vim-rails",
+        cmd = {
+            "Eview",
+            "Econtroller",
+            "Emodel",
+            "Smodel",
+            "Sview",
+            "Scontroller",
+            "Vmodel",
+            "Vview",
+            "Vcontroller",
+            "Tmodel",
+            "Tview",
+            "Tcontroller",
+            "Rails",
+            "Generate",
+            "Runner",
+            "Extract"
+        }
+    },
+
+    --
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
