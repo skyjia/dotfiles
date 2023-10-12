@@ -227,7 +227,7 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 # Proxy on Shadowsocks
 export SS_HTTP_PROXY="http://127.0.0.1:6152"
 export SS_SOCKS_PROXY="socks5://127.0.0.1:6153"
-export NO_PROXY=localhost,127.0.0.1
+export NO_PROXY=localhost,127.0.0.1,::1
 
 alias setproxy='export ALL_PROXY=$SS_SOCKS_PROXY; export http_proxy=$SS_HTTP_PROXY; export https_proxy=$SS_HTTP_PROXY'
 alias unsetproxy='unset ALL_PROXY && unset http_proxy && unset https_proxy'
@@ -263,12 +263,25 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PA
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # Script Kit
-export PATH="$PATH:/Users/skyjia/.kit/bin"
-export PATH="$PATH:/Users/skyjia/.kenv/bin"
+export PATH="$PATH:$HOME/.kit/bin"
+export PATH="$PATH:$HOME/.kenv/bin"
 
-# VaultWarden / BitWarden completion
+# VaultWarden / BitWarden completion$ANDROID_HOME/tools/bin:
 # https://bitwarden.com/help/cli/#zsh-shell-completion
 eval "$(bw completion --shell zsh); compdef _bw bw;"
+
+# Android SDK Home
+# https://developer.android.com/tools
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
+
+# Flutter bin
+export PATH="$PATH:$HOME/Codes/flutter/bin"
+
+# cocoapods
+# https://guides.cocoapods.org/using/getting-started.html#sudo-less-installation
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
 
 # Useful alias
 [ -f "$HOME/useful-alias.zsh" ] && source "$HOME/useful-alias.zsh"
