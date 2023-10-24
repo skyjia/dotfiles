@@ -276,7 +276,11 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
 
 # Flutter bin
-export PATH="$PATH:$HOME/Codes/flutter/bin"
+# fvm default flutter version. (stable)
+export PATH="$PATH:$HOME/fvm/default/bin"
+# aliases: https://fvm.app/docs/guides/running_flutter
+alias fvm-flutter="fvm flutter"
+alias fvm-dart="fvm dart"
 
 # cocoapods
 # https://guides.cocoapods.org/using/getting-started.html#sudo-less-installation
@@ -285,3 +289,6 @@ export PATH=$GEM_HOME/bin:$PATH
 
 # Useful alias
 [ -f "$HOME/useful-alias.zsh" ] && source "$HOME/useful-alias.zsh"
+
+# fix too many open file issues.
+ulimit -S -n 2048
