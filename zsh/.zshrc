@@ -266,14 +266,16 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PATH="$PATH:$HOME/.kit/bin"
 export PATH="$PATH:$HOME/.kenv/bin"
 
-# VaultWarden / BitWarden completion$ANDROID_HOME/tools/bin:
+# VaultWarden / BitWarden completion
 # https://bitwarden.com/help/cli/#zsh-shell-completion
 eval "$(bw completion --shell zsh); compdef _bw bw;"
 
 # Android SDK Home
 # https://developer.android.com/tools
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+
 
 # Flutter bin
 # fvm default flutter version. (stable)

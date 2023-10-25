@@ -31,6 +31,19 @@ update-misc:
 
   # Updating asdf plugin repositories
   asdf plugin update --all
+  @echo
+
+  # Updating R packages
+  Rscript -e 'update.packages(ask = FALSE)'
+
+update-ide:
+  # update Android Studio and packages
+  sdkmanager --update
+  sdkmanager --licenses
+  @echo
+
+  # update vscode extensions
+  code --list-extensions | xargs -L 1 code --install-extension
 
 update-brew:
   # updating homebrew...
