@@ -43,7 +43,7 @@ update-ide:
   @echo
 
   # update vscode extensions
-  code --list-extensions | xargs -L 1 code --install-extension
+  code --list-extensions | xargs -L 1 code --force --install-extension
 
 update-brew:
   # updating homebrew...
