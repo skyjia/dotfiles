@@ -45,6 +45,12 @@ update-ide:
   # update vscode extensions
   code --list-extensions | xargs -L 1 code --force --install-extension
 
+update-conda:
+  # update Anaconda
+  # Update the conda package manager to the latest version in your base environment
+  conda update -n base conda
+  @echo
+
 update-brew:
   # updating homebrew...
   brew update
