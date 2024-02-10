@@ -156,10 +156,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# The Fuck
-#   https://github.com/nvbn/thefuck#installation
-eval "$(thefuck --alias)"
-
 # lazygit
 #   https://github.com/jesseduffield/lazygit#changing-directory-on-exit
 lg()
