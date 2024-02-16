@@ -231,9 +231,13 @@ alias unsetproxy='unset ALL_PROXY && unset http_proxy && unset https_proxy'
 toggle_proxy() {
     if [ -z ${http_proxy+x} ]; then
         setproxy
+        git config --global https.proxy ${SS_SOCKS_PROXY}
+        git config --global http.proxy ${SS_SOCKS_PROXY}
         echo "Enabled SS proxy at ${SS_HTTP_PROXY}"
     else
         unsetproxy
+        git config --global --unset https.proxy
+        git config --global --unset http.proxy
         echo "Disabled SS proxy."
     fi
 }

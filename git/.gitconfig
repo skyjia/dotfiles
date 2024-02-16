@@ -1,17 +1,17 @@
 [user]
 	name = Sky Jia
 	email = me@skyjia.com
-    signingkey = DA28D2A2859D4E24
+	signingkey = DA28D2A2859D4E24
 [core]
 	excludesfile = /Users/skyjia/.gitignore_global
-    compression = 0
-    autocrlf = input
-    editor = lvim
+	compression = 0
+	autocrlf = input
+	editor = lvim
 [filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    required = true
-    process = git-lfs filter-process
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -20,21 +20,21 @@
 	trustExitCode = true
 [commit]
 	template = /Users/skyjia/.stCommitMsg
-    gpgsign = true
+	gpgsign = true
 [http]
-    postBuffer = 524288000
-    proxy = socks5://127.0.0.1:6153
+	postBuffer = 524288000
+	proxy = socks5://127.0.0.1:6153
 [https]
-    postBuffer = 524288000
-    proxy = socks5://127.0.0.1:6153
+	postBuffer = 524288000
+	proxy = socks5://127.0.0.1:6153
 [gpg]
-    program = /opt/homebrew/bin/gpg
+	program = /opt/homebrew/bin/gpg
 [color]
-    ui = true
+	ui = true
 [init]
-    defaultBranch = main
+	defaultBranch = main
 [alias]
-    mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
 [credentials]
 	helper = osxkeychain
 [pull]
