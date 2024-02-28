@@ -220,30 +220,87 @@ alias v="lvim"
 # https://github.com/doomemacs/doomemacs#install
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
-# Proxy on Shadowsocks
-export SS_HTTP_PROXY="http://127.0.0.1:6152"
-export SS_SOCKS_PROXY="socks5://127.0.0.1:6153"
-export NO_PROXY=localhost,127.0.0.1,::1
 
-alias setproxy='export ALL_PROXY=$SS_SOCKS_PROXY; export http_proxy=$SS_HTTP_PROXY; export https_proxy=$SS_HTTP_PROXY'
-alias unsetproxy='unset ALL_PROXY && unset http_proxy && unset https_proxy'
+# ----- Network Proxy BEGIN -----
+
+get_sys_http_proxy() {
+    local HTTP_PROXY_ADDR=$(networksetup -getwebproxy Wi-Fi | grep "Server" | awk '{print $2}')
+    local HTTP_PROXY_PORT=$(networksetup -getwebproxy Wi-Fi | grep "Port" | awk '{print $2}')
+    echo "http://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
+}
+
+get_sys_secure_http_proxy() {
+    local HTTP_PROXY_ADDR=$(networksetup -getsecurewebproxy Wi-Fi | grep "Server" | awk '{print $2}')
+    local HTTP_PROXY_PORT=$(networksetup -getsecurewebproxy Wi-Fi | grep "Port" | awk '{print $2}')
+    echo "https://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
+}
+
+get_sys_sock_proxy() {
+    local SOCKS_PROXY_ADDR=$(networksetup -getsocksfirewallproxy Wi-Fi | grep "Server" | awk '{print $2}')
+    local SOCKS_PROXY_PORT=$(networksetup -getsocksfirewallproxy Wi-Fi | grep "Port" | awk '{print $2}')
+    echo "socks5://$SOCKS_PROXY_ADDR:$SOCKS_PROXY_PORT"
+}
+
+get_sys_bypass_proxy() {
+    local BYPASS_PROXY_ADDR=$(networksetup -getproxybypassdomains Wi-Fi | tr '\n' ',' | sed 's/,$//')
+    echo $BYPASS_PROXY_ADDR
+}
+
+is_sys_proxy_enabled() {
+    networksetup -getsecurewebproxy Wi-Fi | grep "Enabled" | grep -v "Authenticated" |  awk '{print $2}'
+}
+
+enable_proxy() {
+    local sys_proxy_enabled=$(is_sys_proxy_enabled)
+    if [ "$sys_proxy_enabled" != "Yes" ]; then
+        echo "System proxy is not enabled."
+        return
+    fi
+
+    local HTTP_PROXY_ADDR=$(get_sys_http_proxy)
+    local HTTPS_PROXY_ADDR=$(get_sys_secure_http_proxy)
+    local SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
+    local NO_PROXY_ADDR=$(get_sys_bypass_proxy)
+
+    export NO_PROXY=$NO_PROXY_ADDR
+    export ALL_PROXY=$SOCKS_PROXY_ADDR
+    export http_proxy=$HTTP_PROXY_ADDR
+    export https_proxy=$HTTPS_PROXY_ADDR
+
+    git config --global https.proxy ${SOCKS_PROXY_ADDR}
+    git config --global http.proxy ${SOCKS_PROXY_ADDR}
+
+    echo "Enabled network proxy at ${HTTP_PROXY_ADDR}"
+}
+
+disable_proxy() {
+    unset NO_PROXY
+    unset ALL_PROXY
+    unset http_proxy
+    unset https_proxy
+    
+    git config --global --unset https.proxy
+    git config --global --unset http.proxy
+
+    echo "Disabled network proxy."
+}
 
 toggle_proxy() {
     if [ -z ${http_proxy+x} ]; then
-        setproxy
-        git config --global https.proxy ${SS_SOCKS_PROXY}
-        git config --global http.proxy ${SS_SOCKS_PROXY}
-        echo "Enabled SS proxy at ${SS_HTTP_PROXY}"
+        enable_proxy
     else
-        unsetproxy
-        git config --global --unset https.proxy
-        git config --global --unset http.proxy
-        echo "Disabled SS proxy."
+        disable_proxy
     fi
 }
-alias tp="toggle_proxy"
+
 # Default to enable proxy for new shell
-setproxy
+enable_proxy
+
+alias tp="toggle_proxy"
+alias tpe="enable_proxy"
+alias tpd="disable_proxy"
+
+# ----- Network Proxy END -----
 
 # Obsidian alias
 alias obs='open -a /Applications/Obsidian.app'
