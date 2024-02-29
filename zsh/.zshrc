@@ -286,21 +286,31 @@ disable_proxy() {
 }
 
 toggle_proxy() {
-    if [ -z ${http_proxy+x} ]; then
-        enable_proxy
-    else
+    local sys_proxy_enabled=$(is_sys_proxy_enabled)
+    if [ "$sys_proxy_enabled" != "Yes" ]; then
         disable_proxy
+    else
+        enable_proxy
     fi
 }
 
 # Default to enable proxy for new shell
-enable_proxy
+proxy_enabled=$(is_sys_proxy_enabled)
+if [ "$proxy_enabled" = "Yes" ]; then
+    enable_proxy
+else
+    disable_proxy
+fi
 
 alias tp="toggle_proxy"
 alias tpe="enable_proxy"
 alias tpd="disable_proxy"
 
 # ----- Network Proxy END -----
+
+# VaultWarden / BitWarden completion
+# https://bitwarden.com/help/cli/#zsh-shell-completion
+# eval "$(bw completion --shell zsh); compdef _bw bw;"
 
 # Obsidian alias
 alias obs='open -a /Applications/Obsidian.app'
@@ -323,9 +333,7 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PATH="$PATH:$HOME/.kit/bin"
 export PATH="$PATH:$HOME/.kenv/bin"
 
-# VaultWarden / BitWarden completion
-# https://bitwarden.com/help/cli/#zsh-shell-completion
-eval "$(bw completion --shell zsh); compdef _bw bw;"
+
 
 # Android SDK Home
 # https://developer.android.com/tools
