@@ -325,6 +325,9 @@ export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib $LDFLAGS"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include $CPPFLAGS"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
 
+# curl (via Homebrew)
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
 # PostgreSQL 15
 #   $ brew info postgresql@15
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
@@ -333,14 +336,11 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PATH="$PATH:$HOME/.kit/bin"
 export PATH="$PATH:$HOME/.kenv/bin"
 
-
-
 # Android SDK Home
 # https://developer.android.com/tools
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
-
 
 # Flutter bin
 # fvm default flutter version. (stable)
