@@ -267,8 +267,8 @@ enable_proxy() {
     export http_proxy=$HTTP_PROXY_ADDR
     export https_proxy=$HTTPS_PROXY_ADDR
 
-    git config --global https.proxy ${SOCKS_PROXY_ADDR}
-    git config --global http.proxy ${SOCKS_PROXY_ADDR}
+    git config --global https.proxy ${HTTP_PROXY_ADDR}
+    git config --global http.proxy ${HTTP_PROXY_ADDR}
 
     echo "Enabled network proxy at ${HTTP_PROXY_ADDR}"
 }

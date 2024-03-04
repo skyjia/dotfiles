@@ -23,10 +23,10 @@
 	gpgsign = true
 [http]
 	postBuffer = 524288000
-	proxy = socks5://127.0.0.1:6153
+	proxy = http://127.0.0.1:6152
 [https]
 	postBuffer = 524288000
-	proxy = socks5://127.0.0.1:6153
+	proxy = http://127.0.0.1:6152
 [gpg]
 	program = /opt/homebrew/bin/gpg
 [color]
