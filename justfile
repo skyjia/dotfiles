@@ -10,7 +10,7 @@ set dotenv-load
 default:
   @just --list
 
-all: update-misc update-brew update-rust update-lvim
+all: update-misc update-brew update-lvim update-rust
 
 update-misc:
   # Pulling latest changes
@@ -43,7 +43,7 @@ update-ide:
   @echo
 
   # update vscode extensions
-  code --list-extensions | xargs -L 1 code --force --install-extension
+  # code --list-extensions | xargs -L 1 code --force --install-extension
 
 update-conda:
   # update Anaconda

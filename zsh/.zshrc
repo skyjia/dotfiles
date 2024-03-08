@@ -232,7 +232,7 @@ get_sys_http_proxy() {
 get_sys_secure_http_proxy() {
     local HTTP_PROXY_ADDR=$(networksetup -getsecurewebproxy Wi-Fi | grep "Server" | awk '{print $2}')
     local HTTP_PROXY_PORT=$(networksetup -getsecurewebproxy Wi-Fi | grep "Port" | awk '{print $2}')
-    echo "https://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
+    echo "http://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
 }
 
 get_sys_sock_proxy() {
@@ -263,20 +263,28 @@ enable_proxy() {
     local NO_PROXY_ADDR=$(get_sys_bypass_proxy)
 
     export NO_PROXY=$NO_PROXY_ADDR
+    export no_proxy=${NO_PROXY}
     export ALL_PROXY=$SOCKS_PROXY_ADDR
-    export http_proxy=$HTTP_PROXY_ADDR
-    export https_proxy=$HTTPS_PROXY_ADDR
+    export all_proxy=${ALL_PROXY}
+    export HTTP_PROXY=$HTTP_PROXY_ADDR
+    export http_proxy=${HTTP_PROXY}
+    export HTTPS_PROXY=$HTTPS_PROXY_ADDR
+    export https_proxy=${HTTPS_PROXY}
 
-    git config --global https.proxy ${HTTP_PROXY_ADDR}
-    git config --global http.proxy ${HTTP_PROXY_ADDR}
+    git config --global https.proxy ${SOCKS_PROXY_ADDR}
+    git config --global http.proxy ${SOCKS_PROXY_ADDR}
 
     echo "Enabled network proxy at ${HTTP_PROXY_ADDR}"
 }
 
 disable_proxy() {
     unset NO_PROXY
+    unset no_proxy
     unset ALL_PROXY
+    unset all_proxy
+    unset HTTP_PROXY
     unset http_proxy
+    unset HTTPS_PROXY
     unset https_proxy
     
     git config --global --unset https.proxy
@@ -327,6 +335,10 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PA
 
 # curl (via Homebrew)
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+# make Homebrew use brewed curl
+# https://github.com/orgs/Homebrew/discussions/1752
+export HOMEBREW_FORCE_BREWED_CURL=1
 
 # PostgreSQL 15
 #   $ brew info postgresql@15
