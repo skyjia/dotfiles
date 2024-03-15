@@ -262,6 +262,7 @@ enable_proxy() {
     local SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
     local NO_PROXY_ADDR=$(get_sys_bypass_proxy)
 
+    # export network proxy related environment variables
     export NO_PROXY=$NO_PROXY_ADDR
     export no_proxy=${NO_PROXY}
     export ALL_PROXY=$SOCKS_PROXY_ADDR
@@ -271,13 +272,21 @@ enable_proxy() {
     export HTTPS_PROXY=$HTTPS_PROXY_ADDR
     export https_proxy=${HTTPS_PROXY}
 
-    git config --global https.proxy ${SOCKS_PROXY_ADDR}
-    git config --global http.proxy ${SOCKS_PROXY_ADDR}
+    # set global git-conifg. Check before setting to avoid git-config lock.
+    # https.proxy
+    if [ "${SOCKS_PROXY_ADDR}" != "$(git config --global --get https.proxy)" ]; then
+        git config --global https.proxy ${SOCKS_PROXY_ADDR}
+    fi
+    # http.proxy
+    if [ "${SOCKS_PROXY_ADDR}" != "$(git config --global --get http.proxy)" ]; then
+        git config --global http.proxy ${SOCKS_PROXY_ADDR}
+    fi
 
     echo "Enabled network proxy at ${HTTP_PROXY_ADDR}"
 }
 
 disable_proxy() {
+    # unset network proxy related environment variables
     unset NO_PROXY
     unset no_proxy
     unset ALL_PROXY
@@ -287,6 +296,7 @@ disable_proxy() {
     unset HTTPS_PROXY
     unset https_proxy
     
+    # unset global git-config
     git config --global --unset https.proxy
     git config --global --unset http.proxy
 
