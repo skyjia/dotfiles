@@ -376,6 +376,11 @@ alias fvm-dart="fvm dart"
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
 
+# mojo
+# https://docs.modular.com/mojo/manual/get-started/#install-mojo
+export MODULAR_HOME="$HOME/.modular"
+export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+
 # Useful alias
 [ -f "$HOME/useful-alias.zsh" ] && source "$HOME/useful-alias.zsh"
 

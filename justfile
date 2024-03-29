@@ -10,7 +10,7 @@ set dotenv-load
 default:
   @just --list
 
-all: update-misc update-brew update-lvim update-rust
+all: update-misc update-brew update-lvim update-rust update-mojo
 
 update-misc:
   # Pulling latest changes
@@ -49,6 +49,11 @@ update-conda:
   # update Anaconda
   # Update the conda package manager to the latest version in your base environment
   conda update -n base conda
+  @echo
+
+update-mojo:
+  # update mojo
+  modular update mojo
   @echo
 
 update-brew:
