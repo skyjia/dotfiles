@@ -10,7 +10,7 @@ set dotenv-load
 default:
   @just --list
 
-all: update-misc update-brew update-lvim update-rust update-mojo
+all: update-misc update-lvim update-rust update-mojo update-brew
 
 update-misc:
   # Pulling latest changes
