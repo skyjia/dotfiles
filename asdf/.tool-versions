@@ -1,5 +1,5 @@
 # current lts
-nodejs 21.7.2
+nodejs 21.7.3
 
 java adoptopenjdk-21.0.2+13.0.LTS
 ruby 3.3.0
