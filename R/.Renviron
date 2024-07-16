@@ -1,4 +1,4 @@
 R_LIBS=~/Rlib
-http_proxy=127.0.0.1:6152
-https_proxy=127.0.0.1:6152
+http_proxy=http://127.0.0.1:6152
+https_proxy=http://127.0.0.1:6152
 
