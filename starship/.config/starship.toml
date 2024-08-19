@@ -183,3 +183,7 @@ symbol = "🅢 "
 [zig]
 symbol = '⚡️ '
 
+# [custom.http_proxy]
+# command = "echo $http_proxy"
+# when = "true"
+# format = "HTTP Proxy: $output"
