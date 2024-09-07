@@ -6,7 +6,7 @@
 	excludesfile = /Users/skyjia/.gitignore_global
 	compression = 0
 	autocrlf = input
-	editor = lvim
+	editor = nvim
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

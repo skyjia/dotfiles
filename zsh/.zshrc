@@ -213,9 +213,9 @@ fi
 # Change default editor to vim
 export VISUAL=vim
 export EDITOR="$VISUAL"
-alias vim="lvim"
-alias vi="lvim"
-alias v="lvim"
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
 
 # add ~/.emacs.d/bin to PATH
 # https://github.com/doomemacs/doomemacs#install
