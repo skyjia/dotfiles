@@ -7,10 +7,10 @@
 # ----------------------------------------
 #
 # 解决Rust -- update crates.io过慢的问题
-# https://course.rs/first-try/slowly-downloading.html#%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8
+# https://rsproxy.cn/
 
 [source.crates-io]
-replace-with = 'rsproxy'
+replace-with = 'rsproxy-sparse'
 
 [source.rsproxy]
 registry = "https://rsproxy.cn/crates.io-index"

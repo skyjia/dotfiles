@@ -377,6 +377,11 @@ alias fvm-dart="fvm dart"
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
 
+# Rust
+# https://rsproxy.cn/
+export RUSTUP_DIST_SERVER="https://rsproxy.cn"
+export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
+
 # mojo
 # https://docs.modular.com/mojo/manual/get-started/#install-mojo
 export MODULAR_HOME="$HOME/.modular"
