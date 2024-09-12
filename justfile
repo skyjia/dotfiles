@@ -10,7 +10,7 @@ set dotenv-load
 default:
   @just --list
 
-all: update-misc update-lvim update-rust update-mojo update-brew
+all: update-misc update-nvim update-rust update-mojo update-brew
 
 update-misc:
   # Pulling latest changes
@@ -85,3 +85,8 @@ update-lvim:
   # Updating LunarVim.
   lvim +LvimUpdate +q
   #lvim +LvimSyncCorePlugins +q +q
+
+update-nvim:
+  # Updating AstroNvim.
+  nvim +AstroUpdate +q +q
+
