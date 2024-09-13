@@ -211,7 +211,7 @@ if [ -f ~/.LESS_TERMCAP ]; then
 fi
 
 # Change default editor to vim
-export VISUAL=vim
+export VISUAL="nvim"
 export EDITOR="$VISUAL"
 alias vim="nvim"
 alias vi="nvim"
