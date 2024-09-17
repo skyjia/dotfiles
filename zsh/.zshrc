@@ -225,30 +225,38 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 # ----- Network Proxy BEGIN -----
 
 get_sys_http_proxy() {
-    local HTTP_PROXY_ADDR=$(networksetup -getwebproxy Wi-Fi | grep "Server" | awk '{print $2}')
-    local HTTP_PROXY_PORT=$(networksetup -getwebproxy Wi-Fi | grep "Port" | awk '{print $2}')
+    local HTTP_PROXY_ADDR=$(scutil --proxy | grep "HTTPProxy" | awk '{print $3}')
+    local HTTP_PROXY_PORT=$(scutil --proxy | grep "HTTPPort" | awk '{print $3}')
     echo "http://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
 }
 
 get_sys_secure_http_proxy() {
-    local HTTP_PROXY_ADDR=$(networksetup -getsecurewebproxy Wi-Fi | grep "Server" | awk '{print $2}')
-    local HTTP_PROXY_PORT=$(networksetup -getsecurewebproxy Wi-Fi | grep "Port" | awk '{print $2}')
+    local HTTP_PROXY_ADDR=$(scutil --proxy | grep "HTTPSProxy" | awk '{print $3}')
+    local HTTP_PROXY_PORT=$(scutil --proxy | grep "HTTPSPort" | awk '{print $3}')
     echo "http://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
 }
 
 get_sys_sock_proxy() {
-    local SOCKS_PROXY_ADDR=$(networksetup -getsocksfirewallproxy Wi-Fi | grep "Server" | awk '{print $2}')
-    local SOCKS_PROXY_PORT=$(networksetup -getsocksfirewallproxy Wi-Fi | grep "Port" | awk '{print $2}')
+    local SOCKS_PROXY_ADDR=$(scutil --proxy | grep "SOCKSProxy" | awk '{print $3}')
+    local SOCKS_PROXY_PORT=$(scutil --proxy | grep "SOCKSPort" | awk '{print $3}')
+    if [[ -z "$SOCKS_PROXY_ADDR" ]]; then
+        return
+    fi
     echo "socks5://$SOCKS_PROXY_ADDR:$SOCKS_PROXY_PORT"
 }
 
 get_sys_bypass_proxy() {
-    local BYPASS_PROXY_ADDR=$(networksetup -getproxybypassdomains Wi-Fi | tr '\n' ',' | sed 's/,$//')
+    local BYPASS_PROXY_ADDR=$(scutil --proxy | awk '/ExceptionsList/{flag=1;next}/}/{flag=0}flag' | awk '{print $3}' | paste -sd ',' -)
     echo $BYPASS_PROXY_ADDR
 }
 
 is_sys_proxy_enabled() {
-    networksetup -getsecurewebproxy Wi-Fi | grep "Enabled" | grep -v "Authenticated" |  awk '{print $2}'
+    local HTTP_ENABLED=$(scutil --proxy | grep "HTTPEnable" | awk '{print $3}')
+    if [ "$HTTP_ENABLED" != "1" ]; then
+        echo "No"
+        return
+    fi
+    echo "Yes"
 }
 
 enable_proxy() {
@@ -266,21 +274,24 @@ enable_proxy() {
     # export network proxy related environment variables
     export NO_PROXY=$NO_PROXY_ADDR
     export no_proxy=${NO_PROXY}
-    export ALL_PROXY=$SOCKS_PROXY_ADDR
-    export all_proxy=${ALL_PROXY}
     export HTTP_PROXY=$HTTP_PROXY_ADDR
     export http_proxy=${HTTP_PROXY}
     export HTTPS_PROXY=$HTTPS_PROXY_ADDR
     export https_proxy=${HTTPS_PROXY}
+    if [[ -n "$SOCKS_PROXY_ADDR" ]]; then
+        export ALL_PROXY=$SOCKS_PROXY_ADDR
+        export all_proxy=${ALL_PROXY}
+        return
+    fi
 
     # set global git-conifg. Check before setting to avoid git-config lock.
     # https.proxy
-    if [ "${SOCKS_PROXY_ADDR}" != "$(git config --global --get https.proxy)" ]; then
-        git config --global https.proxy ${SOCKS_PROXY_ADDR}
+    if [ "${HTTPS_PROXY_ADDR}" != "$(git config --global --get https.proxy)" ]; then
+        git config --global https.proxy ${HTTPS_PROXY_ADDR}
     fi
     # http.proxy
-    if [ "${SOCKS_PROXY_ADDR}" != "$(git config --global --get http.proxy)" ]; then
-        git config --global http.proxy ${SOCKS_PROXY_ADDR}
+    if [ "${HTTP_PROXY_ADDR}" != "$(git config --global --get http.proxy)" ]; then
+        git config --global http.proxy ${HTTP_PROXY_ADDR}
     fi
 
     echo "Enabled network proxy at ${HTTP_PROXY_ADDR}"
