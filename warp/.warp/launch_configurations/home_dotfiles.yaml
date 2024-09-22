@@ -31,7 +31,8 @@ windows:
           panes:
             - cwd: /Users/skyjia/dotfiles
               commands:
-                - exec: ls
+                - exec: gst
             - cwd: /Users/skyjia/dotfiles
               commands:
-                - exec: lg
+                - exec: v
+        color: blue
