@@ -395,8 +395,10 @@ export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
 # mojo
 # https://docs.modular.com/mojo/manual/get-started/#install-mojo
-export MODULAR_HOME="$HOME/.modular"
-export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+export PATH="$PATH:$HOME/.modular/bin"
+# https://docs.modular.com/magic#enable-auto-completion
+eval "$(magic completion --shell bash)"
+
 
 # Useful alias
 [ -f "$HOME/useful-alias.zsh" ] && source "$HOME/useful-alias.zsh"
@@ -408,4 +410,3 @@ ulimit -S -n 2048
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
-

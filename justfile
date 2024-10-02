@@ -53,7 +53,7 @@ update-conda:
 
 update-mojo:
   # update mojo
-  modular update mojo
+  magic self-update
   @echo
 
 update-brew:
