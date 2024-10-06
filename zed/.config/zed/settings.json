@@ -7,7 +7,14 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "theme": "Atelier Seaside Dark",
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "version": "2"
+  },
+  "theme": "Catppuccin Mocha",
   "buffer_font_size": 15,
   "terminal": {
     "font_family": "DroidSansM Nerd Font Mono"
