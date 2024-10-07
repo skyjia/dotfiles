@@ -1,0 +1,18 @@
+theme = "catppuccin_macchiato"
+
+[editor]
+line-number = "relative"
+mouse = true
+auto-format = true
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
