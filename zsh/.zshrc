@@ -251,6 +251,7 @@ get_sys_bypass_proxy() {
 }
 
 is_sys_proxy_enabled() {
+    # check if system proxy is enabled
     local HTTP_ENABLED=$(scutil --proxy | grep "HTTPEnable" | awk '{print $3}')
     if [ "$HTTP_ENABLED" != "1" ]; then
         echo "No"
@@ -260,12 +261,14 @@ is_sys_proxy_enabled() {
 }
 
 enable_proxy() {
+    # check if system proxy is enabled
     local sys_proxy_enabled=$(is_sys_proxy_enabled)
     if [ "$sys_proxy_enabled" != "Yes" ]; then
         echo "System proxy is not enabled."
         return
     fi
-
+    
+    # get system proxy settings
     local HTTP_PROXY_ADDR=$(get_sys_http_proxy)
     local HTTPS_PROXY_ADDR=$(get_sys_secure_http_proxy)
     local SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
@@ -278,10 +281,11 @@ enable_proxy() {
     export http_proxy=${HTTP_PROXY}
     export HTTPS_PROXY=$HTTPS_PROXY_ADDR
     export https_proxy=${HTTPS_PROXY}
+        
+    # SOCKS proxy
     if [[ -n "$SOCKS_PROXY_ADDR" ]]; then
         export ALL_PROXY=$SOCKS_PROXY_ADDR
         export all_proxy=${ALL_PROXY}
-        return
     fi
 
     # set global git-conifg. Check before setting to avoid git-config lock.
