@@ -12,38 +12,32 @@ default:
 
 all: update-misc update-nvim update-lvim update-rust update-mojo update-brew
 
-update-misc:
+update-misc: pull-latest update-submodules update-oh-my-zsh update-asdf-plugins update-r-packages update-conda
+
+pull-latest:
   # Pulling latest changes
   git pull
   @echo
 
+update-submodules:
   # Pull all changes for the submodules
   git submodule update --remote
   @echo
 
-  # Updating zsh
+update-oh-my-zsh:
+  # Updating oh-my-zsh
   git -C {{zsh_dir}} pull
   @echo
 
-  # Updating powerlevel10k
-  git -C "{{zsh_dir}}/custom/themes/powerlevel10k" pull
-  @echo
-
+update-asdf-plugins:
   # Updating asdf plugin repositories
   asdf plugin update --all
   @echo
 
+update-r-packages:
   # Updating R packages
   Rscript -e 'update.packages(ask = FALSE)'
-
-update-ide:
-  # update Android Studio and packages
-  sdkmanager --update
-  sdkmanager --licenses
   @echo
-
-  # update vscode extensions
-  # code --list-extensions | xargs -L 1 code --force --install-extension
 
 update-conda:
   # update Anaconda
