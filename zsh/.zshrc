@@ -1,3 +1,6 @@
+# echo "loading .zshrc"
+# echo "loading .zshrc" >> ~/dotfiles/logs/zsh.log
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -98,10 +101,11 @@ eval "$(starship init zsh)"
 
 #### Warp Terminal Known Issues
 ####     https://docs.warp.dev/help/known-issues
-if [[ $TERM_PROGRAM != "WarpTerminal2" ]]; then
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 ##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
 
     # iTerm2 Shell Integration
+    echo "loading iTerm2 Shell Integration"
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 ##### WHAT YOU WANT TO DISABLE FOR WARP - ABOVE
@@ -158,11 +162,6 @@ export EDITOR="$VISUAL"
 alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
-
-# add ~/.emacs.d/bin to PATH
-# https://github.com/doomemacs/doomemacs#install
-export PATH="$HOME/.emacs.d/bin:$PATH"
-
 
 # ----- Network Proxy BEGIN -----
 
@@ -291,9 +290,6 @@ eval "$(magic completion --shell zsh)"
 # VaultWarden / BitWarden completion
 # https://bitwarden.com/help/cli/#zsh-shell-completion
 # eval "$(bw completion --shell zsh); compdef _bw bw;"
-
-# Obsidian alias
-alias obs='open -a /Applications/Obsidian.app'
 
 # Useful alias
 [ -f "$HOME/useful-alias.zsh" ] && source "$HOME/useful-alias.zsh"
