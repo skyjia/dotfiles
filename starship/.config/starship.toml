@@ -36,6 +36,13 @@ format = '🕙[ $time]($style) '
 time_format = '%T'
 utc_time_offset = '+8'
 
+[shell]
+fish_indicator = '󰈺 '
+powershell_indicator = '_'
+unknown_indicator = 'unknown shell'
+style = 'white bold'
+disabled = false
+
 [aws]
 symbol = "  "
 
@@ -53,6 +60,9 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
+
+[direnv]
+disabled = false
 
 [docker_context]
 symbol = " "
