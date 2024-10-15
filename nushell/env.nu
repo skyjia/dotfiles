@@ -99,3 +99,9 @@ $env.NU_PLUGIN_DIRS = [
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
+
+# Configure the prompt with starship.
+# https://www.nushell.sh/book/3rdpartyprompts.html#starship
+# https://starship.rs/#nushell
+mkdir ~/.cache/starship
+starship init nu | save -f ~/.cache/starship/init.nu

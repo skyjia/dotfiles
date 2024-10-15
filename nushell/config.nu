@@ -896,6 +896,7 @@ $env.config = {
         }
     ]
 }
+
 # Configure the prompt with starship.
 # https://www.nushell.sh/book/3rdpartyprompts.html#starship
 # https://starship.rs/#nushell
