@@ -10,7 +10,7 @@ set dotenv-load
 default:
   @just --list
 
-all: update-misc update-nvim update-lvim update-rust update-mojo update-brew
+all: update-misc update-vscode update-nvim update-lvim update-rust update-mojo update-brew
 
 update-misc: pull-latest update-submodules update-oh-my-zsh update-asdf-plugins update-r-packages update-conda
 
@@ -48,6 +48,11 @@ update-conda:
 update-mojo:
   # update mojo
   magic self-update
+  @echo
+
+update-vscode:
+  # update vscode
+  code --update-extensions
   @echo
 
 update-brew:
