@@ -1,4 +1,6 @@
-```
+# Overview
+
+```text
       ██            ██     ████ ██  ██                
      ░██           ░██    ░██░ ░░  ░██                
      ░██  ██████  ██████ ██████ ██ ░██  █████   ██████
@@ -15,27 +17,19 @@
  ░▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░
 
- bash				> bash settings
- fish				> fish settings
- gdb				> GDB init
- git				> global git config and aliases
- hg					> global hg config and aliases
- httpie			    > httpie settings
- karabiner			> Karabiner configuration
- less				> less settings
- omf				> oh-my-fish settings
- opam				> opam init
- shared_profile	    > shared shell settings, alias, and custom prompts
- spacemacs		    > spacemacs initialization setting and custom layers for Emacs.
- tmux				> terminal multiplexer with custom status bar
- vim				> vim settings
- zsh				> zshell settings, aliases, and custom prompts
+ git                > global git config and aliases
+ hg                 > global hg config and aliases
+ karabiner          > Karabiner configuration
+ less               > less settings
+ tmux               > terminal multiplexer with custom status bar
+ astro-nvim         > AstroNvim configuration
+ lunar-vim          > LunarVim configuration
+ zsh                > zshell settings, aliases, and custom prompts
 ```
-
 
 ## Before Getting Start
 
-It's best to read the follwing articles before you start:
+It's best to read the following articles before you start:
 
 - [GitHub Dotfiles Guide](https://dotfiles.github.io/)
 - [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
@@ -44,26 +38,15 @@ It's best to read the follwing articles before you start:
 
 ### 1 Install Dependencies
 
-#### Homebrew & Cask
+#### Homebrew
 
-If you're an OS X user, the best way to manage software pacakges is to use Homebrew & Cask.
-
-**a) Install Homebrew**
+If you're an OS X user, the best way to manage software packages is to use Homebrew.
 
 ```shell
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)""
 ```
 
-**b) Install brew cask**
-
-```shell
-brew tap caskroom/cask
-```
-
-> Refer to:  
->
-> - http://brew.sh/  
-> - https://caskroom.github.io/
+> Refer to: <https://brew.sh>
 
 For Linux user, please try [LinuxBrew](http://linuxbrew.sh/) instead.
 
@@ -81,7 +64,6 @@ brew install stow
 
 ```sh
 git clone https://github.com/skyjia/dotfiles.git ~/dotfiles
-cd ~/dotfiles && rake
 ```
 
 If you want to apply a configuration package, try to execute following commands:
@@ -91,18 +73,18 @@ cd ~/dotfiles
 stow package_dir_name
 ```
 
-For example, apply **httpie** configuration package:
+For example, apply **zsh** configuration package:
 
 ```sh
 cd ~/dotfiles
-stow httpie
+stow zsh
 ```
 
 ### 3 Package Configuration
 
 #### vim
 
-Vim configuration is based on [**SpaceVim**]( https://spacevim.org/). 
+Vim configuration is based on [**AstroNvim**](https://astronvim.com/). 
 
 #### tmux
 
@@ -113,19 +95,11 @@ cd ~/dotfiles
 stow tmux
 ```
 
-#### spacemacs
-
-```sh
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-cd ~/dotfiles
-stow spacemacs
-```
-
 ### 4 Keep Updated
 
 ```sh
 cd ~/dotfiles
-./update.sh
+just all
 ```
 
 # License

@@ -1,0 +1,8 @@
+{
+    "workspace": {
+        "ignoreDir": ["R/Rlib/**"]
+    },
+    "diagnostics.disable": [
+        "undefined-doc-name"
+    ]
+}
