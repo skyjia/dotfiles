@@ -66,7 +66,8 @@ update-brew:
   @echo
   
   # cleaning up
-  brew cleanup --prune=2
+  brew autoremove
+  brew cleanup --prune=1
 
 update-rust:
   # Keeping rustup up to date
@@ -87,5 +88,5 @@ update-lvim:
 
 update-nvim:
   # Updating AstroNvim.
-  nvim +AstroUpdate +q +q
+  nvim +AstroUpdate +MasonUpdate +q +q
 

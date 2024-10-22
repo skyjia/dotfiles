@@ -239,7 +239,7 @@ enable_proxy() {
         git config --global http.proxy ${HTTP_PROXY_ADDR}
     fi
 
-    echo "Enabled network proxy at ${HTTP_PROXY_ADDR}"
+    # echo "Enabled network proxy at ${HTTP_PROXY_ADDR}"
 }
 
 disable_proxy() {
@@ -257,7 +257,7 @@ disable_proxy() {
     git config --global --unset https.proxy
     git config --global --unset http.proxy
 
-    echo "Disabled network proxy."
+    # echo "Disabled network proxy."
 }
 
 toggle_proxy() {

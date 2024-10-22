@@ -7,6 +7,11 @@ add_newline = true
 # Timeout for commands executed by starship (in milliseconds).
 command_timeout = 5_000
 
+# Environments
+[env_var.HTTP_PROXY]
+default = 'no proxy'
+format = "with proxy [\\[$env_value\\]]($style)"
+
 # Battery Display
 [battery]
 disabled = false
