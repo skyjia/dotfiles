@@ -1,8 +1,3 @@
----
-name: V for Vendetta
-background_image:
-  path: sky/bg.jpg
-  opacity: 38
 accent: "#ffff00"
 background: "#11133d"
 foreground: "#00ff9e"
