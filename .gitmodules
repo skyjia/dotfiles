@@ -4,6 +4,3 @@
 [submodule "raycast/.config/raycast/script-commands"]
 	path = raycast/.config/raycast/script-commands
 	url = https://github.com/raycast/script-commands.git
-[submodule "warp/.warp/themes"]
-	path = warp/.warp/themes
-	url = https://github.com/warpdotdev/themes.git
