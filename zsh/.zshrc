@@ -292,7 +292,7 @@ eval "$(magic completion --shell zsh)"
 # eval "$(bw completion --shell zsh); compdef _bw bw;"
 
 # Useful alias
-[ -f "$HOME/useful-alias.zsh" ] && source "$HOME/useful-alias.zsh"
+[[ -r ${ZDOTDIR:-$HOME}/.zaliases ]] && source ${ZDOTDIR:-$HOME}/.zaliases
 
 # fix too many open file issues.
 ulimit -S -n 2048

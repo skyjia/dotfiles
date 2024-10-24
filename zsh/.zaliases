@@ -1,4 +1,7 @@
-# useful alias
+#
+# aliases - Zsh and bash aliases
+#
+
 alias l='eza'
 alias ll='eza --long --header --git'
 alias lla='eza --long --header --git --all'
