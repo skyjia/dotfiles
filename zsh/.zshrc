@@ -1,9 +1,6 @@
 # echo "loading .zshrc"
 # echo "loading .zshrc" >> ~/dotfiles/logs/zsh.log
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -12,7 +9,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -91,7 +87,7 @@ plugins=(
     fzf
     )
 
-source $ZSH/oh-my-zsh.sh 
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -99,17 +95,23 @@ source $ZSH/oh-my-zsh.sh
 # https://starship.rs/guide/#%F0%9F%9A%80-installation
 eval "$(starship init zsh)"
 
-#### Warp Terminal Known Issues
-####     https://docs.warp.dev/help/known-issues
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
-
-    # iTerm2 Shell Integration
-    echo "loading iTerm2 Shell Integration"
-    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-##### WHAT YOU WANT TO DISABLE FOR WARP - ABOVE
-fi
+# Additional preparation for different terminals.
+case $TERM_PROGRAM in
+"WarpTerminal")
+   ;;
+"iTerm.app")
+   # Load iTerm2 Shell Integration
+   iterm2_shell_integration_path="${HOME}/.iterm2_shell_integration.zsh"
+   # shellcheck source=/dev/null
+   test -e "${iterm2_shell_integration_path}" && source "${iterm2_shell_integration_path}"
+   ;;
+"vscode")
+   # echo "IS VSCode"
+   ;;
+*)
+    echo "Unknown Terminal: $TERM_PROGRAM"
+    ;;
+esac
 
 # fzf (installed via Homebrew)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -159,41 +161,50 @@ fi
 # Change default editor to vim
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
-alias vim="nvim"
-alias vi="nvim"
-alias v="nvim"
 
 # ----- Network Proxy BEGIN -----
 
 get_sys_http_proxy() {
-    local HTTP_PROXY_ADDR=$(scutil --proxy | grep "HTTPProxy" | awk '{print $3}')
-    local HTTP_PROXY_PORT=$(scutil --proxy | grep "HTTPPort" | awk '{print $3}')
+    local HTTP_PROXY_ADDR
+    HTTP_PROXY_ADDR=$(scutil --proxy | grep "HTTPProxy" | awk '{print $3}')
+    local HTTP_PROXY_PORT
+    HTTP_PROXY_PORT=$(scutil --proxy | grep "HTTPPort" | awk '{print $3}')
+
     echo "http://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
 }
 
 get_sys_secure_http_proxy() {
-    local HTTP_PROXY_ADDR=$(scutil --proxy | grep "HTTPSProxy" | awk '{print $3}')
-    local HTTP_PROXY_PORT=$(scutil --proxy | grep "HTTPSPort" | awk '{print $3}')
+    local HTTP_PROXY_ADDR
+    HTTP_PROXY_ADDR=$(scutil --proxy | grep "HTTPSProxy" | awk '{print $3}')
+    local HTTP_PROXY_PORT
+    HTTP_PROXY_PORT=$(scutil --proxy | grep "HTTPSPort" | awk '{print $3}')
+
     echo "http://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
 }
 
 get_sys_sock_proxy() {
-    local SOCKS_PROXY_ADDR=$(scutil --proxy | grep "SOCKSProxy" | awk '{print $3}')
-    local SOCKS_PROXY_PORT=$(scutil --proxy | grep "SOCKSPort" | awk '{print $3}')
+    local SOCKS_PROXY_ADDR
+    SOCKS_PROXY_ADDR=$(scutil --proxy | grep "SOCKSProxy" | awk '{print $3}')
+    local SOCKS_PROXY_PORT
+    SOCKS_PROXY_PORT=$(scutil --proxy | grep "SOCKSPort" | awk '{print $3}')
+
     if [[ -z "$SOCKS_PROXY_ADDR" ]]; then
         return
     fi
+
     echo "socks5://$SOCKS_PROXY_ADDR:$SOCKS_PROXY_PORT"
 }
 
 get_sys_bypass_proxy() {
-    local BYPASS_PROXY_ADDR=$(scutil --proxy | awk '/ExceptionsList/{flag=1;next}/}/{flag=0}flag' | awk '{print $3}' | paste -sd ',' -)
-    echo $BYPASS_PROXY_ADDR
+    local BYPASS_PROXY_ADDR
+    BYPASS_PROXY_ADDR=$(scutil --proxy | awk '/ExceptionsList/{flag=1;next}/}/{flag=0}flag' | awk '{print $3}' | paste -sd ',' -)
+    echo "$BYPASS_PROXY_ADDR"
 }
 
 is_sys_proxy_enabled() {
     # check if system proxy is enabled
-    local HTTP_ENABLED=$(scutil --proxy | grep "HTTPEnable" | awk '{print $3}')
+    local HTTP_ENABLED
+    HTTP_ENABLED=$(scutil --proxy | grep "HTTPEnable" | awk '{print $3}')
     if [ "$HTTP_ENABLED" != "1" ]; then
         echo "No"
         return
@@ -203,17 +214,22 @@ is_sys_proxy_enabled() {
 
 enable_proxy() {
     # check if system proxy is enabled
-    local sys_proxy_enabled=$(is_sys_proxy_enabled)
+    local sys_proxy_enabled
+    sys_proxy_enabled=$(is_sys_proxy_enabled)
     if [ "$sys_proxy_enabled" != "Yes" ]; then
         echo "System proxy is not enabled."
         return
     fi
     
     # get system proxy settings
-    local HTTP_PROXY_ADDR=$(get_sys_http_proxy)
-    local HTTPS_PROXY_ADDR=$(get_sys_secure_http_proxy)
-    local SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
-    local NO_PROXY_ADDR=$(get_sys_bypass_proxy)
+    local HTTP_PROXY_ADDR
+    HTTP_PROXY_ADDR=$(get_sys_http_proxy)
+    local HTTPS_PROXY_ADDR
+    HTTPS_PROXY_ADDR=$(get_sys_secure_http_proxy)
+    local SOCKS_PROXY_ADDR
+    SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
+    local NO_PROXY_ADDR
+    NO_PROXY_ADDR=$(get_sys_bypass_proxy)
 
     # export network proxy related environment variables
     export NO_PROXY=$NO_PROXY_ADDR
@@ -232,11 +248,11 @@ enable_proxy() {
     # set global git-conifg. Check before setting to avoid git-config lock.
     # https.proxy
     if [ "${HTTPS_PROXY_ADDR}" != "$(git config --global --get https.proxy)" ]; then
-        git config --global https.proxy ${HTTPS_PROXY_ADDR}
+        git config --global https.proxy "${HTTPS_PROXY_ADDR}"
     fi
     # http.proxy
     if [ "${HTTP_PROXY_ADDR}" != "$(git config --global --get http.proxy)" ]; then
-        git config --global http.proxy ${HTTP_PROXY_ADDR}
+        git config --global http.proxy "${HTTP_PROXY_ADDR}"
     fi
 
     # echo "Enabled network proxy at ${HTTP_PROXY_ADDR}"
@@ -261,7 +277,9 @@ disable_proxy() {
 }
 
 toggle_proxy() {
-    local sys_proxy_enabled=$(is_sys_proxy_enabled)
+    local sys_proxy_enabled
+    sys_proxy_enabled=$(is_sys_proxy_enabled)
+
     if [ "$sys_proxy_enabled" != "Yes" ]; then
         disable_proxy
     else

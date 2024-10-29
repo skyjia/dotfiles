@@ -9,3 +9,7 @@ alias lla='eza --long --header --git --all'
 alias rm='rm -i'
 
 alias z='zellij'
+
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"

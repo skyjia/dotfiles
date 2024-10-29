@@ -1,14 +1,13 @@
 {
-    "Lua.diagnostics.globals": [
-        "vim",
-        "lvim"
-    ],
+    "Lua.diagnostics.globals": ["vim", "lvim"],
+
     "cSpell.words": [
         "Astro",
         "CRAN",
         "Dotfiles",
         "karabiner",
         "nvim",
+        "raycast",
         "Rlib",
         "zshell"
     ]
