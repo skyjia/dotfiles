@@ -113,27 +113,6 @@ case $TERM_PROGRAM in
     ;;
 esac
 
-# fzf (installed via Homebrew)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Export PATH for anaconda installed via Homebrew
-# export PATH="/opt/homebrew/anaconda3/bin:$PATH"  # commented out by conda initialize
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # lazygit
 #   https://github.com/jesseduffield/lazygit#changing-directory-on-exit
 lg()
@@ -301,21 +280,39 @@ alias tpd="disable_proxy"
 
 # ----- Network Proxy END -----
 
-# mojo
-# https://docs.modular.com/magic#enable-auto-completion
-eval "$(magic completion --shell zsh)"
-
-# VaultWarden / BitWarden completion
-# https://bitwarden.com/help/cli/#zsh-shell-completion
-# eval "$(bw completion --shell zsh); compdef _bw bw;"
-
 # Useful alias
 [[ -r ${ZDOTDIR:-$HOME}/.zaliases ]] && source ${ZDOTDIR:-$HOME}/.zaliases
 
 # fix too many open file issues.
 ulimit -S -n 2048
 
+# fzf (installed via Homebrew)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
-[[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
+# [[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+
+# mojo
+# https://docs.modular.com/magic#enable-auto-completion
+# eval "$(magic completion --shell zsh)"
+
+# VaultWarden / BitWarden completion
+# https://bitwarden.com/help/cli/#zsh-shell-completion
+# eval "$(bw completion --shell zsh); compdef _bw bw;"
