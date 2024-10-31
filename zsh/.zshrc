@@ -205,8 +205,8 @@ enable_proxy() {
     HTTP_PROXY_ADDR=$(get_sys_http_proxy)
     local HTTPS_PROXY_ADDR
     HTTPS_PROXY_ADDR=$(get_sys_secure_http_proxy)
-    local SOCKS_PROXY_ADDR
-    SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
+    # local SOCKS_PROXY_ADDR
+    # SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
     local NO_PROXY_ADDR
     NO_PROXY_ADDR=$(get_sys_bypass_proxy)
 
@@ -218,9 +218,15 @@ enable_proxy() {
     export HTTPS_PROXY=$HTTPS_PROXY_ADDR
     export https_proxy=${HTTPS_PROXY}
         
-    # SOCKS proxy
-    if [[ -n "$SOCKS_PROXY_ADDR" ]]; then
-        export ALL_PROXY=$SOCKS_PROXY_ADDR
+    # ALL_PROXY via SOCKS proxy
+    # if [[ -n "$SOCKS_PROXY_ADDR" ]]; then
+    #     export ALL_PROXY=$SOCKS_PROXY_ADDR
+    #     export all_proxy=${ALL_PROXY}
+    # fi
+    
+    # ALL_PROXY via HTTP proxy
+    if [[ -n "$HTTP_PROXY_ADDR" ]]; then
+        export ALL_PROXY=$HTTP_PROXY_ADDR
         export all_proxy=${ALL_PROXY}
     fi
 
