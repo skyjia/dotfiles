@@ -108,8 +108,10 @@ case $TERM_PROGRAM in
 "vscode")
    # echo "IS VSCode"
    ;;
+"Apple_Terminal")
+   ;;
 *)
-    echo "Unknown Terminal: $TERM_PROGRAM"
+    echo "Unknown Terminal: $TERM_PROGRAM ($TERM)"
     ;;
 esac
 
