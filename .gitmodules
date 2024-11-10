@@ -7,3 +7,6 @@
 [submodule "warp/.warp/official-themes"]
 	path = warp/.warp/official-themes
 	url = https://github.com/warpdotdev/themes.git
+[submodule "nushell/nu_scripts"]
+	path = nushell/nu_scripts
+	url = https://github.com/nushell/nu_scripts.git
