@@ -173,7 +173,7 @@ get_sys_sock_proxy() {
         return
     fi
 
-    echo "socks5://$SOCKS_PROXY_ADDR:$SOCKS_PROXY_PORT"
+    echo "socks5h://$SOCKS_PROXY_ADDR:$SOCKS_PROXY_PORT"
 }
 
 get_sys_bypass_proxy() {
@@ -208,7 +208,7 @@ enable_proxy() {
     local HTTPS_PROXY_ADDR
     HTTPS_PROXY_ADDR=$(get_sys_secure_http_proxy)
     # local SOCKS_PROXY_ADDR
-    # SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
+    SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
     local NO_PROXY_ADDR
     NO_PROXY_ADDR=$(get_sys_bypass_proxy)
 
@@ -221,17 +221,17 @@ enable_proxy() {
     export https_proxy=${HTTPS_PROXY}
         
     # ALL_PROXY via SOCKS proxy
-    # if [[ -n "$SOCKS_PROXY_ADDR" ]]; then
-    #     export ALL_PROXY=$SOCKS_PROXY_ADDR
-    #     export all_proxy=${ALL_PROXY}
-    # fi
-    
-    # ALL_PROXY via HTTP proxy
-    if [[ -n "$HTTP_PROXY_ADDR" ]]; then
-        export ALL_PROXY=$HTTP_PROXY_ADDR
+    if [[ -n "$SOCKS_PROXY_ADDR" ]]; then
+        export ALL_PROXY=$SOCKS_PROXY_ADDR
         export all_proxy=${ALL_PROXY}
     fi
 
+    # ALL_PROXY via HTTP proxy
+    # if [[ -n "$HTTP_PROXY_ADDR" ]]; then
+    #     export ALL_PROXY=$HTTP_PROXY_ADDR
+    #     export all_proxy=${ALL_PROXY}
+    # fi
+    #
     # set global git-conifg. Check before setting to avoid git-config lock.
     # https.proxy
     if [ "${HTTPS_PROXY_ADDR}" != "$(git config --global --get https.proxy)" ]; then
