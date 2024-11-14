@@ -10,9 +10,9 @@ set dotenv-load
 default:
   @just --list
 
-all: update-misc update-vscode update-nvim update-lvim update-rust update-mojo update-brew
+all: update-misc update-nvim update-lvim update-brew update-vscode update-r-packages update-rust update-conda update-mojo
 
-update-misc: pull-latest update-submodules update-oh-my-zsh update-asdf-plugins update-r-packages update-conda
+update-misc: pull-latest update-submodules update-oh-my-zsh update-asdf-plugins
 
 pull-latest:
   # Pulling latest changes
