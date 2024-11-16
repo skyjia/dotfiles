@@ -10,9 +10,11 @@ set dotenv-load
 default:
   @just --list
 
-all: update-misc update-nvim update-lvim update-brew update-vscode update-r-packages update-rust update-conda update-mojo
+all: update-dotfiles update-brew update-dev
 
-update-misc: pull-latest update-submodules update-oh-my-zsh update-asdf-plugins
+update-dotfiles: pull-latest update-submodules update-oh-my-zsh 
+update-editors: update-nvim update-lvim update-vscode
+update-dev: update-r-packages update-rust update-conda update-mojo update-asdf
 
 pull-latest:
   # Pulling latest changes
@@ -29,7 +31,7 @@ update-oh-my-zsh:
   git -C {{zsh_dir}} pull
   @echo
 
-update-asdf-plugins:
+update-asdf:
   # Updating asdf plugin repositories
   asdf plugin update --all
   @echo
