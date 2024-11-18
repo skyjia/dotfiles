@@ -10,7 +10,7 @@ set dotenv-load
 default:
   @just --list
 
-all: update-dotfiles update-brew update-dev
+all: update-dotfiles update-brew update-editors update-dev
 
 update-dotfiles: pull-latest update-submodules update-oh-my-zsh 
 update-editors: update-nvim update-lvim update-vscode
