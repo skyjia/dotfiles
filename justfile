@@ -44,7 +44,7 @@ update-r-packages:
 update-conda:
   # update Anaconda
   # Update the conda package manager to the latest version in your base environment
-  conda update -n base conda
+  conda update -y -n base conda
   @echo
 
 update-mojo:
