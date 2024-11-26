@@ -10,3 +10,6 @@
 [submodule "nushell/nu_scripts"]
 	path = nushell/nu_scripts
 	url = https://github.com/nushell/nu_scripts.git
+[submodule "raycast/raycast-script-commands"]
+	path = raycast/raycast-script-commands
+	url = https://github.com/skyjia/raycast-script-commands.git
