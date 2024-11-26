@@ -102,6 +102,11 @@ cd ~/dotfiles
 just all
 ```
 
+# TODO
+
+- [ ] Share environment variables between zsh and bash.
+- [ ] Migrate package management from Homebrew to Nix.
+
 # License
 
 The license is GPLv3 for all parts specific to [**dotfiles**](https://github.com/skyjia/dotfiles)
