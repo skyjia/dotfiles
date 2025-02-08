@@ -297,6 +297,12 @@ ulimit -S -n 2048
 # fzf (installed via Homebrew)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(~/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
