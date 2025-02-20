@@ -25,9 +25,6 @@ export PATH="$GOPATH/bin:$PATH"
 export DOTNET_ROOT="$HOME/.dotnet"
 export PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH"
 
-# asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
 # openjdk
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # For compilers to find openjdk you may need to set:

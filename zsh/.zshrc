@@ -297,6 +297,10 @@ ulimit -S -n 2048
 # fzf (installed via Homebrew)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# thefuck
+# https://github.com/nvbn/thefuck#manual-installation
+eval $(thefuck --alias)
+
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(~/.docker/completions $fpath)
 autoload -Uz compinit
