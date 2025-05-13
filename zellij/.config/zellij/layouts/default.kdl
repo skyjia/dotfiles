@@ -16,12 +16,12 @@ layout {
         pane
     }
 
-    tab name="dotfiles" cwd="$HOME/dotfiles" {
-        pane split_direction="vertical" {
-            pane
-            pane {
-                command "nvim"
-            }
-        }
-    }
+    // tab name="dotfiles" cwd="$HOME/dotfiles" {
+    //     pane split_direction="vertical" {
+    //         pane
+    //         pane {
+    //             command "nvim"
+    //         }
+    //     }
+    // }
 }
