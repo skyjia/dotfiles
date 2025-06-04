@@ -14,7 +14,7 @@ all: update-dotfiles update-brew update-editors update-dev
 
 update-dotfiles: pull-latest update-submodules update-oh-my-zsh 
 update-editors: update-nvim update-lvim update-vscode
-update-dev: update-r-packages update-rust update-conda update-mojo update-asdf
+update-dev: update-r-packages update-conda update-mojo update-asdf update-rust
 
 pull-latest:
   # Pulling latest changes
