@@ -83,10 +83,6 @@ export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 # https://docs.modular.com/mojo/manual/get-started/#install-mojo
 export PATH="$PATH:$HOME/.modular/bin"
 
-# add ~/.emacs.d/bin to PATH
-# https://github.com/doomemacs/doomemacs#install
-export PATH="$HOME/.emacs.d/bin:$PATH"
-
 # Export HOME local bin
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"

@@ -1,9 +1,6 @@
 # echo "loading .zshrc"
 # echo "loading .zshrc" >> ~/dotfiles/logs/zsh.log
 
-# Set up the Zsh environment
-[[ -r ${ZDOTDIR:-$HOME}/.shared-env.zsh ]] && source ${ZDOTDIR:-$HOME}/.shared-env.zsh
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
