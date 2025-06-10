@@ -10,7 +10,7 @@ set dotenv-load
 default:
   @just --list
 
-all: update-dotfiles update-brew update-editors update-dev
+all: update-dotfiles update-brew update-apps update-editors update-dev
 
 update-dotfiles: pull-latest update-submodules update-oh-my-zsh 
 update-editors: update-nvim update-lvim update-vscode
@@ -93,3 +93,6 @@ update-nvim:
   # Updating AstroNvim.
   nvim +AstroUpdate +MasonUpdate +q +q
 
+update-apps:
+  # Updating applications from AppStore.
+  mas upgrade
