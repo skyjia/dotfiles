@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- Customize Treesitter
 
@@ -10,6 +10,21 @@ return {
       "lua",
       "vim",
       -- add more arguments for adding more treesitter parsers
+      "asm",
+      "awk",
+      "bash",
+      "c",
+      "cmake",
+      "cpp",
+      "csv",
+      "git_config",
+      "gitcommit",
+      "gitignore",
+      "latex",
+      "nu",
+      "powershell",
+      "python",
+      "typst",
     },
   },
 }
