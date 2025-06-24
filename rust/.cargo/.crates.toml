@@ -20,6 +20,7 @@
     "rust-size",
     "rust-strip",
 ]
+"cargo-cache 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-cache"]
 "cargo-list 0.32.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-list"]
 "cargo-update 16.3.2 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-install-update",
