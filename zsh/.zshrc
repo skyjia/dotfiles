@@ -333,4 +333,4 @@ unset __conda_setup
 
 # VaultWarden / BitWarden completion
 # https://bitwarden.com/help/cli/#zsh-shell-completion
-# eval "$(bw completion --shell zsh); compdef _bw bw;"
+eval "$(bw completion --shell zsh); compdef _bw bw;"
