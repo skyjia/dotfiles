@@ -1,6 +1,10 @@
 # echo "loading .zshrc"
 # echo "loading .zshrc" >> ~/dotfiles/logs/zsh.log
 
+# Uncomment the following line to enable profile for ZSH loading.
+# zmodload zsh/zprof
+
+# TODO: use oh-my-zsh alternative instead.
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -79,10 +83,10 @@ plugins=(
     extract
     direnv
     docker
-    kubectl
+    # kubectl
     tmux
     vscode 
-    vi-mode
+    # vi-mode
     git
     fzf
     )
@@ -144,147 +148,86 @@ export VISUAL="nvim"
 export EDITOR="$VISUAL"
 
 # ----- Network Proxy BEGIN -----
-
-get_sys_http_proxy() {
-    local HTTP_PROXY_ADDR
-    HTTP_PROXY_ADDR=$(scutil --proxy | grep "HTTPProxy" | awk '{print $3}')
-    local HTTP_PROXY_PORT
-    HTTP_PROXY_PORT=$(scutil --proxy | grep "HTTPPort" | awk '{print $3}')
-
-    echo "http://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
-}
-
-get_sys_secure_http_proxy() {
-    local HTTP_PROXY_ADDR
-    HTTP_PROXY_ADDR=$(scutil --proxy | grep "HTTPSProxy" | awk '{print $3}')
-    local HTTP_PROXY_PORT
-    HTTP_PROXY_PORT=$(scutil --proxy | grep "HTTPSPort" | awk '{print $3}')
-
-    echo "http://$HTTP_PROXY_ADDR:$HTTP_PROXY_PORT"
-}
-
-get_sys_sock_proxy() {
-    local SOCKS_PROXY_ADDR
-    SOCKS_PROXY_ADDR=$(scutil --proxy | grep "SOCKSProxy" | awk '{print $3}')
-    local SOCKS_PROXY_PORT
-    SOCKS_PROXY_PORT=$(scutil --proxy | grep "SOCKSPort" | awk '{print $3}')
-
-    if [[ -z "$SOCKS_PROXY_ADDR" ]]; then
-        return
+get_sys_proxy() {
+    # Cache scutil --proxy output for 10 seconds to avoid frequent calls
+    local now
+    now=$(date +%s)
+    if [[ -z "$SCUTIL_PROXY_CACHE" || -z "$SCUTIL_PROXY_CACHE_TIME" || $((now - SCUTIL_PROXY_CACHE_TIME)) -gt 10 ]]; then
+        SCUTIL_PROXY_CACHE="$(scutil --proxy)"
+        SCUTIL_PROXY_CACHE_TIME="$now"
     fi
-
-    echo "socks5h://$SOCKS_PROXY_ADDR:$SOCKS_PROXY_PORT"
+    echo "$SCUTIL_PROXY_CACHE"
 }
 
-get_sys_bypass_proxy() {
-    local BYPASS_PROXY_ADDR
-    BYPASS_PROXY_ADDR=$(scutil --proxy | awk '/ExceptionsList/{flag=1;next}/}/{flag=0}flag' | awk '{print $3}' | paste -sd ',' -)
-    echo "$BYPASS_PROXY_ADDR"
+get_sys_proxy_value() {
+    local key="$1"
+    get_sys_proxy | awk -v k="$key" '$1 == k {print $3}'
+}
+
+get_sys_proxy_list() {
+    local key="$1"
+    get_sys_proxy | awk "/$key/"'{flag=1;next}/}/{flag=0}flag' | awk '{print $3}' | paste -sd ',' -
 }
 
 is_sys_proxy_enabled() {
-    # check if system proxy is enabled
-    local HTTP_ENABLED
-    HTTP_ENABLED=$(scutil --proxy | grep "HTTPEnable" | awk '{print $3}')
-    if [ "$HTTP_ENABLED" != "1" ]; then
-        echo "No"
-        return
-    fi
-    echo "Yes"
+    [[ "$(get_sys_proxy_value HTTPEnable)" == "1" ]]
 }
 
-enable_proxy() {
-    # check if system proxy is enabled
-    local sys_proxy_enabled
-    sys_proxy_enabled=$(is_sys_proxy_enabled)
-    if [ "$sys_proxy_enabled" != "Yes" ]; then
+set_proxy() {
+    local http_proxy_addr https_proxy_addr socks_proxy_addr socks_proxy_port no_proxy_addr
+
+    http_proxy_addr="http://$(get_sys_proxy_value HTTPProxy):$(get_sys_proxy_value HTTPPort)"
+    https_proxy_addr="http://$(get_sys_proxy_value HTTPSProxy):$(get_sys_proxy_value HTTPSPort)"
+    socks_proxy_addr="$(get_sys_proxy_value SOCKSProxy)"
+    socks_proxy_port="$(get_sys_proxy_value SOCKSPort)"
+    no_proxy_addr="$(get_sys_proxy_list ExceptionsList)"
+
+    export NO_PROXY=$no_proxy_addr
+    export no_proxy=$no_proxy_addr
+    export HTTP_PROXY=$http_proxy_addr
+    export http_proxy=$http_proxy_addr
+    export HTTPS_PROXY=$https_proxy_addr
+    export https_proxy=$https_proxy_addr
+
+    if [[ -n "$socks_proxy_addr" ]]; then
+        export ALL_PROXY="socks5h://$socks_proxy_addr:$socks_proxy_port"
+        export all_proxy=$ALL_PROXY
+    fi
+
+    git config --global https.proxy "$https_proxy_addr"
+    git config --global http.proxy "$http_proxy_addr"
+}
+
+unset_proxy() {
+    unset NO_PROXY no_proxy ALL_PROXY all_proxy HTTP_PROXY http_proxy HTTPS_PROXY https_proxy
+    git config --global --unset https.proxy 2>/dev/null
+    git config --global --unset http.proxy 2>/dev/null
+}
+
+ensure_enable_proxy() {
+    if is_sys_proxy_enabled; then
+        set_proxy
+    else
         echo "System proxy is not enabled."
-        return
+        unset_proxy
     fi
-    
-    # get system proxy settings
-    local HTTP_PROXY_ADDR
-    HTTP_PROXY_ADDR=$(get_sys_http_proxy)
-    local HTTPS_PROXY_ADDR
-    HTTPS_PROXY_ADDR=$(get_sys_secure_http_proxy)
-    # local SOCKS_PROXY_ADDR
-    SOCKS_PROXY_ADDR=$(get_sys_sock_proxy)
-    local NO_PROXY_ADDR
-    NO_PROXY_ADDR=$(get_sys_bypass_proxy)
-
-    # export network proxy related environment variables
-    export NO_PROXY=$NO_PROXY_ADDR
-    export no_proxy=${NO_PROXY}
-    export HTTP_PROXY=$HTTP_PROXY_ADDR
-    export http_proxy=${HTTP_PROXY}
-    export HTTPS_PROXY=$HTTPS_PROXY_ADDR
-    export https_proxy=${HTTPS_PROXY}
-        
-    # ALL_PROXY via SOCKS proxy
-    if [[ -n "$SOCKS_PROXY_ADDR" ]]; then
-        export ALL_PROXY=$SOCKS_PROXY_ADDR
-        export all_proxy=${ALL_PROXY}
-    fi
-
-    # ALL_PROXY via HTTP proxy
-    # if [[ -n "$HTTP_PROXY_ADDR" ]]; then
-    #     export ALL_PROXY=$HTTP_PROXY_ADDR
-    #     export all_proxy=${ALL_PROXY}
-    # fi
-    #
-    # set global git-conifg. Check before setting to avoid git-config lock.
-    # https.proxy
-    if [ "${HTTPS_PROXY_ADDR}" != "$(git config --global --get https.proxy)" ]; then
-        git config --global https.proxy "${HTTPS_PROXY_ADDR}"
-    fi
-    # http.proxy
-    if [ "${HTTP_PROXY_ADDR}" != "$(git config --global --get http.proxy)" ]; then
-        git config --global http.proxy "${HTTP_PROXY_ADDR}"
-    fi
-
-    # echo "Enabled network proxy at ${HTTP_PROXY_ADDR}"
-}
-
-disable_proxy() {
-    # unset network proxy related environment variables
-    unset NO_PROXY
-    unset no_proxy
-    unset ALL_PROXY
-    unset all_proxy
-    unset HTTP_PROXY
-    unset http_proxy
-    unset HTTPS_PROXY
-    unset https_proxy
-    
-    # unset global git-config
-    git config --global --unset https.proxy
-    git config --global --unset http.proxy
-
-    # echo "Disabled network proxy."
 }
 
 toggle_proxy() {
-    local sys_proxy_enabled
-    sys_proxy_enabled=$(is_sys_proxy_enabled)
-
-    if [ "$sys_proxy_enabled" != "Yes" ]; then
-        disable_proxy
+    if [[ -z "$HTTP_PROXY" && -z "$HTTPS_PROXY" ]]; then
+        echo "No proxy is currently set. Enabling system proxy."
+        ensure_enable_proxy
     else
-        enable_proxy
+        echo "Proxy is currently set. Disabling system proxy."
+        unset_proxy
     fi
 }
 
-# Default to enable proxy for new shell
-proxy_enabled=$(is_sys_proxy_enabled)
-if [ "$proxy_enabled" = "Yes" ]; then
-    enable_proxy
-else
-    disable_proxy
-fi
+ensure_enable_proxy
 
 alias tp="toggle_proxy"
-alias tpe="enable_proxy"
-alias tpd="disable_proxy"
+alias tpe="ensure_enable_proxy"
+alias tpd="unset_proxy"
 
 # ----- Network Proxy END -----
 
@@ -294,19 +237,22 @@ alias tpd="disable_proxy"
 # fix too many open file issues.
 ulimit -S -n 2048
 
-# fzf (installed via Homebrew)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # thefuck
 # https://github.com/nvbn/thefuck#manual-installation
 eval $(thefuck --alias)
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(~/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
+# TODO: already use oh-my-zsh fzf plugin instead. disable following lines.
+# fzf (installed via Homebrew)
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# TODO: already use oh-my-zsh docker plugin instead. disable following lines.
+# # The following lines have been added by Docker Desktop to enable Docker CLI completions.
+# fpath=(~/.docker/completions $fpath)
+# autoload -Uz compinit
+# compinit
+# # End of Docker CLI completions
+
+# FIXME: this is too slow.
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -334,3 +280,6 @@ unset __conda_setup
 # VaultWarden / BitWarden completion
 # https://bitwarden.com/help/cli/#zsh-shell-completion
 eval "$(bw completion --shell zsh); compdef _bw bw;"
+
+# Uncomment the following line to enable profile for ZSH loading.
+# zprof
