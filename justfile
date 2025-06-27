@@ -2,6 +2,8 @@
 
 # https://just.systems/
 
+set shell := ['fish', '-c']
+
 home_dir := env_var('HOME')
 zsh_dir := join(home_dir, '.oh-my-zsh')
 
@@ -12,7 +14,7 @@ default:
 
 all: update-dotfiles update-brew update-apps update-editors update-dev
 
-update-dotfiles: pull-latest update-submodules update-oh-my-zsh 
+update-dotfiles: pull-latest update-submodules update-oh-my-zsh update-fish
 update-editors: update-nvim update-lvim update-vscode
 update-dev: update-r-packages update-conda update-asdf update-rust
 
@@ -29,6 +31,11 @@ update-submodules:
 update-oh-my-zsh:
   # Updating oh-my-zsh
   git -C {{zsh_dir}} pull
+  @echo
+
+update-fish:
+  # Updating fish plugins
+  fisher update
   @echo
 
 update-asdf:
