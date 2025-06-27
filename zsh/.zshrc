@@ -137,12 +137,6 @@ lg()
 GPG_TTY=$(tty)
 export GPG_TTY
 
-# Add color support for 'less' command
-if [ -f ~/.LESS_TERMCAP ]; then
-    # shellcheck disable=SC1090
-    source ~/.LESS_TERMCAP
-fi
-
 # Change default editor to vim
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
@@ -272,10 +266,6 @@ unset __conda_setup
 ## Completion scripts setup. Remove the following line to uninstall
 # [[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
-
-# mojo
-# https://docs.modular.com/magic#enable-auto-completion
-# eval "$(magic completion --shell zsh)"
 
 # VaultWarden / BitWarden completion
 # https://bitwarden.com/help/cli/#zsh-shell-completion

@@ -48,13 +48,13 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PA
 # curl (via Homebrew)
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
-# PostgreSQL 15
-#   $ brew info postgresql@15
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+# PostgreSQL 16
+#   $ brew info postgresql@16
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # Script Kit
-export PATH="$PATH:$HOME/.kit/bin"
-export PATH="$PATH:$HOME/.kenv/bin"
+# export PATH="$PATH:$HOME/.kit/bin"
+# export PATH="$PATH:$HOME/.kenv/bin"
 
 # Android SDK Home
 # https://developer.android.com/tools
@@ -78,10 +78,6 @@ export PATH=$GEM_HOME/bin:$PATH
 # https://rsproxy.cn/
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
-
-# mojo
-# https://docs.modular.com/mojo/manual/get-started/#install-mojo
-export PATH="$PATH:$HOME/.modular/bin"
 
 # Export HOME local bin
 export PATH="$HOME/bin:$PATH"

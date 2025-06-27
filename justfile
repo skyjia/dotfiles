@@ -14,7 +14,7 @@ all: update-dotfiles update-brew update-apps update-editors update-dev
 
 update-dotfiles: pull-latest update-submodules update-oh-my-zsh 
 update-editors: update-nvim update-lvim update-vscode
-update-dev: update-r-packages update-conda update-mojo update-asdf update-rust
+update-dev: update-r-packages update-conda update-asdf update-rust
 
 pull-latest:
   # Pulling latest changes
@@ -46,11 +46,6 @@ update-conda:
   # Update the conda package manager to the latest version in your base environment
   conda update -y -n base conda
   conda update --all -y
-  @echo
-
-update-mojo:
-  # update mojo
-  magic self-update
   @echo
 
 update-vscode:
