@@ -71,8 +71,8 @@ end
 
 ensure_enable_proxy
 
-alias tp="toggle_proxy"
-alias tpe="ensure_enable_proxy"
-alias tpd="unset_proxy"
+alias tp 'toggle_proxy'
+alias tpe 'ensure_enable_proxy'
+alias tpd 'unset_proxy'
 
 # ----- Network Proxy END -----

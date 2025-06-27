@@ -12,6 +12,12 @@ command_timeout = 5_000
 default = 'no proxy'
 format = "with proxy [\\[$env_value\\]]($style)"
 
+[status]
+symbol = '🔴'
+format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+disabled = false
+
 # Battery Display
 [battery]
 disabled = false

@@ -13,7 +13,3 @@ set -gx DOTNET_ROOT $HOME/.dotnet
 
 # GPG
 set -gx GPG_TTY (tty)
-
-# Change default editor to nvim
-set -gx VISUAL nvim
-set -gx EDITOR $VISUAL
