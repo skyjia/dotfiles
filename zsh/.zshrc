@@ -247,20 +247,20 @@ eval $(thefuck --alias)
 # # End of Docker CLI completions
 
 # FIXME: this is too slow.
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
@@ -269,7 +269,7 @@ unset __conda_setup
 
 # VaultWarden / BitWarden completion
 # https://bitwarden.com/help/cli/#zsh-shell-completion
-eval "$(bw completion --shell zsh); compdef _bw bw;"
+# eval "$(bw completion --shell zsh); compdef _bw bw;"
 
 # Uncomment the following line to enable profile for ZSH loading.
 # zprof
