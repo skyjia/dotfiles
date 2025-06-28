@@ -231,6 +231,10 @@ alias tpd="unset_proxy"
 # fix too many open file issues.
 ulimit -S -n 2048
 
+# Zoxide
+# https://crates.io/crates/zoxide
+eval "$(zoxide init zsh)"
+
 # thefuck
 # https://github.com/nvbn/thefuck#manual-installation
 eval $(thefuck --alias)
