@@ -51,8 +51,8 @@ update-r-packages:
 update-conda:
   # update Anaconda
   # Update the conda package manager to the latest version in your base environment
-  conda update -y -n base conda
-  conda update --all -y
+  -conda update -y -n base conda
+  -conda update --all -y
   @echo
 
 update-vscode:
