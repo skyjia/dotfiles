@@ -13,7 +13,3 @@ if status is-interactive
         set -p fish_complete_path $HOMEBREW_PREFIX/share/fish/vendor_completions.d
     end
 end
-
-# make Homebrew use brewed curl
-# https://github.com/orgs/Homebrew/discussions/1752
-set -gx  HOMEBREW_FORCE_BREWED_CURL 1
