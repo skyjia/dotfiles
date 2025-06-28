@@ -1,12 +1,15 @@
+[include]
+    path = ~/.config/delta/themes.gitconfig
 [user]
 	name = Sky Jia
 	email = me@skyjia.com
 	signingkey = DA28D2A2859D4E24
 [core]
-	excludesfile = /Users/skyjia/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	compression = 0
 	autocrlf = input
 	editor = nvim
+	pager = delta
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -14,12 +17,11 @@
 	process = git-lfs filter-process
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
-	template = /Users/skyjia/.stCommitMsg
+	template = ~/.stCommitMsg
 	gpgsign = true
 [http]
 	postBuffer = 524288000
@@ -40,7 +42,14 @@
 [pull]
 	ff = only
 [credential]
-	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+    features = tangara-chilensis
+	navigate = true
+    line-numbers = true
+[merge]
+	conflictStyle = zdiff3
