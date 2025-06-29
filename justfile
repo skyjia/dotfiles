@@ -15,7 +15,7 @@ default:
 all: update-dotfiles update-brew update-apps update-editors update-dev
 
 update-dotfiles: pull-latest update-submodules update-oh-my-zsh update-fish
-update-editors: update-nvim update-lvim update-vscode
+update-editors: update-nvim update-lvim update-vscode update-helix
 update-dev: update-r-packages update-conda update-asdf update-rust
 
 pull-latest:
@@ -95,6 +95,11 @@ update-nvim:
   # Updating AstroNvim.
   nvim +AstroUpdate +MasonUpdate +q +q
 
+update-helix:
+  # Updating Helix grammars.
+  hx --grammar fetch
+  hx --grammar build
+  @echo
 update-apps:
   # Updating applications from AppStore.
   mas upgrade
