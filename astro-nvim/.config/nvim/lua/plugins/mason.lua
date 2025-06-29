@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- Customize Mason
 
@@ -22,6 +22,21 @@ return {
 
         -- install any other package
         "tree-sitter-cli",
+
+        -- install LSP servers
+        "awk-language-server",
+        "bash-language-server",
+        "cmake-language-server",
+        "dot-language-server",
+        "gopls",
+        "jdtls",
+        "jq-lsp",
+        "kotlin-language-server",
+        "marksman",
+        "taplo",
+        "typescript-language-server",
+        "yaml-language-server",
+        "zls",
       },
     },
   },
