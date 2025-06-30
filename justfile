@@ -12,9 +12,10 @@ set dotenv-load
 default:
   @just --list
 
-all: update-dotfiles update-brew update-apps update-editors update-dev
+all: update-dotfiles update-brew update-shells update-apps update-editors update-dev
 
-update-dotfiles: pull-latest update-submodules update-oh-my-zsh update-fish
+update-dotfiles: pull-latest update-submodules
+update-shells: update-oh-my-zsh update-fish
 update-editors: update-nvim update-lvim update-vscode update-helix
 update-dev: update-r-packages update-conda update-asdf update-rust
 
@@ -36,6 +37,7 @@ update-oh-my-zsh:
 update-fish:
   # Updating fish plugins
   fisher update
+  fish_update_completions
   @echo
 
 update-asdf:
@@ -100,6 +102,7 @@ update-helix:
   hx --grammar fetch
   hx --grammar build
   @echo
+
 update-apps:
   # Updating applications from AppStore.
   mas upgrade
