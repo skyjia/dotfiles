@@ -36,6 +36,7 @@ complete -c just -l list-prefix -d 'Print <TEXT> before each list item' -r
 complete -c just -l set -d 'Override <VARIABLE> with <VALUE>' -r
 complete -c just -l shell -d 'Invoke <SHELL> to run recipes' -r
 complete -c just -l shell-arg -d 'Invoke shell with <SHELL-ARG> as an argument' -r
+complete -c just -l tempdir -d 'Save temporary files to <TEMPDIR>.' -r -F
 complete -c just -l timestamp-format -d 'Timestamp format string' -r
 complete -c just -s d -l working-directory -d 'Use <WORKING-DIRECTORY> as working directory. --justfile must also be set' -r -F
 complete -c just -s c -l command -d 'Run an arbitrary command with the working directory, `.env`, overrides, and exports set' -r
