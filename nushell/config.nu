@@ -17,7 +17,8 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
-# Configure the prompt with starship.
-# https://www.nushell.sh/book/3rdpartyprompts.html#starship
-# https://starship.rs/#nushell
-use ~/.cache/starship/init.nu
+$env.config.buffer_editor = 'hx'
+
+# Homebrew
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
+

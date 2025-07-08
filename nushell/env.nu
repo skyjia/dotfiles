@@ -14,10 +14,3 @@
 #
 # Also see `help config env` for more options.
 #
-# You can remove these comments if you want or leave
-# them for future reference.
-# Configure the prompt with starship.
-# https://www.nushell.sh/book/3rdpartyprompts.html#starship
-# https://starship.rs/#nushell
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
