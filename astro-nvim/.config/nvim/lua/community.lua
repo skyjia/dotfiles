@@ -6,6 +6,7 @@
 
 ---@type LazySpec
 return {
+  -- https://github.com/AstroNvim/astrocommunity
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.recipes.vscode" },

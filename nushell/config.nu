@@ -21,4 +21,3 @@ $env.config.buffer_editor = 'hx'
 
 # Homebrew
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
-

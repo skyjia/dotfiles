@@ -1,11 +1,7 @@
 {
 "Profiles": [
 {
-  "Ansi 6 Color" : {
-    "Green Component" : 0.73333334922790527,
-    "Red Component" : 0,
-    "Blue Component" : 0.73333334922790527
-  },
+  "Use Non-ASCII Font" : false,
   "Tags" : [
 
   ],
@@ -14,36 +10,24 @@
     "Red Component" : 0.3333333432674408,
     "Blue Component" : 1
   },
-  "Ansi 7 Color" : {
-    "Green Component" : 0.73333334922790527,
-    "Red Component" : 0.73333334922790527,
-    "Blue Component" : 0.73333334922790527
-  },
-  "Ansi 8 Color" : {
-    "Green Component" : 0.3333333432674408,
-    "Red Component" : 0.3333333432674408,
-    "Blue Component" : 0.3333333432674408
-  },
+  "Guid" : "54AAFDF9-5921-4D82-808C-3BF17AAD574B",
+  "Normal Font" : "HackNFM-Regular 12",
   "Bold Color" : {
     "Green Component" : 1,
     "Red Component" : 1,
     "Blue Component" : 1
   },
-  "Ansi 9 Color" : {
-    "Green Component" : 0.3333333432674408,
-    "Red Component" : 1,
-    "Blue Component" : 0.3333333432674408
-  },
-  "Ansi 4 Color" : {
-    "Green Component" : 0,
+  "Ansi 2 Color" : {
+    "Green Component" : 0.73333334922790527,
     "Red Component" : 0,
-    "Blue Component" : 0.73333334922790527
+    "Blue Component" : 0
   },
-  "Ansi 5 Color" : {
-    "Green Component" : 0,
+  "Ansi 3 Color" : {
+    "Green Component" : 0.73333334922790527,
     "Red Component" : 0.73333334922790527,
-    "Blue Component" : 0.73333334922790527
+    "Blue Component" : 0
   },
+  "Scrollback With Status Bar" : true,
   "Rows" : 25,
   "Default Bookmark" : "No",
   "Non-ASCII Anti Aliased" : true,
@@ -152,32 +136,54 @@
     "Red Component" : 0,
     "Blue Component" : 0
   },
-  "Transparency" : 0,
-  "Ansi 2 Color" : {
-    "Green Component" : 0.73333334922790527,
-    "Red Component" : 0,
-    "Blue Component" : 0
-  },
-  "Ansi 3 Color" : {
-    "Green Component" : 0.73333334922790527,
-    "Red Component" : 0.73333334922790527,
-    "Blue Component" : 0
-  },
-  "Guid" : "54AAFDF9-5921-4D82-808C-3BF17AAD574B",
-  "Scrollback With Status Bar" : true,
-  "Use Non-ASCII Font" : false,
   "Ansi 1 Color" : {
     "Green Component" : 0,
     "Red Component" : 0.73333334922790527,
     "Blue Component" : 0
   },
-  "Normal Font" : "HackNFM-Regular 12",
+  "Transparency" : 0,
   "Horizontal Spacing" : 1,
   "Custom Directory" : "No",
-  "Right Option Key Sends" : 0
+  "Right Option Key Sends" : 0,
+  "Ansi 6 Color" : {
+    "Green Component" : 0.73333334922790527,
+    "Red Component" : 0,
+    "Blue Component" : 0.73333334922790527
+  },
+  "Ansi 7 Color" : {
+    "Green Component" : 0.73333334922790527,
+    "Red Component" : 0.73333334922790527,
+    "Blue Component" : 0.73333334922790527
+  },
+  "Ansi 8 Color" : {
+    "Green Component" : 0.3333333432674408,
+    "Red Component" : 0.3333333432674408,
+    "Blue Component" : 0.3333333432674408
+  },
+  "Ansi 9 Color" : {
+    "Green Component" : 0.3333333432674408,
+    "Red Component" : 1,
+    "Blue Component" : 0.3333333432674408
+  },
+  "Ansi 4 Color" : {
+    "Green Component" : 0,
+    "Red Component" : 0,
+    "Blue Component" : 0.73333334922790527
+  },
+  "Ansi 5 Color" : {
+    "Green Component" : 0,
+    "Red Component" : 0.73333334922790527,
+    "Blue Component" : 0.73333334922790527
+  }
 },
 {
-  "Set Local Environment Vars" : 2,
+  "Ansi 5 Color" : {
+    "Red Component" : 0.96078431372549022,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.90588235294117647,
+    "Alpha Component" : 1,
+    "Green Component" : 0.76078431372549016
+  },
   "Working Directory" : "\/Users\/skyjia",
   "Prompt Before Closing 2" : 0,
   "Selected Text Color" : {
@@ -560,8 +566,8 @@
   "Smart Cursor Color" : true,
   "Semantic History" : {
     "editor" : "com.microsoft.VSCode",
-    "text" : "",
-    "action" : "editor"
+    "action" : "editor",
+    "text" : ""
   },
   "Ambiguous Double Width" : false,
   "Blur Radius" : 2,
@@ -626,7 +632,11 @@
   },
   "Columns" : 80,
   "Visual Bell" : true,
+  "ASCII Ligatures" : false,
   "Custom Directory" : "Recycle",
+  "Set Local Environment Vars" : 2
+},
+{
   "Ansi 5 Color" : {
     "Red Component" : 0.96078431372549022,
     "Color Space" : "sRGB",
@@ -634,10 +644,6 @@
     "Alpha Component" : 1,
     "Green Component" : 0.76078431372549016
   },
-  "ASCII Ligatures" : false
-},
-{
-  "Set Local Environment Vars" : 2,
   "Working Directory" : "\/Users\/skyjia",
   "Prompt Before Closing 2" : 0,
   "Selected Text Color" : {
@@ -687,7 +693,7 @@
   },
   "Non-ASCII Anti Aliased" : true,
   "Sync Title" : false,
-  "Disable Window Resizing" : true,
+  "Disable Window Resizing" : false,
   "Custom Locale" : "en_US.UTF-8",
   "Close Sessions On End" : true,
   "Jobs to Ignore" : [
@@ -1021,8 +1027,8 @@
   "Smart Cursor Color" : true,
   "Semantic History" : {
     "editor" : "com.microsoft.VSCode",
-    "text" : "",
-    "action" : "editor"
+    "action" : "editor",
+    "text" : ""
   },
   "Ambiguous Double Width" : false,
   "Blur Radius" : 2,
@@ -1091,18 +1097,17 @@
   },
   "Columns" : 80,
   "Visual Bell" : true,
+  "ASCII Ligatures" : false,
   "Custom Directory" : "Recycle",
-  "Ansi 5 Color" : {
-    "Red Component" : 0.96078431372549022,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.90588235294117647,
-    "Alpha Component" : 1,
-    "Green Component" : 0.76078431372549016
-  },
-  "ASCII Ligatures" : false
+  "Set Local Environment Vars" : 2
 },
 {
-  "Set Local Environment Vars" : 2,
+  "Ansi 5 Color" : {
+    "Red Component" : 0.82745098039215681,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.50980392156862742,
+    "Green Component" : 0.21176470588235294
+  },
   "Working Directory" : "\/Users\/skyjia",
   "Prompt Before Closing 2" : 0,
   "Selected Text Color" : {
@@ -1432,7 +1437,7 @@
   },
   "Default Bookmark" : "No",
   "Disable Smcup Rmcup" : false,
-  "Name" : "Sky (nushell)",
+  "Name" : "Sky (nu)",
   "Blinking Cursor" : false,
   "Cursor Color" : {
     "Red Component" : 0.51372549019607838,
@@ -1465,8 +1470,8 @@
   "Smart Cursor Color" : true,
   "Semantic History" : {
     "editor" : "com.microsoft.VSCode",
-    "text" : "",
-    "action" : "editor"
+    "action" : "editor",
+    "text" : ""
   },
   "Ambiguous Double Width" : false,
   "Blur Radius" : 2,
@@ -1528,14 +1533,9 @@
   },
   "Columns" : 80,
   "Visual Bell" : true,
+  "ASCII Ligatures" : false,
   "Custom Directory" : "Recycle",
-  "Ansi 5 Color" : {
-    "Red Component" : 0.82745098039215681,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.50980392156862742,
-    "Green Component" : 0.21176470588235294
-  },
-  "ASCII Ligatures" : false
+  "Set Local Environment Vars" : 2
 }
 ]
 }
