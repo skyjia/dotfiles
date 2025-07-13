@@ -17,7 +17,7 @@ all: update-dotfiles update-brew update-shells update-apps update-editors update
 update-dotfiles: pull-latest update-submodules
 update-shells: update-oh-my-zsh update-fish
 update-editors: update-nvim update-lvim update-vscode update-helix
-update-dev: update-r-packages update-conda update-asdf update-rust
+update-dev: update-r-packages update-conda update-asdf update-rust update-claude
 
 pull-latest:
   # Pulling latest changes
@@ -62,6 +62,10 @@ update-vscode:
   code --update-extensions
   @echo
 
+update-claude:
+  # update claude code
+  claude update
+
 update-brew:
   # updating homebrew...
   brew update
@@ -95,7 +99,7 @@ update-lvim:
 
 update-nvim:
   # Updating AstroNvim.
-  nvim +AstroUpdate +MasonUpdate +q +q
+  -nvim +AstroUpdate +MasonUpdate +q +q 
 
 update-helix:
   # Updating Helix grammars.
