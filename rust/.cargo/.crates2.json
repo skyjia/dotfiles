@@ -1,1 +1,64 @@
-{"installs":{"cargo-binutils 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)":{"version_req":null,"bins":["cargo-cov","cargo-nm","cargo-objcopy","cargo-objdump","cargo-profdata","cargo-readobj","cargo-size","cargo-strip","rust-ar","rust-cov","rust-ld","rust-lld","rust-nm","rust-objcopy","rust-objdump","rust-profdata","rust-readobj","rust-size","rust-strip"],"features":[],"all_features":false,"no_default_features":false,"profile":"release","target":null,"rustc":null},"cargo-cache 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)":{"version_req":null,"bins":["cargo-cache"],"features":[],"all_features":false,"no_default_features":false,"profile":"release","target":"aarch64-apple-darwin","rustc":"rustc 1.87.0 (17067e9ac 2025-05-09)\nbinary: rustc\ncommit-hash: 17067e9ac6d7ecb70e50f92c1944e545188d2359\ncommit-date: 2025-05-09\nhost: aarch64-apple-darwin\nrelease: 1.87.0\nLLVM version: 20.1.1\n"},"cargo-list 0.32.0 (registry+https://github.com/rust-lang/crates.io-index)":{"version_req":null,"bins":["cargo-list"],"features":[],"all_features":false,"no_default_features":false,"profile":"release","target":null,"rustc":null},"cargo-update 16.3.2 (registry+https://github.com/rust-lang/crates.io-index)":{"version_req":null,"bins":["cargo-install-update","cargo-install-update-config"],"features":[],"all_features":false,"no_default_features":false,"profile":"release","target":null,"rustc":null},"fd-find 10.2.0 (registry+https://github.com/rust-lang/crates.io-index)":{"version_req":null,"bins":["fd"],"features":[],"all_features":false,"no_default_features":false,"profile":"release","target":null,"rustc":null},"mdbook 0.4.51 (registry+https://github.com/rust-lang/crates.io-index)":{"version_req":null,"bins":["mdbook"],"features":[],"all_features":false,"no_default_features":false,"profile":"release","target":null,"rustc":null},"mdbook-graphviz 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)":{"version_req":null,"bins":["mdbook-graphviz"],"features":[],"all_features":false,"no_default_features":false,"profile":"release","target":null,"rustc":null},"mdbook-plantuml 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)":{"version_req":null,"bins":["mdbook-plantuml"],"features":[],"all_features":false,"no_default_features":false,"profile":"release","target":null,"rustc":null}}}
+{
+    "installs": {
+        "cargo-binutils 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)": {
+            "version_req": null,
+            "bins": [
+                "cargo-cov",
+                "cargo-nm",
+                "cargo-objcopy",
+                "cargo-objdump",
+                "cargo-profdata",
+                "cargo-readobj",
+                "cargo-size",
+                "cargo-strip",
+                "rust-ar",
+                "rust-cov",
+                "rust-ld",
+                "rust-lld",
+                "rust-nm",
+                "rust-objcopy",
+                "rust-objdump",
+                "rust-profdata",
+                "rust-readobj",
+                "rust-size",
+                "rust-strip"
+            ],
+            "features": [],
+            "all_features": false,
+            "no_default_features": false,
+            "profile": "release",
+            "target": null,
+            "rustc": null
+        },
+        "cargo-cache 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)": {
+            "version_req": null,
+            "bins": ["cargo-cache"],
+            "features": [],
+            "all_features": false,
+            "no_default_features": false,
+            "profile": "release",
+            "target": "aarch64-apple-darwin",
+            "rustc": "rustc 1.87.0 (17067e9ac 2025-05-09)\nbinary: rustc\ncommit-hash: 17067e9ac6d7ecb70e50f92c1944e545188d2359\ncommit-date: 2025-05-09\nhost: aarch64-apple-darwin\nrelease: 1.87.0\nLLVM version: 20.1.1\n"
+        },
+        "cargo-list 0.32.0 (registry+https://github.com/rust-lang/crates.io-index)": {
+            "version_req": null,
+            "bins": ["cargo-list"],
+            "features": [],
+            "all_features": false,
+            "no_default_features": false,
+            "profile": "release",
+            "target": null,
+            "rustc": null
+        },
+        "cargo-update 16.3.2 (registry+https://github.com/rust-lang/crates.io-index)": {
+            "version_req": null,
+            "bins": ["cargo-install-update", "cargo-install-update-config"],
+            "features": [],
+            "all_features": false,
+            "no_default_features": false,
+            "profile": "release",
+            "target": null,
+            "rustc": null
+        }
+    }
+}

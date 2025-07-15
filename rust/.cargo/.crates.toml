@@ -26,7 +26,3 @@
     "cargo-install-update",
     "cargo-install-update-config",
 ]
-"fd-find 10.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["fd"]
-"mdbook 0.4.51 (registry+https://github.com/rust-lang/crates.io-index)" = ["mdbook"]
-"mdbook-graphviz 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = ["mdbook-graphviz"]
-"mdbook-plantuml 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["mdbook-plantuml"]
