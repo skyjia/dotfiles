@@ -65,6 +65,10 @@ update-vscode:
 update-claude:
   # update claude code
   claude update
+  
+update-gemini:
+  # update gemini code
+  npm upgrade -g @google/gemini-cli
 
 update-brew:
   # updating homebrew...
