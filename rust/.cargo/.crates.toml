@@ -22,7 +22,12 @@
 ]
 "cargo-cache 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-cache"]
 "cargo-list 0.32.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-list"]
-"cargo-update 16.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = [
+"cargo-make 0.37.24 (registry+https://github.com/rust-lang/crates.io-index)" = [
+    "cargo-make",
+    "makers",
+]
+"cargo-outdated 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-outdated"]
+"cargo-update 17.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-install-update",
     "cargo-install-update-config",
 ]
