@@ -2,6 +2,10 @@ if not command --query docker
     exit
 end
 
+if not status is-interactive
+    exit
+end
+
 set -l docker_completion_file_path $__fish_config_dir/completions/docker.fish
 
 # Only generate the completion file if it does not exist or is older than 7 days
