@@ -63,8 +63,7 @@ update-vscode:
   @echo
 
 update-claude:
-  # update claude code
-  @echo "run update command manually: claude update"
+  # claude update is not automated, please run it manually: `claude update`
   
 update-gemini:
   # update gemini code
