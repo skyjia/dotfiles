@@ -64,10 +64,12 @@ update-vscode:
 
 update-claude:
   # claude update is not automated, please run it manually: `claude update`
-  
+  @echo
+
 update-gemini:
   # update gemini code
   npm upgrade -g @google/gemini-cli
+  @echo
 
 update-brew:
   # updating homebrew...
@@ -82,6 +84,7 @@ update-brew:
   # cleaning up
   brew autoremove
   brew cleanup --prune=1
+  @echo
 
 update-rust:
   # Keeping rustup up to date
@@ -94,15 +97,18 @@ update-rust:
   
   # Keeping rust packages to date
   cargo install-update -a
+  @echo
 
 update-lvim:
   # Updating LunarVim.
   lvim +LvimUpdate +q
   #lvim +LvimSyncCorePlugins +q +q
+  @echo
 
 update-nvim:
   # Updating AstroNvim.
   -nvim +AstroUpdate +MasonUpdate +q +q 
+  @echo
 
 update-helix:
   # Updating Helix grammars.
@@ -113,3 +119,4 @@ update-helix:
 update-apps:
   # Updating applications from AppStore.
   mas upgrade
+  @echo
