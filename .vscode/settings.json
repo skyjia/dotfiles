@@ -4,6 +4,7 @@
     // Words to add to dictionary for a workspace.
     "cSpell.words": [
         "Astro",
+        "bttcli",
         "CRAN",
         "Dotfiles",
         "karabiner",

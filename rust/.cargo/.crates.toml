@@ -1,5 +1,5 @@
 [v1]
-"cargo-binutils 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)" = [
+"cargo-binutils 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-cov",
     "cargo-nm",
     "cargo-objcopy",
@@ -9,6 +9,7 @@
     "cargo-size",
     "cargo-strip",
     "rust-ar",
+    "rust-as",
     "rust-cov",
     "rust-ld",
     "rust-lld",
@@ -21,14 +22,14 @@
     "rust-strip",
 ]
 "cargo-cache 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-cache"]
-"cargo-generate 0.23.4 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-generate"]
+"cargo-generate 0.23.5 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-generate"]
 "cargo-list 0.32.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-list"]
 "cargo-make 0.37.24 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-make",
     "makers",
 ]
 "cargo-outdated 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-outdated"]
-"cargo-update 17.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = [
+"cargo-update 18.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-install-update",
     "cargo-install-update-config",
 ]

@@ -43,6 +43,5 @@ return {
   { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
-  -- FIXME: Uncomment when Zig support is available
-  -- { import = "astrocommunity.pack.zig" },
+  { import = "astrocommunity.pack.zig" },
 }
