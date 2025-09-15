@@ -20,27 +20,6 @@ function _fish_eza_install --on-event fish-eza_install
         # see ../functions/_ls.fish
         alias ls _ls
 
-        function l --wraps _ls
-            _ls --git-ignore $argv
-        end
-
-        function ll --wraps _ls
-            _ls --all --header --long $argv
-        end
-
-        function llm --wraps _ls
-            _ls --sort=modified $argv
-
-        end
-
-        function lt --wraps _ls
-            _ls --tree --level=2 $argv
-        end
-
-        function tree --wraps _ls
-            _ls --tree $argv
-        end
-
         alias la 'eza -lbhHigUmuSa'
         alias lx 'eza -lbhHigUmuSa@'
 
@@ -54,16 +33,10 @@ end
 
 function _fish_eza_uninstall --on-event fish-eza_uninstall
     functions --erase ls
-    functions --erase l
-    functions --erase ll
-    functions --erase llm
-    functions --erase lt
-    functions --erase tree
 
     functions --erase la
     functions --erase lx
 
-    functions --erase ls
     functions --erase _auto_ls
 
     set --erase eza_params
