@@ -33,5 +33,5 @@
     "cargo-install-update",
     "cargo-install-update-config",
 ]
-"just-lsp 0.2.5 (registry+https://github.com/rust-lang/crates.io-index)" = ["just-lsp"]
+"just-lsp 0.2.6 (registry+https://github.com/rust-lang/crates.io-index)" = ["just-lsp"]
 "wasm-pack 0.13.1 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasm-pack"]
