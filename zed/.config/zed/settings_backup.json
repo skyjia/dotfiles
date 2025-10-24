@@ -12,7 +12,8 @@
         "default_model": {
             "provider": "copilot_chat",
             "model": "gpt-4o"
-        }
+        },
+        "version": "2"
     },
     "theme": "Catppuccin Mocha",
     "buffer_font_size": 15,
