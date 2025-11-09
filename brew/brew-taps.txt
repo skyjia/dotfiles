@@ -1,0 +1,12 @@
+buo/cask-upgrade
+d12frosted/emacs-plus
+gbevin/tools
+helix-editor/helix
+homebrew/cask
+kong/kong
+leoafarias/fvm
+microsoft/mssql-release
+modularml/packages
+oh-my-home/fonts
+openresty/brew
+xo/xo

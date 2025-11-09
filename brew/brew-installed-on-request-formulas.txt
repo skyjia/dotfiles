@@ -69,14 +69,12 @@ pinentry-mac
 pkgconf
 plantuml
 podman
-postgresql@16
+postgresql@18
 procs
 protobuf
 protoc-gen-go
 protoc-gen-go-grpc
 python-yq
-python@3.11
-python@3.12
 python@3.13
 qrencode
 reattach-to-user-namespace

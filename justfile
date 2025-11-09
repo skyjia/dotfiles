@@ -88,9 +88,11 @@ update-brew:
   brew cleanup --prune=1
   @echo
 
-  # exporting installed formulas and casks...
+  # exporting lists of installed formulas and casks...
+  brew tap > {{justfile_directory()}}/brew/brew-taps.txt
   brew list --installed-on-request --full-name > {{justfile_directory()}}/brew/brew-installed-on-request-formulas.txt
   brew list --casks --full-name > {{justfile_directory()}}/brew/brew-installed-casks.txt
+  @echo
 
 update-rust:
   # Keeping rustup up to date

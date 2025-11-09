@@ -48,9 +48,9 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PA
 # curl (via Homebrew)
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
-# PostgreSQL 16
-#   $ brew info postgresql@16
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+# PostgreSQL 18
+#   $ brew info postgresql@18
+export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
 
 # Script Kit
 # export PATH="$PATH:$HOME/.kit/bin"
