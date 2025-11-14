@@ -104,7 +104,7 @@ update-rust:
   @echo
   
   # Keeping rust packages to date
-  cargo install-update --list | tee /dev/tty | awk '$4 == "Yes"' | xargs -I {} cargo install {} --force
+  cargo install-update --list | tee /dev/tty | awk '$4 == "Yes" {print $1}' | xargs -I {} cargo install {} --force
   @echo
 
 update-lvim:
