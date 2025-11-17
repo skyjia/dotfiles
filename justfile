@@ -61,6 +61,7 @@ update-conda:
 update-vscode:
   # update vscode
   code --update-extensions
+  code --list-extensions > {{justfile_directory()}}/vscode/vscode-extensions.txt
   @echo
 
 update-claude:

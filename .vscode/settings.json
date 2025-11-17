@@ -23,6 +23,8 @@
         "vscode-extension", //
         ".git", // Ignore the .git directory
         "*.dll", // Ignore all .dll files.
-        "**/*.dll" // Ignore all .dll files
+        "**/*.dll", // Ignore all .dll files
+        // Ignore project files
+        "vscode/vscode-extensions.txt"
     ]
 }
