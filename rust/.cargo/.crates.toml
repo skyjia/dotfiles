@@ -28,7 +28,7 @@
     "cargo-set-version",
     "cargo-upgrade",
 ]
-"cargo-generate 0.23.5 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-generate"]
+"cargo-generate 0.23.6 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-generate"]
 "cargo-list 0.33.6 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-list"]
 "cargo-make 0.37.24 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-make",
