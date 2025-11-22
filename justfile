@@ -127,5 +127,5 @@ update-helix:
 
 update-apps:
   # Updating applications from AppStore.
-  mas upgrade
+  mas update
   @echo

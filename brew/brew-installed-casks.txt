@@ -25,6 +25,7 @@ responsively
 rstudio
 tex-live-utility
 tor-browser
+tunnelblick
 utm
 vlc
 warp
