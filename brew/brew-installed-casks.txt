@@ -1,5 +1,4 @@
 anaconda
-anythingllm
 basictex
 calibre
 chirp
@@ -25,6 +24,7 @@ responsively
 rstudio
 tex-live-utility
 tor-browser
+tunnelblick
 utm
 vlc
 warp

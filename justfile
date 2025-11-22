@@ -126,6 +126,6 @@ update-helix:
   @echo
 
 update-apps:
-  # Updating applications from AppStore.
-  mas upgrade
+  # Checking outdated applications from AppStore.
+  mas outdated
   @echo
