@@ -31,6 +31,8 @@ foxundermoon.shell-format
 fr43nk.seito-openfile
 fwcd.kotlin
 github.codespaces
+github.copilot
+github.copilot-chat
 github.vscode-pull-request-github
 golang.go
 grapecity.gc-excelviewer
