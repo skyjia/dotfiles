@@ -5,12 +5,16 @@ if status is-interactive
     # set -g fish_greeting
 
     switch $TERM_PROGRAM
-        case WarpTerminal
+        case "WarpTerminal"
             # Do nothing for WarpTerminal
         case "iTerm.app"
             # Do nothing for iTerm
-        case vscode
+        case "waveterm"
+            # Do nothing for wave terminal
+        case "vscode"
             # Do nothing for VSCode
+        case "codebuddy"
+            # Do nothing for CodeBuddy
         case Apple_Terminal
             # Do nothing for Apple_Terminal
         case '*'

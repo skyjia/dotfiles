@@ -28,6 +28,7 @@ tunnelblick
 utm
 vlc
 warp
+wave
 zed
 gbevin/tools/showmidi
 oh-my-home/fonts/otf-source-han-sans-sc

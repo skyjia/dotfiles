@@ -14,5 +14,6 @@ path add ($shims_dir)
 # FIXME: This is a tricky part, as the completion script is not
 # automatically sourced by Nushell. We need to manually save the
 # completion script to a file that Nushell can source.
+# FIXME: asdf bug: https://github.com/asdf-vm/asdf/issues/2156
 const completion_path = (path self . | path join '12-1-brew-asdf-completion.nu')
-asdf completion nushell | save -f $completion_path
+asdf completion nushell | sed 's/\-\-ignore\-errors/--optional/'  | save -f $completion_path

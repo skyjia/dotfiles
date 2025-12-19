@@ -1,0 +1,56 @@
+{
+    "fish": {
+        "icon": "fish",
+        "color": "#4abc39",
+        "label": "fish",
+        "blockdef": {
+            "meta": {
+                "view": "term",
+                "controller": "shell",
+                "term:localshellpath": "/opt/homebrew/bin/fish",
+                "term:localshellopts": "-i -l"
+            }
+        }
+    },
+
+    "nu": {
+        "icon": "greater-than",
+        "color": "#4abc39",
+        "label": "nu",
+        "blockdef": {
+            "meta": {
+                "view": "term",
+                "controller": "shell",
+                "term:localshellpath": "/opt/homebrew/bin/nu",
+                "term:localshellopts": "-i -l"
+            }
+        }
+    },
+
+    "zsh": {
+        "icon": "percent",
+        "color": "#4abc39",
+        "label": "zsh",
+        "blockdef": {
+            "meta": {
+                "view": "term",
+                "controller": "shell",
+                "term:localshellpath": "/opt/homebrew/bin/zsh",
+                "term:localshellopts": "-i -l"
+            }
+        }
+    },
+
+    "pwsh": {
+        "icon": "rectangle-terminal",
+        "color": "#2671be",
+        "label": "pwsh",
+        "blockdef": {
+            "meta": {
+                "view": "term",
+                "controller": "shell",
+                "term:localshellpath": "/usr/local/bin/pwsh"
+            }
+        }
+    }
+}

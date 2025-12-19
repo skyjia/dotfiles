@@ -112,6 +112,9 @@ case $TERM_PROGRAM in
 "vscode")
    # echo "IS VSCode"
    ;;
+"waveterm")
+   # echo "IS Wave terminal"
+   ;;
 "Apple_Terminal")
    ;;
 *)

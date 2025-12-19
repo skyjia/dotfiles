@@ -58,7 +58,7 @@ def --env set_proxy [] {
 
 # Check and remove specified environment variable
 def --env unset_env [env_name] {
-    if ( $env | get -i $env_name | is-not-empty) {
+    if ( $env | get --optional $env_name | is-not-empty) {
         hide-env $env_name
     }
 }
