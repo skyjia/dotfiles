@@ -1,6 +1,11 @@
 {
     "Lua.diagnostics.globals": ["vim", "lvim"],
 
+    // shellcheck exclude files:
+    "shellcheck.ignorePatterns": {
+        "**/fish_variables": true
+    },
+
     // Words to add to dictionary for a workspace.
     "cSpell.words": [
         "Astro",
@@ -11,7 +16,8 @@
         "nvim",
         "raycast",
         "Rlib",
-        "zshell"
+        "zshell",
+        "shellcheck"
     ],
 
     // Specify paths/files to ignore.
@@ -25,6 +31,9 @@
         "*.dll", // Ignore all .dll files.
         "**/*.dll", // Ignore all .dll files
         // Ignore project files
-        "vscode/vscode-extensions.txt"
+        "vscode/vscode-extensions.txt",
+        // Ignore fish config files
+        "**/fish_variables",
+        "**/fish_plugins"
     ]
 }

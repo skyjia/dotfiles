@@ -113,7 +113,6 @@ redhat.vscode-xml
 redhat.vscode-yaml
 reditorsupport.r
 reditorsupport.r-syntax
-remisa.shellman
 rogalmic.bash-debug
 rust-lang.rust-analyzer
 ryanluker.vscode-coverage-gutters
