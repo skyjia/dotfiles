@@ -16,8 +16,10 @@
         "nvim",
         "raycast",
         "Rlib",
-        "zshell",
-        "shellcheck"
+        "shellcheck",
+        "taskrc",
+        "Tasksh",
+        "zshell"
     ],
 
     // Specify paths/files to ignore.
