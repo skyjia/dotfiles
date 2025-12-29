@@ -87,6 +87,8 @@ soapysdr
 starship
 step
 stow
+task
+tasksh
 tealdeer
 terminal-notifier
 the_silver_searcher
