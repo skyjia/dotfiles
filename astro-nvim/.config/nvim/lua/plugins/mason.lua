@@ -26,7 +26,8 @@ return {
         -- install LSP servers
         "awk-language-server",
         "bash-language-server",
-        "cmake-language-server",
+        -- FIXME: broken language server
+        -- "cmake-language-server",
         "dot-language-server",
         "gopls",
         "jdtls",

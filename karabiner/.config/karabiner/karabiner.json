@@ -5,7 +5,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "[Apple M1] Use shift+caps_lock as caps_lock.",
+                        "description": "[Apple MBP] Use shift+caps_lock as caps_lock.",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -13,8 +13,7 @@
                                         "identifiers": [
                                             {
                                                 "description": "Apple Internal Keyboard",
-                                                "product_id": 835,
-                                                "vendor_id": 1452
+                                                "is_built_in_keyboard": true
                                             }
                                         ],
                                         "type": "device_if"
@@ -33,7 +32,7 @@
                         ]
                     },
                     {
-                        "description": "[Apple M1] Change caps_lock to control if pressed with other keys, to escape if pressed alone.",
+                        "description": "[Apple MBP] Change caps_lock to control if pressed with other keys, to escape if pressed alone.",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -41,8 +40,7 @@
                                         "identifiers": [
                                             {
                                                 "description": "Apple Internal Keyboard",
-                                                "product_id": 835,
-                                                "vendor_id": 1452
+                                                "is_built_in_keyboard": true
                                             }
                                         ],
                                         "type": "device_if"
@@ -59,102 +57,12 @@
                         ]
                     },
                     {
-                        "description": "[Apple M1] Change left_control to command+control+option+shift.",
+                        "description": "[Apple MBP] Change left_control to command+control+option+shift.",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Apple Internal Keyboard",
-                                                "product_id": 835,
-                                                "vendor_id": 1452
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "[Apple] Use shift+caps_lock as caps_lock.",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Apple Internal Keyboard",
-                                                "product_id": 628,
-                                                "vendor_id": 1452
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "mandatory": ["right_shift"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "[Apple] Change caps_lock to control if pressed with other keys, to escape if pressed alone.",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Apple Internal Keyboard",
-                                                "product_id": 628,
-                                                "vendor_id": 1452
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "left_control" }],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "[Apple] Change left_control to command+control+option+shift.",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Apple Internal Keyboard",
-                                                "product_id": 628,
-                                                "vendor_id": 1452
-                                            }
-                                        ],
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
                                         "type": "device_if"
                                     }
                                 ],
@@ -415,6 +323,65 @@
             ],
             "name": "Sky",
             "selected": true,
+            "virtual_hid_keyboard": {
+                "caps_lock_delay_milliseconds": 0,
+                "country_code": 0,
+                "keyboard_type": "ansi",
+                "keyboard_type_v2": "ansi"
+            }
+        },
+        {
+            "fn_function_keys": [
+                {
+                    "from": { "key_code": "f1" },
+                    "to": [{ "key_code": "vk_consumer_brightness_down" }]
+                },
+                {
+                    "from": { "key_code": "f2" },
+                    "to": [{ "key_code": "vk_consumer_brightness_up" }]
+                },
+                {
+                    "from": { "key_code": "f3" },
+                    "to": [{ "key_code": "vk_mission_control" }]
+                },
+                {
+                    "from": { "key_code": "f4" },
+                    "to": [{ "key_code": "vk_launchpad" }]
+                },
+                {
+                    "from": { "key_code": "f5" },
+                    "to": [{ "key_code": "vk_consumer_illumination_down" }]
+                },
+                {
+                    "from": { "key_code": "f6" },
+                    "to": [{ "key_code": "vk_consumer_illumination_up" }]
+                },
+                {
+                    "from": { "key_code": "f7" },
+                    "to": [{ "key_code": "vk_consumer_previous" }]
+                },
+                {
+                    "from": { "key_code": "f8" },
+                    "to": [{ "key_code": "vk_consumer_play" }]
+                },
+                {
+                    "from": { "key_code": "f9" },
+                    "to": [{ "key_code": "vk_consumer_next" }]
+                },
+                {
+                    "from": { "key_code": "f10" },
+                    "to": [{ "key_code": "mute" }]
+                },
+                {
+                    "from": { "key_code": "f11" },
+                    "to": [{ "key_code": "volume_down" }]
+                },
+                {
+                    "from": { "key_code": "f12" },
+                    "to": [{ "key_code": "volume_up" }]
+                }
+            ],
+            "name": "Sky - No Modifications",
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
                 "country_code": 0,

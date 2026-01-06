@@ -20,7 +20,8 @@ return {
       "git_config",
       "gitcommit",
       "gitignore",
-      "latex",
+      -- FIXME: broken parser
+    --   "latex",
       "nu",
       "powershell",
       "python",

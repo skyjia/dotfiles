@@ -35,7 +35,8 @@ return {
   { import = "astrocommunity.pack.ruby" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.sql" },
-  { import = "astrocommunity.pack.swift" },
+  -- FIXME: broken pack
+--   { import = "astrocommunity.pack.swift" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.typescript-all-in-one" },
