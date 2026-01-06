@@ -7,7 +7,6 @@ tap "kong/kong"
 tap "leoafarias/fvm"
 tap "microsoft/mssql-release"
 tap "modularml/packages"
-tap "oh-my-home/fonts"
 tap "openresty/brew"
 tap "xo/xo"
 # C++ Common Libraries
@@ -247,6 +246,8 @@ cask "chirp"
 cask "font-droid-sans-mono-nerd-font"
 cask "font-hack-nerd-font"
 cask "font-source-code-pro"
+cask "font-source-han-sans-vf"
+cask "font-source-han-serif-vf"
 # Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager"
 # Tools to protect your emails and files
@@ -271,8 +272,6 @@ cask "netlogo"
 cask "only-switch"
 # Tool for working with messy data (previously Google Refine)
 cask "openrefine"
-# Language Specific OTFs Simplified Chinese (简体中文)
-cask "otf-source-han-sans-sc"
 # Command-line shell and scripting language
 cask "powershell"
 # Scientific and technical publishing system built on Pandoc
@@ -289,10 +288,6 @@ cask "showmidi"
 cask "tex-live-utility"
 # Web browser focusing on security
 cask "tor-browser"
-# Static Super OTC
-cask "ttc-source-han-sans"
-# Static Super OTC
-cask "ttc-source-han-serif"
 # Free and open-source OpenVPN client
 cask "tunnelblick"
 # Virtual machines UI using QEMU

@@ -5,6 +5,8 @@ chirp
 font-droid-sans-mono-nerd-font
 font-hack-nerd-font
 font-source-code-pro
+font-source-han-sans-vf
+font-source-han-serif-vf
 git-credential-manager
 gpg-suite
 gqrx
@@ -31,6 +33,3 @@ warp
 wave
 zed
 gbevin/tools/showmidi
-oh-my-home/fonts/otf-source-han-sans-sc
-oh-my-home/fonts/ttc-source-han-sans
-oh-my-home/fonts/ttc-source-han-serif

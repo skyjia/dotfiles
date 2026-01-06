@@ -7,6 +7,5 @@ kong/kong
 leoafarias/fvm
 microsoft/mssql-release
 modularml/packages
-oh-my-home/fonts
 openresty/brew
 xo/xo
