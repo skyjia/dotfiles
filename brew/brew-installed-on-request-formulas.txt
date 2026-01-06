@@ -55,6 +55,7 @@ librsvg
 libyaml
 lnav
 lua
+luarocks
 mas
 minicom
 mono-libgdiplus

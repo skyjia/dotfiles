@@ -90,6 +90,7 @@ update-brew:
   @echo
 
   # exporting lists of installed formulas and casks...
+  brew bundle dump --global --force --describe
   brew tap > {{justfile_directory()}}/brew/brew-taps.txt
   brew list --installed-on-request --full-name > {{justfile_directory()}}/brew/brew-installed-on-request-formulas.txt
   brew list --casks --full-name > {{justfile_directory()}}/brew/brew-installed-casks.txt
