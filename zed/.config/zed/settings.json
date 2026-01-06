@@ -19,5 +19,41 @@
     "terminal": {
         "font_family": "DroidSansM Nerd Font Mono"
     },
-    "proxy": "socks5h://127.0.0.1:6153"
+    "proxy": "socks5h://127.0.0.1:6153",
+    "auto_install_extensions": {
+        "catppuccin": true,
+        "catppuccin-icons": true,
+        "csv": true,
+        "docker-compose": true,
+        "dockerfile": true,
+        "env": true,
+        "fish": true,
+        "git-firefly": true,
+        "graphql": true,
+        "graphviz": true,
+        "html": true,
+        "ini": true,
+        "just": true,
+        "just-ls": true,
+        "latex": true,
+        "lua": true,
+        "make": true,
+        "neocmake": true,
+        "new-darcula": true,
+        "nix": true,
+        "nu": true,
+        "plantuml": true,
+        "powershell": true,
+        "proto": true,
+        "pylsp": true,
+        "r": true,
+        "rainbow-csv": true,
+        "ruby": true,
+        "sql": true,
+        "swift": true,
+        "toml": true,
+        "vue": true,
+        "xml": true,
+        "zig": true
+    }
 }
