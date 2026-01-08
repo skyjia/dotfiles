@@ -84,7 +84,6 @@ reattach-to-user-namespace
 rename
 ripgrep
 rsync
-rust
 shellcheck
 shodan
 soapysdr
@@ -99,7 +98,6 @@ the_silver_searcher
 thefuck
 tmux
 tree
-tree-sitter
 typst
 ufbt
 unixodbc

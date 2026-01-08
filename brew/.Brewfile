@@ -26,6 +26,8 @@ brew "aria2"
 brew "libyaml"
 # Text processor and publishing toolchain for AsciiDoc
 brew "asciidoctor"
+# Distributed revision control system
+brew "git"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
 # Interpreted, interactive, object-oriented programming language
@@ -84,8 +86,6 @@ brew "gemini-cli"
 brew "genact"
 # GitHub command-line tool
 brew "gh"
-# Distributed revision control system
-brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
 # Git extension for versioning large files
@@ -184,8 +184,6 @@ brew "rename"
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
-# Safe, concurrent, practical language
-brew "rust"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Python library and command-line utility for Shodan
@@ -212,8 +210,6 @@ brew "thefuck"
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Incremental parsing library
-brew "tree-sitter"
 # Markup-based typesetting system
 brew "typst"
 # Compact tool for building and debugging applications for Flipper Zero
@@ -248,6 +244,8 @@ cask "anaconda"
 cask "basictex"
 # E-books management software
 cask "calibre"
+# Tool for programming amateur radio
+cask "chirp"
 # Terminal-based AI coding assistant
 cask "claude-code"
 cask "font-droid-sans-mono-nerd-font"
@@ -310,11 +308,9 @@ cask "zed"
 mas "Actions", id: 1586435171
 mas "Actions For Obsidian", id: 1659667937
 mas "Apple Configurator", id: 1037126344
-mas "BaiduNetdisk", id: 547166701
 mas "Barbee", id: 1548711022
 mas "Bitwarden", id: 1352778147
 mas "Bluetooth Inspector", id: 1509085044
-mas "Calc84", id: 1509489130
 mas "Developer", id: 640199958
 mas "Essentials", id: 1588151344
 mas "Folder Peek", id: 1615988943
@@ -338,11 +334,8 @@ mas "Shareful", id: 1522267256
 mas "Shazam", id: 897118787
 mas "Swift Playground", id: 1496833156
 mas "Taio", id: 1527036273
-mas "TencentDocs", id: 1370780836
-mas "TencentMeeting", id: 1484048379
 mas "TestFlight", id: 899247664
 mas "Xcode", id: 497799835
-mas "xcz", id: 912139104
 mas "千牛", id: 6449173707
 mas "同花顺", id: 1247341465
 mas "抖音", id: 1640407382
@@ -357,7 +350,6 @@ vscode "anthropic.claude-code"
 vscode "asciidoctor.asciidoctor-vscode"
 vscode "asvetliakov.vscode-neovim"
 vscode "bmalehorn.vscode-fish"
-vscode "bodil.file-browser"
 vscode "christian-kohler.path-intellisense"
 vscode "codezombiech.gitignore"
 vscode "dakara.transformer"
@@ -391,13 +383,11 @@ vscode "gruntfuggly.todo-tree"
 vscode "hediet.vscode-drawio"
 vscode "htmlhint.vscode-htmlhint"
 vscode "ideashpprime.hp-prime-language-support"
-vscode "jacobdufault.fuzzy-search"
 vscode "james-yu.latex-workshop"
 vscode "jebbs.plantuml"
 vscode "jeff-hykin.better-cpp-syntax"
 vscode "jnoortheen.nix-ide"
 vscode "julialang.language-julia"
-vscode "kahole.magit"
 vscode "kdl-org.kdl"
 vscode "koihik.vscode-lua-format"
 vscode "lextudio.restructuredtext"
@@ -435,7 +425,6 @@ vscode "ms-toolsai.vscode-jupyter-slideshow"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
-vscode "ms-vscode-remote.remote-wsl"
 vscode "ms-vscode-remote.vscode-remote-extensionpack"
 vscode "ms-vscode.azurecli"
 vscode "ms-vscode.cmake-tools"
@@ -546,6 +535,7 @@ go "golang.org/x/tools/cmd/gomvpkg"
 go "golang.org/x/tools/go/packages/gopackages"
 go "github.com/haya14busa/goplay/cmd/goplay"
 go "golang.org/x/tools/cmd/gorename"
+go "golang.org/x/tools/internal/stack/gostacks"
 go "github.com/cweill/gotests/gotests"
 go "golang.org/x/tools/cmd/gotype"
 go "golang.org/x/tools/cmd/goyacc"
