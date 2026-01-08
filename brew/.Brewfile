@@ -147,7 +147,7 @@ brew "minicom"
 # GDI+-compatible API on non-Windows operating systems
 brew "mono-libgdiplus"
 # Open source relational database management system
-brew "mysql"
+brew "mysql", restart_service: :changed
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Modern shell for the GitHub era
@@ -244,8 +244,6 @@ cask "anaconda"
 cask "basictex"
 # E-books management software
 cask "calibre"
-# Tool for programming amateur radio
-cask "chirp"
 # Terminal-based AI coding assistant
 cask "claude-code"
 cask "font-droid-sans-mono-nerd-font"
