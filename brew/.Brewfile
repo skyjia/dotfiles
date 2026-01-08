@@ -308,6 +308,7 @@ cask "zed"
 mas "Actions", id: 1586435171
 mas "Actions For Obsidian", id: 1659667937
 mas "Apple Configurator", id: 1037126344
+mas "BaiduNetdisk", id: 547166701
 mas "Barbee", id: 1548711022
 mas "Bitwarden", id: 1352778147
 mas "Bluetooth Inspector", id: 1509085044
