@@ -7,6 +7,7 @@ anthropic.claude-code
 asciidoctor.asciidoctor-vscode
 asvetliakov.vscode-neovim
 bmalehorn.vscode-fish
+bodil.file-browser
 christian-kohler.path-intellisense
 codezombiech.gitignore
 dakara.transformer
@@ -40,11 +41,13 @@ gruntfuggly.todo-tree
 hediet.vscode-drawio
 htmlhint.vscode-htmlhint
 ideashpprime.hp-prime-language-support
+jacobdufault.fuzzy-search
 james-yu.latex-workshop
 jebbs.plantuml
 jeff-hykin.better-cpp-syntax
 jnoortheen.nix-ide
 julialang.language-julia
+kahole.magit
 kdl-org.kdl
 koihik.vscode-lua-format
 lextudio.restructuredtext
@@ -82,6 +85,7 @@ ms-toolsai.vscode-jupyter-slideshow
 ms-vscode-remote.remote-containers
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
+ms-vscode-remote.remote-wsl
 ms-vscode-remote.vscode-remote-extensionpack
 ms-vscode.azurecli
 ms-vscode.cmake-tools
@@ -132,6 +136,7 @@ swiftlang.swift-vscode
 syler.sass-indented
 systemticks.c4-dsl-extension
 tamasfe.even-better-toml
+teamsdevapp.vscode-ai-foundry
 terrastruct.d2
 thenuprojectcontributors.vscode-nushell-lang
 timonwong.shellcheck

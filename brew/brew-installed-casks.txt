@@ -1,7 +1,7 @@
 anaconda
 basictex
 calibre
-chirp
+claude-code
 font-droid-sans-mono-nerd-font
 font-hack-nerd-font
 font-source-code-pro
