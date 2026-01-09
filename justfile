@@ -69,28 +69,6 @@ update-brew:
   brew bundle cleanup --global --force
   brew autoremove
 
-update-brew-old:
-  # updating homebrew...
-  brew update
-  brew upgrade
-  @echo
-  
-  # checking brew casks...
-  brew cu --all --yes
-  @echo
-  
-  # cleaning up
-  brew autoremove
-  brew cleanup --prune=1
-  @echo
-
-  # exporting lists of installed formulas and casks...
-  brew bundle dump --global --force --describe
-  brew tap > {{justfile_directory()}}/brew/brew-taps.txt
-  brew list --installed-on-request --full-name > {{justfile_directory()}}/brew/brew-installed-on-request-formulas.txt
-  brew list --casks --full-name > {{justfile_directory()}}/brew/brew-installed-casks.txt
-  @echo
-
 update-rust:
   # Keeping rustup up to date
   rustup self update
