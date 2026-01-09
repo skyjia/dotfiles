@@ -64,6 +64,12 @@ update-vscode:
   @echo
 
 update-brew:
+  # update according to Brewfile
+  brew bundle --global
+  brew bundle cleanup --global --force
+  brew autoremove
+
+update-brew-old:
   # updating homebrew...
   brew update
   brew upgrade
