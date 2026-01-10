@@ -336,6 +336,7 @@ complete -c moon -n "__fish_moon_using_subcommand bench" -s h -l help -d 'Print 
 complete -c moon -n "__fish_moon_using_subcommand add" -s C -l directory -d 'The source code directory. Defaults to the current directory' -r -F
 complete -c moon -n "__fish_moon_using_subcommand add" -l target-dir -d 'The target directory. Defaults to `source_dir/target`' -r -F
 complete -c moon -n "__fish_moon_using_subcommand add" -l bin -d 'Whether to add the dependency as a binary'
+complete -c moon -n "__fish_moon_using_subcommand add" -l no-update -d 'Do not update the registry index before adding the dependency'
 complete -c moon -n "__fish_moon_using_subcommand add" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand add" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand add" -l trace -d 'Trace the execution of the program'

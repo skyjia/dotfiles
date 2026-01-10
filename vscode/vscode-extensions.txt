@@ -132,6 +132,7 @@ swiftlang.swift-vscode
 syler.sass-indented
 systemticks.c4-dsl-extension
 tamasfe.even-better-toml
+teamsdevapp.vscode-ai-foundry
 terrastruct.d2
 thenuprojectcontributors.vscode-nushell-lang
 timonwong.shellcheck

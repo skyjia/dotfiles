@@ -65,7 +65,7 @@ update-vscode:
 
 update-brew:
   # update according to Brewfile
-  brew bundle --global
+  brew bundle --global -v
   brew bundle cleanup --global --force
   brew autoremove
 
