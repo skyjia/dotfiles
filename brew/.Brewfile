@@ -341,3 +341,6 @@ mas "同花顺", id: 1247341465
 mas "抖音", id: 1640407382
 mas "网易有道翻译", id: 491854842
 mas "腾讯视频", id: 1231336508
+cask "prismlauncher"
+cask "mcreator"
+cask "blockbench"
