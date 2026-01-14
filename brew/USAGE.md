@@ -16,7 +16,7 @@ $ brew bundle check --global
 The Brewfile's dependencies are satisfied.
 ```
 
-You can use this behaviour in scripts like so:
+You can use this behavior in scripts like so:
 
 ```sh
 brew bundle check --global || brew bundle install --global
