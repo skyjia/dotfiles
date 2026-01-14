@@ -245,6 +245,8 @@ cask "anaconda"
 cask "basictex"
 # E-books management software
 cask "calibre"
+# Streamdeck extension and emulation software
+cask "companion"
 # Terminal-based AI coding assistant
 cask "claude-code"
 cask "font-droid-sans-mono-nerd-font"
@@ -304,6 +306,17 @@ cask "warp"
 cask "wave"
 # Multiplayer code editor
 cask "zed"
+
+## --- Minecraft-related applications --- ##
+# Minecraft launcher
+cask "prismlauncher"
+# Software used to make Minecraft Java Edition mods
+cask "mcreator"
+# 3D model editor for boxy models and pixel art textures
+cask "blockbench"
+# Educational version of Minecraft
+cask "minecraft-education"
+
 mas "Actions", id: 1586435171
 mas "Actions For Obsidian", id: 1659667937
 mas "Apple Configurator", id: 1037126344
@@ -341,7 +354,3 @@ mas "同花顺", id: 1247341465
 mas "抖音", id: 1640407382
 mas "网易有道翻译", id: 491854842
 mas "腾讯视频", id: 1231336508
-cask "prismlauncher"
-cask "mcreator"
-cask "blockbench"
-cask "minecraft-education"
