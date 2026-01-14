@@ -344,3 +344,4 @@ mas "腾讯视频", id: 1231336508
 cask "prismlauncher"
 cask "mcreator"
 cask "blockbench"
+cask "minecraft-education"
