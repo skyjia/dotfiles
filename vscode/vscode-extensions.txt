@@ -6,6 +6,7 @@ amazonwebservices.aws-toolkit-vscode
 anthropic.claude-code
 asciidoctor.asciidoctor-vscode
 asvetliakov.vscode-neovim
+blockceptionltd.blockceptionvscodeminecraftbedrockdevelopmentextension
 bmalehorn.vscode-fish
 christian-kohler.path-intellisense
 codezombiech.gitignore
@@ -30,6 +31,7 @@ formulahendry.code-runner
 foxundermoon.shell-format
 fr43nk.seito-openfile
 fwcd.kotlin
+gabodev.minecraft-plugin-development
 github.codespaces
 github.copilot
 github.copilot-chat
@@ -53,6 +55,7 @@ mads-hartmann.bash-ide-vscode
 mattn.lisp
 mechatroner.rainbow-csv
 mikestead.dotenv
+mohsen1.prettify-json
 moonbit.moonbit-lang
 ms-azuretools.vscode-azureresourcegroups
 ms-azuretools.vscode-containers
@@ -103,6 +106,8 @@ myriad-dreamin.tinymist
 nash.awesome-flutter-snippets
 nefrob.vscode-just-syntax
 nicollasr.vscode-streamdeck
+oderwat.indent-rainbow
+pahimar.minecraft-essentials-extension-pack
 pomdtr.excalidraw-editor
 pomdtr.markdown-kroki
 powerquery.vscode-powerquery
@@ -122,6 +127,7 @@ ryanluker.vscode-coverage-gutters
 sandcastle.vscode-open
 saoudrizwan.claude-dev
 shd101wyy.markdown-preview-enhanced
+shengchen.vscode-checkstyle
 shopify.ruby-lsp
 skellock.just
 sleistner.vscode-fileutils
@@ -151,6 +157,7 @@ vscjava.vscode-java-test
 vscjava.vscode-maven
 vscode-icons-team.vscode-icons
 vscodevim.vim
+vsls-contrib.gistfs
 vspacecode.vspacecode
 vspacecode.whichkey
 vue.volar
