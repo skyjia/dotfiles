@@ -208,6 +208,7 @@ complete -c moon -n "__fish_moon_using_subcommand test" -s i -l index -d 'Run on
 complete -c moon -n "__fish_moon_using_subcommand test" -l doc-index -d 'Run only the index-th doc test in the file. Only valid when `--file` is also specified. Implies `--include-skipped`' -r
 complete -c moon -n "__fish_moon_using_subcommand test" -s l -l limit -d 'Limit of expect test update passes to run, in order to avoid infinite loops' -r
 complete -c moon -n "__fish_moon_using_subcommand test" -l patch-file -d 'Path to the patch file' -r -F
+complete -c moon -n "__fish_moon_using_subcommand test" -s F -l filter -d 'Run only tests whose name matches the given glob pattern. Supports \'*\' (matches any sequence) and \'?\' (matches any single character)' -r
 complete -c moon -n "__fish_moon_using_subcommand test" -s C -l directory -d 'The source code directory. Defaults to the current directory' -r -F
 complete -c moon -n "__fish_moon_using_subcommand test" -l target-dir -d 'The target directory. Defaults to `source_dir/target`' -r -F
 complete -c moon -n "__fish_moon_using_subcommand test" -l std -d 'Enable the standard library (default)'
