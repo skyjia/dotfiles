@@ -42,10 +42,6 @@
 	helper = osxkeychain
 [pull]
 	ff = only
-[credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [interactive]
 	diffFilter = delta --color-only
 [delta]
@@ -54,3 +50,8 @@
     line-numbers = true
 [merge]
 	conflictStyle = zdiff3
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true

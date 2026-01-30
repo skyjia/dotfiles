@@ -327,22 +327,16 @@ mas "Bluetooth Inspector", id: 1509085044
 mas "Developer", id: 640199958
 mas "Essentials", id: 1588151344
 mas "Folder Peek", id: 1615988943
-mas "GarageBand", id: 682658836
 mas "GeoGebra Calculator Suite", id: 1504416652
 mas "Googly Eyes", id: 6743048714
 mas "HP", id: 1474276998
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
 mas "NCalc", id: 1449106995
 mas "NetEaseMusic", id: 944848654
-mas "Numbers", id: 409203825
 mas "Obsidian Web Clipper", id: 6720708363
-mas "Pages", id: 409201541
 mas "Photomator", id: 1444636541
 mas "Prodrafts", id: 1545810067
 mas "QQ音乐", id: 595615424
 mas "Remote Desktop", id: 409907375
-mas "Scratch 3", id: 1446785996
 mas "Shareful", id: 1522267256
 mas "Shazam", id: 897118787
 mas "Swift Playground", id: 1496833156
