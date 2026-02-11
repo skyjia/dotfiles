@@ -45,6 +45,8 @@ james-yu.latex-workshop
 jebbs.plantuml
 jeff-hykin.better-cpp-syntax
 jnoortheen.nix-ide
+johnheikens.intelliskript
+johnheikens.skript
 julialang.language-julia
 kdl-org.kdl
 koihik.vscode-lua-format
