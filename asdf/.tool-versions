@@ -1,6 +1,6 @@
 legacy_version_file = yes
 
-nodejs 25.4.0
+nodejs 25.6.1
 
 java adoptopenjdk-25.0.2+10.0.LTS
 
@@ -8,4 +8,4 @@ java adoptopenjdk-25.0.2+10.0.LTS
 # ruby truffleruby+graalvm-25.0.0
 
 # For General development, Rails, scripts
-ruby 4.0.0
+ruby 4.0.1
