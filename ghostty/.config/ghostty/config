@@ -1,1 +1,7 @@
+#
+# XDG configuration Path (all platforms):
+# - `$XDG_CONFIG_HOME/ghostty/config`.
+# - if XDG_CONFIG_HOME is not defined, it defaults to `$HOME/.config/ghostty/config`.
+# 
+
 theme = Solarized Osaka Night
