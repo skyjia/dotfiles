@@ -35,7 +35,7 @@
     "makers",
 ]
 "cargo-outdated 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-outdated"]
-"cargo-update 18.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = [
+"cargo-update 18.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-install-update",
     "cargo-install-update-config",
 ]

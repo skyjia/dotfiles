@@ -254,6 +254,7 @@ cask "font-hack-nerd-font"
 cask "font-source-code-pro"
 cask "font-source-han-sans-vf"
 cask "font-source-han-serif-vf"
+cask "ghostty"
 # Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager"
 # Tools to protect your emails and files

@@ -10,6 +10,7 @@ command_timeout = 5_000
 # Environments
 [env_var.HTTP_PROXY]
 default = 'no proxy'
+style = "bright-black"
 format = "with proxy [\\[$env_value\\]]($style)"
 
 [status]
