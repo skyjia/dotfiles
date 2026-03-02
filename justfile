@@ -17,7 +17,7 @@ update-dotfiles: pull-latest update-submodules
 
 update-shells: update-oh-my-zsh update-fish
 
-update-editors: update-nvim update-lvim update-vscode update-helix
+update-editors: update-nvim update-vscode update-helix
 
 update-dev: update-r-packages update-conda update-asdf update-rust
 
@@ -82,12 +82,6 @@ update-rust:
 
     # Keeping rust packages to date
     cargo install-update --list | tee /dev/tty | awk '$4 == "Yes" {print $1}' | xargs -I {} cargo install {} --force
-    @echo
-
-update-lvim:
-    # Updating LunarVim.
-    lvim +LvimUpdate +q
-    #lvim +LvimSyncCorePlugins +q +q
     @echo
 
 update-nvim:

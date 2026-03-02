@@ -242,6 +242,9 @@ eval "$(zoxide init zsh)"
 # https://github.com/nvbn/thefuck#manual-installation
 eval $(thefuck --alias)
 
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+
 # TODO: already use oh-my-zsh fzf plugin instead. disable following lines.
 # fzf (installed via Homebrew)
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

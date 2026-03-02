@@ -17,7 +17,7 @@ just all
 just update-dotfiles    # Pull latest changes and update submodules
 just update-brew        # Update Homebrew packages and casks
 just update-shells      # Update oh-my-zsh and fish plugins
-just update-editors     # Update nvim (AstroNvim), lvim, vscode, helix
+just update-editors     # Update nvim (AstroNvim), vscode, helix
 just update-dev         # Update R packages, conda, asdf, rust toolchain
 ```
 
@@ -40,9 +40,6 @@ stow nushell       # Apply nushell configuration
 # Update AstroNvim
 nvim +AstroUpdate +MasonUpdate +q +q
 
-# Update LunarVim  
-lvim +LvimUpdate +q
-
 # Update Helix grammars
 hx --grammar fetch
 hx --grammar build
@@ -62,7 +59,6 @@ Each top-level directory represents a stowable package:
 - `fish/` - Fish shell with minimal configuration
 - `nushell/` - Nushell with autoloaded modules and vendor scripts
 - `astro-nvim/` - AstroNvim configuration for Neovim
-- `lunar-vim/` - LunarVim configuration
 - `tmux/` - Terminal multiplexer configuration
 - `helix/` - Helix editor configuration
 
@@ -75,7 +71,7 @@ Each top-level directory represents a stowable package:
 ### Development Environment
 - **Version managers**: asdf for multiple language runtimes
 - **Package managers**: Homebrew (macOS), conda (Python), cargo (Rust)
-- **Editor ecosystem**: Neovim with AstroNvim, LunarVim, Helix, VSCode
+- **Editor ecosystem**: Neovim with AstroNvim, Helix, VSCode
 - **Terminal tools**: starship prompt, zoxide, fzf, lazygit
 
 ### Proxy and Network Configuration
@@ -91,7 +87,7 @@ The repository uses a multi-layered update approach via `just all`:
 2. System packages (Homebrew)
 3. Shell environments (oh-my-zsh, fish plugins)
 4. Applications (App Store apps, VSCode extensions)
-5. Editors (Neovim plugins, LunarVim, Helix grammars)
+5. Editors (Neovim plugins, Helix grammars)
 6. Development tools (R packages, conda, asdf plugins, Rust toolchain)
 
 This dotfiles setup prioritizes automation and consistency across development environments while supporting multiple shell preferences and terminal applications.

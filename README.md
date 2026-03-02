@@ -23,7 +23,6 @@
  less               > less settings
  tmux               > terminal multiplexer with custom status bar
  astro-nvim         > AstroNvim configuration
- lunar-vim          > LunarVim configuration
  zsh                > zshell settings, aliases, and custom prompts
 ```
 

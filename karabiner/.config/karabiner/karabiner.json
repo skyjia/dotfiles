@@ -151,6 +151,62 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "[NuPhy Air75 V3] Change escape to command+control+option+shift if pressed with other keys, to escape if pressed alone.",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "NuPhy Air75 V3",
+                                                "is_keyboard": true,
+                                                "product_id": 4316,
+                                                "vendor_id": 6645
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": { "key_code": "escape" },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_command", "left_shift", "left_option"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[NuPhy Air75 V3] Change left_control to left_control if pressed with other keys, to escape if pressed alone.",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "NuPhy Air75 V3",
+                                                "is_keyboard": true,
+                                                "product_id": 4316,
+                                                "vendor_id": 6645
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_control" }],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -269,6 +325,25 @@
                         "vendor_id": 1278
                     },
                     "manipulate_caps_lock_led": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 4136,
+                        "vendor_id": 6645
+                    },
+                    "ignore_vendor_events": true,
+                    "treat_as_built_in_keyboard": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "vendor_id": 2007
+                    },
+                    "ignore": false,
+                    "ignore_vendor_events": true,
+                    "treat_as_built_in_keyboard": true
                 }
             ],
             "fn_function_keys": [

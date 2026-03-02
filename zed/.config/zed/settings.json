@@ -8,19 +8,18 @@
 // from the command palette or from `Zed` application menu.
 {
     "git_panel": {
-        "tree_view": true
+        "tree_view": true,
     },
-    "icon_theme": "Catppuccin Mocha",
     "agent": {
         "default_model": {
             "provider": "copilot_chat",
-            "model": "gpt-4o"
-        }
+            "model": "gpt-4o",
+        },
     },
     "theme": "Catppuccin Mocha",
     "buffer_font_size": 15,
     "terminal": {
-        "font_family": "DroidSansM Nerd Font Mono"
+        "font_family": "DroidSansM Nerd Font Mono",
     },
     "proxy": "socks5h://127.0.0.1:6153",
     "auto_install_extensions": {
@@ -57,6 +56,6 @@
         "toml": true,
         "vue": true,
         "xml": true,
-        "zig": true
-    }
+        "zig": true,
+    },
 }
