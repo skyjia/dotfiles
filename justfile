@@ -21,6 +21,11 @@ update-editors: update-nvim update-vscode update-helix
 
 update-dev: update-r-packages update-conda update-asdf update-rust
 
+wash-macos-provenance:
+    # Wash macOS provenance
+    xattr -d com.apple.quarantine -r .
+    xattr -d com.apple.provenance -r .
+
 pull-latest:
     # Pulling latest changes
     git pull
