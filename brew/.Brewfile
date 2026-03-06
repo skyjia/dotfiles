@@ -299,6 +299,8 @@ cask "tor-browser"
 cask "tunnelblick"
 # Virtual machines UI using QEMU
 cask "utm"
+# Open-source engine for Heroes of Might & Magic III
+cask "vcmi"
 # Multimedia player
 cask "vlc"
 # Rust-based terminal
