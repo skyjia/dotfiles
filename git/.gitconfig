@@ -38,8 +38,6 @@
 	defaultBranch = main
 [alias]
 	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
-[credentials]
-	helper = osxkeychain
 [pull]
 	ff = only
 [interactive]
@@ -50,5 +48,7 @@
     line-numbers = true
 [merge]
 	conflictStyle = zdiff3
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true

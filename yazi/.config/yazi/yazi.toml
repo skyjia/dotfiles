@@ -1,0 +1,4 @@
+[mgr]
+show_hidden = true
+# ratio = [1, 4, 3] # 1/8 parent, 4/8 current, 3/8 preview
+sort_dir_first = true

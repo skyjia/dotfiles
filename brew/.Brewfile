@@ -365,7 +365,6 @@ mas "Shazam", id: 897118787
 mas "Swift Playground", id: 1496833156
 mas "Taio", id: 1527036273
 mas "TestFlight", id: 899247664
-mas "Whisper Transcription", id: 1668083311
 mas "Xcode", id: 497799835
 mas "千牛", id: 6449173707
 mas "同花顺", id: 1247341465
