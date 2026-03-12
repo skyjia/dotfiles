@@ -26,8 +26,6 @@ brew "aria2"
 brew "libyaml"
 # Text processor and publishing toolchain for AsciiDoc
 brew "asciidoctor"
-# Distributed revision control system
-brew "git"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
 # Interpreted, interactive, object-oriented programming language
@@ -72,20 +70,24 @@ brew "eza"
 brew "fd"
 # Identify or delete duplicate files
 brew "fdupes"
-# Play, record, convert, and stream audio and video
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
-# GNU compiler collection
-brew "gcc"
+# Play, record, convert, and stream many audio and video codecs
+brew "ffmpeg-full"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU compiler collection
+brew "gcc"
 # Interact with Google Gemini AI models from the command-line
 brew "gemini-cli"
 # Nonsense activity generator
 brew "genact"
 # GitHub command-line tool
 brew "gh"
+# Distributed revision control system
+brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
 # Git extension for versioning large files
@@ -112,8 +114,6 @@ brew "golangci-lint"
 brew "gping"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Protocol buffers (Google's data interchange format)
-brew "protobuf"
 # Next generation open source RPC library and framework
 brew "grpc"
 # Post-modern modal text editor
@@ -126,6 +126,8 @@ brew "htop"
 brew "httpie"
 # Command-line benchmarking tool
 brew "hyperfine"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick-full", link: true
 # Git-compatible distributed version control system
 brew "jj"
 # Lightweight and flexible command-line JSON processor
@@ -146,8 +148,10 @@ brew "mas"
 brew "minicom"
 # GDI+-compatible API on non-Windows operating systems
 brew "mono-libgdiplus"
+# Protocol buffers (Google's data interchange format)
+brew "protobuf"
 # Open source relational database management system
-brew "mysql"
+brew "mysql", restart_service: :changed
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Modern shell for the GitHub era
@@ -157,15 +161,19 @@ brew "oath-toolkit"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Utility which converts PDF files into HTML and XML formats
-brew "pdftohtml"
+brew "pdftohtml", link: false
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
 # Draw UML diagrams
 brew "plantuml"
 # Tool for managing OCI containers and pods
 brew "podman"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Object-relational database system
 brew "postgresql@18"
+# Command-line shell and scripting language
+brew "powershell"
 # Modern replacement for ps written in Rust
 brew "procs"
 # Go support for Google's protocol buffers
@@ -180,10 +188,14 @@ brew "qrencode"
 brew "reattach-to-user-namespace"
 # Perl-powered file rename script with many helpful built-ins
 brew "rename"
+# SVG rendering tool and library
+brew "resvg"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# 7-Zip is a file archiver with a high compression ratio
+brew "sevenzip"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Python library and command-line utility for Shodan
@@ -224,6 +236,8 @@ brew "vim"
 brew "wget"
 # Library to create, extract, and modify Windows Imaging files
 brew "wimlib"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
 # Pluggable terminal workspace, with terminal multiplexer as the base feature
 brew "zellij"
 # Programming language designed for robustness, optimality, and clarity
@@ -238,22 +252,25 @@ brew "gbevin/tools/receivemidi"
 brew "microsoft/mssql-release/msodbcsql18"
 # Sqlcmd and Bcp for Microsoft(R) SQL Server(R)
 brew "microsoft/mssql-release/mssql-tools18"
-# Brewfile manager for Homebrew.
 # Distribution of the Python and R programming languages for scientific computing
 cask "anaconda"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
+# 3D model editor for boxy models and pixel art textures
+cask "blockbench"
 # E-books management software
 cask "calibre"
-# Streamdeck extension and emulation software
-cask "companion"
 # Terminal-based AI coding assistant
 cask "claude-code"
+# Streamdeck extension and emulation software
+cask "companion"
 cask "font-droid-sans-mono-nerd-font"
 cask "font-hack-nerd-font"
 cask "font-source-code-pro"
 cask "font-source-han-sans-vf"
 cask "font-source-han-serif-vf"
+cask "font-symbols-only-nerd-font"
+# Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager"
@@ -273,14 +290,18 @@ cask "jordanbaird-ice"
 cask "keycastr"
 # File system integration
 cask "macfuse"
+# Software used to make Minecraft Java Edition mods
+cask "mcreator"
+# Educational version of Minecraft
+cask "minecraft-education"
 # Multi-agent programmable modelling environment
 cask "netlogo"
 # System and utility switches
 cask "only-switch"
 # Tool for working with messy data (previously Google Refine)
 cask "openrefine"
-# Command-line shell and scripting language
-cask "powershell"
+# Minecraft launcher
+cask "prismlauncher"
 # Scientific and technical publishing system built on Pandoc
 cask "quarto"
 # Environment for statistical computing and graphics
@@ -290,7 +311,7 @@ cask "responsively"
 # Data science software focusing on R and Python
 cask "rstudio"
 # A multi-platform GUI application to effortlessly visualize MIDI activity
-cask "showmidi"
+cask "gbevin/tools/showmidi"
 # Graphical user interface for TeX Live Manager
 cask "tex-live-utility"
 # Web browser focusing on security
@@ -309,17 +330,6 @@ cask "warp"
 cask "wave"
 # Multiplayer code editor
 cask "zed"
-
-## --- Minecraft-related applications --- ##
-# Minecraft launcher
-cask "prismlauncher"
-# Software used to make Minecraft Java Edition mods
-cask "mcreator"
-# 3D model editor for boxy models and pixel art textures
-cask "blockbench"
-# Educational version of Minecraft
-cask "minecraft-education"
-
 mas "Actions", id: 1586435171
 mas "Actions For Obsidian", id: 1659667937
 mas "Apple Configurator", id: 1037126344
@@ -327,24 +337,35 @@ mas "BaiduNetdisk", id: 547166701
 mas "Barbee", id: 1548711022
 mas "Bitwarden", id: 1352778147
 mas "Bluetooth Inspector", id: 1509085044
+mas "Compressor", id: 6746516157
 mas "Developer", id: 640199958
 mas "Essentials", id: 1588151344
+mas "Final Cut Pro", id: 1631624924
 mas "Folder Peek", id: 1615988943
 mas "GeoGebra Calculator Suite", id: 1504416652
 mas "Googly Eyes", id: 6743048714
 mas "HP", id: 1474276998
+mas "Keynote", id: 361285480
+mas "Logic Pro", id: 1615087040
+mas "MainStage", id: 6746637089
+mas "Motion", id: 6746637149
 mas "NCalc", id: 1449106995
 mas "NetEaseMusic", id: 944848654
+mas "Numbers", id: 361304891
 mas "Obsidian Web Clipper", id: 6720708363
+mas "Pages", id: 361309726
 mas "Photomator", id: 1444636541
+mas "Pixelmator Pro", id: 6746662575
 mas "Prodrafts", id: 1545810067
 mas "QQ音乐", id: 595615424
 mas "Remote Desktop", id: 409907375
+mas "Scratch 3", id: 1446785996
 mas "Shareful", id: 1522267256
 mas "Shazam", id: 897118787
 mas "Swift Playground", id: 1496833156
 mas "Taio", id: 1527036273
 mas "TestFlight", id: 899247664
+mas "Whisper Transcription", id: 1668083311
 mas "Xcode", id: 497799835
 mas "千牛", id: 6449173707
 mas "同花顺", id: 1247341465
