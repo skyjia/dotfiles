@@ -17,7 +17,7 @@ update-dotfiles: pull-latest update-submodules
 
 update-shells: update-oh-my-zsh update-fish
 
-update-editors: update-nvim update-vscode update-helix
+update-editors: update-nvim update-vscode update-helix update-yazi
 
 update-dev: update-r-packages update-conda update-asdf update-rust
 
@@ -103,4 +103,9 @@ update-helix:
 update-apps:
     # Checking outdated applications from AppStore.
     mas outdated
+    @echo
+
+update-yazi:
+    # Update yazi plugins
+    ya pkg upgrade
     @echo

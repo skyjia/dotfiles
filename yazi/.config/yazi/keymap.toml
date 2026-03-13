@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on   = [ "g", "t" ]
+run  = "cd ~/dotfiles"
+desc = "Go ~/dotfiles"

@@ -1,4 +1,18 @@
 [mgr]
 show_hidden = true
+show_symlink = true
 # ratio = [1, 4, 3] # 1/8 parent, 4/8 current, 3/8 preview
 sort_dir_first = true
+
+[plugin]
+prepend_previewers = [
+    { url = "*.md", run = 'faster-piper --rely-on-preloader' },
+    #   { url = "*.tar*",   run = 'faster-piper --rely-on-preloader --format=url' },
+    #   { url = "*.txt.gz", run = 'faster-piper --rely-on-preloader' },
+]
+
+prepend_preloaders = [
+    { url = "*.md", run = 'faster-piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dracula -- "$1"' },
+    #   { url = "*.tar*",   run = 'faster-piper -- tar tf "$1"' },
+    #   { url = "*.txt.gz", run = 'faster-piper -- gzip -dc "$1"' },
+]
