@@ -50,6 +50,7 @@ johnheikens.skript
 julialang.language-julia
 kdl-org.kdl
 koihik.vscode-lua-format
+leanprover.lean4
 lextudio.restructuredtext
 llvm-vs-code-extensions.lldb-dap
 mads-hartmann.bash-ide-vscode
@@ -58,6 +59,8 @@ mechatroner.rainbow-csv
 mikestead.dotenv
 mohsen1.prettify-json
 moonbit.moonbit-lang
+ms-azuretools.vscode-azure-github-copilot
+ms-azuretools.vscode-azure-mcp-server
 ms-azuretools.vscode-azureresourcegroups
 ms-azuretools.vscode-containers
 ms-azuretools.vscode-docker
@@ -113,7 +116,6 @@ pahimar.minecraft-essentials-extension-pack
 pomdtr.excalidraw-editor
 pomdtr.markdown-kroki
 powerquery.vscode-powerquery
-promptexecution.justlang-lsp
 qcz.text-power-tools
 quarto.quarto
 quicktype.quicktype
@@ -131,7 +133,6 @@ saoudrizwan.claude-dev
 shd101wyy.markdown-preview-enhanced
 shengchen.vscode-checkstyle
 shopify.ruby-lsp
-skellock.just
 sleistner.vscode-fileutils
 streetsidesoftware.code-spell-checker
 stylelint.vscode-stylelint

@@ -245,6 +245,10 @@ eval $(thefuck --alias)
 # Added by Obsidian
 export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
+# End of LM Studio CLI section
+
 # TODO: already use oh-my-zsh fzf plugin instead. disable following lines.
 # fzf (installed via Homebrew)
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -21,6 +21,8 @@ update-editors: update-nvim update-vscode update-helix update-yazi
 
 update-dev: update-r-packages update-conda update-asdf update-rust
 
+update-ai: update-claude
+
 wash-macos-provenance:
     # Wash macOS provenance
     xattr -d com.apple.quarantine -r .
@@ -108,4 +110,9 @@ update-apps:
 update-yazi:
     # Update yazi plugins
     ya pkg upgrade
+    @echo
+
+update-claude:
+    # Update claude
+    claude update
     @echo

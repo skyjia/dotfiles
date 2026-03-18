@@ -2,3 +2,13 @@
 on   = [ "g", "t" ]
 run  = "cd ~/dotfiles"
 desc = "Go ~/dotfiles"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "C" ]
+run  = "cd ~/Codes"
+desc = "Go ~/Codes"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "a" ]
+run  = "cd ~/Codes/ai"
+desc = "Go ~/Codes/ai"

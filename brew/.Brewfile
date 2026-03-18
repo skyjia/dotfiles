@@ -261,7 +261,6 @@ cask "blockbench"
 # E-books management software
 cask "calibre"
 # Terminal-based AI coding assistant
-cask "claude-code"
 # Streamdeck extension and emulation software
 cask "companion"
 cask "font-droid-sans-mono-nerd-font"
