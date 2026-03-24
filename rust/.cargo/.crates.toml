@@ -35,10 +35,10 @@
     "makers",
 ]
 "cargo-outdated 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-outdated"]
-"cargo-update 18.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = [
+"cargo-update 18.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-install-update",
     "cargo-install-update-config",
 ]
 "just-lsp 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["just-lsp"]
 "wasm-pack 0.14.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasm-pack"]
-"wasmtime-cli 42.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasmtime"]
+"wasmtime-cli 43.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasmtime"]
