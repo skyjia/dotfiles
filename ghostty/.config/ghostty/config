@@ -4,6 +4,15 @@
 # - if XDG_CONFIG_HOME is not defined, it defaults to `$HOME/.config/ghostty/config`.
 # 
 
+# --- 基础外观与字体 ---
 theme = Solarized Osaka Night
-
 font-family = "Hack Nerd Font MonoF"
+
+
+# 使用 Option + CMD + hjkl 切换 Pane
+keybind = opt+cmd+h=goto_split:left
+keybind = opt+cmd+j=goto_split:bottom
+keybind = opt+cmd+k=goto_split:top
+keybind = opt+cmd+l=goto_split:right
+keybind = opt+cmd+[=goto_split:previous
+keybind = opt+cmd+]=goto_split:next

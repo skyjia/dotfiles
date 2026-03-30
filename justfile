@@ -3,9 +3,6 @@
 
 set shell := ['fish', '-c']
 
-home_dir := env_var('HOME')
-zsh_dir := join(home_dir, '.oh-my-zsh')
-
 set dotenv-load := true
 
 default:
@@ -15,7 +12,7 @@ all: update-dotfiles update-brew update-shells update-apps update-editors update
 
 update-dotfiles: pull-latest update-submodules
 
-update-shells: update-oh-my-zsh update-fish
+update-shells: update-fish
 
 update-editors: update-nvim update-vscode update-helix update-yazi
 
@@ -36,11 +33,6 @@ pull-latest:
 update-submodules:
     # Pull all changes for the submodules
     git submodule update --remote
-    @echo
-
-update-oh-my-zsh:
-    # Updating oh-my-zsh
-    git -C {{ zsh_dir }} pull
     @echo
 
 update-fish:

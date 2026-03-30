@@ -1,9 +1,12 @@
+tap "anomalyco/tap"
 tap "buo/cask-upgrade"
 tap "d12frosted/emacs-plus"
+tap "farion1231/ccswitch"
 tap "gbevin/tools"
 tap "helix-editor/helix"
 tap "kong/kong"
 tap "leoafarias/fvm"
+tap "manaflow-ai/cmux"
 tap "microsoft/mssql-release"
 tap "modularml/packages"
 tap "openresty/brew"
@@ -94,6 +97,8 @@ brew "git-delta"
 brew "git-lfs"
 # Blazing fast terminal-ui for git written in rust
 brew "gitui"
+# Render markdown on the CLI
+brew "glow"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Powerful, lightweight programming language
@@ -114,6 +119,8 @@ brew "golangci-lint"
 brew "gping"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Protocol buffers (Google's data interchange format)
+brew "protobuf"
 # Next generation open source RPC library and framework
 brew "grpc"
 # Post-modern modal text editor
@@ -148,8 +155,6 @@ brew "mas"
 brew "minicom"
 # GDI+-compatible API on non-Windows operating systems
 brew "mono-libgdiplus"
-# Protocol buffers (Google's data interchange format)
-brew "protobuf"
 # Open source relational database management system
 brew "mysql", restart_service: :changed
 # Ambitious Vim-fork focused on extensibility and agility
@@ -246,6 +251,8 @@ brew "zig"
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
+# The AI coding agent built for the terminal.
+brew "anomalyco/tap/opencode"
 # Multi-platform command-line tool to monitor and receive MIDI messages
 brew "gbevin/tools/receivemidi"
 # ODBC Driver for Microsoft(R) SQL Server(R)
@@ -260,7 +267,10 @@ cask "basictex"
 cask "blockbench"
 # E-books management software
 cask "calibre"
-# Terminal-based AI coding assistant
+# Configuration manager for Claude Code, Codex, Gemini CLI, OpenCode and OpenClaw
+cask "farion1231/ccswitch/cc-switch"
+# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
+cask "cmux"
 # Streamdeck extension and emulation software
 cask "companion"
 cask "font-droid-sans-mono-nerd-font"
@@ -323,10 +333,6 @@ cask "utm"
 cask "vcmi"
 # Multimedia player
 cask "vlc"
-# Rust-based terminal
-cask "warp"
-# Terminal emulator
-cask "wave"
 # Multiplayer code editor
 cask "zed"
 mas "Actions", id: 1586435171
@@ -363,6 +369,7 @@ mas "Shareful", id: 1522267256
 mas "Shazam", id: 897118787
 mas "Swift Playground", id: 1496833156
 mas "Taio", id: 1527036273
+mas "TaskForge", id: 6744716215
 mas "TestFlight", id: 899247664
 mas "Xcode", id: 497799835
 mas "千牛", id: 6449173707
