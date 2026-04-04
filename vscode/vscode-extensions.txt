@@ -62,6 +62,7 @@ moonbit.moonbit-lang
 ms-azuretools.vscode-azure-github-copilot
 ms-azuretools.vscode-azure-mcp-server
 ms-azuretools.vscode-azureresourcegroups
+ms-azuretools.vscode-bicep
 ms-azuretools.vscode-containers
 ms-azuretools.vscode-docker
 ms-dotnettools.csdevkit
@@ -103,10 +104,6 @@ ms-vscode.remote-explorer
 ms-vscode.remote-server
 ms-vscode.vscode-js-profile-flame
 ms-vsliveshare.vsliveshare
-ms-windows-ai-studio.windows-ai-studio
-mtxr.sqltools
-mtxr.sqltools-driver-mysql
-mtxr.sqltools-driver-pg
 myriad-dreamin.tinymist
 nash.awesome-flutter-snippets
 nefrob.vscode-just-syntax
@@ -141,14 +138,12 @@ swiftlang.swift-vscode
 syler.sass-indented
 systemticks.c4-dsl-extension
 tamasfe.even-better-toml
-teamsdevapp.vscode-ai-foundry
 terrastruct.d2
 thenuprojectcontributors.vscode-nushell-lang
 timonwong.shellcheck
 trond-snekvik.simple-rst
 typescriptteam.native-preview
 tyriar.sort-lines
-ultram4rine.sqltools-clickhouse-driver
 unifiedjs.vscode-mdx
 usernamehw.errorlens
 vadimcn.vscode-lldb

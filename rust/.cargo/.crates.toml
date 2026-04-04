@@ -28,14 +28,14 @@
     "cargo-set-version",
     "cargo-upgrade",
 ]
-"cargo-generate 0.23.7 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-generate"]
+"cargo-generate 0.23.8 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-generate"]
 "cargo-list 0.34.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-list"]
 "cargo-make 0.37.24 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-make",
     "makers",
 ]
 "cargo-outdated 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-outdated"]
-"cargo-update 19.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = [
+"cargo-update 19.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-install-update",
     "cargo-install-update-config",
 ]
