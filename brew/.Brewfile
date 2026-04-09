@@ -208,10 +208,6 @@ brew "starship"
 brew "step"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
-# Feature-rich console based todo list manager
-brew "task"
-# Shell wrapper for Taskwarrior commands
-brew "tasksh"
 # Very fast implementation of tldr in Rust
 brew "tealdeer"
 # Send macOS User Notifications from the command-line
