@@ -3,7 +3,6 @@ tap "buo/cask-upgrade"
 tap "d12frosted/emacs-plus"
 tap "farion1231/ccswitch"
 tap "gbevin/tools"
-tap "helix-editor/helix"
 tap "kong/kong"
 tap "leoafarias/fvm"
 tap "manaflow-ai/cmux"
@@ -123,8 +122,6 @@ brew "graphviz"
 brew "protobuf"
 # Next generation open source RPC library and framework
 brew "grpc"
-# Post-modern modal text editor
-brew "helix"
 # Library for communicating with USB and Bluetooth HID devices
 brew "hidapi"
 # Improved top (interactive process viewer)
@@ -315,8 +312,6 @@ cask "prismlauncher"
 cask "quarto"
 # Environment for statistical computing and graphics
 cask "r-app"
-# Modified browser that helps in responsive web development
-cask "responsively"
 # Data science software focusing on R and Python
 cask "rstudio"
 # A multi-platform GUI application to effortlessly visualize MIDI activity

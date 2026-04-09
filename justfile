@@ -88,12 +88,6 @@ update-nvim:
     -nvim +AstroUpdate +MasonUpdate +q +q 
     @echo
 
-update-helix:
-    # Updating Helix grammars.
-    hx --grammar fetch
-    hx --grammar build
-    @echo
-
 update-apps:
     # Checking outdated applications from AppStore.
     mas outdated
