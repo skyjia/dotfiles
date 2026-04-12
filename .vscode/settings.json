@@ -1,4 +1,8 @@
 {
+    "files.associations": {
+        "*Brewfile": "ruby"
+    },
+
     "Lua.diagnostics.globals": ["vim", "lvim"],
 
     // shellcheck exclude files:

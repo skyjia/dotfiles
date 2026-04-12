@@ -14,7 +14,7 @@ update-dotfiles: pull-latest update-submodules
 
 update-shells: update-fish
 
-update-editors: update-nvim update-vscode update-helix update-yazi
+update-editors: update-nvim update-vscode update-yazi
 
 update-dev: update-r-packages update-conda update-asdf update-rust
 

@@ -1,8 +1,16 @@
 {
     "workspace": {
-        "ignoreDir": ["R/Rlib/**"]
+        "ignoreDir": [
+            ".git",
+            ".vscode",
+            "claude",
+            "nushell",
+            "npm",
+            "raycast",
+            "R/Rlib/**",
+            "warp",
+            "logs"
+        ]
     },
-    "diagnostics.disable": [
-        "undefined-doc-name"
-    ]
+    "diagnostics.disable": ["undefined-doc-name"]
 }
