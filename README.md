@@ -1,15 +1,15 @@
 # Overview
 
 ```text
-      ██            ██     ████ ██  ██                
-     ░██           ░██    ░██░ ░░  ░██                
+      ██            ██     ████ ██  ██
+     ░██           ░██    ░██░ ░░  ░██
      ░██  ██████  ██████ ██████ ██ ░██  █████   ██████
-  ██████ ██░░░░██░░░██░ ░░░██░ ░██ ░██ ██░░░██ ██░░░░ 
- ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████ 
+  ██████ ██░░░░██░░░██░ ░░░██░ ░██ ░██ ██░░░██ ██░░░░
+ ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████
 ░██  ░██░██   ░██  ░██    ░██  ░██ ░██░██░░░░  ░░░░░██
-░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████ 
- ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░  
- 
+░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████
+ ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░
+
   ▓▓▓▓▓▓▓▓▓▓
  ░▓ about  ▓ A couple of dotfiles for developers using OS X.
  ░▓ author ▓ Sky Jia <me@skyjia.com>
@@ -18,15 +18,19 @@
  ░░░░░░░░░░
 
  git                > global git config and aliases
- hg                 > global hg config and aliases
- karabiner          > Karabiner configuration
- less               > less settings
- tmux               > terminal multiplexer with custom status bar
- astro-nvim         > AstroNvim configuration
  zsh                > zshell settings, aliases, and custom prompts
+ fish               > fish shell configuration
+ nushell            > nushell configuration with autoload modules
+ astor-nvim         > AstroNvim configuration for Neovim
+ tmux               > terminal multiplexer with custom status bar (submodule)
+ vscode             > VSCode settings and extensions
+ karabiner          > Karabiner-Elements configuration
+ raycast            > Raycast script commands (submodule)
+ warp               > Warp terminal themes (submodule)
+ brew/.Brewfile     > Homebrew packages and casks
 ```
 
-## Before Getting Start
+## Before Getting Started
 
 It's best to read the following articles before you start:
 
@@ -42,7 +46,7 @@ It's best to read the following articles before you start:
 If you're an OS X user, the best way to manage software packages is to use Homebrew.
 
 ```shell
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)""
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 > Refer to: <https://brew.sh>
@@ -83,7 +87,7 @@ stow zsh
 
 #### vim
 
-Vim configuration is based on [**AstroNvim**](https://astronvim.com/). 
+Vim configuration is based on [**AstroNvim**](https://astronvim.com/).
 
 #### tmux
 
@@ -101,6 +105,6 @@ cd ~/dotfiles
 just all
 ```
 
-# License
+## Legislation
 
 The license is GPLv3 for all parts specific to [**dotfiles**](https://github.com/skyjia/dotfiles)
