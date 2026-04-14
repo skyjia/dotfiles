@@ -30,10 +30,10 @@ brew "libyaml"
 brew "asciidoctor"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
 # Microsoft Azure CLI 2.0
 brew "azure-cli"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -264,6 +264,8 @@ cask "calibre"
 cask "farion1231/ccswitch/cc-switch"
 # Ghostty-based terminal with vertical tabs and notifications for AI coding agents
 cask "cmux"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 # Streamdeck extension and emulation software
 cask "companion"
 cask "font-droid-sans-mono-nerd-font"

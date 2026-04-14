@@ -2,7 +2,6 @@
 # https://just.systems/
 
 set shell := ['fish', '-c']
-
 set dotenv-load := true
 
 default:
@@ -44,6 +43,7 @@ update-fish:
 update-asdf:
     # Updating asdf plugin repositories
     asdf plugin update --all
+    {{ justfile_directory() }}/asdf/check-tools-version.nu
     @echo
 
 update-r-packages:
@@ -69,6 +69,11 @@ update-brew:
     brew bundle --global -v
     brew bundle cleanup --global --force
     brew autoremove
+
+dump-brew:
+    # Dumping Brewfile
+    brew bundle dump --global --force --describe --no-vscode --no-go --no-cargo 
+    @echo
 
 update-rust:
     # Keeping rustup up to date
