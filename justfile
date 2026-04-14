@@ -7,7 +7,7 @@ set dotenv-load := true
 default:
     @just --list
 
-all: update-dotfiles update-brew update-shells update-apps update-editors update-dev
+all: update-dotfiles update-brew update-shells update-apps update-editors update-dev update-ai
 
 update-dotfiles: pull-latest update-submodules
 
