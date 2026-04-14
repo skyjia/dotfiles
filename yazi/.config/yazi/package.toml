@@ -3,5 +3,12 @@ use = "alberti42/faster-piper"
 rev = "8b794bf"
 hash = "fac71f8ce9447ad509b5aad9e0d8c694"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "04985d1"
+hash = "c69a63981e254a3a06a11c2bf0e6af1d"
+
+[[flavor.deps]]
+use = "AdithyanA2005/nord"
+rev = "bdf0bd4"
+hash = "816970e00d643d3e8213b430d2148aec"
