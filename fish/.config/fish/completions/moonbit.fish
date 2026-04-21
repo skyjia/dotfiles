@@ -167,6 +167,7 @@ complete -c moon -n "__fish_moon_using_subcommand check" -l trace -d 'Trace the 
 complete -c moon -n "__fish_moon_using_subcommand check" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand check" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand check" -s h -l help -d 'Print help'
+complete -c moon -n "__fish_moon_using_subcommand prove" -l why3-config -d 'Use a user-supplied Why3 configuration file instead of the generated default' -r -F
 complete -c moon -n "__fish_moon_using_subcommand prove" -l warn-list -d 'Warn list config' -r
 complete -c moon -n "__fish_moon_using_subcommand prove" -s j -l jobs -d 'Set the max number of jobs to run in parallel' -r
 complete -c moon -n "__fish_moon_using_subcommand prove" -l render-no-loc -d 'Render no-location diagnostics starting from a certain level' -r -f -a "{info\t'',warn\t'',error\t''}"
@@ -660,14 +661,14 @@ complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "build-binary-dep"
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "demangle" -d 'Demangle MoonBit symbol names'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
-complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline doc help" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline doc help" -f -a "peek-def" -d 'Peek Definition of a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline doc help" -f -a "find-references" -d 'Find references of a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline doc help" -f -a "rename" -d 'Rename a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline doc help" -f -a "hover" -d 'Show hover information of a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline doc help" -f -a "outline" -d 'Show outline of specified path'
-complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline doc help" -f -a "doc" -d 'Show documentation of a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline doc help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
+complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline analyze doc" -s h -l help -d 'Print help'
+complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline analyze doc" -f -a "peek-def" -d 'Peek Definition of a symbol'
+complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline analyze doc" -f -a "find-references" -d 'Find references of a symbol'
+complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline analyze doc" -f -a "rename" -d 'Rename a symbol'
+complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline analyze doc" -f -a "hover" -d 'Show hover information of a symbol'
+complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline analyze doc" -f -a "outline" -d 'Show outline of specified path'
+complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline analyze doc" -f -a "analyze" -d 'Show public API usage of a package or module'
+complete -c moon -n "__fish_moon_using_subcommand ide; and not __fish_seen_subcommand_from peek-def find-references rename hover outline analyze doc" -f -a "doc" -d 'Show documentation of a symbol'
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from peek-def" -l loc -r
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from peek-def" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from find-references" -l loc -r
@@ -677,14 +678,8 @@ complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcomman
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from hover" -l loc -r
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from hover" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from outline" -s h -l help -d 'Print help'
+complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from analyze" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from doc" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from help" -f -a "peek-def" -d 'Peek Definition of a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from help" -f -a "find-references" -d 'Find references of a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from help" -f -a "rename" -d 'Rename a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from help" -f -a "hover" -d 'Show hover information of a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from help" -f -a "outline" -d 'Show outline of specified path'
-complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from help" -f -a "doc" -d 'Show documentation of a symbol'
-complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
 complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run test generate-test-driver clean fmt doc info bench add remove install tree fetch work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "new" -d 'Create a new MoonBit module'
 complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run test generate-test-driver clean fmt doc info bench add remove install tree fetch work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "bundle" -d 'Bundle the module'
 complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run test generate-test-driver clean fmt doc info bench add remove install tree fetch work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "build" -d 'Build the current package'
@@ -735,4 +730,5 @@ complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from ide" -f -a "rename" -d 'Rename a symbol'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from ide" -f -a "hover" -d 'Show hover information of a symbol'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from ide" -f -a "outline" -d 'Show outline of specified path'
+complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from ide" -f -a "analyze" -d 'Show public API usage of a package or module'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from ide" -f -a "doc" -d 'Show documentation of a symbol'

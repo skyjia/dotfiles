@@ -17,7 +17,7 @@ update-editors: update-nvim update-vscode update-yazi
 
 update-dev: update-r-packages update-conda update-asdf update-rust
 
-update-ai: update-claude
+update-ai: update-claude update-dws
 
 wash-macos-provenance:
     # Wash macOS provenance
@@ -106,4 +106,9 @@ update-yazi:
 update-claude:
     # Update claude
     claude update
+    @echo
+
+update-dws:
+    # Update DingTalk Workspace CLI (dws)
+    dws upgrade -y
     @echo
