@@ -41,4 +41,4 @@
 ]
 "just-lsp 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)" = ["just-lsp"]
 "wasm-pack 0.14.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasm-pack"]
-"wasmtime-cli 44.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasmtime"]
+"wasmtime-cli 44.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasmtime"]

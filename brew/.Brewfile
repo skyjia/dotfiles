@@ -326,6 +326,8 @@ cask "utm"
 cask "vcmi"
 # Multimedia player
 cask "vlc"
+# Terminal emulator
+cask "wave"
 # Multiplayer code editor
 cask "zed"
 mas "Actions", id: 1586435171
