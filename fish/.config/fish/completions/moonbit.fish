@@ -184,6 +184,7 @@ complete -c moon -n "__fish_moon_using_subcommand prove" -l trace -d 'Trace the 
 complete -c moon -n "__fish_moon_using_subcommand prove" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand prove" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand prove" -s h -l help -d 'Print help'
+complete -c moon -n "__fish_moon_using_subcommand run" -s c -d 'Run `.mbtx` source passed in as a string' -r
 complete -c moon -n "__fish_moon_using_subcommand run" -l target -d 'Select output target' -r -f -a "{wasm\t'',wasm-gc\t'',js\t'',native\t'',llvm\t'',all\t''}"
 complete -c moon -n "__fish_moon_using_subcommand run" -l warn-list -d 'Warn list config' -r
 complete -c moon -n "__fish_moon_using_subcommand run" -s j -l jobs -d 'Set the max number of jobs to run in parallel' -r
@@ -217,12 +218,12 @@ complete -c moon -n "__fish_moon_using_subcommand test" -l warn-list -d 'Warn li
 complete -c moon -n "__fish_moon_using_subcommand test" -s j -l jobs -d 'Set the max number of jobs to run in parallel' -r
 complete -c moon -n "__fish_moon_using_subcommand test" -l render-no-loc -d 'Render no-location diagnostics starting from a certain level' -r -f -a "{info\t'',warn\t'',error\t''}"
 complete -c moon -n "__fish_moon_using_subcommand test" -s p -l package -d 'Run test in the specified package' -r
-complete -c moon -n "__fish_moon_using_subcommand test" -s f -l file -d 'Run test in the specified file. Only valid when `--package` is also specified' -r
-complete -c moon -n "__fish_moon_using_subcommand test" -s i -l index -d 'Run only the index-th test in the file. Accepts a single index or a left-inclusive right-exclusive range like `0-2`. Only valid when `--file` is also specified. Implies `--include-skipped`' -r
-complete -c moon -n "__fish_moon_using_subcommand test" -l doc-index -d 'Run only the index-th doc test in the file. Only valid when `--file` is also specified. Implies `--include-skipped`' -r
+complete -c moon -n "__fish_moon_using_subcommand test" -l file -d 'Run test in the specified file. Only valid when `--package` is also specified' -r
+complete -c moon -n "__fish_moon_using_subcommand test" -s i -l index -d 'Run only the index-th test in the file. Accepts a single index or a left-inclusive right-exclusive range like `0-2`. Only valid when a single file is selected. Implies `--include-skipped`' -r
+complete -c moon -n "__fish_moon_using_subcommand test" -l doc-index -d 'Run only the index-th doc test in the file. Only valid when a single file is selected. Implies `--include-skipped`' -r
 complete -c moon -n "__fish_moon_using_subcommand test" -s l -l limit -d 'Limit of expect test update passes to run, in order to avoid infinite loops' -r
 complete -c moon -n "__fish_moon_using_subcommand test" -l patch-file -d 'Path to the patch file' -r -F
-complete -c moon -n "__fish_moon_using_subcommand test" -s F -l filter -d 'Run only tests whose name matches the given glob pattern. Supports \'*\' (matches any sequence) and \'?\' (matches any single character)' -r
+complete -c moon -n "__fish_moon_using_subcommand test" -s f -l filter -d 'Run only tests whose name matches the given glob pattern. Supports \'*\' (matches any sequence) and \'?\' (matches any single character)' -r
 complete -c moon -n "__fish_moon_using_subcommand test" -l manifest-path -d 'Path to `moon.mod.json` or `moon.work` to use as the project manifest (does not change the working directory)' -r -F
 complete -c moon -n "__fish_moon_using_subcommand test" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
 complete -c moon -n "__fish_moon_using_subcommand test" -l std -d 'Enable the standard library (default)'
@@ -313,7 +314,7 @@ complete -c moon -n "__fish_moon_using_subcommand explain" -l trace -d 'Trace th
 complete -c moon -n "__fish_moon_using_subcommand explain" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand explain" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand explain" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand info" -l target -d 'Select output target' -r -f -a "{wasm\t'',wasm-gc\t'',js\t'',native\t'',llvm\t'',all\t''}"
+complete -c moon -n "__fish_moon_using_subcommand info" -l target -d 'Inspect one or more target backends without changing the canonical `pkg.generated.mbti` output' -r -f -a "{wasm\t'',wasm-gc\t'',js\t'',native\t'',llvm\t'',all\t''}"
 complete -c moon -n "__fish_moon_using_subcommand info" -s p -l package -d 'The full or subset of name of the package to emit `mbti` files for' -r
 complete -c moon -n "__fish_moon_using_subcommand info" -l manifest-path -d 'Path to `moon.mod.json` or `moon.work` to use as the project manifest (does not change the working directory)' -r -F
 complete -c moon -n "__fish_moon_using_subcommand info" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
