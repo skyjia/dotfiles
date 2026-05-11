@@ -101,6 +101,7 @@ ms-vscode.live-server
 ms-vscode.powershell
 ms-vscode.remote-explorer
 ms-vscode.remote-server
+ms-vscode.vscode-chat-customizations-evaluations
 ms-vscode.vscode-js-profile-flame
 ms-vsliveshare.vsliveshare
 myriad-dreamin.tinymist

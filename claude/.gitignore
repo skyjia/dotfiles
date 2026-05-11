@@ -1,4 +1,0 @@
-# ignore claude cache
-.claude/**
-.claude.json
-.claude.json.backup

@@ -1,0 +1,131 @@
+[appearance]
+spacing = "normal"
+
+[appearance.icon]
+app_icon = "default"
+
+[appearance.cursor]
+cursor_blink = "enabled"
+
+[appearance.blocks]
+should_show_in_band_command_blocks = false
+
+[appearance.text]
+notebook_font_size = 14.0
+font_name = "DroidSansM Nerd Font Mono"
+line_height_ratio = 1.2000000476837158
+font_size = 15.0
+
+[appearance.themes]
+theme = {
+  custom = { name = "V for Vendetta", path = "/Users/skyjia/.warp/themes/sky/v-for-vendetta.yaml" },
+}
+
+[appearance.full_screen_apps]
+alt_screen_padding = { custom = { uniform_padding = 0.0 } }
+
+[notifications]
+toast_duration_secs = 8
+
+[notifications.preferences]
+is_agent_task_completed_enabled = true
+is_long_running_enabled = true
+is_needs_attention_enabled = true
+is_password_prompt_enabled = true
+long_running_threshold = 30
+mode = "enabled"
+play_notification_sound = true
+
+[session]
+new_session_shell_override = "system_default"
+
+[session.working_directory_config]
+advanced_mode = false
+global = { custom_dir = "", mode = "previous_dir" }
+new_tab = { custom_dir = "", mode = "previous_dir" }
+new_window = { custom_dir = "", mode = "previous_dir" }
+split_pane = { custom_dir = "", mode = "previous_dir" }
+
+[terminal]
+
+[terminal.input]
+completions_open_while_typing = true
+honor_ps1 = true
+input_box_type_setting = "classic"
+
+[terminal.input.extra_meta_keys]
+left_alt = false
+right_alt = true
+
+[general]
+login_item = false
+
+[agents]
+cloud_conversation_storage_enabled = true
+
+[agents.profiles]
+agent_mode_execute_readonly_commands = true
+
+[agents.warp_agent]
+is_any_ai_enabled = true
+
+[agents.warp_agent.input]
+ai_command_denylist = ""
+nld_in_terminal_enabled = true
+
+[global_hotkey]
+
+[global_hotkey.dedicated_window]
+enabled = false
+
+[global_hotkey.toggle_all_windows]
+keybinding = "shift-cmd-T"
+enabled = false
+
+[privacy]
+telemetry_enabled = true
+crash_reporting_enabled = true
+custom_secret_regex_list = [
+  { name = "IPv4 Address", pattern = '\b((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}\b' },
+  {
+    name = "IPv6 Address",
+    pattern = '\b((([0-9A-Fa-f]{1,4}:){1,6}:)|(([0-9A-Fa-f]{1,4}:){7}))([0-9A-Fa-f]{1,4})\b',
+  },
+  { name = "Slack App Token", pattern = '\bxapp-[0-9]+-[A-Za-z0-9_]+-[0-9]+-[a-f0-9]+\b' },
+  { name = "Phone Number", pattern = '\b(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\b' },
+  {
+    name = "AWS Access ID",
+    pattern = '\b(AKIA|A3T|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{12,}\b',
+  },
+  {
+    name = "MAC Address",
+    pattern = '\b((([a-zA-z0-9]{2}[-:]){5}([a-zA-z0-9]{2}))|(([a-zA-z0-9]{2}:){5}([a-zA-z0-9]{2})))\b',
+  },
+  { name = "Google API Key", pattern = '\bAIza[0-9A-Za-z-_]{35}\b' },
+  { name = "Google OAuth ID", pattern = '\b[0-9]+-[0-9A-Za-z_]{32}\.apps\.googleusercontent\.com\b' },
+  { name = "GitHub Classic Personal Access Token", pattern = '\bghp_[A-Za-z0-9_]{36}\b' },
+  { name = "GitHub Fine-Grained Personal Access Token", pattern = '\bgithub_pat_[A-Za-z0-9_]{82}\b' },
+  { name = "GitHub OAuth Access Token", pattern = '\bgho_[A-Za-z0-9_]{36}\b' },
+  { name = "GitHub User-to-Server Token", pattern = '\bghu_[A-Za-z0-9_]{36}\b' },
+  { name = "GitHub Server-to-Server Token", pattern = '\bghs_[A-Za-z0-9_]{36}\b' },
+  { name = "Stripe Key", pattern = '\b(?:r|s)k_(test|live)_[0-9a-zA-Z]{24}\b' },
+  { name = "Firebase Auth Domain", pattern = '\b([a-z0-9-]){1,30}(\.firebaseapp\.com)\b' },
+  { name = "JWT", pattern = '\b(ey[a-zA-z0-9_\-=]{10,}\.){2}[a-zA-z0-9_\-=]{10,}\b' },
+  { name = "OpenAI API Key", pattern = '\bsk-[a-zA-Z0-9]{48}\b' },
+  { name = "Anthropic API Key", pattern = '\bsk-ant-api\d{0,2}-[a-zA-Z0-9\-]{80,120}\b' },
+  { name = "Generic SK API Key", pattern = '\bsk-[a-zA-Z0-9\-]{10,100}\b' },
+  { name = "Fireworks API Key", pattern = '\bfw_[a-zA-Z0-9]{24}\b' },
+]
+
+[code]
+
+[code.indexing]
+agent_mode_codebase_context_auto_indexing = true
+
+[text_editing]
+vim_mode_enabled = true
+
+[warpify]
+
+[warpify.subshells]
+added_subshell_commands = []

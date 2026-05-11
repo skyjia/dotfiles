@@ -1,0 +1,7 @@
+name = "dotfiles"
+
+[[panes]]
+id = "main"
+type = "terminal"
+directory = "~/dotfiles"
+commands = ["y"]
