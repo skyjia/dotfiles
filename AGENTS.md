@@ -11,13 +11,14 @@ Personal dotfiles for macOS using GNU `stow` for symlink management. Not a build
 **Never use plain bash/sh.** The justfile is configured to use `fish` shell:
 
 ```bash
-just all              # Update everything (dotfiles, brew, shells, editors, dev tools, AI tools)
+just all              # Update everything (dotfiles, brew, shells, apps, editors, dev tools, AI tools)
 just update-dotfiles  # Pull latest and update git submodules
 just update-brew      # Run `brew bundle --global` from brew/.Brewfile
 just update-shells    # fisher update (fish plugins)
+just update-apps      # mas outdated (App Store apps)
 just update-editors   # Update nvim (AstroUpdate + MasonUpdate), vscode, yazi
 just update-dev       # Update R packages, conda, asdf, rust
-just update-ai        # Update claude CLI
+just update-ai        # Update claude CLI + dws (DingTalk Workspace CLI)
 just wash-macos-provenance  # Clear quarantine/provenance xattrs (for downloaded files)
 ```
 
@@ -31,16 +32,25 @@ Major packages:
 - `git/`, `zsh/`, `fish/`, `nushell/` – Shell and VCS config
 - `astro-nvim/` – Neovim config (AstroNvim)
 - `vscode/`, `zed/` – Editor settings
-- `tmux/`, `karabiner/`, `ghostty/`, `warp/`, `raycast/` – Terminal/CLI tools
+- `tmux/`, `karabiner/`, `ghostty/`, `warp/`, `waveterm/`, `zellij/` – Terminal/CLI tools
+- `bat/`, `yazi/`, `starship/` – CLI utilities
+- `raycast/` – Raycast script commands
 - `brew/.Brewfile` – Homebrew packages (global managed)
 - `asdf/`, `R/`, `rust/`, `anaconda/` – Version managers and runtime config
+- `aria2/`, `npm/`, `odbc/`, `wget/` – Network/download tools
+- `cmux/` – cmux configuration
+- `iTerm/`, `ruby/`, `hg/` – Legacy/specific tools
+
+Non-stowable working directory:
+- `logs/` – BPMN diagrams and log files (not a stow package)
 
 ## Git Submodules
 
 Repository contains submodules that must be updated together:
 - `tmux/.tmux` – gpakosz/.tmux
-- `raycast/` directories – script commands and personal commands
-- `warp/.warp/official-themes` – Warp themes
+- `raycast/.config/raycast/script-commands` – Official Raycast script commands
+- `raycast/raycast-script-commands` – Personal Raycast script commands
+- `warp/.warp/official-themes` – Warp terminal themes
 - `nushell/nu_scripts` – Community nushell scripts
 
 Running `just update-dotfiles` or `just all` automatically updates them.
@@ -49,12 +59,19 @@ Running `just update-dotfiles` or `just all` automatically updates them.
 
 **Shells:**
 - zsh: `zsh/.zshrc` – Oh-my-zsh integration, proxy management (tp/tpe/tpd toggle commands)
-- fish: `fish/.config/fish/config.fish`
+- fish: `fish/.config/fish/config.fish` – Includes `reset_app_permissions` function
 - nushell: `nushell/autoload/` – Modular environment setup
 
 **Neovim:** `astro-nvim/` follows AstroNvim structure; update via `nvim +AstroUpdate +MasonUpdate +q +q`
 
 **VSCode:** `vscode/` settings; extensions list in `vscode/vscode-extensions.txt` (auto-maintained by `just update-vscode`)
+
+**Terminal Emulators:**
+- Warp: `warp/.warp/settings.toml` (settings) + `warp/.warp/tab_configs/` (tab layouts)
+- WaveTerm: `waveterm/.config/waveterm/settings.json` + `widgets.json`
+- Ghostty: `ghostty/.config/ghostty/`
+
+**File Manager:** yazi: `yazi/.config/yazi/` – plugins in `plugins/`, theme in `theme.toml`
 
 ## Important Notes
 
@@ -63,3 +80,4 @@ Running `just update-dotfiles` or `just all` automatically updates them.
 - **No tests or CI:** This is personal config, not a tested package. No build artifacts to worry about.
 - **asdf pinning:** Check `asdf/check-tools-version.nu` after running `just update-asdf`; it validates tool versions.
 - **Brew globals:** Using `brew bundle --global` (not local to repo). Extensions managed in `vscode-extensions.txt`.
+- **AI tools:** `update-ai` now includes both `claude update` and `dws upgrade` (DingTalk Workspace CLI).

@@ -17,9 +17,10 @@ just all
 just update-dotfiles    # Pull latest changes and update submodules
 just update-brew        # Update Homebrew packages and casks (from brew/.Brewfile)
 just update-shells      # Update fish plugins
+just update-apps        # Check outdated App Store apps (mas)
 just update-editors     # Update nvim (AstroNvim), vscode, yazi
 just update-dev         # Update R packages, conda, asdf, rust toolchain
-just update-ai          # Update claude
+just update-ai          # Update claude and dws (DingTalk Workspace CLI)
 ```
 
 ### Package Management with Stow
@@ -35,6 +36,8 @@ stow nushell       # Apply nushell configuration
 stow tmux          # Apply tmux configuration
 stow git           # Apply git configuration
 stow karabiner     # Apply Karabiner-Elements configuration
+stow yazi          # Apply yazi file manager configuration
+stow bat           # Apply bat (cat clone) configuration
 ```
 
 The `--target=$HOME` option is configured in `.stowrc` for global symlink application.
@@ -54,21 +57,47 @@ just update-yazi
 - **Multi-shell support**: Configurations for zsh, fish, and nushell
 - **Terminal detection**: Shell configs detect terminal type and adjust behavior
 - **Proxy management**: Automatic system proxy detection and configuration (zsh)
+- **macOS utilities**: Fish includes `reset_app_permissions` function for managing app permissions
 
 ### Package Organization
 Each top-level directory represents a stowable package:
 - `git/` - Global git configuration and aliases
 - `zsh/` - Zsh shell with oh-my-zsh, starship prompt, and plugins
-- `fish/` - Fish shell configuration
+- `fish/` - Fish shell configuration with utility functions
 - `nushell/` - Nushell with autoloaded modules and vendor scripts
 - `astro-nvim/` - AstroNvim configuration for Neovim
 - `tmux/` - Terminal multiplexer configuration (via submodule)
 - `vscode/` - VSCode settings and extensions
-- `raycast/` - Raycast script commands (via submodule)
-- `warp/` - Warp terminal themes (via submodule)
-- `nushell/nu_scripts/` - Nushell community scripts (via submodule)
+- `zed/` - Zed editor settings
+- `raycast/` - Raycast script commands (via submodules)
+- `warp/` - Warp terminal settings, themes, and tab configurations (via submodule)
+- `waveterm/` - Wave terminal configuration with widgets
+- `ghostty/` - Ghostty terminal configuration
+- `zellij/` - Zellij terminal multiplexer configuration
 - `karabiner/` - Karabiner-Elements configuration
+- `yazi/` - Yazi file manager with plugins and themes
+- `bat/` - Bat (cat clone) configuration
+- `starship/` - Starship prompt configuration
+- `cmux/` - Cmux configuration
 - `brew/.Brewfile` - Homebrew packages and casks
+- `asdf/` - asdf version manager configuration
+- `R/` - R package configuration
+- `rust/` - Rust/cargo configuration
+- `anaconda/` - Conda environment configuration
+- `aria2/` - aria2 download manager configuration
+- `npm/` - npm configuration
+- `odbc/` - ODBC database configuration
+- `wget/` - wget configuration
+- `iTerm/` - iTerm2 configuration (legacy)
+- `ruby/` - Ruby configuration
+- `hg/` - Mercurial configuration
+
+### Git Submodules
+- `tmux/.tmux` - gpakosz/.tmux
+- `raycast/.config/raycast/script-commands` - Official Raycast script commands
+- `raycast/raycast-script-commands` - Personal Raycast script commands
+- `warp/.warp/official-themes` - Warp terminal themes
+- `nushell/nu_scripts` - Community nushell scripts
 
 ### Key Configuration Files
 - `justfile` - Just task runner with comprehensive update commands (uses fish shell)
@@ -76,12 +105,15 @@ Each top-level directory represents a stowable package:
 - `nushell/autoload/` - Modular nushell configuration with environment setup
 - `zsh/.zshrc` - Main zsh configuration with oh-my-zsh integration
 - `fish/.config/fish/config.fish` - Fish shell startup configuration
+- `warp/.warp/settings.toml` - Warp terminal settings
+- `waveterm/.config/waveterm/settings.json` - Wave terminal settings
+- `yazi/.config/yazi/package.toml` - Yazi plugin packages
 - `.stowrc` - Stow configuration with `--target=$HOME`
 
 ### Development Environment
 - **Version managers**: asdf for multiple language runtimes
 - **Package managers**: Homebrew (macOS), conda (Python), cargo (Rust)
-- **Editor ecosystem**: Neovim with AstroNvim, VSCode, yazi
+- **Editor ecosystem**: Neovim with AstroNvim, VSCode, Zed, yazi
 - **Terminal tools**: starship prompt, zoxide, fzf, lazygit, ghostty, zellij
 - **Scripting**: Raycast script commands, nushell modules
 
@@ -100,7 +132,7 @@ The repository uses a multi-layered update approach via `just all`:
 4. Applications (App Store apps via mas)
 5. Editors (Neovim plugins, VSCode extensions, yazi plugins)
 6. Development tools (R packages, conda, asdf plugins, Rust toolchain)
-7. AI tools (claude)
+7. AI tools (claude, dws)
 
 ### macOS Provenance
 Run `just wash-macos-provenance` to clear quarantine and provenance attributes
