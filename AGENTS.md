@@ -76,8 +76,9 @@ Running `just update-dotfiles` or `just all` automatically updates them.
 ## Important Notes
 
 - **Multi-shell environment:** Fish is the justfile shell; zsh/fish/nushell all coexist. Edits must respect each shell's syntax.
-- **Proxy config (zsh only):** Automatic detection; includes git proxy sync. Not in other shells.
+- **Zsh defaults:** Sets `nvim` as $EDITOR/$VISUAL, uses fish_vi_key_bindings in fish, runs `ulimit -n 2048`, includes lazygit `lg()` wrapper with cd-on-exit.
+- **Proxy config (zsh only):** Auto-enables on shell startup via `ensure_enable_proxy`. Toggle with `tp`/`tpe`/`tpd`. Syncs git proxy config. Not in other shells. Conda init is commented out (disabled for performance).
 - **No tests or CI:** This is personal config, not a tested package. No build artifacts to worry about.
 - **asdf pinning:** Check `asdf/check-tools-version.nu` after running `just update-asdf`; it validates tool versions.
-- **Brew globals:** Using `brew bundle --global` (not local to repo). Extensions managed in `vscode-extensions.txt`.
+- **Brew globals:** Using `brew bundle --global` (not local to repo). Extensions managed in `vscode/vscode-extensions.txt`.
 - **AI tools:** `update-ai` now includes both `claude update` and `dws upgrade` (DingTalk Workspace CLI).

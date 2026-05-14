@@ -33,6 +33,7 @@ fr43nk.seito-openfile
 fwcd.kotlin
 gabodev.minecraft-plugin-development
 github.codespaces
+github.vscode-github-actions
 github.vscode-pull-request-github
 golang.go
 grapecity.gc-excelviewer

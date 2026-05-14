@@ -53,3 +53,19 @@
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[safe]
+	# Uncomment below to allow git to run in all directories. Use with CAUTION.
+	# directory = *
+
+	# Trust personal code directories, but not system directories
+    directory = ~/dotfiles/*
+    directory = ~/Codes/*
+
+    # Trust Homebrew core directory, but not system directories
+    directory = /opt/homebrew
+
+	# For most cases, you should only trust your personal code directories and Homebrew core directory. 
+	# If you have other directories that you trust, you can add them here. Just be careful not to trust system directories, 
+	# as that can lead to security issues.
+	# e.g. If you have a system-wide asdf installation, you can trust it with the following line:
+	# 	sudo chown -R (whoami) ~/.
