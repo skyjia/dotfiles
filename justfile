@@ -4,77 +4,103 @@
 set shell := ['fish', '-c']
 set dotenv-load := true
 
+# List all available recipes
 default:
     @just --list
 
+# Update all components (dotfiles, brew, shells, apps, editors, dev tools, AI tools)
 all: update-dotfiles update-brew update-shells update-apps update-editors update-dev update-ai
 
+# Pull latest changes and update submodules
 update-dotfiles: pull-latest update-submodules
 
+# Update fish shell plugins and completions
 update-shells: update-fish
 
+# Update nvim, vscode, and yazi plugins
 update-editors: update-nvim update-vscode update-yazi
 
+# Update R packages, conda, asdf plugins, and rust toolchain
 update-dev: update-r-packages update-conda update-asdf update-rust
 
-update-ai: update-claude update-dws
+# Update claude, antigravity, and dws CLI tools
+update-ai: update-claude update-antigravity update-dws
 
+# Wash macOS provenance attributes (quarantine and provenance) from current directory
 wash-macos-provenance:
     # Wash macOS provenance
     xattr -d com.apple.quarantine -r .
     xattr -d com.apple.provenance -r .
 
+# Pull latest changes from remote repository
 pull-latest:
     # Pulling latest changes
     git pull
     @echo
 
+# Pull all changes for the submodules
 update-submodules:
     # Pull all changes for the submodules
     git submodule update --remote
     @echo
 
+# Update fish plugins and generate completions
 update-fish:
     # Updating fish plugins
     fisher update
     fish_update_completions
     @echo
 
+# Update asdf plugin repositories and check tool versions
 update-asdf:
     # Updating asdf plugin repositories
     asdf plugin update --all
     {{ justfile_directory() }}/asdf/check-tools-version.nu
     @echo
 
+# Update R packages (without prompting)
 update-r-packages:
     # Updating R packages
     Rscript -e 'update.packages(ask = FALSE)'
     @echo
 
+# Update Anaconda conda package manager and all packages
 update-conda:
-    # update Anaconda
-    # Update the conda package manager to the latest version in your base environment
+    # Update the conda package manager to the latest version in base environment
     -conda update -y -n base conda
+    # Update all conda packages
     -conda update --all -y
     @echo
 
+# Update vscode extensions and export list to file
 update-vscode:
-    # update vscode
+    # Update vscode extensions
     code --update-extensions
+    # Export extension list to file
     code --list-extensions > {{ justfile_directory() }}/vscode/vscode-extensions.txt
     @echo
 
+# Update Homebrew packages and casks according to global Brewfile, then cleanup
 update-brew:
-    # update according to Brewfile
+    # Update Homebrew formula lists
+    brew update
+    # Install/upgrade packages according to Brewfile
     brew bundle --global -v
+    # Remove packages not in Brewfile
     brew bundle cleanup --global --force
+    # Remove unused dependencies
     brew autoremove
-
-dump-brew:
-    # Dumping Brewfile
-    brew bundle dump --global --force --describe --no-vscode --no-go --no-cargo 
+    # Clean up old versions and cache
+    brew cleanup
     @echo
 
+# Dump current Homebrew packages to global Brewfile
+dump-brew:
+    # Dumping Brewfile
+    brew bundle dump --global --force --describe --no-vscode --no-go --no-cargo
+    @echo
+
+# Update rustup, rust toolchain, and cargo packages
 update-rust:
     # Keeping rustup up to date
     rustup self update
@@ -84,31 +110,42 @@ update-rust:
     rustup update
     @echo
 
-    # Keeping rust packages to date
+    # Keeping rust packages up to date
     cargo install-update --list | tee /dev/tty | awk '$4 == "Yes" {print $1}' | xargs -I {} cargo install {} --force
     @echo
 
+# Update AstroNvim and Mason packages
 update-nvim:
-    # Updating AstroNvim.
-    -nvim +AstroUpdate +MasonUpdate +q +q 
+    # Updating AstroNvim
+    -nvim +AstroUpdate +MasonUpdate +q +q
     @echo
 
+# Check outdated applications from App Store
 update-apps:
-    # Checking outdated applications from AppStore.
+    # Checking outdated applications from AppStore
     mas outdated
     @echo
 
+# Update yazi plugins
 update-yazi:
     # Update yazi plugins
     ya pkg upgrade
     @echo
 
+# Update claude CLI
 update-claude:
     # Update claude
     claude update
     @echo
 
+# Update DingTalk Workspace CLI (dws)
 update-dws:
     # Update DingTalk Workspace CLI (dws)
     dws upgrade -y
+    @echo
+
+# Update Antigravity CLI
+update-antigravity:
+    # Update Antigravity CLI
+    agy update
     @echo
