@@ -185,7 +185,7 @@ complete -c moon -n "__fish_moon_using_subcommand prove" -l trace -d 'Trace the 
 complete -c moon -n "__fish_moon_using_subcommand prove" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand prove" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand prove" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand run" -s c -d 'Run `.mbtx` source passed in as a string' -r
+complete -c moon -n "__fish_moon_using_subcommand run" -s e -d 'Run `.mbtx` source passed in as a string' -r
 complete -c moon -n "__fish_moon_using_subcommand run" -l target -d 'Select output target' -r -f -a "{wasm\t'',wasm-gc\t'',js\t'',native\t'',llvm\t'',all\t''}"
 complete -c moon -n "__fish_moon_using_subcommand run" -l warn-list -d 'Warn list config' -r
 complete -c moon -n "__fish_moon_using_subcommand run" -s j -l jobs -d 'Set the max number of jobs to run in parallel' -r
@@ -208,6 +208,7 @@ complete -c moon -n "__fish_moon_using_subcommand run" -l output-json -d 'Output
 complete -c moon -n "__fish_moon_using_subcommand run" -l enable-value-tracing -d 'Enable value tracing'
 complete -c moon -n "__fish_moon_using_subcommand run" -l frozen -d 'Do not sync dependencies, assuming local dependencies are up-to-date'
 complete -c moon -n "__fish_moon_using_subcommand run" -l build-only -d 'Only build, do not run the code'
+complete -c moon -n "__fish_moon_using_subcommand run" -l profile -d 'Profile the native executable using Time Profiler on macOS'
 complete -c moon -n "__fish_moon_using_subcommand run" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand run" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand run" -l trace -d 'Trace the execution of the program'
@@ -244,6 +245,7 @@ complete -c moon -n "__fish_moon_using_subcommand test" -l enable-value-tracing 
 complete -c moon -n "__fish_moon_using_subcommand test" -s u -l update -d 'Update the test snapshot'
 complete -c moon -n "__fish_moon_using_subcommand test" -l frozen -d 'Do not sync dependencies, assuming local dependencies are up-to-date'
 complete -c moon -n "__fish_moon_using_subcommand test" -l build-only -d 'Only build, do not run the tests'
+complete -c moon -n "__fish_moon_using_subcommand test" -l profile -d 'Profile native test executables using Time Profiler on macOS'
 complete -c moon -n "__fish_moon_using_subcommand test" -l no-parallelize -d 'Run the tests in a target backend sequentially'
 complete -c moon -n "__fish_moon_using_subcommand test" -l outline -d 'Print the outline of tests to be executed and exit'
 complete -c moon -n "__fish_moon_using_subcommand test" -l test-failure-json -d 'Print failure message in JSON format'
