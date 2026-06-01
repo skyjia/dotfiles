@@ -10,6 +10,9 @@ export LC_CTYPE="en_US.UTF-8"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 
+# make Homebrew require tap trust before installing from a tap
+export HOMEBREW_REQUIRE_TAP_TRUST=1
+
 # make Homebrew use brewed curl
 # https://github.com/orgs/Homebrew/discussions/1752
 export HOMEBREW_FORCE_BREWED_CURL=1

@@ -111,6 +111,7 @@ nefrob.vscode-just-syntax
 nicollasr.vscode-streamdeck
 oderwat.indent-rainbow
 pahimar.minecraft-essentials-extension-pack
+platformio.platformio-ide
 pomdtr.excalidraw-editor
 pomdtr.markdown-kroki
 powerquery.vscode-powerquery

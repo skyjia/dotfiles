@@ -3,6 +3,9 @@
 # source shell environment for Fish installed via Homebrew.
 /opt/homebrew/bin/brew shellenv | source
 
+# make Homebrew require tap trust before installing from a tap
+set -gx HOMEBREW_REQUIRE_TAP_TRUST "1"
+
 if status is-interactive
     # -- Configuring Completions in fish --
     # https://docs.brew.sh/Shell-Completion#configuring-completions-in-fish

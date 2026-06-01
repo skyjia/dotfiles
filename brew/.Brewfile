@@ -1,16 +1,11 @@
 tap "anomalyco/tap"
 tap "buo/cask-upgrade"
-tap "d12frosted/emacs-plus"
-tap "farion1231/ccswitch"
 tap "f/textream"
+tap "farion1231/ccswitch"
 tap "gbevin/tools"
-tap "kong/kong"
 tap "leoafarias/fvm"
 tap "manaflow-ai/cmux"
 tap "microsoft/mssql-release"
-tap "modularml/packages"
-tap "openresty/brew"
-tap "xo/xo"
 # C++ Common Libraries
 brew "abseil"
 # Search tool like grep, but optimized for programmers
@@ -23,6 +18,8 @@ brew "librsvg"
 brew "aliyun-cli"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
+# Library for command-line editing
+brew "readline"
 # Download with resuming and segmented downloading
 brew "aria2"
 # YAML Parser
@@ -153,6 +150,8 @@ brew "mas"
 brew "minicom"
 # GDI+-compatible API on non-Windows operating systems
 brew "mono-libgdiplus"
+# Remote terminal application
+brew "mosh"
 # Open source relational database management system
 brew "mysql", restart_service: :changed
 # Ambitious Vim-fork focused on extensibility and agility
@@ -161,6 +160,10 @@ brew "neovim"
 brew "nushell"
 # Tools for one-time password authentication systems
 brew "oath-toolkit"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# AI coding agent, built for the terminal
+brew "opencode"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Utility which converts PDF files into HTML and XML formats
@@ -169,6 +172,8 @@ brew "pdftohtml", link: false
 brew "pinentry-mac"
 # Draw UML diagrams
 brew "plantuml"
+# Your Gateway to Embedded Software Development Excellence
+brew "platformio"
 # Tool for managing OCI containers and pods
 brew "podman"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -193,8 +198,6 @@ brew "reattach-to-user-namespace"
 brew "rename"
 # SVG rendering tool and library
 brew "resvg"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # 7-Zip is a file archiver with a high compression ratio
@@ -245,8 +248,6 @@ brew "zig"
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
-# The AI coding agent built for the terminal.
-brew "anomalyco/tap/opencode"
 # Multi-platform command-line tool to monitor and receive MIDI messages
 brew "gbevin/tools/receivemidi"
 # ODBC Driver for Microsoft(R) SQL Server(R)
@@ -269,7 +270,6 @@ cask "cmux"
 cask "codex"
 # Streamdeck extension and emulation software
 cask "companion"
-cask "f/textream/textream"
 cask "font-droid-sans-mono-nerd-font"
 cask "font-hack-nerd-font"
 cask "font-source-code-pro"
@@ -318,6 +318,8 @@ cask "rstudio"
 cask "gbevin/tools/showmidi"
 # Graphical user interface for TeX Live Manager
 cask "tex-live-utility"
+# macOS teleprompter that highlights your script in real-time as you speak
+cask "f/textream/textream"
 # Web browser focusing on security
 cask "tor-browser"
 # Free and open-source OpenVPN client
@@ -339,9 +341,9 @@ mas "BaiduNetdisk", id: 547166701
 mas "Barbee", id: 1548711022
 mas "Bitwarden", id: 1352778147
 mas "Bluetooth Inspector", id: 1509085044
+mas "Business", id: 1588151344
 mas "Compressor", id: 6746516157
 mas "Developer", id: 640199958
-mas "Essentials", id: 1588151344
 mas "Final Cut Pro", id: 1631624924
 mas "Folder Peek", id: 1615988943
 mas "GeoGebra Calculator Suite", id: 1504416652
@@ -374,4 +376,3 @@ mas "同花顺", id: 1247341465
 mas "抖音", id: 1640407382
 mas "网易有道翻译", id: 491854842
 mas "腾讯视频", id: 1231336508
-brew "mosh"
