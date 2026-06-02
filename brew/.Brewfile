@@ -1,4 +1,3 @@
-tap "anomalyco/tap"
 tap "buo/cask-upgrade"
 tap "f/textream"
 tap "farion1231/ccswitch"
