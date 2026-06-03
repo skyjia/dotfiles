@@ -142,8 +142,6 @@ brew "luarocks"
 brew "mas"
 # Menu-driven communications program
 brew "minicom"
-# GDI+-compatible API on non-Windows operating systems
-brew "mono-libgdiplus"
 # Remote terminal application
 brew "mosh"
 # Open source relational database management system
@@ -160,8 +158,6 @@ brew "ripgrep"
 brew "opencode"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
-# Utility which converts PDF files into HTML and XML formats
-brew "pdftohtml", link: false
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
 # Package compiler and linker metadata toolkit
