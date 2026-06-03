@@ -2,6 +2,7 @@ tap "buo/cask-upgrade"
 tap "f/textream"
 tap "farion1231/ccswitch"
 tap "gbevin/tools"
+tap "gm5dna/amateur-radio"
 tap "leoafarias/fvm"
 tap "manaflow-ai/cmux"
 tap "microsoft/mssql-release"
@@ -313,6 +314,12 @@ cask "quarto"
 cask "r-app"
 # Data science software focusing on R and Python
 cask "rstudio"
+# Software defined radio receiver/transmitter application
+cask "gm5dna/amateur-radio/sdr-angel"
+# SDR application for SDRplay receivers with spectrum analysis
+cask "gm5dna/amateur-radio/sdrconnect"
+# Cross-platform open-source SDR receiver application
+cask "gm5dna/amateur-radio/sdrplusplus"
 # A multi-platform GUI application to effortlessly visualize MIDI activity
 cask "gbevin/tools/showmidi"
 # Graphical user interface for TeX Live Manager
