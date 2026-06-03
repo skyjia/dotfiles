@@ -10,10 +10,6 @@ tap "microsoft/mssql-release"
 brew "abseil"
 # Search tool like grep, but optimized for programmers
 brew "ack"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
-# Library to render SVG files using Cairo
-brew "librsvg"
 # Universal Command-Line Interface for Alibaba Cloud
 brew "aliyun-cli"
 # Cryptography and SSL/TLS Toolkit
@@ -28,6 +24,8 @@ brew "libyaml"
 brew "asciidoctor"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Interpreted, interactive, object-oriented programming language
@@ -102,18 +100,14 @@ brew "gnupg"
 brew "lua"
 # Command-driven, interactive function plotting
 brew "gnuplot"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
-# Vendor and platform neutral SDR support library
-brew "soapysdr"
-# SDK for signal processing blocks to implement software radios
-brew "gnuradio"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Fast linters runner for Go
 brew "golangci-lint"
 # Ping, but with a graph
 brew "gping"
+# Library to render SVG files using Cairo
+brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # Protocol buffers (Google's data interchange format)
@@ -170,6 +164,8 @@ brew "pandoc"
 brew "pdftohtml", link: false
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
 # Draw UML diagrams
 brew "plantuml"
 # Your Gateway to Embedded Software Development Excellence
@@ -206,6 +202,8 @@ brew "sevenzip"
 brew "shellcheck"
 # Python library and command-line utility for Shodan
 brew "shodan"
+# Vendor and platform neutral SDR support library
+brew "soapysdr"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Crypto and x509 Swiss-Army-Knife
