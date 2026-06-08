@@ -1,7 +1,7 @@
-function reset_app_permissions -d "Reset all macOS permissions for a given app path"
+function tcc_reset_app -d "Reset all macOS permissions for a given app path"
     if test (count $argv) -eq 0
-        echo "Usage: reset_app_permissions <app_path>"
-        echo "Example: reset_app_permissions /Applications/Moom.app"
+        echo "Usage: tcc_reset_app <app_path>"
+        echo "Example: tcc_reset_app /Applications/Moom.app"
         return 1
     end
 
@@ -21,8 +21,8 @@ function reset_app_permissions -d "Reset all macOS permissions for a given app p
         return 1
     end
 
-    echo "App: $app_path"
-    echo "Bundle ID: $bundle_id"
+    echo "🔍 App Found: $app_path"
+    echo "🆔 Bundle ID: $bundle_id"
     echo "Resetting permissions..."
 
     # Reset all permissions for the bundle
