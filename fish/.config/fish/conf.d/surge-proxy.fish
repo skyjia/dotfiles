@@ -40,8 +40,16 @@ function set_proxy
         set -gx all_proxy $ALL_PROXY
     end
 
-    git config --global http.proxy $HTTP_PROXY
-    git config --global https.proxy $HTTPS_PROXY
+    # 只在值不同时才更新 git config，避免并发冲突
+    set -l current_http_proxy (git config --global http.proxy 2>/dev/null)
+    set -l current_https_proxy (git config --global https.proxy 2>/dev/null)
+
+    if test "$current_http_proxy" != "$HTTP_PROXY"
+        git config --global http.proxy $HTTP_PROXY 2>/dev/null
+    end
+    if test "$current_https_proxy" != "$HTTPS_PROXY"
+        git config --global https.proxy $HTTPS_PROXY 2>/dev/null
+    end
 end
 
 function unset_proxy
