@@ -3,6 +3,7 @@ tap "f/textream"
 tap "farion1231/ccswitch"
 tap "gbevin/tools"
 tap "gm5dna/amateur-radio"
+tap "helvesec/rmux"
 tap "leoafarias/fvm"
 tap "manaflow-ai/cmux"
 tap "microsoft/mssql-release"
@@ -244,6 +245,8 @@ brew "zoxide"
 brew "zsh"
 # Multi-platform command-line tool to monitor and receive MIDI messages
 brew "gbevin/tools/receivemidi"
+# Local terminal multiplexer with a tmux-style CLI and daemon runtime
+brew "helvesec/rmux/rmux"
 # ODBC Driver for Microsoft(R) SQL Server(R)
 brew "microsoft/mssql-release/msodbcsql18"
 # Sqlcmd and Bcp for Microsoft(R) SQL Server(R)
