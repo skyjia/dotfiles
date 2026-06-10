@@ -1,17 +1,19 @@
-tap "buo/cask-upgrade"
-tap "f/textream"
-tap "farion1231/ccswitch"
-tap "gbevin/tools"
-tap "gm5dna/amateur-radio"
-tap "leoafarias/fvm"
-tap "manaflow-ai/cmux"
-tap "microsoft/mssql-release"
+tap "buo/cask-upgrade", trusted: true
+tap "f/textream", trusted: true
+tap "farion1231/ccswitch", trusted: true
+tap "gbevin/tools", trusted: true
+tap "gm5dna/amateur-radio", trusted: true
+tap "leoafarias/fvm", trusted: true
+tap "manaflow-ai/cmux", trusted: true
+tap "microsoft/mssql-release", trusted: true
 # C++ Common Libraries
 brew "abseil"
 # Search tool like grep, but optimized for programmers
 brew "ack"
 # Universal Command-Line Interface for Alibaba Cloud
 brew "aliyun-cli"
+# Arduino command-line interface
+brew "arduino-cli"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
 # Library for command-line editing
@@ -243,7 +245,7 @@ brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Multi-platform command-line tool to monitor and receive MIDI messages
-brew "gbevin/tools/receivemidi"
+brew "gbevin/tools/receivemidi", trusted: true
 # ODBC Driver for Microsoft(R) SQL Server(R)
 brew "microsoft/mssql-release/msodbcsql18"
 # Sqlcmd and Bcp for Microsoft(R) SQL Server(R)
@@ -257,7 +259,7 @@ cask "blockbench"
 # E-books management software
 cask "calibre"
 # Configuration manager for Claude Code, Codex, Gemini CLI, OpenCode and OpenClaw
-cask "farion1231/ccswitch/cc-switch"
+cask "farion1231/ccswitch/cc-switch", trusted: true
 # Ghostty-based terminal with vertical tabs and notifications for AI coding agents
 cask "cmux"
 # OpenAI's coding agent that runs in your terminal
@@ -309,13 +311,13 @@ cask "r-app"
 # Data science software focusing on R and Python
 cask "rstudio"
 # Software defined radio receiver/transmitter application
-cask "gm5dna/amateur-radio/sdr-angel"
+cask "gm5dna/amateur-radio/sdr-angel", trusted: true
 # SDR application for SDRplay receivers with spectrum analysis
 cask "gm5dna/amateur-radio/sdrconnect"
 # Cross-platform open-source SDR receiver application
 cask "gm5dna/amateur-radio/sdrplusplus"
 # A multi-platform GUI application to effortlessly visualize MIDI activity
-cask "gbevin/tools/showmidi"
+cask "gbevin/tools/showmidi", trusted: true
 # Graphical user interface for TeX Live Manager
 cask "tex-live-utility"
 # macOS teleprompter that highlights your script in real-time as you speak
