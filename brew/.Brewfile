@@ -1,5 +1,4 @@
 tap "buo/cask-upgrade", trusted: true
-tap "f/textream", trusted: true
 tap "farion1231/ccswitch", trusted: true
 tap "gbevin/tools", trusted: true
 tap "gm5dna/amateur-radio", trusted: true
@@ -67,6 +66,10 @@ brew "duckdb"
 brew "etcd"
 # Modern, maintained replacement for ls
 brew "eza"
+# Powerful, lightweight programming language
+brew "lua"
+# Like neofetch, but much faster because written mostly in C
+brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Identify or delete duplicate files
@@ -99,8 +102,6 @@ brew "gitui"
 brew "glow"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-# Powerful, lightweight programming language
-brew "lua"
 # Command-driven, interactive function plotting
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
@@ -323,8 +324,6 @@ cask "gm5dna/amateur-radio/sdrplusplus"
 cask "gbevin/tools/showmidi", trusted: true
 # Graphical user interface for TeX Live Manager
 cask "tex-live-utility"
-# macOS teleprompter that highlights your script in real-time as you speak
-cask "f/textream/textream"
 # Web browser focusing on security
 cask "tor-browser"
 # Free and open-source OpenVPN client
