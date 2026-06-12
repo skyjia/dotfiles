@@ -158,6 +158,9 @@ export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
+# Added by Atopile CLI
+. "$HOME/Library/Application Support/Code/User/globalStorage/atopile.atopile/uv/env"
+
 
 # fzf (installed via Homebrew)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
