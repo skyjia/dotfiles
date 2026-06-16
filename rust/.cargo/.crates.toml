@@ -28,7 +28,7 @@
     "cargo-set-version",
     "cargo-upgrade",
 ]
-"cargo-generate 0.23.11 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-generate"]
+"cargo-generate 0.23.12 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-generate"]
 "cargo-list 0.34.1 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-list"]
 "cargo-make 0.37.24 (registry+https://github.com/rust-lang/crates.io-index)" = [
     "cargo-make",
@@ -39,6 +39,6 @@
     "cargo-install-update",
     "cargo-install-update-config",
 ]
-"just-lsp 0.4.5 (registry+https://github.com/rust-lang/crates.io-index)" = ["just-lsp"]
+"just-lsp 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)" = ["just-lsp"]
 "wasm-pack 0.15.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasm-pack"]
-"wasmtime-cli 45.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasmtime"]
+"wasmtime-cli 45.0.2 (registry+https://github.com/rust-lang/crates.io-index)" = ["wasmtime"]
