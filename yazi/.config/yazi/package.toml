@@ -10,5 +10,5 @@ hash = "c69a63981e254a3a06a11c2bf0e6af1d"
 
 [[flavor.deps]]
 use = "AdithyanA2005/nord"
-rev = "1b1bf78"
-hash = "4dbe11b947f327a0075d16f4a6b55043"
+rev = "34970be"
+hash = "6e1d257f00b540acbeb194082ce073c2"

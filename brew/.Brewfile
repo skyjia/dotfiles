@@ -1,11 +1,12 @@
 tap "buo/cask-upgrade", trusted: true
+tap "espressif/eim", trusted: true
 tap "farion1231/ccswitch", trusted: true
 tap "gbevin/tools", trusted: true
 tap "gm5dna/amateur-radio", trusted: true
 tap "helvesec/rmux", trusted: true
 tap "leoafarias/fvm", trusted: true
 tap "manaflow-ai/cmux", trusted: true
-tap "microsoft/mssql-release", trusted: true
+tap "microsoft/mssql-release", "https://github.com/Microsoft/homebrew-mssql-release", trusted: true
 # C++ Common Libraries
 brew "abseil"
 # Search tool like grep, but optimized for programmers
@@ -28,6 +29,8 @@ brew "asciidoctor"
 brew "asdf"
 # Zstandard is a real-time compression algorithm
 brew "zstd"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Interpreted, interactive, object-oriented programming language
@@ -46,6 +49,10 @@ brew "bottom"
 brew "buf"
 # Extract files from Microsoft cabinet files
 brew "cabextract"
+# Core application library for C
+brew "glib"
+# Low-level library for pixel manipulation
+brew "pixman"
 # CD/DVD/Blu-ray premastering and recording software
 brew "cdrtools"
 # Cross-platform make
@@ -56,6 +63,8 @@ brew "coreutils"
 brew "curl"
 # Modern diagram scripting language that turns text to diagrams
 brew "d2"
+# USB programmer
+brew "dfu-util"
 # Diff that understands syntax
 brew "difftastic"
 # Load/unload environment variables based on $PWD
@@ -74,6 +83,8 @@ brew "fastfetch"
 brew "fd"
 # Identify or delete duplicate files
 brew "fdupes"
+# SDL2 compatibility layer that uses SDL3 behind the scenes
+brew "sdl2-compat"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # Play, record, convert, and stream many audio and video codecs
@@ -100,6 +111,8 @@ brew "git-lfs"
 brew "gitui"
 # Render markdown on the CLI
 brew "glow"
+# Cryptographic library based on the code from GnuPG
+brew "libgcrypt"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Command-driven, interactive function plotting
@@ -138,6 +151,8 @@ brew "just"
 brew "lazygit"
 # JIT library for the GNU compiler collection
 brew "libgccjit"
+# General purpose TCP-IP emulator
+brew "libslirp"
 # Curses-based tool for viewing and analyzing log files
 brew "lnav"
 # Package manager for the Lua programming language
@@ -246,6 +261,8 @@ brew "zig"
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
+# ESP-IDF Installation Manager - CLI tool for setting up ESP-IDF development environment
+brew "espressif/eim/eim"
 # Multi-platform command-line tool to monitor and receive MIDI messages
 brew "gbevin/tools/receivemidi", trusted: true
 # Local terminal multiplexer with a tmux-style CLI and daemon runtime
@@ -270,6 +287,8 @@ cask "cmux"
 cask "codex"
 # Streamdeck extension and emulation software
 cask "companion"
+# GUI application for installing and managing ESP-IDF development environment
+cask "espressif/eim/eim-gui"
 cask "font-droid-sans-mono-nerd-font"
 cask "font-hack-nerd-font"
 cask "font-source-code-pro"
