@@ -1,4 +1,5 @@
 tap "buo/cask-upgrade", trusted: true
+tap "charmbracelet/tap"
 tap "espressif/eim", trusted: true
 tap "farion1231/ccswitch", trusted: true
 tap "gbevin/tools", trusted: true
@@ -95,8 +96,6 @@ brew "fish"
 brew "fzf"
 # GNU compiler collection
 brew "gcc"
-# Interact with Google Gemini AI models from the command-line
-brew "gemini-cli"
 # Nonsense activity generator
 brew "genact"
 # GitHub command-line tool
@@ -261,6 +260,8 @@ brew "zig"
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
+# A powerful terminal-based AI assistant for developers, providing intelligent coding assistance directly in your terminal.
+brew "charmbracelet/tap/crush", trusted: true
 # ESP-IDF Installation Manager - CLI tool for setting up ESP-IDF development environment
 brew "espressif/eim/eim"
 # Multi-platform command-line tool to monitor and receive MIDI messages
@@ -273,6 +274,8 @@ brew "microsoft/mssql-release/msodbcsql18"
 brew "microsoft/mssql-release/mssql-tools18"
 # Distribution of the Python and R programming languages for scientific computing
 cask "anaconda"
+# Terminal interface for Antigravity agents
+cask "antigravity-cli"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # 3D model editor for boxy models and pixel art textures
