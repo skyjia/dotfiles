@@ -56,6 +56,7 @@ koihik.vscode-lua-format
 leanprover.lean4
 lextudio.restructuredtext
 llvm-vs-code-extensions.lldb-dap
+llvm-vs-code-extensions.vscode-clangd
 mads-hartmann.bash-ide-vscode
 marus25.cortex-debug
 mattn.lisp

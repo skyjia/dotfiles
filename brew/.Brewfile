@@ -90,6 +90,8 @@ brew "sdl2-compat"
 brew "ffmpeg"
 # Play, record, convert, and stream many audio and video codecs
 brew "ffmpeg-full"
+# Collection of GNU find, xargs, and locate
+brew "findutils"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
 # Command-line fuzzy finder written in Go
@@ -110,6 +112,8 @@ brew "git-lfs"
 brew "gitui"
 # Render markdown on the CLI
 brew "glow"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
 # Cryptographic library based on the code from GnuPG
 brew "libgcrypt"
 # GNU Privacy Guard (OpenPGP)
