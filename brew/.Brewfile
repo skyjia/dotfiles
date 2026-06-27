@@ -148,6 +148,8 @@ brew "imagemagick-full", link: true
 brew "jj"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Fast, Dynamic Programming Language
+brew "julia"
 # Handy way to save and run project-specific commands
 brew "just"
 # Simple terminal UI for git commands
