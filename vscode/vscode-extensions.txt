@@ -9,6 +9,7 @@ asvetliakov.vscode-neovim
 atopile.atopile
 blockceptionltd.blockceptionvscodeminecraftbedrockdevelopmentextension
 bmalehorn.vscode-fish
+chrisjsewell.myst-tml-syntax
 christian-kohler.path-intellisense
 cl.keil-assistant
 codezombiech.gitignore
@@ -111,6 +112,7 @@ ms-vscode.cpptools-extension-pack
 ms-vscode.cpptools-themes
 ms-vscode.hexeditor
 ms-vscode.live-server
+ms-vscode.makefile-tools
 ms-vscode.powershell
 ms-vscode.remote-explorer
 ms-vscode.remote-server

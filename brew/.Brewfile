@@ -208,6 +208,8 @@ brew "protoc-gen-go-grpc"
 brew "python-yq"
 # QR Code generation
 brew "qrencode"
+# Work with series of patches
+brew "quilt"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
 # Perl-powered file rename script with many helpful built-ins
@@ -296,6 +298,8 @@ cask "cmux"
 cask "codex"
 # Streamdeck extension and emulation software
 cask "companion"
+# Visual tool for GUI development and T&M automation
+cask "eez-studio"
 # GUI application for installing and managing ESP-IDF development environment
 cask "espressif/eim/eim-gui"
 cask "font-droid-sans-mono-nerd-font"
