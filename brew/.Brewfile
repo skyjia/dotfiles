@@ -378,24 +378,18 @@ mas "Barbee", id: 1548711022
 mas "Bitwarden", id: 1352778147
 mas "Bluetooth Inspector", id: 1509085044
 mas "Business", id: 1588151344
-mas "Compressor", id: 6746516157
 mas "Developer", id: 640199958
 mas "Final Cut Pro", id: 1631624924
 mas "Folder Peek", id: 1615988943
 mas "GeoGebra Calculator Suite", id: 1504416652
 mas "Googly Eyes", id: 6743048714
 mas "HP", id: 1474276998
-mas "Keynote", id: 361285480
-mas "Logic Pro", id: 1615087040
 mas "MainStage", id: 6746637089
 mas "Motion", id: 6746637149
 mas "NCalc", id: 1449106995
 mas "NetEaseMusic", id: 944848654
-mas "Numbers", id: 361304891
 mas "Obsidian Web Clipper", id: 6720708363
-mas "Pages", id: 361309726
 mas "Photomator", id: 1444636541
-mas "Pixelmator Pro", id: 6746662575
 mas "Prodrafts", id: 1545810067
 mas "QQ音乐", id: 595615424
 mas "Remote Desktop", id: 409907375
@@ -406,7 +400,6 @@ mas "Swift Playground", id: 1496833156
 mas "Taio", id: 1527036273
 mas "TaskForge", id: 6744716215
 mas "TestFlight", id: 899247664
-mas "Xcode", id: 497799835
 mas "千牛", id: 6449173707
 mas "同花顺", id: 1247341465
 mas "抖音", id: 1640407382
