@@ -36,7 +36,7 @@ $ brew bundle cleanup --global --force
 You can use `brew bundle dump` to generate a Brewfile from your currently installed Homebrew dependencies by running:
 
 ```sh
-$ brew bundle dump --global --force --no-vscode --no-go --no-cargo
+$ brew bundle dump --global --force --no-vscode --no-go --no-cargo --no-mas
 ```
 
 This will create or overwrite the Brewfile in your home directory with a list of all currently installed Homebrew packages, casks, and taps, excluding VSCode extensions, Go packages, and Cargo packages.

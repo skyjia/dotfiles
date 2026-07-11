@@ -97,7 +97,7 @@ update-brew:
 # Dump current Homebrew packages to global Brewfile
 dump-brew:
     # Dumping Brewfile
-    brew bundle dump --global --force --describe --no-vscode --no-go --no-cargo
+    brew bundle dump --global --force --describe --no-vscode --no-go --no-cargo --no-mas
     @echo
 
 # Update rustup, rust toolchain, and cargo packages
@@ -124,6 +124,7 @@ update-nvim:
 update-apps:
     # Checking outdated applications from AppStore
     mas outdated
+    mas upgrade
     @echo
 
 # Update yazi plugins

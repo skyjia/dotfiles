@@ -34,8 +34,6 @@ brew "zstd"
 brew "python@3.14"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
 # Microsoft Azure CLI 2.0
 brew "azure-cli"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -76,8 +74,6 @@ brew "duckdb"
 brew "etcd"
 # Modern, maintained replacement for ls
 brew "eza"
-# Powerful, lightweight programming language
-brew "lua"
 # Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
@@ -88,6 +84,8 @@ brew "fdupes"
 brew "sdl2-compat"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# QR Code generation
+brew "qrencode"
 # Play, record, convert, and stream many audio and video codecs
 brew "ffmpeg-full"
 # Collection of GNU find, xargs, and locate
@@ -118,6 +116,8 @@ brew "gnu-sed"
 brew "libgcrypt"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Powerful, lightweight programming language
+brew "lua"
 # Command-driven, interactive function plotting
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
@@ -206,8 +206,8 @@ brew "protoc-gen-go"
 brew "protoc-gen-go-grpc"
 # Command-line YAML and XML processor that wraps jq
 brew "python-yq"
-# QR Code generation
-brew "qrencode"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
 # Work with series of patches
 brew "quilt"
 # Reattach process (e.g., tmux) to background
@@ -370,38 +370,3 @@ cask "vlc"
 cask "wave"
 # Multiplayer code editor
 cask "zed"
-mas "Actions", id: 1586435171
-mas "Actions For Obsidian", id: 1659667937
-mas "Apple Configurator", id: 1037126344
-mas "BaiduNetdisk", id: 547166701
-mas "Barbee", id: 1548711022
-mas "Bitwarden", id: 1352778147
-mas "Bluetooth Inspector", id: 1509085044
-mas "Business", id: 1588151344
-mas "Developer", id: 640199958
-mas "Final Cut Pro", id: 1631624924
-mas "Folder Peek", id: 1615988943
-mas "GeoGebra Calculator Suite", id: 1504416652
-mas "Googly Eyes", id: 6743048714
-mas "HP", id: 1474276998
-mas "MainStage", id: 6746637089
-mas "Motion", id: 6746637149
-mas "NCalc", id: 1449106995
-mas "NetEaseMusic", id: 944848654
-mas "Obsidian Web Clipper", id: 6720708363
-mas "Photomator", id: 1444636541
-mas "Prodrafts", id: 1545810067
-mas "QQ音乐", id: 595615424
-mas "Remote Desktop", id: 409907375
-mas "Scratch 3", id: 1446785996
-mas "Shareful", id: 1522267256
-mas "Shazam", id: 897118787
-mas "Swift Playground", id: 1496833156
-mas "Taio", id: 1527036273
-mas "TaskForge", id: 6744716215
-mas "TestFlight", id: 899247664
-mas "千牛", id: 6449173707
-mas "同花顺", id: 1247341465
-mas "抖音", id: 1640407382
-mas "网易有道翻译", id: 491854842
-mas "腾讯视频", id: 1231336508
