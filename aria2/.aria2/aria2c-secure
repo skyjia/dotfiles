@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# aria2c-secure — launch aria2c with RPC secret read from a LOCAL file
+#
+# This wrapper avoids storing the RPC secret in aria2.conf (which may be
+# tracked in dotfiles) AND avoids stow-managed paths (e.g. ~/.aria2 is a
+# symlink into the dotfiles repo on this machine).
+#
+# Secret location: ~/.config/aria2/.rpc_secret (mode 600, not stow-managed)
+#
+# Usage: aria2c-secure [any aria2c arguments...]
+# Example: aria2c-secure --daemon
+#          aria2c-secure --conf-path=/path/to/aria2.conf
+#
+# Setup: openssl rand -hex 16 > ~/.config/aria2/.rpc_secret && chmod 600 ~/.config/aria2/.rpc_secret
+
+set -euo pipefail
+
+RPC_SECRET_FILE="${HOME}/.config/aria2/.rpc_secret"
+
+if [[ ! -f "$RPC_SECRET_FILE" ]]; then
+    echo "Error: RPC secret file not found: $RPC_SECRET_FILE" >&2
+    echo "Generate one with: openssl rand -hex 16 > $RPC_SECRET_FILE && chmod 600 $RPC_SECRET_FILE" >&2
+    exit 1
+fi
+
+# Enforce strict permissions on the secret file
+PERMS=$(stat -f %Lp "$RPC_SECRET_FILE" 2>/dev/null || stat -c %a "$RPC_SECRET_FILE" 2>/dev/null)
+if [[ "$PERMS" != "600" ]]; then
+    echo "Error: $RPC_SECRET_FILE has mode $PERMS (should be 600). Refusing to read." >&2
+    echo "Run: chmod 600 $RPC_SECRET_FILE" >&2
+    exit 1
+fi
+
+RPC_SECRET=$(<"$RPC_SECRET_FILE")
+
+if [[ -z "$RPC_SECRET" ]]; then
+    echo "Error: $RPC_SECRET_FILE is empty" >&2
+    exit 1
+fi
+
+exec aria2c --rpc-secret="$RPC_SECRET" "$@"
