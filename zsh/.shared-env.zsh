@@ -38,9 +38,6 @@ export PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH"
 # shellcheck disable=SC1090
 . ~/.asdf/plugins/java/set-java-home.zsh
 
-# Export local npm bin
-export PATH=./node_modules/.bin:$PATH
-
 # OpenSSL 3.0
 #   $ brew info openssl
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
