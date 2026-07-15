@@ -38,19 +38,19 @@ export PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH"
 # shellcheck disable=SC1090
 . ~/.asdf/plugins/java/set-java-home.zsh
 
-# OpenSSL 3.0
-#   $ brew info openssl
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib $LDFLAGS"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include $CPPFLAGS"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
+# OpenSSL 3.0 (Homebrew)
+_brew_openssl=$(brew --prefix openssl@3)
+export PATH="$_brew_openssl/bin:$PATH"
+export LDFLAGS="-L$_brew_openssl/lib $LDFLAGS"
+export CPPFLAGS="-I$_brew_openssl/include $CPPFLAGS"
+export PKG_CONFIG_PATH="$_brew_openssl/lib/pkgconfig:$PKG_CONFIG_PATH"
+unset _brew_openssl
 
 # curl (via Homebrew)
-export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+export PATH="$(brew --prefix curl)/bin:$PATH"
 
-# PostgreSQL 18
-#   $ brew info postgresql@18
-export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
+# PostgreSQL 18 (Homebrew)
+export PATH="$(brew --prefix postgresql@18)/bin:$PATH"
 
 # Script Kit
 # export PATH="$PATH:$HOME/.kit/bin"
