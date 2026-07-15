@@ -18,7 +18,7 @@ font_size = 15.0
 
 [appearance.themes]
 theme = {
-  custom = { name = "V for Vendetta", path = "/Users/skyjia/.warp/themes/sky/v-for-vendetta.yaml" },
+  custom = { name = "V for Vendetta", path = "sky/v-for-vendetta.yaml" },
 }
 
 [appearance.full_screen_apps]
