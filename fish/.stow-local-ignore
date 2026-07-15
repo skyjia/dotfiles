@@ -1,2 +1,4 @@
 .gitignore
 \.DS_Store
+.config/fish/conf.d/.*\.secure\.fish
+.config/fish/fish_variables

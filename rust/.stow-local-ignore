@@ -1,1 +1,5 @@
 .gitignore
+.cargo/bin/
+.cargo/registry/
+.cargo/\.global-cache
+.cargo/\.package-cache.*
