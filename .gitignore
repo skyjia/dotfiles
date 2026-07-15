@@ -1,3 +1,4 @@
 .claude/*.local.json
 .antigravitycli/
 logs/
+.DS_Store
