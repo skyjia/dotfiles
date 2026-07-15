@@ -42,7 +42,7 @@ Major packages:
 - `iTerm/`, `ruby/`, `hg/` – Legacy/specific tools
 
 Non-stowable working directory:
-- `logs/` – BPMN diagrams and log files (not a stow package)
+- `logs/` – debug log output directory (not a stow package)
 
 ## Git Submodules
 
