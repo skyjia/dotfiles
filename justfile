@@ -110,8 +110,8 @@ update-rust:
     rustup update
     @echo
 
-    # Keeping rust packages up to date
-    cargo install-update --list | tee /dev/tty | awk '$4 == "Yes" {print $1}' | xargs -I {} cargo install {} --force
+    # Keeping rust packages up to date.
+    cargo install-update -a
     @echo
 
 # Update AstroNvim and Mason packages
