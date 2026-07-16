@@ -5,8 +5,6 @@ tap "espressif/eim", trusted: true
 tap "farion1231/ccswitch", trusted: true
 tap "gbevin/tools", trusted: true
 tap "gm5dna/amateur-radio", trusted: true
-tap "leoafarias/fvm", trusted: true
-tap "manaflow-ai/cmux", trusted: true
 tap "microsoft/mssql-release", "https://github.com/Microsoft/homebrew-mssql-release", trusted: true
 # C++ Common Libraries
 brew "abseil"
