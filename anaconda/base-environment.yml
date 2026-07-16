@@ -1,17 +1,3 @@
-/opt/homebrew/anaconda3/lib/python3.13/site-packages/conda/cli/main_export.py:295: CondaExportWarning: The exported environment contains 3rd party Python packages.
-
-Your environment contains 6 packages installed via pip. Conda cannot reliably lock these packages for reproducible environments.
-
-Detected packages:
-  - fastapi==0.136.1
-  - ifaddr==0.2.0
-  - rangehttpserver==1.4.0
-  - soco==0.31.0
-  - soco-cli==0.4.86
-  - xmltodict==1.0.4
-
-Learn more: https://docs.conda.io/projects/conda/en/stable/user-guide/configuration/pip-interoperability.html
-  warnings.warn(warning, CondaExportWarning)
 name: base
 channels:
   - defaults
@@ -574,4 +560,3 @@ dependencies:
       - soco==0.31.0
       - soco-cli==0.4.86
       - xmltodict==1.0.4
-prefix: /opt/homebrew/anaconda3

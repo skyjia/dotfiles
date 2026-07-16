@@ -75,7 +75,8 @@ update-conda:
     # Clean up caches, tarballs, and unused packages
     conda clean --all -y
     # Refresh base environment snapshot for reproducibility
-    conda env export -n base --no-builds > {{ justfile_directory() }}/anaconda/base-environment.yml
+    # Filter out machine-specific 'prefix:' line for cross-platform portability
+    conda env export -n base --no-builds 2>/dev/null | grep -v '^prefix:' > {{ justfile_directory() }}/anaconda/base-environment.yml
     @echo
 
 # Update vscode extensions and export list to file
