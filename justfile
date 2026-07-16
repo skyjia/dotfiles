@@ -80,7 +80,7 @@ update-vscode:
     # Update vscode extensions
     code --update-extensions
     # Export extension list to file
-    code --list-extensions > {{ justfile_directory() }}/vscode/vscode-extensions.txt
+    code --list-extensions > {{ justfile_directory() }}/backups/vscode/vscode-extensions.txt
     @echo
 
 # Update Homebrew packages and casks according to global Brewfile, then cleanup

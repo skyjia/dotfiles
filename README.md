@@ -33,7 +33,6 @@
 | `ghostty/` | Ghostty terminal configuration |
 | `warp/` | Warp terminal settings, themes, and tab configurations (via submodule) |
 | `waveterm/` | Wave terminal configuration with widgets |
-| `iTerm/` | iTerm2 configuration (legacy) |
 
 ### Terminal Multiplexers
 | Package | Description |
@@ -45,7 +44,6 @@
 | Package | Description |
 |---------|-------------|
 | `astro-nvim/` | AstroNvim configuration for Neovim |
-| `vscode/` | VSCode settings and extensions |
 | `zed/` | Zed editor settings |
 
 ### Prompt & CLI Tools

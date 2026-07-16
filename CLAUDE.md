@@ -74,7 +74,6 @@ Each top-level directory represents a stowable package:
 - `nushell/` - Nushell with autoloaded modules and vendor scripts
 - `astro-nvim/` - AstroNvim configuration for Neovim
 - `tmux/` - Terminal multiplexer configuration (via submodule)
-- `vscode/` - VSCode settings and extensions
 - `zed/` - Zed editor settings
 - `raycast/` - Raycast script commands (via submodules)
 - `warp/` - Warp terminal settings, themes, and tab configurations (via submodule)
@@ -95,7 +94,6 @@ Each top-level directory represents a stowable package:
 - `npm/` - npm configuration
 - `odbc/` - ODBC database configuration
 - `wget/` - wget configuration
-- `iTerm/` - iTerm2 configuration
 - `ruby/` - Ruby configuration
 - `hg/` - Mercurial configuration
 
