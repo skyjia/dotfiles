@@ -66,12 +66,16 @@ update-r-packages:
     Rscript -e 'update.packages(ask = FALSE)'
     @echo
 
-# Update Anaconda conda package manager and all packages
+# Update Anaconda conda package manager, all packages, and cleanup
 update-conda:
-    # Update the conda package manager to the latest version in base environment
-    -conda update -y -n base conda
-    # Update all conda packages
-    -conda update --all -y
+    # Update the conda package manager
+    conda update -y -n base conda
+    # Update all packages in base environment
+    conda update --all -y
+    # Clean up caches, tarballs, and unused packages
+    conda clean --all -y
+    # Refresh base environment snapshot for reproducibility
+    conda env export -n base --no-builds > {{ justfile_directory() }}/anaconda/base-environment.yml
     @echo
 
 # Update vscode extensions and export list to file
