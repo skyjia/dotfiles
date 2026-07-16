@@ -3,7 +3,7 @@
 > 由 2026-07-14 深度分析产生，覆盖 7 个维度：结构组织与文档、自动化与 justfile、Shell 配置质量、Git & Stow 卫生、安全与隐私、包管理与 Brew、配置一致与 Stow。
 > 共识别 **43 条** 发现（原始编号 1–43），经逐条确认，**38 条** 纳入本计划，**5 条** 跳过（#14 / #17 / #18 / #32 / #39）。
 >
-> **进度：** ✅ 22/38 已完成（#1、#2、#3、#4、#5、#8、#11、#12、#13、#15、#16、#19、#20、#21、#22、#26、#28、#29、#30、#31、#36）
+> **进度：** ✅ 26/38 已完成（#1、#2、#3、#4、#5、#8、#11、#12、#13、#15、#16、#19、#20、#21、#22、#23、#24、#26、#28、#29、#30、#31、#34、#35、#36）
 
 ---
 
@@ -216,23 +216,15 @@
   - ✅ AGENTS.md 描述改为 "debug log output directory"
   - ✅ 保留 `logs/` 目录（用途：调试日志输出）
 
-### 23. `vscode/` 包名不副实——实际不是 stow 包
-- **位置：** `/Users/skyjia/dotfiles/vscode/`（只含 `vscode-extensions.txt`）
-- **问题：** `stow vscode` 会创建 `~/vscode-extensions.txt` 符号链接，但 VSCode 不读这个位置。该文件只是 `just update-vscode` 生成的备份清单。
-- **修复（方案 A）：** 移到非 stow 包位置：
-  ```bash
-  mkdir -p backups
-  mv vscode/vscode-extensions.txt backups/
-  rmdir vscode
-  # 修改 justfile 中 update-vscode 的输出路径
-  ```
+### 23. ~~`vscode/` 包名不副实——实际不是 stow 包~~ ✅ 已完成
+- **状态：** 已完成（2026-07-16，commit `9f853d9`）
+- **位置：** `vscode/vscode-extensions.txt` → `backups/vscode/vscode-extensions.txt`
+- **实际执行：** 移至 `backups/vscode/`；更新 justfile `update-vscode` 输出路径；从 CLAUDE.md 和 README.md 的包列表移除；根 `.stow-local-ignore` 加入 `backups`
 
-### 24. `iTerm/` 仍在用但被错误标为 legacy
-- **位置：** `/Users/skyjia/dotfiles/iTerm/`、`CLAUDE.md`
-- **用户澄清：** iTerm 仍在使用；CLAUDE.md 标为 legacy 是错误的。
-- **修复（方案 B）：**
-  1. 在 `iTerm/.stow-local-ignore` 中加 `Profiles.json`，避免链接到 `$HOME`
-  2. 修订 CLAUDE.md，移除 iTerm 的 "legacy" 标注
+### 24. ~~`iTerm/` 仍在用但被错误标为 legacy~~ ✅ 已完成
+- **状态：** 已完成（2026-07-16，commit `9f853d9`）
+- **位置：** `iTerm/Profiles.json` → `backups/iTerm/Profiles.json`
+- **实际执行：** 与 #23 合并处理——同属"备份性质"内容，统一移至 `backups/iTerm/`；删除 `iTerm/.stow-local-ignore`；从 CLAUDE.md 和 README.md 移除 iTerm 条目
 
 ### 25. fish 启动时每次调用 `brew --prefix golang`
 - **位置：** fish 配置中 `brew --prefix golang` 子进程调用
@@ -286,16 +278,21 @@
   - ✅ 使用跨平台 `stat`（macOS `-f %Lp` / Linux `-c %a`）读取权限
   - ✅ 用 `$pwfile` 变量统一引用路径，避免硬编码重复
 
-### 34. `ffmpeg` 与 `ffmpeg-full` 同时安装，功能重复
+### 34. ~~`ffmpeg` 与 `ffmpeg-full` 同时安装，功能重复~~ ✅ 已完成
+- **状态：** 已完成（2026-07-16，commit `16312aa`）
 - **位置：** `brew/.Brewfile` 第 86 行、第 90 行
-- **修复：** 保留 `ffmpeg-full`，移除 `brew "ffmpeg"`。
+- **实际执行：**
+  - Brewfile 移除 `brew "ffmpeg"`
+  - 实际运行 `brew uninstall ffmpeg`（释放 53.5MB）
+  - 验证：`ffmpeg` 二进制仍可用（由 `ffmpeg-full` keg-only 提供）
 
-### 35. `helvesec/rmux/rmux` 遮蔽了 homebrew-core 的 `rmux`
+### 35. ~~`helvesec/rmux/rmux` 遮蔽了 homebrew-core 的 `rmux`~~ ✅ 已完成
+- **状态：** 已完成（2026-07-16，commit `16312aa`）
 - **位置：** `brew/.Brewfile` 第 7 行、第 278 行
-- **修复（方案 B）：** 改回 homebrew-core 版本
-  ```bash
-  brew untap hevesec/rmux
-  # Brewfile 改为 brew "rmux"
+- **实际执行（方案 B）：**
+  - Brewfile 移除 tap 行，把 `brew "helvesec/rmux/rmux", trusted: true` 改为 `brew "rmux"`
+  - 实际运行 `brew reinstall --force-bottle homebrew/core/rmux` 然后 `brew untap helvesec/rmux`
+  - 验证：rmux 来自 homebrew-core，无 shadow warning
   ```
 
 ### 36. ~~`just dump-brew` 重生成会抹掉手工注释和分组~~ ✅ 已完成

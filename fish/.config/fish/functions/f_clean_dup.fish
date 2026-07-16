@@ -36,6 +36,8 @@ function f_clean_dup -d "Clean up duplicate files in a specified directory using
 
     echo "Cleaning duplicated files at: \"$abs_dir\""
 
-    # Run the core command
-    fdupes --recurse --delete --noprompt $target_dir
+    # Run the core command on the validated, resolved path (not the raw
+    # user input) — prevents symlink-based bypass of the home-directory
+    # containment check above.
+    fdupes --recurse --delete --noprompt $abs_dir
 end

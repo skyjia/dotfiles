@@ -17,21 +17,21 @@
 #         GUI tools like RStudio read these files directly (not shell env).
 
 # ============================================================
-# Internal: scutil cache
+# Internal: scutil cache (universal variables persist across sessions)
 # ============================================================
 
 # Cache scutil --proxy output to avoid spawning scutil on every call.
-# Refreshed at most every PROXY_CACHE_TTL seconds.
-set -g PROXY_CACHE_TTL 10
+# Refreshed at most every SCUTIL_PROXY_CACHE_TTL seconds.
+set -U SCUTIL_PROXY_CACHE_TTL 10
 
 # Return cached `scutil --proxy` output; refresh if stale.
 function get_sys_proxy --description 'Return scutil --proxy output, cached'
     set -l now (date +%s)
-    if not set -q SCUTIL_PROXY_CACHE_TIME; or test (math "$now - $SCUTIL_PROXY_CACHE_TIME") -gt $PROXY_CACHE_TTL
-        set -g SCUTIL_PROXY_CACHE (scutil --proxy | string collect -N)
-        set -g SCUTIL_PROXY_CACHE_TIME $now
+    if not set -q SCUTIL_PROXY_CACHE_TIME; or test (math "$now - $SCUTIL_PROXY_CACHE_TIME") -gt $SCUTIL_PROXY_CACHE_TTL
+        set -U SCUTIL_PROXY_CACHE_VALUE (scutil --proxy | string collect -N)
+        set -U SCUTIL_PROXY_CACHE_TIME $now
     end
-    echo $SCUTIL_PROXY_CACHE
+    echo $SCUTIL_PROXY_CACHE_VALUE
 end
 
 # Read a single scalar field (e.g. HTTPProxy, HTTPPort) from cached output.
