@@ -3,6 +3,12 @@
 # (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
 #         without any warranty.
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
+#
+# NOTE: Upstream gpakosz/.tmux treats .tmux.conf.local as a machine-local
+# override (gitignored). This dotfiles repo intentionally tracks and shares
+# this file across all my machines — treat it as a shared customization
+# layer, not a per-machine scratch pad. For truly machine-specific settings,
+# use environment variables or conditional logic inside this file.
 
 
 # -- navigation ----------------------------------------------------------------
