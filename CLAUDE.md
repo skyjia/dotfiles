@@ -21,6 +21,13 @@ just update-apps        # Check outdated App Store apps (mas)
 just update-editors     # Update nvim (AstroNvim), vscode, yazi
 just update-dev         # Update R packages, conda, asdf, rust toolchain
 just update-ai          # Update claude and dws (DingTalk Workspace CLI)
+
+# Cargo package management
+just install-cargo-crates    # Install all cargo packages from crates.txt (new machine setup)
+just cargo-install <pkg>     # Install a single cargo package and sync to crates.txt
+
+# macOS utilities
+just wash-macos-provenance   # Clear quarantine and provenance attributes from downloaded files
 ```
 
 ### Package Management with Stow
@@ -88,7 +95,7 @@ Each top-level directory represents a stowable package:
 - `npm/` - npm configuration
 - `odbc/` - ODBC database configuration
 - `wget/` - wget configuration
-- `iTerm/` - iTerm2 configuration (legacy)
+- `iTerm/` - iTerm2 configuration
 - `ruby/` - Ruby configuration
 - `hg/` - Mercurial configuration
 
@@ -113,6 +120,7 @@ Each top-level directory represents a stowable package:
 ### Development Environment
 - **Version managers**: asdf for multiple language runtimes
 - **Package managers**: Homebrew (macOS), conda (Python), cargo (Rust)
+- **Cargo package manifest**: `rust/.cargo/crates.txt` lists desired cargo packages; `just install-cargo-crates` installs them all, `just cargo-install <pkg>` installs one and syncs to manifest
 - **Editor ecosystem**: Neovim with AstroNvim, VSCode, Zed, yazi
 - **Terminal tools**: starship prompt, zoxide, fzf, lazygit, ghostty, zellij
 - **Scripting**: Raycast script commands, nushell modules

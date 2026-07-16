@@ -45,6 +45,7 @@ gruntfuggly.todo-tree
 hediet.vscode-drawio
 htmlhint.vscode-htmlhint
 ideashpprime.hp-prime-language-support
+idleberg.applescript
 james-yu.latex-workshop
 jebbs.plantuml
 jeff-hykin.better-cpp-syntax
@@ -160,6 +161,7 @@ terrastruct.d2
 thenuprojectcontributors.vscode-nushell-lang
 timonwong.shellcheck
 trond-snekvik.simple-rst
+tutuge.claude-code-notifier-plus
 typescriptteam.native-preview
 tyriar.sort-lines
 unifiedjs.vscode-mdx
