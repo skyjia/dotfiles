@@ -114,6 +114,12 @@ update-rust:
     cargo install-update -a
     @echo
 
+# Install cargo packages from crates.txt manifest (for new machine setup)
+install-crates:
+    # Installing cargo packages from manifest
+    grep -v '^#' {{ justfile_directory() }}/rust/.cargo/crates.txt | grep -v '^$$' | xargs -I {} cargo install {}
+    @echo
+
 # Update AstroNvim and Mason packages
 update-nvim:
     # Updating AstroNvim

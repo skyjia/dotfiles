@@ -3,3 +3,5 @@
 .cargo/registry/
 .cargo/\.global-cache
 .cargo/\.package-cache.*
+.cargo/\.crates\.toml
+.cargo/\.crates2\.json

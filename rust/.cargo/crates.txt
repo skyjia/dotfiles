@@ -1,0 +1,18 @@
+# Cargo packages to install on all machines.
+# Install with: just install-crates
+#
+# One package name per line. Lines starting with # are comments.
+# `cargo install` fetches the latest compatible version from the
+# configured registry (rsproxy-sparse by default).
+
+cargo-binutils
+cargo-cache
+cargo-edit
+cargo-generate
+cargo-list
+cargo-make
+cargo-outdated
+cargo-update
+just-lsp
+wasm-pack
+wasmtime-cli
