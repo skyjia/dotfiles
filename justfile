@@ -99,8 +99,9 @@ update-brew:
 
 # Dump current Homebrew packages to global Brewfile
 dump-brew:
+    #!/usr/bin/env fish
     # Dumping Brewfile
-    brew bundle dump --global --force --describe --no-vscode --no-go --no-cargo --no-mas
+    brew bundle dump --global --force --no-vscode --no-go --no-cargo --no-mas
     # Prepend auto-generated comment to Brewfile
     set -l brewfile {{ justfile_directory() }}/brew/.Brewfile
     set -l tmp $brewfile.tmp
@@ -138,15 +139,17 @@ cargo-install pkg:
 
 # Update AstroNvim and Mason packages
 update-nvim:
+    #!/usr/bin/env fish
     # Updating AstroNvim (skipped if nvim is not installed)
     if command -v nvim >/dev/null 2>&1
-    nvim --headless "+AstroUpdate" "+MasonUpdate" "+qa!" 2>&1 || echo "nvim/AstroNvim update failed (non-fatal)"
+    nvim --headless "+AstroUpdate" "+MasonToolsUpdateSync" "+qa!" 2>&1 || echo "nvim/AstroNvim update failed (non-fatal)"
     else
     echo "nvim not installed; skipping"
     end
 
 # Check outdated applications from App Store
 update-apps:
+    #!/usr/bin/env fish
     # Checking outdated applications from AppStore
     if test (uname) = Darwin
     mas outdated || true
