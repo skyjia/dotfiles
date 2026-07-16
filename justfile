@@ -120,11 +120,16 @@ install-cargo-crates:
     grep -v '^#' {{ justfile_directory() }}/rust/.cargo/crates.txt | grep -v '^$$' | xargs -I {} cargo install {}
     @echo
 
-# Install a single cargo package by name
-# Usage: just cargo-install <package>
+# Install a cargo package and sync it to crates.txt (deduplicated)
 cargo-install pkg:
     # Installing cargo package: {{ pkg }}
     cargo install {{ pkg }}
+    # Sync to crates.txt: append if missing, deduplicate preserving order
+    grep -qx '{{ pkg }}' {{ justfile_directory() }}/rust/.cargo/crates.txt \
+        || echo '{{ pkg }}' >> {{ justfile_directory() }}/rust/.cargo/crates.txt
+    awk '!seen[$$0]++' {{ justfile_directory() }}/rust/.cargo/crates.txt \
+        > {{ justfile_directory() }}/rust/.cargo/crates.txt.tmp \
+        && mv {{ justfile_directory() }}/rust/.cargo/crates.txt.tmp {{ justfile_directory() }}/rust/.cargo/crates.txt
     @echo
 
 # Update AstroNvim and Mason packages
