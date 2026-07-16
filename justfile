@@ -26,11 +26,10 @@ update-dev: update-r-packages update-conda update-asdf update-rust
 # Update claude, antigravity, and dws CLI tools
 update-ai: update-claude update-antigravity update-dws
 
-# Wash macOS provenance attributes (quarantine and provenance) from current directory
+# Wash macOS provenance attributes from the project root
 wash-macos-provenance:
-    # Wash macOS provenance
-    xattr -d com.apple.quarantine -r .
-    xattr -d com.apple.provenance -r .
+    # Washing macOS provenance attributes from project root
+    wash-macos-provenance {{ justfile_directory() }}
 
 # Pull latest changes from remote repository
 pull-latest:
