@@ -123,6 +123,15 @@ Each top-level directory represents a stowable package:
 - **Terminal tools**: starship prompt, zoxide, fzf, lazygit, ghostty, zellij
 - **Scripting**: Raycast script commands, nushell modules
 
+### Python Strategy
+Python is intentionally NOT managed by asdf. Two sources coexist with clear responsibilities:
+- **conda (anaconda)** — data-science work. `conda`-installed python is the default `python3` in PATH (via anaconda's bin dir prepended to PATH).
+- **brew (python@3.13, python@3.14)** — system scripting and tool dependencies. These brew pythons are not used for application development; they exist because other Homebrew formulae depend on them.
+
+### Node/Ruby Strategy
+- **asdf** — primary manager for `nodejs` and `ruby` (versions pinned in `asdf/.tool-versions`).
+- **brew** — `node` and `ruby` may appear in `brew list` as transitive dependencies of other formulae. They are not the user-facing versions; asdf shims take precedence in PATH.
+
 ### Proxy and Network Configuration
 The zsh configuration includes sophisticated proxy management:
 - Automatic detection of system proxy settings
