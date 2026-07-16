@@ -5,7 +5,6 @@ tap "espressif/eim", trusted: true
 tap "farion1231/ccswitch", trusted: true
 tap "gbevin/tools", trusted: true
 tap "gm5dna/amateur-radio", trusted: true
-tap "helvesec/rmux", trusted: true
 tap "leoafarias/fvm", trusted: true
 tap "manaflow-ai/cmux", trusted: true
 tap "microsoft/mssql-release", "https://github.com/Microsoft/homebrew-mssql-release", trusted: true
@@ -83,8 +82,6 @@ brew "fd"
 brew "fdupes"
 # SDL2 compatibility layer that uses SDL3 behind the scenes
 brew "sdl2-compat"
-# Play, record, convert, and stream select audio and video codecs
-brew "ffmpeg"
 # QR Code generation
 brew "qrencode"
 # Play, record, convert, and stream many audio and video codecs
@@ -276,7 +273,7 @@ brew "espressif/eim/eim"
 # Multi-platform command-line tool to monitor and receive MIDI messages
 brew "gbevin/tools/receivemidi", trusted: true
 # Local terminal multiplexer with a tmux-style CLI and daemon runtime
-brew "helvesec/rmux/rmux", trusted: true
+brew "rmux"
 # ODBC Driver for Microsoft(R) SQL Server(R)
 brew "microsoft/mssql-release/msodbcsql18"
 # Sqlcmd and Bcp for Microsoft(R) SQL Server(R)
