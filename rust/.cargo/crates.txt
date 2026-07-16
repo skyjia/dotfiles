@@ -1,5 +1,5 @@
 # Cargo packages to install on all machines.
-# Install with: just install-crates
+# Install with: just install-cargo-crates
 #
 # One package name per line. Lines starting with # are comments.
 # `cargo install` fetches the latest compatible version from the
