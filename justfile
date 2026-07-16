@@ -43,7 +43,7 @@ update-submodules:
     # Pull all changes for the submodules
     git submodule update --remote
     # Record submodule SHAs for review
-    git submodule status | awk '{print $$1, $$2}' > .submodule-versions
+    git submodule status | awk '{print $1, $2}' > .submodule-versions
     git add .submodule-versions
     @echo "Run 'git diff --cached .submodule-versions' to review, then commit"
 

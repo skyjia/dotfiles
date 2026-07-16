@@ -3,7 +3,7 @@
 > 由 2026-07-14 深度分析产生，覆盖 7 个维度：结构组织与文档、自动化与 justfile、Shell 配置质量、Git & Stow 卫生、安全与隐私、包管理与 Brew、配置一致与 Stow。
 > 共识别 **43 条** 发现（原始编号 1–43），经逐条确认，**38 条** 纳入本计划，**5 条** 跳过（#14 / #17 / #18 / #32 / #39）。
 >
-> **进度：** ✅ 26/38 已完成（#1、#2、#3、#4、#5、#8、#11、#12、#13、#15、#16、#19、#20、#21、#22、#23、#24、#26、#28、#29、#30、#31、#34、#35、#36）
+> **进度：** ✅ 28/38 已完成（#1、#2、#3、#4、#5、#8、#11、#12、#13、#15、#16、#19、#20、#21、#22、#23、#24、#25、#26、#27、#28、#29、#30、#31、#34、#35、#36）
 
 ---
 
@@ -137,10 +137,11 @@
 - **实际执行（方案 B：完全重写）：** 修复所有拼写、按类别枚举全部 30 个包、新增 Just 命令参考段、改 "OS X" 为 "macOS/Linux"。
 
 ### 12. ~~`just update-submodules` 用 `--remote` 绕过版本锁定~~ ✅ 已完成
-- **状态：** 已完成（2026-07-16，commit `d160b3a`）
+- **状态：** 已完成（2026-07-16，commit `d160b3a`，awk 语法修复见下文）
 - **位置：** `justfile:42–45`
 - **问题：** 直接 checkout 上游 tracked branch 的最新 commit，丢失可重现性，破坏性变更无预警。
 - **实际执行（方案 B：自动升级但显式记录）：** `git submodule update --remote` 后，把 SHAs 写入 `.submodule-versions` 并 `git add`，提示用户 review 后 commit。
+- **附带修复：** awk 命令中 `$$1` 改为 `$1`——just 不转换 `$$`，原样传给 fish，而 fish 中 `$$` 被解析为 PID（导致 awk 字段引用错误）。justfile 中直接写 `$1` 即可。
 
 ### 13. ~~`just update-rust` 的 awk 管道脆弱且低效~~ ✅ 已完成
 - **状态：** 已完成（2026-07-15，commit `1115f3a`，经 3 次迭代）
@@ -226,10 +227,21 @@
 - **位置：** `iTerm/Profiles.json` → `backups/iTerm/Profiles.json`
 - **实际执行：** 与 #23 合并处理——同属"备份性质"内容，统一移至 `backups/iTerm/`；删除 `iTerm/.stow-local-ignore`；从 CLAUDE.md 和 README.md 移除 iTerm 条目
 
-### 25. fish 启动时每次调用 `brew --prefix golang`
-- **位置：** fish 配置中 `brew --prefix golang` 子进程调用
+### 25. ~~fish 启动时每次调用 `brew --prefix golang`~~ ✅ 已完成
+- **状态：** 已完成（2026-07-16，commit `25d692b`）
+- **位置：** `fish/.config/fish/conf.d/golang.fish`
 - **问题：** 每次 fish 启动耗时 ~26ms；加上 `scutil --proxy` 等调用累积拖慢 shell 启动。
-- **修复（方案 A：缓存结果）：** 把 `brew --prefix` 的结果缓存到变量或直接硬编码 Apple Silicon 路径 `/opt/homebrew/opt/go`。
+- **实际执行：** 用 fish 通用变量（`set -U`）缓存 `brew --prefix golang` 结果，TTL 24 小时：
+  - `BREW_GOLANG_CACHE_VALUE`（缓存值）
+  - `BREW_GOLANG_CACHE_TIME`（上次刷新时间）
+  - `BREW_GOLANG_CACHE_TTL = 86400`（秒）
+- **附带改动：** `surge-proxy.fish` 的缓存变量同步规范化（统一为 `<SOURCE>_<PURPOSE>_CACHE_<TTL|VALUE|TIME>` 命名，全部改 `set -U`）
+
+### 27. ~~`f_clean_dup` 函数存在 symlink 校验绕过漏洞~~ ✅ 已完成
+- **状态：** 已完成（2026-07-16，commit `25d692b`）
+- **位置：** `fish/.config/fish/functions/f_clean_dup.fish`
+- **问题：** 校验用 `realpath` 解析后的路径，但 fdupes 运行在原始 `$target_dir` 上。如果 `$target_dir` 是 symlink，校验可能被绕过。
+- **实际执行（最小信任原则）：** `fdupes` 命令改用 `$abs_dir`（校验后的规范化路径），避免 symlink 绕过
 
 ### 26. ~~nushell 每次启动都重新生成 asdf completion 文件~~ ✅ 已完成
 - **状态：** 已完成（2026-07-15，commit `24383bc`）
@@ -237,11 +249,6 @@
 - **问题：** 每次启动都调用 `asdf` 子进程 + `sed` + 写文件，即便内容未变。
 - **实际执行：** 改为按需重生成——先对比新旧内容（byte-for-byte 通过临时文件），仅内容变化时写入。用 `save -f` 直接写 byte stream，避免 `str join` 引起的格式差异。
 - **附带修复：** 移除过时的 `sed 's/\-\-ignore\-errors/--optional/'`（asdf 0.14+ 已修复 #2156，不再输出 `--ignore-errors`）。
-
-### 27. `f_clean_dup` 函数存在 symlink 校验绕过漏洞
-- **位置：** `fish/.config/fish/functions/f_clean_dup.fish`
-- **问题：** 校验用 `realpath` 解析后的路径，但 fdupes 运行在原始 `$target_dir` 上。如果 `$target_dir` 是 symlink，校验可能被绕过。
-- **修复（最小信任原则）：** 校验后所有后续操作（fdupes、rm）都使用规范化路径 `$abs_dir`，或用 `cd $abs_dir; fdupes ...`。
 
 ### 28. ~~多个配置文件中硬编码绝对路径~~ ✅ 已完成
 - **状态：** 已完成（2026-07-15）
