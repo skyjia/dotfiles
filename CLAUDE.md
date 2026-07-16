@@ -51,8 +51,8 @@ The `--target=$HOME` option is configured in `.stowrc` for global symlink applic
 
 ### Editor Updates
 ```bash
-# Update AstroNvim
-nvim +AstroUpdate +MasonUpdate +q +q
+# Update AstroNvim (headless, synchronous Mason tool update)
+nvim --headless "+AstroUpdate" "+MasonToolsUpdateSync" "+qa!"
 
 # Update yazi plugins
 just update-yazi
@@ -123,9 +123,16 @@ Each top-level directory represents a stowable package:
 - **Terminal tools**: starship prompt, zoxide, fzf, lazygit, ghostty, zellij
 - **Scripting**: Raycast script commands, nushell modules
 
+### Backups Directory
+Non-stowable backup files are kept under `backups/` (git-tracked, stow-ignored via root `.stow-local-ignore`):
+- `backups/vscode/vscode-extensions.txt` — VSCode extension list (auto-maintained by `just update-vscode`)
+- `backups/iTerm/Profiles.json` — iTerm2 profile backup
+
+Each backup source has its own subdirectory for isolation.
+
 ### Python Strategy
 Python is intentionally NOT managed by asdf. Two sources coexist with clear responsibilities:
-- **conda (anaconda)** — data-science work. `conda`-installed python is the default `python3` in PATH (via anaconda's bin dir prepended to PATH).
+- **conda (anaconda)** — data-science work. `conda`-installed python is the default `python3` in PATH (via anaconda's bin dir prepended to PATH). Base environment snapshot tracked in `anaconda/base-environment.yml` (auto-refreshed by `just update-conda`; `--no-builds` for portability, `prefix:` filtered for cross-platform).
 - **brew (python@3.13, python@3.14)** — system scripting and tool dependencies. These brew pythons are not used for application development; they exist because other Homebrew formulae depend on them.
 
 ### Node/Ruby Strategy

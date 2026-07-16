@@ -31,7 +31,7 @@ Top-level directories are stowable packages applied via `stow package_name`. All
 Major packages:
 - `git/`, `zsh/`, `fish/`, `nushell/` – Shell and VCS config
 - `astro-nvim/` – Neovim config (AstroNvim)
-- `vscode/`, `zed/` – Editor settings
+- `zed/` – Editor settings
 - `tmux/`, `karabiner/`, `ghostty/`, `warp/`, `waveterm/`, `zellij/` – Terminal/CLI tools
 - `bat/`, `yazi/`, `starship/` – CLI utilities
 - `raycast/` – Raycast script commands
@@ -39,10 +39,20 @@ Major packages:
 - `asdf/`, `R/`, `rust/`, `anaconda/` – Version managers and runtime config
 - `aria2/`, `npm/`, `odbc/`, `wget/` – Network/download tools
 - `cmux/` – cmux configuration
-- `iTerm/`, `ruby/`, `hg/` – Legacy/specific tools
+- `ruby/`, `hg/` – Legacy/specific tools
 
 Non-stowable working directory:
 - `logs/` – debug log output directory (not a stow package)
+
+## Backups Directory
+
+Non-stowable backup files are kept under `backups/` (git-tracked, stow-ignored):
+- `backups/vscode/vscode-extensions.txt` – VSCode extension list
+- `backups/iTerm/Profiles.json` – iTerm2 profile backup
+
+## Conda Environment
+
+`anaconda/base-environment.yml` tracks the base conda environment snapshot. Auto-refreshed by `just update-conda` (`--no-builds` for portability, `prefix:` filtered out).
 
 ## Git Submodules
 
@@ -62,9 +72,9 @@ Running `just update-dotfiles` or `just all` automatically updates them.
 - fish: `fish/.config/fish/config.fish` – Includes `reset_app_permissions` function
 - nushell: `nushell/autoload/` – Modular environment setup
 
-**Neovim:** `astro-nvim/` follows AstroNvim structure; update via `nvim +AstroUpdate +MasonUpdate +q +q`
+**Neovim:** `astro-nvim/` follows AstroNvim structure; update via `nvim --headless "+AstroUpdate" "+MasonToolsUpdateSync" "+qa!"`
 
-**VSCode:** `vscode/` settings; extensions list in `vscode/vscode-extensions.txt` (auto-maintained by `just update-vscode`)
+**VSCode:** Extensions list in `backups/vscode/vscode-extensions.txt` (auto-maintained by `just update-vscode`; not a stow package)
 
 **Terminal Emulators:**
 - Warp: `warp/.warp/settings.toml` (settings) + `warp/.warp/tab_configs/` (tab layouts)
@@ -80,5 +90,5 @@ Running `just update-dotfiles` or `just all` automatically updates them.
 - **Proxy config (zsh only):** Auto-enables on shell startup via `ensure_enable_proxy`. Toggle with `tp`/`tpe`/`tpd`. Syncs git proxy config. Not in other shells. Conda init is commented out (disabled for performance).
 - **No tests or CI:** This is personal config, not a tested package. No build artifacts to worry about.
 - **asdf pinning:** Check `asdf/check-tools-version.nu` after running `just update-asdf`; it validates tool versions.
-- **Brew globals:** Using `brew bundle --global` (not local to repo). Extensions managed in `vscode/vscode-extensions.txt`.
+- **Brew globals:** Using `brew bundle --global` (not local to repo). Extensions managed in `backups/vscode/vscode-extensions.txt`.
 - **AI tools:** `update-ai` now includes both `claude update` and `dws upgrade` (DingTalk Workspace CLI).
