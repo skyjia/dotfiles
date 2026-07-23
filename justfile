@@ -9,7 +9,7 @@ default:
     @just --list
 
 # Update all components (dotfiles, brew, shells, apps, editors, dev tools, AI tools)
-all: update-dotfiles update-brew update-shells update-apps update-editors update-dev update-ai
+all: update-dotfiles update-brew update-shells update-dev update-apps update-editors update-ai
 
 # Pull latest changes and update submodules
 update-dotfiles: pull-latest update-submodules
