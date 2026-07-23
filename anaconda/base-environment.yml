@@ -555,9 +555,10 @@ dependencies:
   - zstandard=0.24.0
   - zstd=1.5.7
   - pip:
-      - fastapi==0.136.1
+      - appdirs==1.4.4
+      - fastapi==0.139.2
       - ifaddr==0.2.0
       - rangehttpserver==1.4.0
-      - soco==0.31.0
+      - soco==0.31.1
       - soco-cli==0.4.86
       - xmltodict==1.0.4

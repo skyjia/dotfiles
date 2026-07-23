@@ -68,6 +68,8 @@ update-r-packages:
 
 # Update Anaconda conda package manager, all packages, and cleanup
 update-conda:
+    # Upgrade pip packages to latest (read from base-environment.yml)
+    pip install -U $(yq -r '.dependencies[] | select(type == "object") | select(.pip != null) | .pip[]' {{ justfile_directory() }}/anaconda/base-environment.yml | awk -F'==' '{print $1}')
     # Update the conda package manager
     conda update -y -n base conda
     # Update all packages in base environment
