@@ -456,7 +456,7 @@
                     "to": [{ "key_code": "volume_up" }]
                 }
             ],
-            "name": "Sky - Clear",
+            "name": "Default Clean",
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
                 "country_code": 0,
