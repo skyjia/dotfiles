@@ -397,7 +397,6 @@
                 }
             ],
             "name": "Sky",
-            "selected": true,
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
                 "country_code": 0,
@@ -456,7 +455,8 @@
                     "to": [{ "key_code": "volume_up" }]
                 }
             ],
-            "name": "Sky - No Modifications",
+            "name": "Sky - Clear",
+            "selected": true,
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
                 "country_code": 0,
