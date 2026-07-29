@@ -158,7 +158,7 @@ dependencies:
   - imageio=2.37.3
   - imagesize=1.4.1
   - imbalanced-learn=0.14.2
-  - importlib-metadata=8.7.1
+  - importlib-metadata=9.0.0
   - inflection=0.5.1
   - iniconfig=2.3.0
   - intake=2.0.9
@@ -403,7 +403,7 @@ dependencies:
   - python-installer=1.0.1
   - python-json-logger=4.0.0
   - python-libarchive-c=5.3
-  - python-librt=0.8.1
+  - python-librt=0.13.0
   - python-lmdb=1.7.5
   - python-lsp-black=2.0.0
   - python-lsp-jsonrpc=1.1.2
@@ -556,7 +556,7 @@ dependencies:
   - zstd=1.5.7
   - pip:
       - appdirs==1.4.4
-      - fastapi==0.140.0
+      - fastapi==0.140.13
       - ifaddr==0.2.0
       - rangehttpserver==1.4.0
       - soco==0.31.1

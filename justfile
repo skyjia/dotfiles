@@ -89,12 +89,14 @@ update-vscode:
     code --list-extensions > {{ justfile_directory() }}/backups/vscode/vscode-extensions.txt
     @echo
 
-# Update Homebrew packages and casks according to global Brewfile, then cleanup
+# Update Homebrew packages and casks according to global Brewfile, upgrade all installed packages, then cleanup
 update-brew:
     # Update Homebrew formula lists
     brew update
-    # Install/upgrade packages according to Brewfile
+    # Install packages missing from Brewfile
     brew bundle --global -v
+    # Upgrade all installed packages (greedy: also refresh :latest casks and greedy-outdated ones)
+    brew upgrade --yes --greedy
     # Remove packages not in Brewfile
     brew bundle cleanup --global --force
     # Remove unused dependencies
