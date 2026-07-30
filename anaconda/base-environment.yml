@@ -19,7 +19,6 @@ dependencies:
   - anaconda-client=1.14.1
   - anaconda-navigator=2.7.1
   - anaconda-project=0.13.2
-  - annotated-doc=0.0.4
   - annotated-types=0.7.0
   - anyio=4.12.1
   - aom=3.13.2
@@ -62,7 +61,7 @@ dependencies:
   - bleach=6.4.0
   - blinker=1.9.0
   - blosc=1.21.6
-  - bokeh=3.9.1
+  - bokeh=3.9.2
   - boltons=25.0.0
   - botocore=1.43.0
   - brotlicffi=1.2.0.0
@@ -200,7 +199,6 @@ dependencies:
   - jupyterlab_widgets=3.0.16
   - keyring=25.7.0
   - kiwisolver=1.4.9
-  - krb5=1.22.2
   - lazy_loader=0.5
   - lcms2=2.19.1
   - ld64=956.6
@@ -254,7 +252,7 @@ dependencies:
   - libspatialindex=2.1.0
   - libssh2=1.11.1
   - libthrift=0.22.0
-  - libtiff=4.7.1
+  - libtiff=4.7.2
   - libunistring=1.4.2
   - libuv=1.52.1
   - libvpx=1.16.0
@@ -345,12 +343,12 @@ dependencies:
   - pixman=0.46.4
   - pkce=1.0.3
   - pkginfo=1.12.1.2
-  - platformdirs=4.9.4
+  - platformdirs=4.11.0
   - plotly=6.7.0
   - pluggy=1.6.0
   - prometheus_client=0.24.1
-  - prompt-toolkit=3.0.52
-  - prompt_toolkit=3.0.52
+  - prompt-toolkit=3.0.53
+  - prompt_toolkit=3.0.53
   - propcache=0.4.1
   - protobuf=6.33.5
   - psutil=7.2.2
@@ -523,8 +521,7 @@ dependencies:
   - unearth=0.18.2
   - unixodbc=2.3.14
   - urllib3=2.7.0
-  - utf8proc=2.11.3
-  - uvicorn=0.40.0
+  - utf8proc=2.6.1
   - uvloop=0.22.1
   - watchdog=6.0.0
   - wcwidth=0.8.2
@@ -555,10 +552,11 @@ dependencies:
   - zstandard=0.24.0
   - zstd=1.5.7
   - pip:
-      - appdirs==1.4.4
-      - fastapi==0.140.13
+      - annotated-doc==0.0.5
+      - fastapi==0.141.0
       - ifaddr==0.2.0
       - rangehttpserver==1.4.0
-      - soco==0.31.1
+      - soco==0.31.2
       - soco-cli==0.4.86
+      - uvicorn==0.52.0
       - xmltodict==1.0.4
