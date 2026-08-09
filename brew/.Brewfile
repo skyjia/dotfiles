@@ -276,8 +276,6 @@ brew "microsoft/mssql-release/msodbcsql18"
 brew "microsoft/mssql-release/mssql-tools18"
 # Distribution of the Python and R programming languages for scientific computing
 cask "anaconda"
-# Terminal interface for Antigravity agents
-cask "antigravity-cli"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # 3D model editor for boxy models and pixel art textures

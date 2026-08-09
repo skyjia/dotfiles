@@ -16,7 +16,7 @@ return {
   -- packs
   { import = "astrocommunity.pack.cmake" },
   { import = "astrocommunity.pack.cpp" },
-  { import = "astrocommunity.pack.dart" },
+  -- { import = "astrocommunity.pack.dart" },
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.fish" },
   { import = "astrocommunity.pack.go" },
@@ -37,8 +37,7 @@ return {
   { import = "astrocommunity.pack.ruby" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.sql" },
-  -- FIXME: broken pack
---   { import = "astrocommunity.pack.swift" },
+  -- { import = "astrocommunity.pack.swift" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.typescript-all-in-one" },
