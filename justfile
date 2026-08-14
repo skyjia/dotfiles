@@ -24,7 +24,7 @@ update-editors: update-nvim update-vscode update-yazi
 update-dev: update-r-packages update-conda update-asdf update-rust
 
 # Update claude, antigravity, and dws CLI tools
-update-ai: update-claude update-antigravity update-dws
+update-ai: update-claude update-dws
 
 # Wash macOS provenance attributes from the project root
 wash-macos-provenance:
@@ -182,10 +182,4 @@ update-claude:
 update-dws:
     # Update DingTalk Workspace CLI (dws)
     dws upgrade -y
-    @echo
-
-# Update Antigravity CLI
-update-antigravity:
-    # Update Antigravity CLI
-    agy update
     @echo
