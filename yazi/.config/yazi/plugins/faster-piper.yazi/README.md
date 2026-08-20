@@ -8,9 +8,38 @@ and efficient scrolling for large outputs.
 
 ## Installation
 
+**Requires Yazi 26.8.15 or newer.** Earlier versions lack the `th.icon:match` and
+`Url.spec.is_search` APIs this plugin uses, and Yazi will refuse to load it with a
+prompt to upgrade. If you cannot upgrade Yazi, use
+[`piper.yazi`](https://github.com/yazi-rs/plugins/tree/main/piper.yazi) instead.
+
 ```sh
 ya pkg add alberti42/faster-piper
 ```
+
+### Windows
+
+**Windows is untested.** The plugin is developed on macOS and Linux, and
+nobody has yet confirmed a working preview on Windows. Several
+Windows-specific defects have been fixed by inspection rather than by
+running the plugin there, so treat the platform as unsupported until a user
+reports otherwise.
+
+What is expected to be required:
+
+Like `piper.yazi`, this plugin runs your command through a POSIX shell, so a
+`sh` must be reachable on `PATH`, for instance from
+[MSYS2](https://www.msys2.org), Cygwin, or Git for Windows. Note that a default
+Git for Windows installation puts only `C:\Program Files\Git\cmd` on `PATH`,
+which contains no `sh.exe`; enable *Use Git and optional Unix tools from the
+Command Prompt* at install time, or add `C:\Program Files\Git\usr\bin`
+yourself. Preview recipes are POSIX shell, not `cmd`, on every platform.
+
+Please report your experience, working or not, in
+[issue #2](https://github.com/alberti42/faster-piper.yazi/issues/2), which
+collects everything Windows-related. A confirmation that previews render
+correctly is very valuable: once it is confirm correct Windows behavior, a new
+release will be made announcing the Windows support.
 
 ## Motivation
 
@@ -34,15 +63,36 @@ performance and predictability for expensive preview commands.
 Existing configurations written for `piper.yazi` continue to work without
 modification. The command format, variables, and preview semantics are the same:
 
-- `$1` — path to the file being previewed
+- `$1` — path to the file being previewed, always written as `"$1"` with the
+  double quotes; the quoted form is what gets replaced by the escaped path
 - `$w` — preview width
 - `$h` — preview height
+- `$t` — detected terminal theme, either `dark` or `light`
+
+`$t` comes from Yazi's own terminal detection, so previews match the rest of the
+interface. If your terminal does not report a colour scheme, `$t` is `dark`.
 
 You can replace `piper` with `faster-piper` in your Yazi configuration and keep
 using the same preview commands.
 
 For more usage examples and ideas, please refer to the original
 [`piper.yazi` README](https://github.com/yazi-rs/plugins/tree/main/piper).
+
+## Caching
+
+A preview is generated once and reused. The cache is discarded when the file
+changes, when you edit the command in `yazi.toml`, and when one of `$w`, `$h` or
+`$t` changes — but each of those only if your command actually reads it.
+
+So resizing the preview pane regenerates a `glow -w=$w` preview, and leaves a
+`tar -tf "$1"` preview alone, because the second produces the same output at any
+size.
+
+> **Note**
+> faster-piper can only see the theme through `$t`. If your command detects the
+> theme by itself — for example `bat --theme=auto:always` — faster-piper cannot
+> know that its output depends on the theme, and the cache will not refresh when
+> you switch. Use `$t` instead.
 
 ## Usage
 
@@ -58,6 +108,23 @@ The command’s stdout becomes the preview content.
 url = "*.md"
 run = 'faster-piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dracula -- "$1"'
 ```
+
+#### Example: Match the terminal theme with `bat`
+
+`bat` accepts `dark` and `light` as `--theme` values, which is exactly what `$t`
+holds, so the two map onto each other directly:
+
+```toml
+[[plugin.prepend_previewers]]
+url = "*.rs"
+run = 'faster-piper -- bat -p --color=always --theme-dark=Dracula --theme-light=GitHub --theme="$t" "$1"'
+```
+
+Do not rely on `bat`'s own `--theme=auto` here. Preview output is redirected to
+the cache file rather than to the terminal, so plain `auto` cannot detect
+anything and falls back to a dark theme. `--theme=auto:always` does detect, but
+it queries the terminal that Yazi is already reading from, and its result is
+invisible to the cache. `$t` avoids both problems.
 
 #### Example: Preview tarballs with `tar`
 

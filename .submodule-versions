@@ -1,5 +1,5 @@
-381eb7577705b00bea437da7c0439c39ff05f06b nushell/nu_scripts
++eb43c8c0df920f4fc7f15058939c66ff89be9d61 nushell/nu_scripts
 207205d4313eb19b20166759aa0ff99686e0abbb raycast/.config/raycast/script-commands
 0191e9d72b50be1217127c5d879d0e20373d1aa9 raycast/raycast-script-commands
 58a3dcc0d718ec0fa1c0d5a2fddd640a1ad7a5b7 tmux/.tmux
-82e51dcf9b47912d551107748ba3297a21b2eff3 warp/.warp/official-themes
++6cc44d7b32baaf979a249056e35fff834cb39547 warp/.warp/official-themes

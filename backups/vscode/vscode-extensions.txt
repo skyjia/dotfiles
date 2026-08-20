@@ -47,6 +47,7 @@ htmlhint.vscode-htmlhint
 ideashpprime.hp-prime-language-support
 idleberg.applescript
 james-yu.latex-workshop
+jason2866.esp-decoder
 jebbs.plantuml
 jeff-hykin.better-cpp-syntax
 jnoortheen.nix-ide
