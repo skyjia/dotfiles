@@ -4,7 +4,7 @@
 #
 # nodejs/ruby: managed by asdf; brew versions are transitive deps only
 legacy_version_file = yes
-nodejs 26.7.0
+nodejs 26.8.1
 java adoptopenjdk-25.0.4+101.0.LTS
 # For High-performance, long-running tasks
 # ruby truffleruby+graalvm-34.0.1

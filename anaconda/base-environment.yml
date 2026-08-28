@@ -20,6 +20,7 @@ dependencies:
   - anaconda-client=1.15.0
   - anaconda-navigator=2.7.1
   - anaconda-project=0.13.2
+  - annotated-doc=0.0.5
   - annotated-types=0.7.0
   - anyio=4.12.1
   - aom=3.13.2
@@ -516,6 +517,7 @@ dependencies:
   - unixodbc=2.3.14
   - urllib3=2.7.0
   - utf8proc=2.6.1
+  - uvicorn=0.52.4
   - uvloop=0.22.1
   - watchdog=6.0.0
   - wcwidth=0.8.2
@@ -546,12 +548,10 @@ dependencies:
   - zstandard=0.25.0
   - zstd=1.5.7
   - pip:
-      - annotated-doc==0.0.5
       - appdirs==1.4.4
       - fastapi==0.141.1
       - ifaddr==0.2.0
       - rangehttpserver==1.4.0
       - soco==0.31.2
       - soco-cli==0.4.86
-      - uvicorn==0.52.4
       - xmltodict==1.0.4
