@@ -191,6 +191,7 @@ complete -c moon -n "__fish_moon_using_subcommand run" -l warn-list -d 'Warn lis
 complete -c moon -n "__fish_moon_using_subcommand run" -s j -l jobs -d 'Set the max number of jobs to run in parallel' -r
 complete -c moon -n "__fish_moon_using_subcommand run" -l render-no-loc -d 'Render no-location diagnostics starting from a certain level' -r -f -a "{info\t'',warn\t'',error\t''}"
 complete -c moon -n "__fish_moon_using_subcommand run" -l diagnostic-limit -d 'Limit the number of rendered diagnostics' -r
+complete -c moon -n "__fish_moon_using_subcommand run" -l wasm-policy -d 'Pass a moonrun JSON policy file to Wasm backends; ignored by other backends' -r -F
 complete -c moon -n "__fish_moon_using_subcommand run" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
 complete -c moon -n "__fish_moon_using_subcommand run" -l std -d 'Enable the standard library (default)'
 complete -c moon -n "__fish_moon_using_subcommand run" -l nostd -d 'Disable the standard library'
