@@ -1,2 +1,4 @@
 extensions/
 *.bak
+node-compile-cache/
+aster-endpoint.json
