@@ -14,6 +14,9 @@ all: update-dotfiles update-brew update-shells update-dev update-apps update-edi
 # Pull latest changes and update submodules
 update-dotfiles: pull-latest update-submodules
 
+# Update Homebrew packages and casks according to global Brewfile, upgrade all installed packages, then cleanup
+update-brew: brew-update brew-upgrade brew-cleanup
+
 # Update fish shell plugins and completions
 update-shells: update-fish
 
@@ -89,14 +92,33 @@ update-vscode:
     code --list-extensions > {{ justfile_directory() }}/backups/vscode/vscode-extensions.txt
     @echo
 
-# Update Homebrew packages and casks according to global Brewfile, upgrade all installed packages, then cleanup
-update-brew:
+
+
+# Update Homebrew formula lists
+brew-update:
     # Update Homebrew formula lists
     brew update
+    @echo
+
+# Upgrade Homebrew packages and casks according to global Brewfile, then upgrade all installed packages
+brew-upgrade:
+    # Install packages missing from Brewfile
+    brew bundle --global -v
+    # Upgrade all installed packages
+    brew upgrade --yes
+    echo "run `just brew-upgrade-greedy` to upgrade all installed packages (including :latest casks and greedy-outdated ones)"
+    @echo
+
+# Upgrade Homebrew packages and casks according to global Brewfile, then upgrade all installed packages (greedy: also refresh :latest casks and greedy-outdated ones)
+brew-upgrade-greedy:
     # Install packages missing from Brewfile
     brew bundle --global -v
     # Upgrade all installed packages (greedy: also refresh :latest casks and greedy-outdated ones)
     brew upgrade --yes --greedy
+    @echo
+
+# Cleanup Homebrew packages and casks according to global Brewfile, then remove unused dependencies and clean up old versions and cache
+brew-cleanup:
     # Remove packages not in Brewfile
     brew bundle cleanup --global --force
     # Remove unused dependencies
