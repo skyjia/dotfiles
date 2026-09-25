@@ -24,7 +24,7 @@ update-shells: update-fish
 update-editors: update-nvim update-vscode update-yazi
 
 # Update R packages, conda, asdf plugins, and rust toolchain
-update-dev: update-r-packages update-conda update-asdf update-rust
+update-dev: update-r-packages update-asdf update-rust
 
 # Update claude, antigravity, and dws CLI tools
 update-ai: update-claude update-dws

@@ -25,7 +25,7 @@ function __fish_moon_using_subcommand
 end
 
 complete -c moon -n "__fish_moon_needs_command" -s C -d 'Change to DIR before doing anything else (must appear before the subcommand). Relative paths in other options and arguments are interpreted relative to DIR. Example: `moon -C a run .` runs the same as invoking `moon run .` from within `a`' -r -F
-complete -c moon -n "__fish_moon_needs_command" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_needs_command" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_needs_command" -s Z -l unstable-feature -d 'Unstable flags to MoonBuild' -r
 complete -c moon -n "__fish_moon_needs_command" -s V -l version -d 'Print all version information and exit'
 complete -c moon -n "__fish_moon_needs_command" -s q -l quiet -d 'Suppress output'
@@ -40,7 +40,7 @@ complete -c moon -n "__fish_moon_needs_command" -f -a "build" -d 'Build the curr
 complete -c moon -n "__fish_moon_needs_command" -f -a "check" -d 'Check the current package, but don\'t build object files'
 complete -c moon -n "__fish_moon_needs_command" -f -a "prove" -d 'Prove the current package'
 complete -c moon -n "__fish_moon_needs_command" -f -a "run" -d 'Run a main package'
-complete -c moon -n "__fish_moon_needs_command" -f -a "runwasm" -d 'Run a local package as WebAssembly or a prebuilt WebAssembly binary'
+complete -c moon -n "__fish_moon_needs_command" -f -a "runwasm" -d 'Deprecated: use moon run --target wasm locally or moonx for registry packages'
 complete -c moon -n "__fish_moon_needs_command" -f -a "test" -d 'Test the current package'
 complete -c moon -n "__fish_moon_needs_command" -f -a "cram" -d 'Run cram tests with project binaries on PATH (experimental)'
 complete -c moon -n "__fish_moon_needs_command" -f -a "generate-test-driver" -d 'Generate tests for a provided package. This is a thin wrapper around `moonc gen-test-info`, which does the actual parsing and generation'
@@ -55,13 +55,15 @@ complete -c moon -n "__fish_moon_needs_command" -f -a "remove" -d 'Remove a depe
 complete -c moon -n "__fish_moon_needs_command" -f -a "install" -d 'Install a binary package globally or install project dependencies (deprecated without args)'
 complete -c moon -n "__fish_moon_needs_command" -f -a "tree" -d 'Display the dependency tree'
 complete -c moon -n "__fish_moon_needs_command" -f -a "fetch" -d 'Download a package to .repos directory (unstable)'
-complete -c moon -n "__fish_moon_needs_command" -f -a "search" -d 'Search for modules in the package registry'
+complete -c moon -n "__fish_moon_needs_command" -f -a "search" -d 'Search modules and package summaries in the registry'
+complete -c moon -n "__fish_moon_needs_command" -f -a "view" -d 'View a registry module or a user\'s published modules'
 complete -c moon -n "__fish_moon_needs_command" -f -a "work" -d 'Workspace maintenance commands'
 complete -c moon -n "__fish_moon_needs_command" -f -a "login" -d 'Log in to your account'
 complete -c moon -n "__fish_moon_needs_command" -f -a "whoami" -d 'Show login status and username'
 complete -c moon -n "__fish_moon_needs_command" -f -a "register" -d 'Register an account at mooncakes.io'
 complete -c moon -n "__fish_moon_needs_command" -f -a "publish" -d 'Publish the current module'
 complete -c moon -n "__fish_moon_needs_command" -f -a "package" -d 'Package the current module'
+complete -c moon -n "__fish_moon_needs_command" -f -a "deprecate" -d 'Deprecate or restore all existing versions of a published module'
 complete -c moon -n "__fish_moon_needs_command" -f -a "update" -d 'Update the package registry index'
 complete -c moon -n "__fish_moon_needs_command" -f -a "coverage" -d 'Code coverage utilities'
 complete -c moon -n "__fish_moon_needs_command" -f -a "generate-build-matrix" -d 'Generate build matrix for benchmarking (legacy feature)'
@@ -73,7 +75,7 @@ complete -c moon -n "__fish_moon_needs_command" -f -a "ide" -d 'IDE utilities'
 complete -c moon -n "__fish_moon_needs_command" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
 complete -c moon -n "__fish_moon_using_subcommand new" -l user -d 'The username of the module. Default to the logged-in username' -r
 complete -c moon -n "__fish_moon_using_subcommand new" -l name -d 'The name of the module. Default to the last part of the path' -r
-complete -c moon -n "__fish_moon_using_subcommand new" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand new" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand new" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand new" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand new" -l trace -d 'Trace the execution of the program'
@@ -85,7 +87,7 @@ complete -c moon -n "__fish_moon_using_subcommand bundle" -l warn-list -d 'Warn 
 complete -c moon -n "__fish_moon_using_subcommand bundle" -s j -l jobs -d 'Set the max number of jobs to run in parallel' -r
 complete -c moon -n "__fish_moon_using_subcommand bundle" -l render-no-loc -d 'Render no-location diagnostics starting from a certain level' -r -f -a "{info\t'',warn\t'',error\t''}"
 complete -c moon -n "__fish_moon_using_subcommand bundle" -l diagnostic-limit -d 'Limit the number of rendered diagnostics' -r
-complete -c moon -n "__fish_moon_using_subcommand bundle" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand bundle" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand bundle" -l std -d 'Enable the standard library (default)'
 complete -c moon -n "__fish_moon_using_subcommand bundle" -l nostd -d 'Disable the standard library'
 complete -c moon -n "__fish_moon_using_subcommand bundle" -s g -l debug -d 'Emit debug information'
@@ -114,7 +116,7 @@ complete -c moon -n "__fish_moon_using_subcommand build" -s j -l jobs -d 'Set th
 complete -c moon -n "__fish_moon_using_subcommand build" -l render-no-loc -d 'Render no-location diagnostics starting from a certain level' -r -f -a "{info\t'',warn\t'',error\t''}"
 complete -c moon -n "__fish_moon_using_subcommand build" -l diagnostic-limit -d 'Limit the number of rendered diagnostics' -r
 complete -c moon -n "__fish_moon_using_subcommand build" -l package -r
-complete -c moon -n "__fish_moon_using_subcommand build" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand build" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand build" -l std -d 'Enable the standard library (default)'
 complete -c moon -n "__fish_moon_using_subcommand build" -l nostd -d 'Disable the standard library'
 complete -c moon -n "__fish_moon_using_subcommand build" -s g -l debug -d 'Emit debug information'
@@ -144,7 +146,7 @@ complete -c moon -n "__fish_moon_using_subcommand check" -l render-no-loc -d 'Re
 complete -c moon -n "__fish_moon_using_subcommand check" -l diagnostic-limit -d 'Limit the number of rendered diagnostics' -r
 complete -c moon -n "__fish_moon_using_subcommand check" -l package-path -d 'Legacy package directory path relative to the module source root (`source` in `moon.mod.json`)' -r -F
 complete -c moon -n "__fish_moon_using_subcommand check" -l patch-file -d 'The patch file to check. Only valid when the selector resolves to a single package' -r -F
-complete -c moon -n "__fish_moon_using_subcommand check" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand check" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand check" -l std -d 'Enable the standard library (default)'
 complete -c moon -n "__fish_moon_using_subcommand check" -l nostd -d 'Disable the standard library'
 complete -c moon -n "__fish_moon_using_subcommand check" -s g -l debug -d 'Emit debug information'
@@ -175,7 +177,7 @@ complete -c moon -n "__fish_moon_using_subcommand prove" -l warn-list -d 'Warn l
 complete -c moon -n "__fish_moon_using_subcommand prove" -s j -l jobs -d 'Set the max number of jobs to run in parallel' -r
 complete -c moon -n "__fish_moon_using_subcommand prove" -l render-no-loc -d 'Render no-location diagnostics starting from a certain level' -r -f -a "{info\t'',warn\t'',error\t''}"
 complete -c moon -n "__fish_moon_using_subcommand prove" -l diagnostic-limit -d 'Limit the number of rendered diagnostics' -r
-complete -c moon -n "__fish_moon_using_subcommand prove" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand prove" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand prove" -l frozen -d 'Do not sync dependencies, assuming local dependencies are up-to-date'
 complete -c moon -n "__fish_moon_using_subcommand prove" -s d -l deny-warn -d 'Treat all warnings as errors'
 complete -c moon -n "__fish_moon_using_subcommand prove" -l no-render -d 'Don\'t render diagnostics (in raw human-readable format)'
@@ -193,7 +195,7 @@ complete -c moon -n "__fish_moon_using_subcommand run" -s j -l jobs -d 'Set the 
 complete -c moon -n "__fish_moon_using_subcommand run" -l render-no-loc -d 'Render no-location diagnostics starting from a certain level' -r -f -a "{info\t'',warn\t'',error\t''}"
 complete -c moon -n "__fish_moon_using_subcommand run" -l diagnostic-limit -d 'Limit the number of rendered diagnostics' -r
 complete -c moon -n "__fish_moon_using_subcommand run" -l wasm-policy -d 'Pass a moonrun JSON policy file to Wasm backends; ignored by other backends' -r -F
-complete -c moon -n "__fish_moon_using_subcommand run" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand run" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand run" -l std -d 'Enable the standard library (default)'
 complete -c moon -n "__fish_moon_using_subcommand run" -l nostd -d 'Disable the standard library'
 complete -c moon -n "__fish_moon_using_subcommand run" -s g -l debug -d 'Emit debug information'
@@ -218,7 +220,7 @@ complete -c moon -n "__fish_moon_using_subcommand run" -l dry-run -d 'Do not act
 complete -c moon -n "__fish_moon_using_subcommand run" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand run" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand runwasm" -l experimental-policy -d 'Experimental: pass a moonrun JSON policy file for moonbitlang/async runtime access' -r -F
-complete -c moon -n "__fish_moon_using_subcommand runwasm" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand runwasm" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand runwasm" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand runwasm" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand runwasm" -l trace -d 'Trace the execution of the program'
@@ -238,7 +240,7 @@ complete -c moon -n "__fish_moon_using_subcommand test" -l doc-index -d 'Run onl
 complete -c moon -n "__fish_moon_using_subcommand test" -s l -l limit -d 'Limit of expect test update passes to run, in order to avoid infinite loops' -r
 complete -c moon -n "__fish_moon_using_subcommand test" -l patch-file -d 'Path to the patch file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand test" -s f -l filter -d 'Run only tests whose name matches the given glob pattern. Supports \'*\' (matches any sequence) and \'?\' (matches any single character)' -r
-complete -c moon -n "__fish_moon_using_subcommand test" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand test" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand test" -l std -d 'Enable the standard library (default)'
 complete -c moon -n "__fish_moon_using_subcommand test" -l nostd -d 'Disable the standard library'
 complete -c moon -n "__fish_moon_using_subcommand test" -s g -l debug -d 'Emit debug information'
@@ -268,7 +270,7 @@ complete -c moon -n "__fish_moon_using_subcommand test" -l trace -d 'Trace the e
 complete -c moon -n "__fish_moon_using_subcommand test" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand test" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand test" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -l trace -d 'Trace the execution of the program'
@@ -277,7 +279,7 @@ complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subc
 complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -f -a "test" -d 'Build native executables, then run cram tests with their directories on PATH'
 complete -c moon -n "__fish_moon_using_subcommand cram; and __fish_seen_subcommand_from test" -l target -d 'Native is the only target supported by cram test' -r -f -a "{native\t''}"
-complete -c moon -n "__fish_moon_using_subcommand cram; and __fish_seen_subcommand_from test" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand cram; and __fish_seen_subcommand_from test" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand cram; and __fish_seen_subcommand_from test" -l release -d 'Build native release executables'
 complete -c moon -n "__fish_moon_using_subcommand cram; and __fish_seen_subcommand_from test" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand cram; and __fish_seen_subcommand_from test" -s v -l verbose -d 'Increase verbosity'
@@ -294,7 +296,7 @@ complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l cover
 complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l driver-kind -d 'The test driver kind' -r -f -a "{internal\t'',whitebox\t'',blackbox\t''}"
 complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l patch-file -d 'Path to the patch file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l max-concurrent-tests -d 'Max concurrent tests for `async test`' -r
-complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l bench -d 'Whether to generate the test driver in bench mode. Not providing this option will result in test mode'
 complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l enable-coverage -d 'Whether coverage is enabled in this build. Enabling it will insert coverage-custom code at the end of the test..'
 complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -s q -l quiet -d 'Suppress output'
@@ -303,7 +305,7 @@ complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l trace
 complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand generate-test-driver" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand clean" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand clean" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand clean" -l dep-cache -d 'Remove the global dependency-source cache instead of `_build`'
 complete -c moon -n "__fish_moon_using_subcommand clean" -l build-cache -d 'Remove the global build-artifact cache instead of `_build`'
 complete -c moon -n "__fish_moon_using_subcommand clean" -s q -l quiet -d 'Suppress output'
@@ -312,7 +314,7 @@ complete -c moon -n "__fish_moon_using_subcommand clean" -l trace -d 'Trace the 
 complete -c moon -n "__fish_moon_using_subcommand clean" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand clean" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand clean" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand fmt" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand fmt" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand fmt" -l check -d 'Check only and don\'t change the source code'
 complete -c moon -n "__fish_moon_using_subcommand fmt" -l sort-input -d 'Sort input files'
 complete -c moon -n "__fish_moon_using_subcommand fmt" -l warn -d 'Warn if code is not properly formatted'
@@ -321,10 +323,10 @@ complete -c moon -n "__fish_moon_using_subcommand fmt" -s v -l verbose -d 'Incre
 complete -c moon -n "__fish_moon_using_subcommand fmt" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand fmt" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand fmt" -l build-graph
-complete -c moon -n "__fish_moon_using_subcommand fmt" -s h -l help -d 'Print help'
+complete -c moon -n "__fish_moon_using_subcommand fmt" -s h -l help -d 'Print help (see more with \'--help\')'
 complete -c moon -n "__fish_moon_using_subcommand doc" -s b -l bind -d 'The address of the server' -r
 complete -c moon -n "__fish_moon_using_subcommand doc" -s p -l port -d 'The port of the server' -r
-complete -c moon -n "__fish_moon_using_subcommand doc" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand doc" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand doc" -l serve -d 'Start a web server to serve the documentation'
 complete -c moon -n "__fish_moon_using_subcommand doc" -l frozen -d 'Do not sync dependencies, assuming local dependencies are up-to-date'
 complete -c moon -n "__fish_moon_using_subcommand doc" -s q -l quiet -d 'Suppress output'
@@ -335,7 +337,7 @@ complete -c moon -n "__fish_moon_using_subcommand doc" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand doc" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand explain" -l diagnostic -d 'Explain diagnostics. Without a query, list diagnostic codes and names' -r
 complete -c moon -n "__fish_moon_using_subcommand explain" -l attribute -d 'Explain attributes. Without a query, list attribute names' -r
-complete -c moon -n "__fish_moon_using_subcommand explain" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand explain" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand explain" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand explain" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand explain" -l trace -d 'Trace the execution of the program'
@@ -344,7 +346,7 @@ complete -c moon -n "__fish_moon_using_subcommand explain" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand explain" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand info" -l target -d 'Inspect one or more target backends without changing the canonical `pkg.generated.mbti` output' -r -f -a "{wasm\t'',wasm-gc\t'',js\t'',native\t'',llvm\t'',all\t''}"
 complete -c moon -n "__fish_moon_using_subcommand info" -s p -l package -d 'The full or subset of name of the package to emit `mbti` files for' -r
-complete -c moon -n "__fish_moon_using_subcommand info" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand info" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand info" -l frozen -d 'Do not sync dependencies, assuming local dependencies are up-to-date'
 complete -c moon -n "__fish_moon_using_subcommand info" -l no-alias -d 'Do not use alias to shorten package names in the output'
 complete -c moon -n "__fish_moon_using_subcommand info" -s q -l quiet -d 'Suppress output'
@@ -361,7 +363,7 @@ complete -c moon -n "__fish_moon_using_subcommand bench" -l diagnostic-limit -d 
 complete -c moon -n "__fish_moon_using_subcommand bench" -s p -l package -d 'Run benchmarks in the specified package' -r
 complete -c moon -n "__fish_moon_using_subcommand bench" -s f -l file -d 'Run benchmarks in the specified file. Only valid when `--package` is also specified' -r
 complete -c moon -n "__fish_moon_using_subcommand bench" -s i -l index -d 'Run only the index-th benchmark in the file. Accepts a single index or a left-inclusive right-exclusive range like `0-2`. Only valid when a single file is selected' -r
-complete -c moon -n "__fish_moon_using_subcommand bench" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand bench" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand bench" -l std -d 'Enable the standard library (default)'
 complete -c moon -n "__fish_moon_using_subcommand bench" -l nostd -d 'Disable the standard library'
 complete -c moon -n "__fish_moon_using_subcommand bench" -s g -l debug -d 'Emit debug information'
@@ -385,7 +387,7 @@ complete -c moon -n "__fish_moon_using_subcommand bench" -l trace -d 'Trace the 
 complete -c moon -n "__fish_moon_using_subcommand bench" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand bench" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand bench" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand add" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand add" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand add" -l bin -d 'Add the deprecated binary dependency (prefer portable Wasm with moonx)'
 complete -c moon -n "__fish_moon_using_subcommand add" -s u -l upgrade -d 'Upgrade an existing dependency'
 complete -c moon -n "__fish_moon_using_subcommand add" -l no-update -d 'Do not update the registry index before adding the dependency'
@@ -395,7 +397,7 @@ complete -c moon -n "__fish_moon_using_subcommand add" -l trace -d 'Trace the ex
 complete -c moon -n "__fish_moon_using_subcommand add" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand add" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand add" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand remove" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand remove" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand remove" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand remove" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand remove" -l trace -d 'Trace the execution of the program'
@@ -407,21 +409,24 @@ complete -c moon -n "__fish_moon_using_subcommand install" -l path -d 'Install f
 complete -c moon -n "__fish_moon_using_subcommand install" -l rev -d 'Git revision to checkout (commit hash, requires git URL)' -r
 complete -c moon -n "__fish_moon_using_subcommand install" -l branch -d 'Git branch to checkout (requires git URL)' -r
 complete -c moon -n "__fish_moon_using_subcommand install" -l tag -d 'Git tag to checkout (requires git URL)' -r
-complete -c moon -n "__fish_moon_using_subcommand install" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand install" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand install" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand install" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand install" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand install" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand install" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand install" -s h -l help -d 'Print help (see more with \'--help\')'
-complete -c moon -n "__fish_moon_using_subcommand tree" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tree" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tree" -l json -d 'Output one complete JSON result to stdout'
+complete -c moon -n "__fish_moon_using_subcommand tree" -l no-dedupe -d 'Repeat dependency subgraphs instead of marking them with `(*)`'
+complete -c moon -n "__fish_moon_using_subcommand tree" -l package -d 'Show the package-level dependency graph instead of the module-level tree'
 complete -c moon -n "__fish_moon_using_subcommand tree" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand tree" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand tree" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand tree" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand tree" -l build-graph
-complete -c moon -n "__fish_moon_using_subcommand tree" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand fetch" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tree" -s h -l help -d 'Print help (see more with \'--help\')'
+complete -c moon -n "__fish_moon_using_subcommand fetch" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand fetch" -l no-update -d 'Do not update the registry index before fetching'
 complete -c moon -n "__fish_moon_using_subcommand fetch" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand fetch" -s v -l verbose -d 'Increase verbosity'
@@ -430,15 +435,25 @@ complete -c moon -n "__fish_moon_using_subcommand fetch" -l dry-run -d 'Do not a
 complete -c moon -n "__fish_moon_using_subcommand fetch" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand fetch" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand search" -s l -l limit -d 'Limit the number of search results' -r
-complete -c moon -n "__fish_moon_using_subcommand search" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand search" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand search" -l json -d 'Print search results as JSON'
 complete -c moon -n "__fish_moon_using_subcommand search" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand search" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand search" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand search" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand search" -l build-graph
-complete -c moon -n "__fish_moon_using_subcommand search" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand work; and not __fish_seen_subcommand_from init use sync help" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand search" -s h -l help -d 'Print help (see more with \'--help\')'
+complete -c moon -n "__fish_moon_using_subcommand view" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
+complete -c moon -n "__fish_moon_using_subcommand view" -l my -d 'List all modules published under your logged-in username'
+complete -c moon -n "__fish_moon_using_subcommand view" -l versions -d 'List all published versions of the module'
+complete -c moon -n "__fish_moon_using_subcommand view" -l json -d 'Print the result as JSON'
+complete -c moon -n "__fish_moon_using_subcommand view" -s q -l quiet -d 'Suppress output'
+complete -c moon -n "__fish_moon_using_subcommand view" -s v -l verbose -d 'Increase verbosity'
+complete -c moon -n "__fish_moon_using_subcommand view" -l trace -d 'Trace the execution of the program'
+complete -c moon -n "__fish_moon_using_subcommand view" -l dry-run -d 'Do not actually run the command'
+complete -c moon -n "__fish_moon_using_subcommand view" -l build-graph
+complete -c moon -n "__fish_moon_using_subcommand view" -s h -l help -d 'Print help (see more with \'--help\')'
+complete -c moon -n "__fish_moon_using_subcommand work; and not __fish_seen_subcommand_from init use sync help" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand work; and not __fish_seen_subcommand_from init use sync help" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand work; and not __fish_seen_subcommand_from init use sync help" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand work; and not __fish_seen_subcommand_from init use sync help" -l trace -d 'Trace the execution of the program'
@@ -449,21 +464,21 @@ complete -c moon -n "__fish_moon_using_subcommand work; and not __fish_seen_subc
 complete -c moon -n "__fish_moon_using_subcommand work; and not __fish_seen_subcommand_from init use sync help" -f -a "use" -d 'Add modules to the workspace manifest'
 complete -c moon -n "__fish_moon_using_subcommand work; and not __fish_seen_subcommand_from init use sync help" -f -a "sync" -d 'Sync workspace dependency versions into member manifests'
 complete -c moon -n "__fish_moon_using_subcommand work; and not __fish_seen_subcommand_from init use sync help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
-complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from init" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from init" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from init" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from init" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from init" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from init" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from init" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from init" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from use" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from use" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from use" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from use" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from use" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from use" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from use" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from use" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from sync" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from sync" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from sync" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from sync" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from sync" -l trace -d 'Trace the execution of the program'
@@ -474,28 +489,28 @@ complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from help" -f -a "use" -d 'Add modules to the workspace manifest'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from help" -f -a "sync" -d 'Sync workspace dependency versions into member manifests'
 complete -c moon -n "__fish_moon_using_subcommand work; and __fish_seen_subcommand_from help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
-complete -c moon -n "__fish_moon_using_subcommand login" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand login" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand login" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand login" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand login" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand login" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand login" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand login" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand whoami" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand whoami" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand whoami" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand whoami" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand whoami" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand whoami" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand whoami" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand whoami" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand register" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand register" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand register" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand register" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand register" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand register" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand register" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand register" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand publish" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand publish" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand publish" -l frozen -d 'Do not sync dependencies, assuming local dependencies are up-to-date'
 complete -c moon -n "__fish_moon_using_subcommand publish" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand publish" -s v -l verbose -d 'Increase verbosity'
@@ -503,7 +518,7 @@ complete -c moon -n "__fish_moon_using_subcommand publish" -l trace -d 'Trace th
 complete -c moon -n "__fish_moon_using_subcommand publish" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand publish" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand publish" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand package" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand package" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand package" -l frozen -d 'Do not sync dependencies, assuming local dependencies are up-to-date'
 complete -c moon -n "__fish_moon_using_subcommand package" -l list
 complete -c moon -n "__fish_moon_using_subcommand package" -s q -l quiet -d 'Suppress output'
@@ -512,41 +527,50 @@ complete -c moon -n "__fish_moon_using_subcommand package" -l trace -d 'Trace th
 complete -c moon -n "__fish_moon_using_subcommand package" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand package" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand package" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand update" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand deprecate" -l reason -d 'Deprecation reason, replacing any previous reasons' -r
+complete -c moon -n "__fish_moon_using_subcommand deprecate" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
+complete -c moon -n "__fish_moon_using_subcommand deprecate" -l undo -d 'Clear deprecation and reasons on all existing versions'
+complete -c moon -n "__fish_moon_using_subcommand deprecate" -s q -l quiet -d 'Suppress output'
+complete -c moon -n "__fish_moon_using_subcommand deprecate" -s v -l verbose -d 'Increase verbosity'
+complete -c moon -n "__fish_moon_using_subcommand deprecate" -l trace -d 'Trace the execution of the program'
+complete -c moon -n "__fish_moon_using_subcommand deprecate" -l dry-run -d 'Do not actually run the command'
+complete -c moon -n "__fish_moon_using_subcommand deprecate" -l build-graph
+complete -c moon -n "__fish_moon_using_subcommand deprecate" -s h -l help -d 'Print help (see more with \'--help\')'
+complete -c moon -n "__fish_moon_using_subcommand update" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand update" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand update" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand update" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand update" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand update" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand update" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -l build-graph
-complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -s h -l help -d 'Print help'
+complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -s h -l help -d 'Print help (see more with \'--help\')'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -f -a "analyze" -d 'Run test with instrumentation and report coverage'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -f -a "report" -d 'Generate code coverage report'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -f -a "clean" -d 'Clean up coverage artifacts'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and not __fish_seen_subcommand_from analyze report clean help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -s p -l package -d 'Analyze coverage for a specific package' -r
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -s t -l test-flag -d 'Extra flags passed directly to `moon test`' -r
-complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from analyze" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from report" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from report" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from report" -s h -l help -d 'Show help for the coverage utility'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from report" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from report" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from report" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from report" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from report" -l build-graph
-complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from clean" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from clean" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from clean" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from clean" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand coverage; and __fish_seen_subcommand_from clean" -l trace -d 'Trace the execution of the program'
@@ -563,7 +587,7 @@ complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -l dcol
 complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -l mrow -d 'Number of module rows' -r
 complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -l mcol -d 'Number of module columns' -r
 complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -s o -l output-dir -d 'The output directory' -r -F
-complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -l trace -d 'Trace the execution of the program'
@@ -571,7 +595,7 @@ complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -l dry-
 complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand generate-build-matrix" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand upgrade" -l base-url -r
-complete -c moon -n "__fish_moon_using_subcommand upgrade" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand upgrade" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand upgrade" -s f -l force -d 'Force upgrade'
 complete -c moon -n "__fish_moon_using_subcommand upgrade" -l dev -d 'Install the latest development version'
 complete -c moon -n "__fish_moon_using_subcommand upgrade" -l non-interactive
@@ -582,14 +606,14 @@ complete -c moon -n "__fish_moon_using_subcommand upgrade" -l dry-run -d 'Do not
 complete -c moon -n "__fish_moon_using_subcommand upgrade" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand upgrade" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand shell-completion" -l shell -d 'The shell to generate completion for' -r -f -a "{bash\t'',elvish\t'',fish\t'',powershell\t'',zsh\t''}"
-complete -c moon -n "__fish_moon_using_subcommand shell-completion" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand shell-completion" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand shell-completion" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand shell-completion" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand shell-completion" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand shell-completion" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand shell-completion" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand shell-completion" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand version" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand version" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand version" -l all -d 'Print all version information'
 complete -c moon -n "__fish_moon_using_subcommand version" -l json -d 'Print version information in JSON format'
 complete -c moon -n "__fish_moon_using_subcommand version" -l no-path -d 'Do not print the path'
@@ -599,24 +623,24 @@ complete -c moon -n "__fish_moon_using_subcommand version" -l trace -d 'Trace th
 complete -c moon -n "__fish_moon_using_subcommand version" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand version" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand version" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -s q -l quiet -d 'Suppress output'
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -s v -l verbose -d 'Increase verbosity'
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -l trace -d 'Trace the execution of the program'
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -l dry-run -d 'Do not actually run the command'
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -l build-graph
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -f -a "format-and-diff" -d 'Format the code and print the difference'
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -f -a "format-workspace"
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -f -a "migrate-manifest" -d 'Format a legacy JSON manifest, install its replacement, and remove the old file'
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -f -a "embed"
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -f -a "write-tcc-rsp-file"
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -f -a "build-binary-dep"
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -f -a "demangle" -d 'Demangle MoonBit symbol names'
-complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace migrate-manifest embed write-tcc-rsp-file build-binary-dep demangle help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -s q -l quiet -d 'Suppress output'
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -s v -l verbose -d 'Increase verbosity'
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -l trace -d 'Trace the execution of the program'
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -l dry-run -d 'Do not actually run the command'
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -l build-graph
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -s h -l help -d 'Print help'
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -f -a "format-and-diff" -d 'Format the code and print the difference'
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -f -a "format-workspace"
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -f -a "generate-node-test-package-config"
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -f -a "migrate-manifest" -d 'Format a legacy JSON manifest, install its replacement, and remove the old file'
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -f -a "embed"
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -f -a "build-binary-dep"
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -f -a "demangle" -d 'Demangle MoonBit symbol names'
+complete -c moon -n "__fish_moon_using_subcommand tool; and not __fish_seen_subcommand_from format-and-diff format-workspace generate-node-test-package-config migrate-manifest embed build-binary-dep demangle help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-and-diff" -l old -d 'The source path of the code which needs to be formatted' -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-and-diff" -l new -d 'The target path of the formatted code' -r -F
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-and-diff" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-and-diff" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-and-diff" -l warn -d 'Warn instead of showing differences'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-and-diff" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-and-diff" -s v -l verbose -d 'Increase verbosity'
@@ -626,7 +650,7 @@ complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-and-diff" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -l old -d 'The source path of the workspace file to format' -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -l new -d 'The target path of the formatted workspace file' -r -F
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -s w -l write -d 'Write the formatted output back to the source file'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -l check -d 'Check formatting and print the difference'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -l warn -d 'Warn instead of showing differences'
@@ -636,9 +660,17 @@ complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from format-workspace" -s h -l help -d 'Print help'
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from generate-node-test-package-config" -l output -d 'The output `package.json` file' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from generate-node-test-package-config" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from generate-node-test-package-config" -s q -l quiet -d 'Suppress output'
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from generate-node-test-package-config" -s v -l verbose -d 'Increase verbosity'
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from generate-node-test-package-config" -l trace -d 'Trace the execution of the program'
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from generate-node-test-package-config" -l dry-run -d 'Do not actually run the command'
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from generate-node-test-package-config" -l build-graph
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from generate-node-test-package-config" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from migrate-manifest" -l old -d 'Legacy manifest consumed by the formatter' -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from migrate-manifest" -l dest -d 'New source manifest installed beside the legacy manifest' -r -F
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from migrate-manifest" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from migrate-manifest" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from migrate-manifest" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from migrate-manifest" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from migrate-manifest" -l trace -d 'Trace the execution of the program'
@@ -648,7 +680,7 @@ complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -s i -l input -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -s o -l output -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -l name -r
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -l binary
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -l text
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -l timestamp
@@ -658,15 +690,8 @@ complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from embed" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from write-tcc-rsp-file" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from write-tcc-rsp-file" -s q -l quiet -d 'Suppress output'
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from write-tcc-rsp-file" -s v -l verbose -d 'Increase verbosity'
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from write-tcc-rsp-file" -l trace -d 'Trace the execution of the program'
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from write-tcc-rsp-file" -l dry-run -d 'Do not actually run the command'
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from write-tcc-rsp-file" -l build-graph
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from write-tcc-rsp-file" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from build-binary-dep" -l install-path -d 'The parent directory where the binary module is installed to' -r -F
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from build-binary-dep" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from build-binary-dep" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from build-binary-dep" -l all-pkgs -d 'Whether to build and install all binary packages in the module'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from build-binary-dep" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from build-binary-dep" -s v -l verbose -d 'Increase verbosity'
@@ -674,7 +699,7 @@ complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from build-binary-dep" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from build-binary-dep" -l build-graph
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from build-binary-dep" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from demangle" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`' -r -F
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from demangle" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from demangle" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from demangle" -s v -l verbose -d 'Increase verbosity'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from demangle" -l trace -d 'Trace the execution of the program'
@@ -683,9 +708,9 @@ complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from demangle" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "format-and-diff" -d 'Format the code and print the difference'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "format-workspace"
+complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "generate-node-test-package-config"
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "migrate-manifest" -d 'Format a legacy JSON manifest, install its replacement, and remove the old file'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "embed"
-complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "write-tcc-rsp-file"
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "build-binary-dep"
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "demangle" -d 'Demangle MoonBit symbol names'
 complete -c moon -n "__fish_moon_using_subcommand tool; and __fish_seen_subcommand_from help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
@@ -708,43 +733,45 @@ complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcomman
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from outline" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from analyze" -s h -l help -d 'Print help'
 complete -c moon -n "__fish_moon_using_subcommand ide; and __fish_seen_subcommand_from doc" -s h -l help -d 'Print help'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "new" -d 'Create a new MoonBit module'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "bundle" -d 'Bundle the module'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "build" -d 'Build the current package'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "check" -d 'Check the current package, but don\'t build object files'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "prove" -d 'Prove the current package'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "run" -d 'Run a main package'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "runwasm" -d 'Run a local package as WebAssembly or a prebuilt WebAssembly binary'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "test" -d 'Test the current package'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "cram" -d 'Run cram tests with project binaries on PATH (experimental)'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "generate-test-driver" -d 'Generate tests for a provided package. This is a thin wrapper around `moonc gen-test-info`, which does the actual parsing and generation'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "clean" -d 'Remove local build outputs or configured global caches'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "fmt" -d 'Format source code'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "doc" -d 'Generate documentation or searching documentation for a symbol'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "explain" -d 'Explain compiler diagnostics and language topics'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "info" -d 'Generate public interface (`.mbti`) files for all packages in the module or workspace'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "bench" -d 'Run benchmarks in the current package'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "add" -d 'Add a dependency'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "remove" -d 'Remove a dependency'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "install" -d 'Install a binary package globally or install project dependencies (deprecated without args)'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "tree" -d 'Display the dependency tree'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "fetch" -d 'Download a package to .repos directory (unstable)'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "search" -d 'Search for modules in the package registry'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "work" -d 'Workspace maintenance commands'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "login" -d 'Log in to your account'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "whoami" -d 'Show login status and username'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "register" -d 'Register an account at mooncakes.io'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "publish" -d 'Publish the current module'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "package" -d 'Package the current module'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "update" -d 'Update the package registry index'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "coverage" -d 'Code coverage utilities'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "generate-build-matrix" -d 'Generate build matrix for benchmarking (legacy feature)'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "upgrade" -d 'Upgrade toolchains'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "shell-completion" -d 'Generate shell completion for bash/elvish/fish/pwsh/zsh to stdout'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "version" -d 'Print version information and exit'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "tool"
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "ide" -d 'IDE utilities'
-complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search work login whoami register publish package update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "new" -d 'Create a new MoonBit module'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "bundle" -d 'Bundle the module'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "build" -d 'Build the current package'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "check" -d 'Check the current package, but don\'t build object files'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "prove" -d 'Prove the current package'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "run" -d 'Run a main package'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "runwasm" -d 'Deprecated: use moon run --target wasm locally or moonx for registry packages'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "test" -d 'Test the current package'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "cram" -d 'Run cram tests with project binaries on PATH (experimental)'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "generate-test-driver" -d 'Generate tests for a provided package. This is a thin wrapper around `moonc gen-test-info`, which does the actual parsing and generation'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "clean" -d 'Remove local build outputs or configured global caches'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "fmt" -d 'Format source code'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "doc" -d 'Generate documentation or searching documentation for a symbol'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "explain" -d 'Explain compiler diagnostics and language topics'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "info" -d 'Generate public interface (`.mbti`) files for all packages in the module or workspace'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "bench" -d 'Run benchmarks in the current package'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "add" -d 'Add a dependency'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "remove" -d 'Remove a dependency'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "install" -d 'Install a binary package globally or install project dependencies (deprecated without args)'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "tree" -d 'Display the dependency tree'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "fetch" -d 'Download a package to .repos directory (unstable)'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "search" -d 'Search modules and package summaries in the registry'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "view" -d 'View a registry module or a user\'s published modules'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "work" -d 'Workspace maintenance commands'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "login" -d 'Log in to your account'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "whoami" -d 'Show login status and username'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "register" -d 'Register an account at mooncakes.io'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "publish" -d 'Publish the current module'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "package" -d 'Package the current module'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "deprecate" -d 'Deprecate or restore all existing versions of a published module'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "update" -d 'Update the package registry index'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "coverage" -d 'Code coverage utilities'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "generate-build-matrix" -d 'Generate build matrix for benchmarking (legacy feature)'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "upgrade" -d 'Upgrade toolchains'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "shell-completion" -d 'Generate shell completion for bash/elvish/fish/pwsh/zsh to stdout'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "version" -d 'Print version information and exit'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "tool"
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "ide" -d 'IDE utilities'
+complete -c moon -n "__fish_moon_using_subcommand help; and not __fish_seen_subcommand_from new bundle build check prove run runwasm test cram generate-test-driver clean fmt doc explain info bench add remove install tree fetch search view work login whoami register publish package deprecate update coverage generate-build-matrix upgrade shell-completion version tool ide help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from cram" -f -a "test" -d 'Build native executables, then run cram tests with their directories on PATH'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from work" -f -a "init" -d 'Create a workspace manifest'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from work" -f -a "use" -d 'Add modules to the workspace manifest'
@@ -754,9 +781,9 @@ complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcomma
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from coverage" -f -a "clean" -d 'Clean up coverage artifacts'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from tool" -f -a "format-and-diff" -d 'Format the code and print the difference'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from tool" -f -a "format-workspace"
+complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from tool" -f -a "generate-node-test-package-config"
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from tool" -f -a "migrate-manifest" -d 'Format a legacy JSON manifest, install its replacement, and remove the old file'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from tool" -f -a "embed"
-complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from tool" -f -a "write-tcc-rsp-file"
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from tool" -f -a "build-binary-dep"
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from tool" -f -a "demangle" -d 'Demangle MoonBit symbol names'
 complete -c moon -n "__fish_moon_using_subcommand help; and __fish_seen_subcommand_from ide" -f -a "peek-def" -d 'Peek Definition of a symbol'
