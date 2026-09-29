@@ -269,7 +269,7 @@ complete -c moon -n "__fish_moon_using_subcommand test" -s v -l verbose -d 'Incr
 complete -c moon -n "__fish_moon_using_subcommand test" -l trace -d 'Trace the execution of the program'
 complete -c moon -n "__fish_moon_using_subcommand test" -l dry-run -d 'Do not actually run the command'
 complete -c moon -n "__fish_moon_using_subcommand test" -l build-graph
-complete -c moon -n "__fish_moon_using_subcommand test" -s h -l help -d 'Print help'
+complete -c moon -n "__fish_moon_using_subcommand test" -s h -l help -d 'Print help (see more with \'--help\')'
 complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -l target-dir -d 'The target directory. Defaults to `<project-root>/_build`, or `<source-dir>/_build/<file-name>` for a standalone file' -r -F
 complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -s q -l quiet -d 'Suppress output'
 complete -c moon -n "__fish_moon_using_subcommand cram; and not __fish_seen_subcommand_from test" -s v -l verbose -d 'Increase verbosity'

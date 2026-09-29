@@ -20,6 +20,7 @@ dependencies:
   - anaconda-client=1.15.0
   - anaconda-navigator=2.7.2
   - anaconda-project=0.13.2
+  - annotated-doc=0.0.5
   - annotated-types=0.7.0
   - anyio=4.15.1
   - aom=3.14.0
@@ -70,7 +71,7 @@ dependencies:
   - c-blosc2=3.1.2
   - ca-certificates=2026.8.13
   - cairo=1.18.4
-  - cattrs=25.3.0
+  - cattrs=26.2.0
   - cctools=1030.6.3
   - certifi=2026.7.22
   - cffi=2.1.1
@@ -92,7 +93,7 @@ dependencies:
   - conda-package-handling=2.6.0
   - conda-package-streaming=0.13.0
   - conda-pypi=0.12.0
-  - conda-rattler-solver=0.1.1
+  - conda-rattler-solver=0.2.0
   - conda-repo-cli=1.0.173
   - conda-self=0.3.0
   - contourpy=1.4.0
@@ -353,7 +354,7 @@ dependencies:
   - pure_eval=0.2.3
   - py-cpuinfo=9.0.0
   - py-lief=0.17.5
-  - py-rattler=0.25.0
+  - py-rattler=0.26.0
   - py-rattler-build=0.65.1
   - pyarrow=24.0.0
   - pybind11-abi=5
@@ -369,7 +370,7 @@ dependencies:
   - pyerfa=2.0.1.5
   - pyflakes=3.4.0
   - pygithub=2.9.1
-  - pygments=2.20.0
+  - pygments=2.21.0
   - pyjwt=2.13.0
   - pylint=4.0.8
   - pylint-venv=3.0.3
@@ -504,7 +505,7 @@ dependencies:
   - tqdm=4.70.0
   - traitlets=5.15.0
   - truststore=0.10.4
-  - typer=0.25.1
+  - typer=0.27.2
   - typing-extensions=4.16.0
   - typing-inspection=0.4.3
   - typing_extensions=4.16.0
@@ -543,7 +544,6 @@ dependencies:
   - zlib-ng=2.3.3
   - zstd=1.5.7
   - pip:
-      - annotated-doc==0.0.5
       - appdirs==1.4.4
       - fastapi==0.141.1
       - ifaddr==0.2.0
