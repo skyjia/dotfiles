@@ -81,7 +81,7 @@ dependencies:
   - cloudpickle=3.1.2
   - colorcet=3.2.1
   - comm=0.2.3
-  - conda=26.7.2
+  - conda=26.7.3
   - conda-anaconda-telemetry=0.3.1
   - conda-anaconda-tos=0.3.0
   - conda-build=26.7.1
@@ -269,7 +269,7 @@ dependencies:
   - lz4=4.4.5
   - lz4-c=1.9.4
   - lzo=2.10
-  - markdown=3.10.2
+  - markdown=3.10.3
   - markdown-it-py=4.2.0
   - markupsafe=3.0.3
   - matplotlib=3.11.2
@@ -494,7 +494,7 @@ dependencies:
   - textdistance=4.6.3
   - threadpoolctl=3.5.0
   - three-merge=0.1.1
-  - tifffile=2026.7.31
+  - tifffile=2026.9.20
   - tinycss2=1.5.1
   - tk=9.0.4
   - toml=0.10.2
