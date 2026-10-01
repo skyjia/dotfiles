@@ -15,7 +15,7 @@ brew "aliyun-cli"
 # Arduino command-line interface
 brew "arduino-cli"
 # Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
+brew "openssl@4"
 # Library for command-line editing
 brew "readline"
 # Download with resuming and segmented downloading
@@ -78,10 +78,10 @@ brew "fastfetch"
 brew "fd"
 # Identify or delete duplicate files
 brew "fdupes"
-# SDL2 compatibility layer that uses SDL3 behind the scenes
-brew "sdl2-compat"
 # QR Code generation
 brew "qrencode"
+# SDL2 compatibility layer that uses SDL3 behind the scenes
+brew "sdl2-compat"
 # Play, record, convert, and stream many audio and video codecs
 brew "ffmpeg-full"
 # Collection of GNU find, xargs, and locate
@@ -210,6 +210,8 @@ brew "quilt"
 brew "rename"
 # SVG rendering tool and library
 brew "resvg"
+# Terminal multiplexer with a tmux-style CLI and daemon runtime
+brew "rmux"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # 7-Zip is a file archiver with a high compression ratio
@@ -268,8 +270,6 @@ brew "charmbracelet/tap/crush", trusted: true
 brew "espressif/eim/eim"
 # Multi-platform command-line tool to monitor and receive MIDI messages
 brew "gbevin/tools/receivemidi", trusted: true
-# Local terminal multiplexer with a tmux-style CLI and daemon runtime
-brew "rmux"
 # ODBC Driver for Microsoft(R) SQL Server(R)
 brew "microsoft/mssql-release/msodbcsql18"
 # Sqlcmd and Bcp for Microsoft(R) SQL Server(R)

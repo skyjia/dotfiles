@@ -25,7 +25,7 @@ dependencies:
   - anyio=4.15.1
   - aom=3.14.0
   - applaunchservices=0.3.0
-  - appnope=0.1.4
+  - appnope=1.0.0
   - appscript=1.4.0
   - archspec=0.2.6
   - argon2-cffi=25.1.0
@@ -65,7 +65,7 @@ dependencies:
   - bokeh=3.9.2
   - boltons=25.0.0
   - botocore=1.43.0
-  - brotli-python=1.2.0
+  - brotlicffi=1.2.0.1
   - bzip2=1.0.8
   - c-ares=1.34.8
   - c-blosc2=3.1.2
@@ -92,7 +92,7 @@ dependencies:
   - conda-pack=0.9.1
   - conda-package-handling=2.6.0
   - conda-package-streaming=0.13.0
-  - conda-pypi=0.12.0
+  - conda-pypi=0.13.0
   - conda-rattler-solver=0.2.0
   - conda-repo-cli=1.0.173
   - conda-self=0.3.0
@@ -163,6 +163,7 @@ dependencies:
   - ipykernel=6.31.0
   - ipympl=0.9.8
   - ipython=9.17.1
+  - ipython_genutils=0.2.0
   - ipython_pygments_lexers=1.1.1
   - ipywidgets=8.1.9
   - isort=9.0.1
@@ -175,7 +176,7 @@ dependencies:
   - jellyfish=1.2.1
   - jinja2=3.1.6
   - jmespath=1.1.0
-  - joblib=1.5.3
+  - joblib=1.6.0
   - jq=1.8.2
   - json5=0.15.0
   - jsonschema=4.26.0
@@ -313,7 +314,7 @@ dependencies:
   - numexpr=2.14.2
   - numpy=2.4.6
   - numpy-base=2.4.6
-  - numpydoc=1.10.0
+  - numpydoc=1.11.0
   - oniguruma=6.9.10
   - openldap=2.6.12
   - openpyxl=3.1.5
@@ -371,7 +372,7 @@ dependencies:
   - pyflakes=3.4.0
   - pygithub=2.9.1
   - pygments=2.21.0
-  - pyjwt=2.13.0
+  - pyjwt=2.15.1
   - pylint=4.0.8
   - pylint-venv=3.0.3
   - pyls-spyder=0.4.0
@@ -382,7 +383,7 @@ dependencies:
   - pyobjc-framework-fsevents=12.1
   - pyodbc=5.3.0
   - pyparsing=3.3.2
-  - pyproject_hooks=1.2.0
+  - pyproject_hooks=1.3.3
   - pyqt=6.11.0
   - pyqt6-sip=13.11.1
   - pyqtwebengine=6.11.0
@@ -448,7 +449,7 @@ dependencies:
   - rtree=1.4.1
   - ruamel.yaml=0.18.16
   - ruamel.yaml.clib=0.2.14
-  - ruff=0.16.7
+  - ruff=0.16.8
   - s3fs=2026.7.0
   - scikit-image=0.26.0
   - scikit-learn=1.9.1
@@ -545,8 +546,9 @@ dependencies:
   - zstd=1.5.7
   - pip:
       - appdirs==1.4.4
-      - fastapi==0.141.1
+      - fastapi==0.142.2
       - ifaddr==0.2.0
+      - opentelemetry-api==1.45.0
       - rangehttpserver==1.4.0
       - soco==0.31.4
       - soco-cli==0.4.86

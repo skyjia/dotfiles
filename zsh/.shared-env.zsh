@@ -35,8 +35,8 @@ export PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH"
 # shellcheck disable=SC1090
 . ~/.asdf/plugins/java/set-java-home.zsh
 
-# OpenSSL 3.0 (Homebrew)
-_brew_openssl=$(brew --prefix openssl@3)
+# OpenSSL 4.0 (Homebrew)
+_brew_openssl=$(brew --prefix openssl@4)
 export PATH="$_brew_openssl/bin:$PATH"
 export LDFLAGS="-L$_brew_openssl/lib $LDFLAGS"
 export CPPFLAGS="-I$_brew_openssl/include $CPPFLAGS"
