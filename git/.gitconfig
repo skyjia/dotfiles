@@ -51,8 +51,8 @@
 [credential]
 	helper =
 	helper = osxkeychain
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [safe]
 	# Uncomment below to allow git to run in all directories. Use with CAUTION.
 	# directory = *
@@ -69,3 +69,5 @@
 	# as that can lead to security issues.
 	# e.g. If you have a system-wide asdf installation, you can trust it with the following line:
 	# 	sudo chown -R (whoami) ~/.
+[credential "https://dev.azure.com"]
+	useHttpPath = true

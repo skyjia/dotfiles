@@ -22,6 +22,8 @@ brew "readline"
 brew "aria2"
 # YAML Parser
 brew "libyaml"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # Text processor and publishing toolchain for AsciiDoc
 brew "asciidoctor"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
@@ -32,8 +34,6 @@ brew "zstd"
 brew "python@3.14"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Microsoft Azure CLI 2.0
-brew "azure-cli"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration

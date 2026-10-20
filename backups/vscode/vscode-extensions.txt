@@ -154,6 +154,7 @@ sleistner.vscode-fileutils
 streetsidesoftware.code-spell-checker
 stylelint.vscode-stylelint
 sumneko.lua
+surgenetworks.surge-language-support
 swiftlang.swift-vscode
 syler.sass-indented
 systemticks.c4-dsl-extension
