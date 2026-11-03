@@ -18,4 +18,4 @@ changeps1: false
 proxy_servers:
   http: http://127.0.0.1:6152
   https: http://127.0.0.1:6152
-# ssl_verify: false
+# ssl_verify: true
