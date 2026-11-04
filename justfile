@@ -40,7 +40,7 @@ check-npm-outdated:
 
 
 # Update claude, antigravity, and dws CLI tools
-update-ai: update-claude update-dws
+update-ai: update-dws update-bailian update-claude
 
 # Wash macOS provenance attributes from the project root
 wash-macos-provenance:
@@ -217,4 +217,10 @@ update-claude:
 update-dws:
     # Update DingTalk Workspace CLI (dws)
     dws upgrade -y
+    @echo
+
+# Update Bailian CLI & its plugins
+update-bailian:
+    # Update Bailian CLI
+    bailian update
     @echo
