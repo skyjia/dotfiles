@@ -26,6 +26,19 @@ update-editors: update-nvim update-vscode update-yazi
 # Update R packages, conda, asdf plugins, and rust toolchain
 update-dev: update-r-packages update-asdf update-rust
 
+# Update npm packages globally
+update-npm:
+    # Update npm packages globally
+    npm update -g
+    @echo
+
+# Check for outdated npm packages globally
+check-npm-outdated:
+    # Check for outdated npm packages globally
+    npm outdated -g
+    @echo
+
+
 # Update claude, antigravity, and dws CLI tools
 update-ai: update-claude update-dws
 
