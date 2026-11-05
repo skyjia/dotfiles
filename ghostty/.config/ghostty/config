@@ -6,7 +6,7 @@
 
 # --- 基础外观与字体 ---
 theme = Solarized Osaka Night
-font-family = "Hack Nerd Font MonoF"
+font-family = "Hack Nerd Font Mono"
 
 
 # 使用 Option + CMD + hjkl 切换 Pane
