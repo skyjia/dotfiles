@@ -146,7 +146,6 @@ rogalmic.bash-debug
 rust-lang.rust-analyzer
 ryanluker.vscode-coverage-gutters
 sandcastle.vscode-open
-saoudrizwan.claude-dev
 shd101wyy.markdown-preview-enhanced
 shengchen.vscode-checkstyle
 shopify.ruby-lsp

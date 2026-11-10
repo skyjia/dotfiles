@@ -40,7 +40,7 @@ check-npm-outdated:
 
 
 # Update claude, antigravity, and dws CLI tools
-update-ai: update-dws update-bailian update-claude
+update-ai: update-dws update-bailian update-claude update-skillshare
 
 # Wash macOS provenance attributes from the project root
 wash-macos-provenance:
@@ -144,7 +144,7 @@ brew-cleanup:
 dump-brew:
     #!/usr/bin/env fish
     # Dumping Brewfile
-    brew bundle dump --global --force --no-vscode --no-go --no-cargo --no-mas
+    brew bundle dump --global --force --no-vscode --no-go --no-cargo --no-npm --no-mas
     # Prepend auto-generated comment to Brewfile
     set -l brewfile {{ justfile_directory() }}/brew/.Brewfile
     set -l tmp $brewfile.tmp
@@ -223,4 +223,10 @@ update-dws:
 update-bailian:
     # Update Bailian CLI
     bailian update
+    @echo
+
+# Update Skillshare CLI
+update-skillshare:
+    # Update Skillshare CLI
+    skillshare upgrade --force
     @echo

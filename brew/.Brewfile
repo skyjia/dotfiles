@@ -6,6 +6,7 @@ tap "farion1231/ccswitch", trusted: true
 tap "gbevin/tools", trusted: true
 tap "gm5dna/amateur-radio", trusted: true
 tap "microsoft/mssql-release", "https://github.com/Microsoft/homebrew-mssql-release", trusted: true
+tap "runkids/tap"
 # C++ Common Libraries
 brew "abseil"
 # Search tool like grep, but optimized for programmers
@@ -30,8 +31,6 @@ brew "asciidoctor"
 brew "asdf"
 # Zstandard is a real-time compression algorithm
 brew "zstd"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.14"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -184,6 +183,8 @@ brew "pinentry-mac"
 brew "pkgconf"
 # Draw UML diagrams
 brew "plantuml"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
 # Your Gateway to Embedded Software Development Excellence
 brew "platformio"
 # Tool for managing OCI containers and pods
@@ -220,6 +221,8 @@ brew "sevenzip"
 brew "shellcheck"
 # Python library and command-line utility for Shodan
 brew "shodan"
+# Sync skills across AI CLI tools
+brew "skillshare"
 # Vendor and platform neutral SDR support library
 brew "soapysdr"
 # Cross-shell prompt for astronauts
@@ -346,6 +349,8 @@ cask "gm5dna/amateur-radio/sdrconnect"
 cask "gm5dna/amateur-radio/sdrplusplus"
 # A multi-platform GUI application to effortlessly visualize MIDI activity
 cask "gbevin/tools/showmidi", trusted: true
+# Desktop GUI for Skillshare CLI
+cask "runkids/tap/skillshare-app", trusted: true
 # Graphical user interface for TeX Live Manager
 cask "tex-live-utility"
 # Web browser focusing on security
