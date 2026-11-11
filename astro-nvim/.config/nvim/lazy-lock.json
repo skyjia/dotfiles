@@ -58,7 +58,7 @@
   "presence.nvim": { "branch": "main", "commit": "87c857a56b7703f976d3a5ef15967d80508df6e6" },
   "resession.nvim": { "branch": "master", "commit": "cc819b0489938d03e4f3532a583354f0287c015b" },
   "rustaceanvim": { "branch": "master", "commit": "b7ca983c6ec88c94cf25e5deaad96df9a68b9a98" },
-  "schemastore.nvim": { "branch": "main", "commit": "cb6074339e4a7057140912e308d93155e55d1410" },
+  "schemastore.nvim": { "branch": "main", "commit": "92e7b3b2dbd1505fcbcb20f1fdd987b35e9cd34b" },
   "smart-splits.nvim": { "branch": "master", "commit": "ddb23c1a1cf1507bda487cda7f6e4690965ef9f5" },
   "snacks.nvim": { "branch": "main", "commit": "e6fd58c82f2f3fcddd3fe81703d47d6d48fc7b9f" },
   "sqls.nvim": { "branch": "main", "commit": "332caa9ab86af1a00259feb01051ea825e8fc461" },

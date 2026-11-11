@@ -7,6 +7,17 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+    "agent_servers": {
+        "opencode-v2": {
+            "type": "registry"
+        },
+        "codex-acp": {
+            "type": "registry"
+        },
+        "claude-acp": {
+            "type": "registry"
+        }
+    },
     "project_panel": {
         "dock": "right"
     },
