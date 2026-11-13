@@ -161,6 +161,7 @@ tamasfe.even-better-toml
 terrastruct.d2
 thenuprojectcontributors.vscode-nushell-lang
 timonwong.shellcheck
+tombi-toml.tombi
 trond-snekvik.simple-rst
 tutuge.claude-code-notifier-plus
 typescriptteam.native-preview
