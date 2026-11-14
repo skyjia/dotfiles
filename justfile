@@ -107,11 +107,14 @@ update-conda:
 update-vscode:
     # Update vscode extensions
     code --update-extensions
-    # Export extension list to file
+    # Export vscode extension list to file
     code --list-extensions > {{ justfile_directory() }}/backups/vscode/vscode-extensions.txt
     @echo
 
-
+export-vscode-extensions:
+    # Export vscode extension list to file
+    code --list-extensions > {{ justfile_directory() }}/backups/vscode/vscode-extensions.txt
+    @echo
 
 # Update Homebrew formula lists
 brew-update:
