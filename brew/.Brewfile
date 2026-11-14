@@ -298,8 +298,6 @@ cask "minecraft-education"
 cask "netlogo"
 # System and utility switches
 cask "only-switch"
-# Tool for working with messy data (previously Google Refine)
-cask "openrefine"
 # Minecraft launcher
 cask "prismlauncher"
 # Scientific and technical publishing system built on Pandoc
