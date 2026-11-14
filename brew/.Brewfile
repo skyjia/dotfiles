@@ -5,7 +5,6 @@ tap "espressif/eim", trusted: true
 tap "farion1231/ccswitch", trusted: true
 tap "gbevin/tools", trusted: true
 tap "gm5dna/amateur-radio", trusted: true
-tap "microsoft/mssql-release", "https://github.com/Microsoft/homebrew-mssql-release", trusted: true
 tap "runkids/tap"
 # C++ Common Libraries
 brew "abseil"
@@ -245,8 +244,6 @@ brew "charmbracelet/tap/crush", trusted: true
 brew "espressif/eim/eim"
 # Multi-platform command-line tool to monitor and receive MIDI messages
 brew "gbevin/tools/receivemidi", trusted: true
-# ODBC Driver for Microsoft(R) SQL Server(R)
-brew "microsoft/mssql-release/msodbcsql18"
 # Distribution of the Python and R programming languages for scientific computing
 cask "anaconda"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
