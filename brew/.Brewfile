@@ -9,8 +9,6 @@ tap "microsoft/mssql-release", "https://github.com/Microsoft/homebrew-mssql-rele
 tap "runkids/tap"
 # C++ Common Libraries
 brew "abseil"
-# Search tool like grep, but optimized for programmers
-brew "ack"
 # Universal Command-Line Interface for Alibaba Cloud
 brew "aliyun-cli"
 # Arduino command-line interface
@@ -43,14 +41,10 @@ brew "bitwarden-cli"
 brew "bottom"
 # New way of working with Protocol Buffers
 brew "buf"
-# Extract files from Microsoft cabinet files
-brew "cabextract"
 # Core application library for C
 brew "glib"
 # Low-level library for pixel manipulation
 brew "pixman"
-# CD/DVD/Blu-ray premastering and recording software
-brew "cdrtools"
 # Cross-platform make
 brew "cmake"
 # GNU File, Shell, and Text utilities
@@ -61,14 +55,10 @@ brew "curl"
 brew "d2"
 # USB programmer
 brew "dfu-util"
-# Diff that understands syntax
-brew "difftastic"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Embeddable SQL OLAP Database Management System
 brew "duckdb"
-# Key value store for shared configuration and service discovery
-brew "etcd"
 # Modern, maintained replacement for ls
 brew "eza"
 # Like neofetch, but much faster because written mostly in C
@@ -101,8 +91,6 @@ brew "git"
 brew "git-delta"
 # Git extension for versioning large files
 brew "git-lfs"
-# Blazing fast terminal-ui for git written in rust
-brew "gitui"
 # Render markdown on the CLI
 brew "glow"
 # GNU implementation of the famous stream editor
@@ -131,8 +119,6 @@ brew "protobuf"
 brew "grpc"
 # Library for communicating with USB and Bluetooth HID devices
 brew "hidapi"
-# Improved top (interactive process viewer)
-brew "htop"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Command-line benchmarking tool
@@ -153,10 +139,6 @@ brew "lazygit"
 brew "libgccjit"
 # General purpose TCP-IP emulator
 brew "libslirp"
-# Curses-based tool for viewing and analyzing log files
-brew "lnav"
-# Package manager for the Lua programming language
-brew "luarocks"
 # Mac App Store command-line interface
 brew "mas"
 # Menu-driven communications program
@@ -205,22 +187,14 @@ brew "protoc-gen-go-grpc"
 brew "python-yq"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.13"
-# Work with series of patches
-brew "quilt"
 # Perl-powered file rename script with many helpful built-ins
 brew "rename"
-# SVG rendering tool and library
-brew "resvg"
-# Terminal multiplexer with a tmux-style CLI and daemon runtime
-brew "rmux"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
-# Python library and command-line utility for Shodan
-brew "shodan"
 # Sync skills across AI CLI tools
 brew "skillshare"
 # Vendor and platform neutral SDR support library
@@ -235,8 +209,6 @@ brew "stow"
 brew "tealdeer"
 # Send macOS User Notifications from the command-line
 brew "terminal-notifier"
-# Code-search similar to ack
-brew "the_silver_searcher"
 # Programmatically correct mistyped console commands
 brew "thefuck"
 # Terminal multiplexer
@@ -275,8 +247,6 @@ brew "espressif/eim/eim"
 brew "gbevin/tools/receivemidi", trusted: true
 # ODBC Driver for Microsoft(R) SQL Server(R)
 brew "microsoft/mssql-release/msodbcsql18"
-# Sqlcmd and Bcp for Microsoft(R) SQL Server(R)
-brew "microsoft/mssql-release/mssql-tools18"
 # Distribution of the Python and R programming languages for scientific computing
 cask "anaconda"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
