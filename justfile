@@ -30,12 +30,18 @@ update-dev: update-r-packages update-asdf update-rust
 update-npm:
     # Update npm packages globally
     npm update -g
+    asdf reshim nodejs
     @echo
 
 # Check for outdated npm packages globally
 check-npm-outdated:
     # Check for outdated npm packages globally
     npm outdated -g
+    @echo
+
+npm-list:
+    # List all globally installed npm packages
+    npm list -g --depth=0
     @echo
 
 

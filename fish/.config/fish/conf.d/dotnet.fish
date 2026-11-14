@@ -1,5 +1,5 @@
 # set -gx DOTNET_ROOT $HOME/.dotnet
-set --local dotnet_root_local $HOME/.dotnet
+set --local dotnet_root_local "/opt/homebrew/opt/dotnet/libexec"
 
 # Ensure the DOTNET_ROOT environment variable is set
 if set --query DOTNET_ROOT
