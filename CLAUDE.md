@@ -40,7 +40,6 @@ stow package_name
 stow zsh           # Apply zsh configuration
 stow fish          # Apply fish shell configuration
 stow nushell       # Apply nushell configuration
-stow tmux          # Apply tmux configuration
 stow git           # Apply git configuration
 stow karabiner     # Apply Karabiner-Elements configuration
 stow yazi          # Apply yazi file manager configuration
@@ -73,7 +72,6 @@ Each top-level directory represents a stowable package:
 - `fish/` - Fish shell configuration with utility functions
 - `nushell/` - Nushell with autoloaded modules and vendor scripts
 - `astro-nvim/` - AstroNvim configuration for Neovim
-- `tmux/` - Terminal multiplexer configuration (via submodule)
 - `zed/` - Zed editor settings
 - `raycast/` - Raycast script commands (via submodules)
 - `warp/` - Warp terminal settings, themes, and tab configurations (via submodule)
@@ -98,7 +96,6 @@ Each top-level directory represents a stowable package:
 - `hg/` - Mercurial configuration
 
 ### Git Submodules
-- `tmux/.tmux` - gpakosz/.tmux
 - `raycast/.config/raycast/script-commands` - Official Raycast script commands
 - `raycast/raycast-script-commands` - Personal Raycast script commands
 - `warp/.warp/official-themes` - Warp terminal themes

@@ -32,7 +32,7 @@ Major packages:
 - `git/`, `zsh/`, `fish/`, `nushell/` – Shell and VCS config
 - `astro-nvim/` – Neovim config (AstroNvim)
 - `zed/` – Editor settings
-- `tmux/`, `karabiner/`, `ghostty/`, `warp/`, `waveterm/`, `zellij/` – Terminal/CLI tools
+- `karabiner/`, `ghostty/`, `warp/`, `waveterm/`, `zellij/` – Terminal/CLI tools
 - `bat/`, `yazi/`, `starship/` – CLI utilities
 - `raycast/` – Raycast script commands
 - `brew/.Brewfile` – Homebrew packages (global managed)
@@ -57,7 +57,6 @@ Non-stowable backup files are kept under `backups/` (git-tracked, stow-ignored):
 ## Git Submodules
 
 Repository contains submodules that must be updated together:
-- `tmux/.tmux` – gpakosz/.tmux
 - `raycast/.config/raycast/script-commands` – Official Raycast script commands
 - `raycast/raycast-script-commands` – Personal Raycast script commands
 - `warp/.warp/official-themes` – Warp terminal themes

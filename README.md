@@ -37,7 +37,6 @@
 ### Terminal Multiplexers
 | Package | Description |
 |---------|-------------|
-| `tmux/` | Terminal multiplexer configuration (via submodule) |
 | `zellij/` | Zellij terminal multiplexer configuration |
 
 ### Editors
@@ -146,15 +145,6 @@ stow zsh
 #### vim
 
 Vim configuration is based on [**AstroNvim**](https://astronvim.com/).
-
-#### tmux
-
-tmux configuration is based on [**gpakosz/.tmux**](https://github.com/gpakosz/.tmux).
-
-```sh
-cd ~/dotfiles
-stow tmux
-```
 
 ### 4 Keep Updated
 
