@@ -23,7 +23,7 @@ update-shells: update-fish
 # Update nvim, vscode, and yazi plugins
 update-editors: update-nvim update-vscode update-yazi
 
-# Update R packages, conda, asdf plugins, and rust toolchain
+# Update R packages, asdf plugins, and rust toolchain
 update-dev: update-r-packages update-asdf update-rust
 
 # Update npm packages globally
@@ -86,21 +86,6 @@ update-asdf:
 update-r-packages:
     # Updating R packages
     Rscript -e 'update.packages(ask = FALSE)'
-    @echo
-
-# Update Anaconda conda package manager, all packages, and cleanup
-update-conda:
-    # Upgrade pip packages to latest (read from base-environment.yml)
-    pip install -U $(yq -r '.dependencies[] | select(type == "object") | select(.pip != null) | .pip[]' {{ justfile_directory() }}/anaconda/base-environment.yml | awk -F'==' '{print $1}')
-    # Update the conda package manager
-    conda update -y -n base conda
-    # Update all packages in base environment
-    conda update --all -y
-    # Clean up caches, tarballs, and unused packages
-    conda clean --all -y
-    # Refresh base environment snapshot for reproducibility
-    # Filter out machine-specific 'prefix:' line for cross-platform portability
-    conda env export -n base --no-builds 2>/dev/null | grep -v '^prefix:' > {{ justfile_directory() }}/anaconda/base-environment.yml
     @echo
 
 # Update vscode extensions and export list to file

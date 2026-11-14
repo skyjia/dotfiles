@@ -57,7 +57,7 @@
 |---------|-------------|
 | `brew/` | Homebrew packages and casks (`brew/.Brewfile`) |
 | `asdf/` | asdf version manager configuration |
-| `anaconda/` | Conda environment configuration |
+| `uv/` | uv configuration — Python interpreter policy (`uv/.config/uv/uv.toml`) |
 
 ### Language Configurations
 | Package | Description |
@@ -169,7 +169,7 @@ just update-brew        # Update Homebrew packages and casks
 just update-shells      # Update fish plugins
 just update-apps        # Check outdated App Store apps (mas)
 just update-editors     # Update nvim (AstroNvim), vscode, yazi
-just update-dev         # Update R packages, conda, asdf, rust toolchain
+just update-dev         # Update R packages, asdf plugins, rust toolchain
 just update-ai          # Update claude, antigravity, and dws CLI tools
 ```
 

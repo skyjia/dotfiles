@@ -1,0 +1,4 @@
+# 解释器统一由 Homebrew 提供，uv 只管虚拟环境、依赖与工具。
+# uv 默认优先用自己下载的 Python，会使新建 venv 静默换基座，故改为优先系统。
+python-preference = "system"
+python-downloads  = "automatic"

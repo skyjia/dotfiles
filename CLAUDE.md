@@ -19,7 +19,7 @@ just update-brew        # Update Homebrew packages and casks (from brew/.Brewfil
 just update-shells      # Update fish plugins
 just update-apps        # Check outdated App Store apps (mas)
 just update-editors     # Update nvim (AstroNvim), vscode, yazi
-just update-dev         # Update R packages, conda, asdf, rust toolchain
+just update-dev         # Update R packages, asdf plugins, rust toolchain
 just update-ai          # Update claude and dws (DingTalk Workspace CLI)
 
 # Cargo package management
@@ -87,7 +87,7 @@ Each top-level directory represents a stowable package:
 - `asdf/` - asdf version manager configuration
 - `R/` - R package configuration
 - `rust/` - Rust/cargo configuration
-- `anaconda/` - Conda environment configuration
+- `uv/` - uv configuration (Python interpreter policy)
 - `aria2/` - aria2 download manager configuration
 - `npm/` - npm configuration
 - `odbc/` - ODBC database configuration
@@ -114,7 +114,7 @@ Each top-level directory represents a stowable package:
 
 ### Development Environment
 - **Version managers**: asdf for multiple language runtimes
-- **Package managers**: Homebrew (macOS), conda (Python), cargo (Rust)
+- **Package managers**: Homebrew (macOS), uv (Python), cargo (Rust)
 - **Cargo package manifest**: `rust/.cargo/crates.txt` lists desired cargo packages; `just install-cargo-crates` installs them all, `just cargo-install <pkg>` installs one and syncs to manifest
 - **Editor ecosystem**: Neovim with AstroNvim, VSCode, Zed, yazi
 - **Terminal tools**: starship prompt, zoxide, fzf, lazygit, ghostty, zellij
@@ -124,13 +124,16 @@ Each top-level directory represents a stowable package:
 Non-stowable backup files are kept under `backups/` (git-tracked, stow-ignored via root `.stow-local-ignore`):
 - `backups/vscode/vscode-extensions.txt` — VSCode extension list (auto-maintained by `just update-vscode`)
 - `backups/iTerm/Profiles.json` — iTerm2 profile backup
+- `backups/anaconda/base-environment.yml` — 已停用 conda 的 570 包环境快照，仅作存档
 
 Each backup source has its own subdirectory for isolation.
 
 ### Python Strategy
-Python is intentionally NOT managed by asdf. Two sources coexist with clear responsibilities:
-- **conda (anaconda)** — data-science work. `conda`-installed python is the default `python3` in PATH (via anaconda's bin dir prepended to PATH). Base environment snapshot tracked in `anaconda/base-environment.yml` (auto-refreshed by `just update-conda`; `--no-builds` for portability, `prefix:` filtered for cross-platform).
-- **brew (python@3.13, python@3.14)** — system scripting and tool dependencies. These brew pythons are not used for application development; they exist because other Homebrew formulae depend on them.
+Python is intentionally NOT managed by asdf. Two layers with no overlap:
+- **brew** — the only interpreter source (`python@3.13/3.14/3.15`, each present because Homebrew formulae depend on it). `python@3.15` backs the global `python3`/`pip3`; `~/.local/bin/python` is a symlink to it so bare `python` still resolves.
+- **uv** — virtual environments, dependency resolution, tool installs. `uv/.config/uv/uv.toml` sets `python-preference = "system"`, because uv otherwise prefers Python it downloads itself and silently re-bases new venvs onto that copy.
+- **No global package environment by design**: use `uv add` per project, or `uv run --with <pkg>` for one-off scripts. Bare `python3 -c "import pandas"` deliberately does not work.
+- conda/Anaconda was removed 2026-11-15; its 570-package manifest is archived at `backups/anaconda/base-environment.yml`.
 
 ### Node/Ruby Strategy
 - **asdf** — primary manager for `nodejs` and `ruby` (versions pinned in `asdf/.tool-versions`).
@@ -150,7 +153,7 @@ The repository uses a multi-layered update approach via `just all`:
 3. Shell environments (fish plugins)
 4. Applications (App Store apps via mas)
 5. Editors (Neovim plugins, VSCode extensions, yazi plugins)
-6. Development tools (R packages, conda, asdf plugins, Rust toolchain)
+6. Development tools (R packages, asdf plugins, Rust toolchain)
 7. AI tools (claude, dws)
 
 ### macOS Provenance

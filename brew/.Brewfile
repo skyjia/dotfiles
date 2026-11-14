@@ -244,8 +244,6 @@ brew "charmbracelet/tap/crush", trusted: true
 brew "espressif/eim/eim"
 # Multi-platform command-line tool to monitor and receive MIDI messages
 brew "gbevin/tools/receivemidi", trusted: true
-# Distribution of the Python and R programming languages for scientific computing
-cask "anaconda"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # 3D model editor for boxy models and pixel art textures

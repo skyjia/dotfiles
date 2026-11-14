@@ -17,7 +17,7 @@ just update-brew      # Run `brew bundle --global` from brew/.Brewfile
 just update-shells    # fisher update (fish plugins)
 just update-apps      # mas outdated (App Store apps)
 just update-editors   # Update nvim (AstroUpdate + MasonUpdate), vscode, yazi
-just update-dev       # Update R packages, conda, asdf, rust
+just update-dev       # Update R packages, asdf plugins, rust
 just update-ai        # Update claude CLI + dws (DingTalk Workspace CLI)
 just wash-macos-provenance  # Clear quarantine/provenance xattrs (for downloaded files)
 ```
@@ -36,7 +36,7 @@ Major packages:
 - `bat/`, `yazi/`, `starship/` – CLI utilities
 - `raycast/` – Raycast script commands
 - `brew/.Brewfile` – Homebrew packages (global managed)
-- `asdf/`, `R/`, `rust/`, `anaconda/` – Version managers and runtime config
+- `asdf/`, `R/`, `rust/`, `uv/` – Version managers and runtime config
 - `aria2/`, `npm/`, `odbc/`, `wget/` – Network/download tools
 - `cmux/` – cmux configuration
 - `ruby/`, `hg/` – Legacy/specific tools
@@ -49,10 +49,16 @@ Non-stowable working directory:
 Non-stowable backup files are kept under `backups/` (git-tracked, stow-ignored):
 - `backups/vscode/vscode-extensions.txt` – VSCode extension list
 - `backups/iTerm/Profiles.json` – iTerm2 profile backup
+- `backups/anaconda/base-environment.yml` – archived (retired) conda environment manifest
 
-## Conda Environment
+## Python Environment
 
-`anaconda/base-environment.yml` tracks the base conda environment snapshot. Auto-refreshed by `just update-conda` (`--no-builds` for portability, `prefix:` filtered out).
+Homebrew provides the interpreters; uv provides virtual environments, dependency
+resolution and tool installs. `uv/.config/uv/uv.toml` pins `python-preference = "system"`
+so uv does not silently re-base venvs onto Python it downloads itself. There is no global
+package environment — use `uv add` per project or `uv run --with <pkg>` for one-off scripts.
+conda/Anaconda was removed 2026-11-15; the old environment manifest is archived at
+`backups/anaconda/base-environment.yml`.
 
 ## Git Submodules
 
@@ -86,7 +92,7 @@ Running `just update-dotfiles` or `just all` automatically updates them.
 
 - **Multi-shell environment:** Fish is the justfile shell; zsh/fish/nushell all coexist. Edits must respect each shell's syntax.
 - **Zsh defaults:** Sets `nvim` as $EDITOR/$VISUAL, uses fish_vi_key_bindings in fish, runs `ulimit -n 2048`, includes lazygit `lg()` wrapper with cd-on-exit.
-- **Proxy config (zsh only):** Auto-enables on shell startup via `ensure_enable_proxy`. Toggle with `tp`/`tpe`/`tpd`. Syncs git proxy config. Not in other shells. Conda init is commented out (disabled for performance).
+- **Proxy config (zsh only):** Auto-enables on shell startup via `ensure_enable_proxy`. Toggle with `tp`/`tpe`/`tpd`. Syncs git proxy config. Not in other shells.
 - **No tests or CI:** This is personal config, not a tested package. No build artifacts to worry about.
 - **asdf pinning:** Check `asdf/check-tools-version.nu` after running `just update-asdf`; it validates tool versions.
 - **Brew globals:** Using `brew bundle --global` (not local to repo). Extensions managed in `backups/vscode/vscode-extensions.txt`.
