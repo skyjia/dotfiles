@@ -138,9 +138,26 @@ Python is intentionally **not** managed by asdf. Two layers, no overlap:
 
 ### Node / Ruby
 
-- **asdf** — primary manager for `nodejs` and `ruby` (pinned in `asdf/.tool-versions`).
-- **brew** — `node`/`ruby` may appear in `brew list` as transitive dependencies. They
-  are not the user-facing versions; asdf shims take precedence in PATH.
+- **asdf** — primary manager for `nodejs` and `ruby` (pinned in `asdf/.tool-versions`,
+  set globally via `asdf set -u nodejs`).
+- **brew** — `node`/`ruby` may appear in `brew list` as transitive dependencies
+  (`node` currently only for `bitwarden-cli`). They are not the user-facing versions and
+  must not be listed in the Brewfile.
+
+### npm globals
+
+`~/.default-npm-packages` (repo copy: `asdf/.default-npm-packages`) is the manifest of
+global npm tools. Two rules about it are easy to get wrong:
+
+- **asdf-nodejs only reads that file when *installing* a Node version.** If the file
+  changes afterwards, nothing syncs it — use `just sync-npm-defaults`.
+- **Always go through `with-asdf-node` for global npm operations.** Homebrew may install
+  the *same* Node version, and its `npm` resolves `global root` to `/opt/homebrew` rather
+  than `~/.asdf/installs/nodejs/<ver>`. In a login fish the asdf shims are prepended so
+  bare `npm` is fine, but in GUI-spawned contexts (VSCode tasks, Claude Code, launchd)
+  `/opt/homebrew/bin` wins and globals silently land in the wrong prefix. The
+  `fish/.config/fish/functions/with-asdf-node.fish` helper pins PATH the same way the
+  asdf plugin does, so results no longer depend on the caller.
 
 ### Cargo
 
