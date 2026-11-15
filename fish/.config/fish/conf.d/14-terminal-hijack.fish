@@ -4,12 +4,8 @@ if status is-interactive
             # Do nothing for WarpTerminal
         case "iTerm.app"
             # Do nothing for iTerm
-        case "waveterm"
-            # Do nothing for wave terminal
         case "vscode"
             # Do nothing for VSCode
-        case "codebuddy"
-            # Do nothing for CodeBuddy
         case "Apple_Terminal"
             # Do nothing for Apple_Terminal
         case "ghostty"
