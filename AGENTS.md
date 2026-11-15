@@ -78,6 +78,7 @@ cd ~/dotfiles && stow zsh        # also: fish, nushell, git, karabiner, yazi, ba
 | `asdf/` | asdf version manager configuration and pinned versions |
 | `R/` | R package configuration |
 | `rust/` | Rust/cargo configuration incl. `crates.txt` manifest |
+| `go/` | Go env file (`GOPROXY` mirror) — stowed to `~/Library/Application Support/go/env` |
 | `uv/` | uv configuration (`uv.toml`) — Python interpreter policy |
 | `aria2/` | aria2 download manager configuration |
 | `npm/` | npm configuration |
@@ -122,6 +123,8 @@ Non-stowable backup files live under `backups/` (git-tracked, stow-ignored via r
 - `warp/.warp/settings.toml` — Warp terminal settings
 - `yazi/.config/yazi/package.toml` — yazi plugin packages
 - `uv/.config/uv/uv.toml` — Python interpreter preference
+- `go/Library/Application Support/go/env` — Go env (`GOPROXY` mirror); applies to every
+  `go` invocation including editor-spawned `gopls`, unlike the per-shell vars files
 - `.stowrc` — stow defaults, sets `--target=$HOME`
 
 ## Language Runtime Strategies

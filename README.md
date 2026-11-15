@@ -64,6 +64,7 @@
 | `R/` | R package configuration |
 | `ruby/` | Ruby configuration |
 | `rust/` | Rust/cargo configuration (includes `crates.txt` manifest) |
+| `go/` | Go env file (`GOPROXY` module mirror) |
 | `npm/` | npm configuration |
 
 ### Network & Download
@@ -433,8 +434,24 @@ only `java`, `nodejs` and `ruby` plugins; the Go toolchain here is Homebrew's
 (`go` → `/opt/homebrew/opt/go/libexec/bin/go`), and `brew "go"` is held in `@keep` on
 purpose because it is a user-facing toolchain, not a stray dependency.
 
-`GOPATH=~/Codes/go` (set in `zsh/.shared-env.zsh:21` and read by `golang.fish`), so global
-tool binaries land in `~/Codes/go/bin`.
+`GOPATH=~/Codes/go` is set independently in each shell — `fish/conf.d/02-vars.fish:9`,
+`zsh/.shared-env.zsh:21`, `nushell/autoload/02-vars.nu:6` — so global tool binaries land in
+`~/Codes/go/bin`. (`golang.fish` itself only derives `GOROOT` from `brew --prefix golang`.)
+
+**Module mirror**: `GOPROXY=https://goproxy.cn,direct` is set in the Go env file, which is
+stowed from `go/Library/Application Support/go/env`. That location is deliberate: unlike a
+shell variable it also covers editor-spawned `gopls` and any GUI-launched build, and it keeps
+one source of truth instead of repeating the value in three shell configs. Verified with
+`go list -m -versions golang.org/x/tools`.
+
+```bash
+go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct   # to switch mirror
+cat ~/dotfiles/go/Library/Application\ Support/go/env           # what is tracked
+```
+
+Because `go env -w` writes *through* the symlink (verified), editing via `go env -w` keeps
+the repo file in sync rather than silently replacing it — but the change then shows up as an
+uncommitted edit, so commit it.
 
 **Global — installed commands**
 
