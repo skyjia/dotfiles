@@ -125,6 +125,33 @@ shell 历史**不含** GUI、脚本内部调用与 shell hook，所以 `starship
 
 ---
 
+## 工具自管状态的边界（eim / PlatformIO）
+**原则：判据来自工具自己，实现不越进工具的私有布局。** 违反这条会在两个方向上出错：误删在用
+的东西，或造出一个"看起来能删、其实永远不删"的包装。
+
+本轮实际踩到的（都已在 AGENTS.md 固化为对照表）：
+- 自造体检函数去解析 `~/.espressif/tools/<tool>/<version>`，**连续三次**路径假设错：
+  ①`*/bin/*` 猜错深度（真实是 `<tool>/<version>/<tool>/bin/`）；②误以为 `tools/tools/`
+  的父串 `tools_json_file = "tools/tools.json"` 是错位证据（那是正常相对路径，假匹配）；
+  ③`esp-clang-libs` 两版都在用却被判孤立
+- 判据写成"不在 `eim list-tools` 里即孤立"→ 会砍掉 `python/v<ver>` 活 venv，因为 eim 的
+  python 环境**不出现在 list-tools 里**，它记在 `eim_idf.json`。凡是"需要开特例"的判据，
+  说明依据选错了，应换成工具自己的记录
+- `--cleanup` 望文生义：它只删**临时文件**，不清理旧代工具链。曾据此建议"不改就会再堆一代"，
+  该建议作废
+- `eim_config.toml` 的 `idf_path`/`idf_versions` 指向已删版本，被当成需要修的失准：它是向导
+  的安装清单，**不是**运行态；权威是 `eim_idf.json` 的 `idfSelectedId`。实测 `eim select`
+  也确实不会改写该 toml
+- 依赖参数的破坏性包装不可信：实测 just 在 shebang recipe 里既不给 `$args` 也不给 `$argv`，
+  于是 `--force` 分支恒不触发。最终把 `prune-embedded` 改成**只报告 + 打印官方命令**，
+  删除一律由人执行 `eim remove` / `eim fix` / `pio system prune`
+
+正确的验证方式：不看体积，看工具自己的视图 + 真跑一次二进制。
+```fish
+eim list; eim list-tools <ver>; eim run "idf.py --version" <ver>
+pio system prune --dry-run; pio pkg outdated -d <project>   # 无 -g
+```
+
 ## Cargo
 
 ### Source Replacement 配置

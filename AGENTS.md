@@ -24,6 +24,8 @@ just update-editors          # nvim (AstroUpdate + MasonUpdate), vscode, yazi
 just update-dev              # R packages, asdf plugins, rust toolchain
 just update-ai               # dws, bailian, claude, skillshare CLI tools
 
+just audit-embedded          # ESP toolchain status, read-only (eim + pio official commands)
+just prune-embedded          # Same report + prints the eim/pio commands to run by hand
 just dump-brew               # Regenerate brew/.Brewfile from current installs
 just install-cargo-crates    # Install all cargo packages from crates.txt (new machine)
 just cargo-install <pkg>     # Install one cargo package and sync to crates.txt
@@ -202,6 +204,37 @@ global npm tools. Two rules about it are easy to get wrong:
   files and receipts stay on the old version. Finish it in a real terminal instead.
 - `brew outdated` without `--greedy` is the actionable list. Greedy adds casks pinned to
   `version: "latest"` (always reported, zero information) plus self-updating apps.
+
+## Embedded Toolchains (ESP32)
+
+Two ecosystems coexist by choice, and both own their own state directory:
+
+| Stack | State dir | Current size |
+|---|---|---|
+| eim / ESP-IDF | `~/.espressif` | 14 G |
+| PlatformIO | `~/.platformio` | 8.0 G |
+
+**Stay inside each tool's official interface.** These directories are the tools' private
+implementation — layout, nesting depth and folder meanings change between versions, and
+hand-deleting inside them desynchronises the tool from its own records.
+
+| Need | Use | Do not |
+|---|---|---|
+| which IDF versions exist / is selected | `eim list`, and `idfSelectedId` in `~/.espressif/tools/eim_idf.json` | read `eim_config.toml` for state (it is a wizard install manifest, not live state; `eim select` deliberately does not rewrite it) |
+| which tools a version needs | `eim list-tools <ver>` (and `list-features`) | parse `tools.json` yourself — `versions` is a per-platform list of dicts, not version strings |
+| retire an IDF version | `eim remove <ver>` (it also removes that version's activation scripts) | `rm -rf ~/.espressif/v<ver>` |
+| reconcile/repair tool state | `eim fix` | hand-restoring individual directories |
+| remove stale install temp files | `eim install/fix --cleanup` — this means **temporary files**, *not* old tool versions | assuming `cleanup` garbage-collects toolchains |
+| run something in a version context | `eim run <cmd> <ver>` / `eim shell <ver>` | sourcing `activate_idf_<ver>.fish` from a script |
+| PIO reclaim | `pio system prune --dry-run` then `pio system prune` | deciding which pio package belongs to which platform |
+| retire a PIO platform | `pio pkg uninstall -g -p <spec>` — its packages become prunable afterwards | deleting `~/.platformio/packages/*` directly |
+| PIO per-project staleness | `pio pkg outdated -d <project>` (no `-g`; it is project-scoped) | — |
+
+Multi-version coexistence is **normal and expected** in embedded work: a toolchain kept at
+two versions because two retained IDF releases each require one is not redundancy. Judge an
+artifact by *whether a retained version declares it*, never by size or by version recency.
+
+`eim help-json` is the machine-readable interface — prefer it over grepping human output.
 
 ## Update Strategy
 

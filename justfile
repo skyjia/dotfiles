@@ -124,6 +124,34 @@ sync-npm-defaults:
     asdf reshim nodejs
 
 
+# Show ESP-IDF / PlatformIO toolchain status using only their own commands.
+# 判据一律来自 eim / pio 自己，不解析其内部目录布局，也不执行任何删除。
+audit-embedded:
+    #!/usr/bin/env fish
+    audit-embedded
+
+# Report ESP toolchain status and print the official commands to prune it.
+# 本 recipe 不删除任何东西：删除只由 eim remove / eim fix 完成，由你亲手执行。
+# 之所以不做成 `just prune-embedded <ver> force` 这种带参数的包装：实测 just 在
+# shebang recipe 里没有把参数交给 $args 或 $argv，判据分支恒不触发 —— 一个「看起来
+# 能删、其实永远不删」的破坏性包装比没有更危险。需要删请直接用下面打印的命令。
+prune-embedded:
+    #!/usr/bin/env fish
+    audit-embedded
+    echo ""
+    echo "== 要退役某个 IDF 版本（eim 自己会连带处理其激活脚本）=="
+    echo "   eim remove <ver>        # 例如 eim remove v5.4.2"
+    echo "   eim select <ver>        # 切换 selected，并让 eim 自己写回配置"
+    echo ""
+    echo "== 若工具状态与记录不一致，用官方修复，不要手工增删 tools/ 下的目录 =="
+    echo "   eim fix                 # 重装工具与依赖"
+    echo ""
+    echo "== PlatformIO 侧（判据在 pio 手里，别替它判断包的归属）=="
+    echo "   pio system prune --dry-run      # 先看它自己算出什么"
+    echo "   pio system prune                # 交互确认后回收"
+    echo "   pio pkg uninstall -g -p <spec>  # 退役平台，随后其 packages 才可被回收"
+
+
 # Update dws, bailian, claude, and skillshare CLI tools
 update-ai: update-dws update-bailian update-claude update-skillshare
 
