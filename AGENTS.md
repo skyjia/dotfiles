@@ -138,13 +138,17 @@ Python is intentionally **not** managed by asdf. Two layers, no overlap:
 - conda/Anaconda was removed 2026-11-15; its 570-package manifest is archived at
   `backups/anaconda/base-environment.yml`.
 
-### Node / Ruby
+### Node / Ruby / Java
 
-- **asdf** — primary manager for `nodejs` and `ruby` (pinned in `asdf/.tool-versions`,
-  set globally via `asdf set -u nodejs`).
-- **brew** — `node`/`ruby` may appear in `brew list` as transitive dependencies
-  (`node` currently only for `bitwarden-cli`). They are not the user-facing versions and
-  must not be listed in the Brewfile.
+- **asdf** — the user-facing manager for `nodejs`, `ruby` and `java` (pinned in
+  `asdf/.tool-versions`, set globally via `asdf set -u <tool>`).
+- **brew** — `node`, `ruby`, `openjdk` may appear in `brew list`, but **only as
+  dependencies**: `node` ← `bitwarden-cli`, `ruby` ← `asciidoctor`, `openjdk` ← `plantuml`.
+  None of them is a user-facing runtime and none may be listed in the Brewfile; the
+  leaves-only prune in `just dump-brew` keeps them out automatically.
+- Consequence: any tool that needs a JVM should use asdf's Java, not brew's `openjdk`.
+  `brew plantuml` hard-depends on `openjdk`, so keeping it costs 374 M of a JVM that is
+  not the one in use.
 
 ### npm globals
 
