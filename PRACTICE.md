@@ -102,6 +102,17 @@ end
 - **显式 `brew "x"` 会让 x 永久躲过 `brew autoremove`**：`brew bundle dump` 把已沦为他人依赖的包也写成显式请求，Homebrew 因此给它们打上 `installed_on_request`。实例：删掉 `mssql-tools18` 后，`msodbcsql18` 原地留存，必须显式卸载
 - **pkg 类 cask 可能不声明 `uninstall`**：`brew uninstall --cask` 只清账本，数据目录留存（实例：`anaconda` 的 4.4 GB）。先查 `brew info --json=v2 --cask X` 的 `uninstall` 是否为 `null`
 
+### 提权类 cask 不要放进自动化链路
+`macfuse` 是 pkg + 系统扩展 + launchd 服务，`brew upgrade --cask` 内部要走 sudo（bootout 服务、
+删旧收据、装新 pkg）。在**没有 TTY 的环境**（CI、Claude Code、无 `-t` 的 ssh）里 sudo 必然失败，
+结果是**半完成**：服务已被 bootout、磁盘文件与 pkgutil 收据仍是旧版、下载好的新 pkg 被清掉。
+实测这种遗留是自洽的（磁盘 5.4.0 / 收据 5.4.0 / brew 记录 5.4.0），且 LaunchDaemon 的 plist
+仍在磁盘上，**重启后 launchd 会重新加载而自愈**。但要真正完成升级，必须在真实终端里带密码跑。
+
+判据：凡 `auto_updates` 且涉及 kext / 系统扩展 / LaunchDaemon 的 cask，升级一律人工执行，
+不进 `just` 自动化链路。查性质用 `brew info --cask X | grep auto_updates` 加
+`pkgutil --pkgs | grep -i X`。
+
 ### 清理取证方法
 单看 `brew leaves` 会误判，四路交叉：**shell 历史频率 → dotfiles 里的真实接线 → 工具运行时状态目录 mtime → 删掉它连带消失多少独占依赖**。
 shell 历史**不含** GUI、脚本内部调用与 shell hook，所以 `starship`/`fzf`/`direnv`/`yq`/`delta` 都是 0 次却确实在用；反过来说，被 git 调用的 `delta`、被 justfile 调用的 `yq` 属于"隐形在用"，删前必须查引用。

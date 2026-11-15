@@ -196,6 +196,12 @@ global npm tools. Two rules about it are easy to get wrong:
   closure of the Brewfile, which is what reclaims orphaned dependencies.
 - Cask `uninstall` stanzas may be `null`; then `brew uninstall --cask` only clears the
   bookkeeping and leaves the data directory behind — check before assuming space is freed.
+- **Do not upgrade `macfuse` (or any `auto_updates` cask backed by a pkg + kernel/system
+  extension + LaunchDaemon) from an agent session.** Those installs need `sudo`, which
+  cannot prompt without a TTY; the upgrade stops half-way — services get booted out while
+  files and receipts stay on the old version. Finish it in a real terminal instead.
+- `brew outdated` without `--greedy` is the actionable list. Greedy adds casks pinned to
+  `version: "latest"` (always reported, zero information) plus self-updating apps.
 
 ## Update Strategy
 
