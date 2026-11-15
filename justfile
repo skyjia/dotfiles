@@ -35,9 +35,25 @@ update-npm:
 
 # Check for outdated npm packages globally
 check-npm-outdated:
-    # Check for outdated npm packages globally in the active asdf Node
-    with-asdf-node npm outdated -g
-    @echo
+    #!/usr/bin/env fish
+    # npm outdated 只要发现过时项就返回 1 —— 那是"查到了"而不是"失败了"，
+    # 原样透传会让 recipe 报 error 并吞掉结果。这里只在没有输出时才算失败。
+    # stderr 不进命令替换，因此真实错误的文字仍然可见。
+    set -l out (with-asdf-node npm outdated -g)
+    set -l code $status
+
+    if test -z "$out"
+        if test $code -ne 0
+            echo "npm outdated 执行失败（退出码 $code）" >&2
+            exit $code
+        end
+        echo "全局 npm 包均已是最新"
+        exit 0
+    end
+
+    printf '%s\n' $out
+    echo ""
+    echo "发现 "(count $out)" 行过时项（含表头），如需升级: just update-npm"
 
 # List all globally installed npm packages
 npm-list:
