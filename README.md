@@ -32,7 +32,6 @@
 |---------|-------------|
 | `ghostty/` | Ghostty terminal configuration |
 | `warp/` | Warp terminal settings, themes, and tab configurations (via submodule) |
-| `waveterm/` | Wave terminal configuration with widgets |
 
 ### Terminal Multiplexers
 | Package | Description |
@@ -170,7 +169,7 @@ just update-shells      # Update fish plugins
 just update-apps        # Check outdated App Store apps (mas)
 just update-editors     # Update nvim (AstroNvim), vscode, yazi
 just update-dev         # Update R packages, asdf plugins, rust toolchain
-just update-ai          # Update claude, antigravity, and dws CLI tools
+just update-ai          # Update dws, bailian, claude, and skillshare CLI tools
 ```
 
 ### Cargo Package Management

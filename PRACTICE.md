@@ -47,7 +47,6 @@
 \.gitignore
 \.DS_Store
 backups
-\.antigravitycli
 \.ruby-lsp
 \.claude
 

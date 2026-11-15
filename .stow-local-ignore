@@ -1,7 +1,6 @@
 \.git
 \.gitignore
 \.DS_Store
-\.antigravitycli
 \.ruby-lsp
 \.claude
 backups

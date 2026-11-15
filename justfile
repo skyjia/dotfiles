@@ -45,7 +45,7 @@ npm-list:
     @echo
 
 
-# Update claude, antigravity, and dws CLI tools
+# Update dws, bailian, claude, and skillshare CLI tools
 update-ai: update-dws update-bailian update-claude update-skillshare
 
 # Wash macOS provenance attributes from the project root

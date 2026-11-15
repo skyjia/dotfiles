@@ -32,7 +32,7 @@ Major packages:
 - `git/`, `zsh/`, `fish/`, `nushell/` – Shell and VCS config
 - `astro-nvim/` – Neovim config (AstroNvim)
 - `zed/` – Editor settings
-- `karabiner/`, `ghostty/`, `warp/`, `waveterm/`, `zellij/` – Terminal/CLI tools
+- `karabiner/`, `ghostty/`, `warp/`, `zellij/` – Terminal/CLI tools
 - `bat/`, `yazi/`, `starship/` – CLI utilities
 - `raycast/` – Raycast script commands
 - `brew/.Brewfile` – Homebrew packages (global managed)
@@ -83,7 +83,6 @@ Running `just update-dotfiles` or `just all` automatically updates them.
 
 **Terminal Emulators:**
 - Warp: `warp/.warp/settings.toml` (settings) + `warp/.warp/tab_configs/` (tab layouts)
-- WaveTerm: `waveterm/.config/waveterm/settings.json` + `widgets.json`
 - Ghostty: `ghostty/.config/ghostty/`
 
 **File Manager:** yazi: `yazi/.config/yazi/` – plugins in `plugins/`, theme in `theme.toml`
