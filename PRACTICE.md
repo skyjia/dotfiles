@@ -190,15 +190,21 @@ nvim --headless "+AstroUpdate" "+MasonToolsUpdateSync" "+qa!"
 ### 文档职责分离
 | 文件 | 用途 | 是否入 git |
 |---|---|---|
-| `CLAUDE.md` | AI 助手的权威参考 | ✅ |
-| `README.md` | 人类用户的入口，对齐 CLAUDE.md | ✅ |
-| `AGENTS.md` | 包职责说明 | ✅ |
-| `PLAN.md` | 工作追踪文档 | ❌（本地） |
+| `AGENTS.md` | **所有 AI 工具的唯一权威参考** | ✅ |
+| `CLAUDE.md` | 仅 `@AGENTS.md` 导入桩，不含任何独立内容 | ✅ |
+| `README.md` | 人类用户入口，对齐 AGENTS.md | ✅ |
 | `PRACTICE.md` | 经验沉淀 | ✅ |
+| `PLAN.md` | 工作追踪文档 | ❌（本地） |
+
+### 为什么 CLAUDE.md 不能只是"提一句去看 AGENTS.md"
+Claude Code 只自动加载 `CLAUDE.md`，**不会自动读 `AGENTS.md`**（本会话的上下文里注入的
+就是 CLAUDE.md 正文）。因此桩文件必须使用 `@AGENTS.md` 导入语法，否则 AGENTS.md 对
+Claude 完全不进上下文，"统一权威"会变成"两份各自漂移"。
 
 ### 同步规则
-- **README.md 与 CLAUDE.md 必须对齐**：包列表、命令参考、架构描述
-- **包变动时同步更新**：增删包时改 CLAUDE.md + README.md + AGENTS.md
+- **改权威只改 AGENTS.md**：CLAUDE.md 是桩，往它里面加内容是回归——会立刻开始漂移
+- **README.md 对齐 AGENTS.md**：包列表、命令参考、架构描述
+- **包变动时同步更新**：AGENTS.md + README.md（涉及经验教训时再动 PRACTICE.md）
 - **PLAN.md 是本地工作文档**：不追踪，不 review，不 commit
 
 ---

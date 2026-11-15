@@ -1,98 +1,202 @@
 # AGENTS.md
 
-Compact guidance for agents working in this dotfiles repository.
+Guidance for any AI agent working in this repository. This is the single source of
+truth; `CLAUDE.md` only imports this file, so edit here.
 
 ## Repository Type
 
-Personal dotfiles for macOS using GNU `stow` for symlink management. Not a build-and-test codebase—focus on file operations, configuration edits, and task automation.
+Personal dotfiles for macOS using GNU `stow` for symlink management. Not a
+build-and-test codebase — focus on file operations, configuration edits, and task
+automation.
 
 ## Key Commands
 
-**Never use plain bash/sh.** The justfile is configured to use `fish` shell:
+**Never use plain bash/sh.** The justfile is configured to use `fish` shell.
 
 ```bash
-just all              # Update everything (dotfiles, brew, shells, apps, editors, dev tools, AI tools)
-just update-dotfiles  # Pull latest and update git submodules
-just update-brew      # Run `brew bundle --global` from brew/.Brewfile
-just update-shells    # fisher update (fish plugins)
-just update-apps      # mas outdated (App Store apps)
-just update-editors   # Update nvim (AstroUpdate + MasonUpdate), vscode, yazi
-just update-dev       # Update R packages, asdf plugins, rust
-just update-ai        # Update claude CLI + dws (DingTalk Workspace CLI)
-just wash-macos-provenance  # Clear quarantine/provenance xattrs (for downloaded files)
+just all                     # Update everything (dotfiles, brew, shells, apps, editors, dev, AI)
+
+just update-dotfiles         # Pull latest and update git submodules
+just update-brew             # brew bundle --global, then upgrade, then cleanup
+just update-shells           # fisher update (fish plugins)
+just update-apps             # mas outdated (App Store apps)
+just update-editors          # nvim (AstroUpdate + MasonUpdate), vscode, yazi
+just update-dev              # R packages, asdf plugins, rust toolchain
+just update-ai               # dws, bailian, claude, skillshare CLI tools
+
+just dump-brew               # Regenerate brew/.Brewfile from current installs
+just install-cargo-crates    # Install all cargo packages from crates.txt (new machine)
+just cargo-install <pkg>     # Install one cargo package and sync to crates.txt
+
+just wash-macos-provenance   # Clear quarantine/provenance xattrs from downloads
 ```
 
 See `justfile` for the full task list.
 
-## Stow Package Structure
+### Editor Updates
 
-Top-level directories are stowable packages applied via `stow package_name`. All symlinks target `$HOME` (configured in `.stowrc`).
+```bash
+nvim --headless "+AstroUpdate" "+MasonToolsUpdateSync" "+qa!"   # AstroNvim + Mason
+just update-yazi                                                  # yazi plugins
+```
 
-Major packages:
-- `git/`, `zsh/`, `fish/`, `nushell/` – Shell and VCS config
-- `astro-nvim/` – Neovim config (AstroNvim)
-- `zed/` – Editor settings
-- `karabiner/`, `ghostty/`, `warp/`, `zellij/` – Terminal/CLI tools
-- `bat/`, `yazi/`, `starship/` – CLI utilities
-- `raycast/` – Raycast script commands
-- `brew/.Brewfile` – Homebrew packages (global managed)
-- `asdf/`, `R/`, `rust/`, `uv/` – Version managers and runtime config
-- `aria2/`, `npm/`, `odbc/`, `wget/` – Network/download tools
-- `cmux/` – cmux configuration
-- `ruby/`, `hg/` – Legacy/specific tools
+## Stow Packages
+
+Top-level directories are stowable packages applied via `stow package_name`. All
+symlinks target `$HOME` (configured in `.stowrc`).
+
+```bash
+cd ~/dotfiles && stow zsh        # also: fish, nushell, git, karabiner, yazi, bat
+```
+
+| Package | Contents |
+|---|---|
+| `git/` | Global git configuration and aliases |
+| `zsh/` | Zsh with oh-my-zsh, starship prompt, proxy management, plugins |
+| `fish/` | Fish shell configuration, `conf.d/` snippets, utility functions |
+| `nushell/` | Nushell with autoloaded modules and `nu_scripts` submodule |
+| `astro-nvim/` | AstroNvim configuration for Neovim |
+| `zed/` | Zed editor settings |
+| `raycast/` | Raycast script commands (via submodules) |
+| `warp/` | Warp terminal settings and themes (via submodule) |
+| `ghostty/` | Ghostty terminal configuration |
+| `zellij/` | Zellij terminal multiplexer configuration |
+| `cmux/` | cmux configuration |
+| `karabiner/` | Karabiner-Elements configuration |
+| `yazi/` | Yazi file manager with plugins and themes |
+| `bat/` | Bat (cat clone) configuration |
+| `starship/` | Starship prompt configuration |
+| `brew/` | Homebrew manifest (`brew/.Brewfile`, applied globally) |
+| `asdf/` | asdf version manager configuration and pinned versions |
+| `R/` | R package configuration |
+| `rust/` | Rust/cargo configuration incl. `crates.txt` manifest |
+| `uv/` | uv configuration (`uv.toml`) — Python interpreter policy |
+| `aria2/` | aria2 download manager configuration |
+| `npm/` | npm configuration |
+| `odbc/` | ODBC database configuration (DuckDB driver DSN) |
+| `wget/` | wget configuration |
+| `ruby/` | Ruby configuration |
+| `hg/` | Mercurial configuration |
 
 Non-stowable working directory:
-- `logs/` – debug log output directory (not a stow package)
-
-## Backups Directory
-
-Non-stowable backup files are kept under `backups/` (git-tracked, stow-ignored):
-- `backups/vscode/vscode-extensions.txt` – VSCode extension list
-- `backups/iTerm/Profiles.json` – iTerm2 profile backup
-- `backups/anaconda/base-environment.yml` – archived (retired) conda environment manifest
-
-## Python Environment
-
-Homebrew provides the interpreters; uv provides virtual environments, dependency
-resolution and tool installs. `uv/.config/uv/uv.toml` pins `python-preference = "system"`
-so uv does not silently re-base venvs onto Python it downloads itself. There is no global
-package environment — use `uv add` per project or `uv run --with <pkg>` for one-off scripts.
-conda/Anaconda was removed 2026-11-15; the old environment manifest is archived at
-`backups/anaconda/base-environment.yml`.
+- `logs/` — debug log output (not a stow package)
 
 ## Git Submodules
 
-Repository contains submodules that must be updated together:
-- `raycast/.config/raycast/script-commands` – Official Raycast script commands
-- `raycast/raycast-script-commands` – Personal Raycast script commands
-- `warp/.warp/official-themes` – Warp terminal themes
-- `nushell/nu_scripts` – Community nushell scripts
+Submodules must be updated together; `just update-dotfiles` or `just all` does this:
 
-Running `just update-dotfiles` or `just all` automatically updates them.
+- `raycast/.config/raycast/script-commands` — official Raycast script commands
+- `raycast/raycast-script-commands` — personal Raycast script commands
+- `warp/.warp/official-themes` — Warp terminal themes
+- `nushell/nu_scripts` — community nushell scripts
 
-## Configuration Entry Points
+Note that `~/.config/fish` is a directory symlink into this repo, so repo edits to
+`fish/` take effect immediately without re-stowing.
 
-**Shells:**
-- zsh: `zsh/.zshrc` – Oh-my-zsh integration, proxy management (tp/tpe/tpd toggle commands)
-- fish: `fish/.config/fish/config.fish` – Includes `reset_app_permissions` function
-- nushell: `nushell/autoload/` – Modular environment setup
+## Backups Directory
 
-**Neovim:** `astro-nvim/` follows AstroNvim structure; update via `nvim --headless "+AstroUpdate" "+MasonToolsUpdateSync" "+qa!"`
+Non-stowable backup files live under `backups/` (git-tracked, stow-ignored via root
+`.stow-local-ignore`). Each source gets its own subdirectory for isolation.
 
-**VSCode:** Extensions list in `backups/vscode/vscode-extensions.txt` (auto-maintained by `just update-vscode`; not a stow package)
+| Path | Nature |
+|---|---|
+| `backups/vscode/vscode-extensions.txt` | extension list, auto-maintained by `just update-vscode` |
+| `backups/iTerm/Profiles.json` | iTerm2 profile backup |
+| `backups/anaconda/base-environment.yml` | archived manifest of the retired conda env |
 
-**Terminal Emulators:**
-- Warp: `warp/.warp/settings.toml` (settings) + `warp/.warp/tab_configs/` (tab layouts)
-- Ghostty: `ghostty/.config/ghostty/`
+## Key Configuration Files
 
-**File Manager:** yazi: `yazi/.config/yazi/` – plugins in `plugins/`, theme in `theme.toml`
+- `justfile` — task runner; every recipe body is fish, not bash
+- `brew/.Brewfile` — Homebrew manifest (generated by `just dump-brew`)
+- `zsh/.zshrc` — main zsh config, oh-my-zsh integration
+- `fish/.config/fish/config.fish` — fish startup; `conf.d/*.fish` load in lexical order
+- `nushell/autoload/` — modular nushell environment setup
+- `warp/.warp/settings.toml` — Warp terminal settings
+- `yazi/.config/yazi/package.toml` — yazi plugin packages
+- `uv/.config/uv/uv.toml` — Python interpreter preference
+- `.stowrc` — stow defaults, sets `--target=$HOME`
+
+## Language Runtime Strategies
+
+### Python
+
+Python is intentionally **not** managed by asdf. Two layers, no overlap:
+
+- **brew** — the only interpreter source (`python@3.13/3.14/3.15`, each present because
+  Homebrew formulae depend on it). `python@3.15` backs the global `python3`/`pip3`;
+  `~/.local/bin/python` is a symlink to it so bare `python` still resolves.
+- **uv** — virtual environments, dependency resolution, tool installs.
+  `uv/.config/uv/uv.toml` sets `python-preference = "system"`, because uv otherwise
+  prefers Python it downloads itself and silently re-bases new venvs onto that copy.
+- **No global package environment by design**: use `uv add` per project, or
+  `uv run --with <pkg>` for one-off scripts. Bare `python3 -c "import pandas"`
+  deliberately does not work.
+- Jupyter lives per project (`uv add --dev ipykernel`); there is no global `jupyter`.
+- conda/Anaconda was removed 2026-11-15; its 570-package manifest is archived at
+  `backups/anaconda/base-environment.yml`.
+
+### Node / Ruby
+
+- **asdf** — primary manager for `nodejs` and `ruby` (pinned in `asdf/.tool-versions`).
+- **brew** — `node`/`ruby` may appear in `brew list` as transitive dependencies. They
+  are not the user-facing versions; asdf shims take precedence in PATH.
+
+### Cargo
+
+- `rust/.cargo/crates.txt` is the human-maintained manifest. `just install-cargo-crates`
+  installs all of them on a new machine; `just cargo-install <pkg>` installs one and
+  appends it to the manifest (deduplicated). Install and update are decoupled:
+  `install-cargo-crates` vs `update-rust` (`cargo install-update -a`).
+
+## Shell Configuration Strategy
+
+- **Multi-shell support**: zsh, fish, and nushell coexist; Fish is the login shell and
+  the justfile shell. Edits must respect each shell's own syntax.
+- **Terminal detection**: `fish/conf.d/14-terminal-hijack.fish` and `.zshrc` switch on
+  `$TERM_PROGRAM`. The branches are an allowlist that suppresses an "Unknown Terminal"
+  message — a branch whose body is a no-op is still load-bearing.
+- **Proxy management** (zsh only): automatic system proxy detection, HTTP(S)/SOCKS env
+  vars, git proxy sync, and `tp`/`tpe`/`tpd` toggles via `ensure_enable_proxy`.
+- **macOS utilities**: fish provides `reset_app_permissions` for managing app permissions.
+- **Editor and shell defaults**: `nvim` is `$EDITOR`/`$VISUAL`; fish uses
+  `fish_vi_key_bindings`; startup raises `ulimit -n 2048`; lazygit is wrapped as `lg()`
+  with cd-on-exit so the parent shell follows the directory you landed in.
+- **Terminal toolchain**: starship prompt, zoxide, fzf, lazygit, ghostty, zellij, cmux.
+
+## Homebrew Conventions
+
+`brew/.Brewfile` is generated, but it records **intent**, not the full install set:
+
+- `brew bundle dump` selects on `installed_on_request`, and nothing in Homebrew ever
+  clears that bit — so dependency-only packages used to accumulate permanently and
+  escaped `brew autoremove`. `just dump-brew` therefore prunes to `brew leaves`
+  (installed **and** not a dependency of anything installed).
+- Entries that are genuinely wanted but currently *are* someone else's dependency are
+  declared in the `@keep` block at the end of the Brewfile. That block is preserved
+  verbatim by `just dump-brew` and is the only hand-edited part of the file.
+- `brew bundle cleanup --global --force` removes anything outside the dependency
+  closure of the Brewfile, which is what reclaims orphaned dependencies.
+- Cask `uninstall` stanzas may be `null`; then `brew uninstall --cask` only clears the
+  bookkeeping and leaves the data directory behind — check before assuming space is freed.
+
+## Update Strategy
+
+`just all` layers in this order: git operations and submodules → Homebrew → fish
+plugins → App Store apps → editors (nvim, vscode, yazi) → dev tools (R, asdf, rust) →
+AI CLI tools.
+
+## macOS Provenance
+
+Run `just wash-macos-provenance` to clear quarantine and provenance attributes from
+downloaded files. It wraps the `wash-macos-provenance` fish function, which uses
+`xattr -cr` (not `xattr -d -r`, which errors when an attribute is absent).
 
 ## Important Notes
 
-- **Multi-shell environment:** Fish is the justfile shell; zsh/fish/nushell all coexist. Edits must respect each shell's syntax.
-- **Zsh defaults:** Sets `nvim` as $EDITOR/$VISUAL, uses fish_vi_key_bindings in fish, runs `ulimit -n 2048`, includes lazygit `lg()` wrapper with cd-on-exit.
-- **Proxy config (zsh only):** Auto-enables on shell startup via `ensure_enable_proxy`. Toggle with `tp`/`tpe`/`tpd`. Syncs git proxy config. Not in other shells.
-- **No tests or CI:** This is personal config, not a tested package. No build artifacts to worry about.
-- **asdf pinning:** Check `asdf/check-tools-version.nu` after running `just update-asdf`; it validates tool versions.
-- **Brew globals:** Using `brew bundle --global` (not local to repo). Extensions managed in `backups/vscode/vscode-extensions.txt`.
-- **AI tools:** `update-ai` now includes both `claude update` and `dws upgrade` (DingTalk Workspace CLI).
+- **No tests or CI**: this is personal configuration, not a tested package.
+- **asdf pinning**: after `just update-asdf`, check `asdf/check-tools-version.nu`, which
+  validates tool versions.
+- **Brew is global**: `brew bundle --global` targets `~/.Brewfile`, symlinked to
+  `brew/.Brewfile`; it is not repo-local.
+- **Secrets**: real secret values live in `*.secure.*` files (gitignored and
+  stow-ignored); the only committed exception is the encrypted `secrets.*.json`.
