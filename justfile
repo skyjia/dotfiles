@@ -36,24 +36,23 @@ update-npm:
 # Check for outdated npm packages globally
 check-npm-outdated:
     #!/usr/bin/env fish
-    # npm outdated 只要发现过时项就返回 1 —— 那是"查到了"而不是"失败了"，
-    # 原样透传会让 recipe 报 error 并吞掉结果。这里只在没有输出时才算失败。
-    # stderr 不进命令替换，因此真实错误的文字仍然可见。
+    # npm outdated exits 1 just for finding something outdated, so a non-zero status
+    # alone is not failure. Fail only when it printed nothing. stderr stays visible.
     set -l out (with-asdf-node npm outdated -g)
     set -l code $status
 
     if test -z "$out"
         if test $code -ne 0
-            echo "npm outdated 执行失败（退出码 $code）" >&2
+            echo "npm outdated failed (exit $code)" >&2
             exit $code
         end
-        echo "全局 npm 包均已是最新"
+        echo "All global npm packages are up to date"
         exit 0
     end
 
     printf '%s\n' $out
     echo ""
-    echo "发现 "(count $out)" 行过时项（含表头），如需升级: just update-npm"
+    echo (count $out)" lines outdated. Upgrade with: just update-npm"
 
 # List all globally installed npm packages
 npm-list:
@@ -70,8 +69,8 @@ sync-npm-defaults:
         exit 1
     end
 
-    # 锁定目标环境：brew 也可能装有一个同版本号的 node，其 npm 的 global root 指向
-    # /opt/homebrew —— 不锁定就会把包装进 brew 而不是版本目录。
+    # Pin the target env: brew may ship the same Node version, whose npm resolves
+    # global root to /opt/homebrew. Without pinning, installs land there instead.
     set -l node_dir (resolve-asdf-node)
     or exit 1
     set -lx PATH $node_dir/bin $PATH
@@ -82,20 +81,20 @@ sync-npm-defaults:
         exit 1
     end
 
-    # 期望清单：跳过注释与空行，每行取首个 token。
-    # 已知局限：行尾的 npm 标志不会转达（asdf-nodejs 会批量应用，此处只按包名安装）。
+    # One spec per line, first token only; blanks and # comments skipped.
+    # Limitation: trailing npm flags per line are not forwarded.
     set -l specs (awk 'NF && $1 !~ /^#/ { printf "%s\n", $1 }' $pkgs_file)
     if test (count $specs) -eq 0
         echo "$pkgs_file lists no packages" >&2
         exit 1
     end
 
-    # npm ls 在依赖树不满足时退出码为 1，这里只取它的 JSON 输出，stderr 保持可见
+    # npm ls exits 1 on an unsatisfied tree; we only read its JSON, stderr stays visible.
     set -l installed (npm ls --global --depth=0 --json | jq -r '.dependencies // {} | keys[]')
 
     set -l inst_file (mktemp)
     printf '%s\n' $installed >$inst_file
-    # name = spec 去掉尾部 @version/@tag，但保留 @scope 的前导 @
+    # Compare by name: strip a trailing @version/@tag but keep a leading @scope.
     set -l missing (awk -v ins=$inst_file '
         BEGIN { while ((getline n < ins) > 0) I[n] = 1 }
         NF && $1 !~ /^#/ {
@@ -110,46 +109,44 @@ sync-npm-defaults:
         }' $pkgs_file)
     rm -f $inst_file
 
-    echo "Node:  $node_dir"
-    echo "清单:  "(count $specs)" 个    已装: "(count $installed)" 个"
+    echo "Node:    $node_dir"
+    echo "Wanted:  "(count $specs)"  Installed: "(count $installed)
     if test (count $missing) -eq 0
-        echo "无缺失包，未做任何改动"
+        echo "Nothing missing; no changes made"
         exit 0
     end
 
-    # 注意：shebang 型 recipe 里不能用 @echo —— `@` 抑制回显是 just 的逐行语法，
-    # 在整段交给 fish 的脚本里它会变成一条名为 `@echo` 的命令。
-    echo "缺失:  $missing"
+    # No @echo here: the @ prefix is just's per-line syntax and would become a
+    # literal command named `@echo` once the body runs as one fish script.
+    echo "Missing: $missing"
     npm install --global $missing
     asdf reshim nodejs
 
 
-# Show ESP-IDF / PlatformIO toolchain status using only their own commands.
-# 判据一律来自 eim / pio 自己，不解析其内部目录布局，也不执行任何删除。
+# Show ESP-IDF / PlatformIO status from their own commands. Never parses internals,
+# never deletes.
 audit-embedded:
     #!/usr/bin/env fish
     audit-embedded
 
-# Report ESP toolchain status and print the official commands to prune it.
-# 本 recipe 不删除任何东西：删除只由 eim remove / eim fix 完成，由你亲手执行。
-# 之所以不做成 `just prune-embedded <ver> force` 这种带参数的包装：实测 just 在
-# shebang recipe 里没有把参数交给 $args 或 $argv，判据分支恒不触发 —— 一个「看起来
-# 能删、其实永远不删」的破坏性包装比没有更危险。需要删请直接用下面打印的命令。
+# Same report, plus the official commands to prune. Deletes nothing itself: pruning
+# belongs to eim/pio, run by hand. No parameterised wrapper because just hands
+# shebang recipes neither $args nor $argv, so a `force` branch would never fire.
 prune-embedded:
     #!/usr/bin/env fish
     audit-embedded
     echo ""
-    echo "== 要退役某个 IDF 版本（eim 自己会连带处理其激活脚本）=="
-    echo "   eim remove <ver>        # 例如 eim remove v5.4.2"
-    echo "   eim select <ver>        # 切换 selected，并让 eim 自己写回配置"
+    echo "== Retire an IDF version (eim also removes its activation scripts) =="
+    echo "   eim remove <ver>        # e.g. eim remove v5.4.2"
+    echo "   eim select <ver>        # switch the selected version"
     echo ""
-    echo "== 若工具状态与记录不一致，用官方修复，不要手工增删 tools/ 下的目录 =="
-    echo "   eim fix                 # 重装工具与依赖"
+    echo "== Repair tool state officially; never add/remove dirs under tools/ by hand =="
+    echo "   eim fix                 # reinstall tools and dependencies"
     echo ""
-    echo "== PlatformIO 侧（判据在 pio 手里，别替它判断包的归属）=="
-    echo "   pio system prune --dry-run      # 先看它自己算出什么"
-    echo "   pio system prune                # 交互确认后回收"
-    echo "   pio pkg uninstall -g -p <spec>  # 退役平台，随后其 packages 才可被回收"
+    echo "== PlatformIO: let pio decide package ownership =="
+    echo "   pio system prune --dry-run      # see what pio itself would reclaim"
+    echo "   pio system prune                # reclaim after confirmation"
+    echo "   pio pkg uninstall -g -p <spec>  # retire a platform; then its packages become prunable"
 
 
 # Update dws, bailian, claude, and skillshare CLI tools
@@ -248,8 +245,8 @@ dump-brew:
     set -l keep /tmp/brewfile-keep-block
     set -l leaves /tmp/brewfile-leaves
 
-    # 1) 暂存人工声明的意图块：从首个 @keep 标记到文件结尾，原样保留。
-    #    必须在 dump 之前抢救出来，否则 brew bundle dump 会把整份文件重写掉。
+    # 1) Stash the hand-authored @keep block (marker line to EOF) before dumping,
+    #    since brew bundle dump rewrites the whole file.
     set -l marker_line (grep -n -m 1 '@keep' $brewfile | cut -d: -f1)
     if test -n "$marker_line"
         sed -n "$marker_line,\$p" $brewfile > $keep
@@ -257,13 +254,13 @@ dump-brew:
         printf '' > $keep
     end
 
-    # 2) 重新 dump（Brewfile 此刻等于所有 installed_on_request 的包，含依赖噪音）
+    # 2) Re-dump: at this point the Brewfile mirrors installed_on_request, noise included.
     brew bundle dump --global --force --no-vscode --no-go --no-cargo --no-npm --no-mas
 
-    # 3) 剪枝：只保留 brew leaves —— 已安装且不是任何已安装包的依赖。
-    #    brew bundle dump 的选取谓词是 installed_on_request，该位一旦置真永不被撤销，
-    #    所以依赖会单向沉淀；改用 leaves 作为谓词可自愈。连带吃掉条目的描述注释行，
-    #    否则留下孤儿注释。
+    # 3) Prune to brew leaves (installed AND not a dependency of anything installed).
+    #    installed_on_request is never cleared by Homebrew, so dependencies accumulate
+    #    one-way; a leaves predicate self-heals. Consume each entry's description comment
+    #    too, or orphan comments are left behind.
     brew leaves | sort > $leaves
     awk -v LEAVES=$leaves '
         BEGIN { while ((getline l < LEAVES) > 0) L[l] = 1 }
@@ -277,7 +274,7 @@ dump-brew:
         END { if (c != "") printf "%s", c }
     ' $brewfile > $brewfile.new
 
-    # 4) 组装：自动生成声明 + 顶层意图 + 人工意图块
+    # 4) Reassemble: header + top-level intent + the hand-authored block
     set -l tmp $brewfile.tmp
     echo "# AUTO-GENERATED by `just dump-brew`. Do not edit manually." > $tmp
     cat $brewfile.new >> $tmp
@@ -288,14 +285,14 @@ dump-brew:
     mv $tmp $brewfile
     rm -f $brewfile.new $leaves $keep
 
-    # 5) 报告与自检：brew 条目数不该少于 brew leaves，差值即人工保留数
+    # 5) Report and sanity check: entries must not fall below leaves; delta = @keep count
     set -l n_brew (grep -c '^brew ' $brewfile); or set n_brew 0
     set -l n_top (brew leaves | wc -l | tr -d ' ')
     set -l n_keep (math $n_brew - $n_top)
     if test $n_keep -lt 0
-        echo "⚠ 剪枝异常：Brewfile 有 $n_brew 条，但 brew leaves 有 $n_top 条" >&2
+        echo "Prune anomaly: Brewfile has $n_brew entries but leaves has $n_top" >&2
     end
-    echo "Brewfile: $n_brew 条 = 顶层 $n_top + 人工保留 $n_keep"
+    echo "Brewfile: $n_brew entries = $n_top top-level + $n_keep hand-kept"
 
 # Update rustup, rust toolchain, and cargo packages
 update-rust:

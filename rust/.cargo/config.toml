@@ -1,6 +1,6 @@
 # ----------------------------------------
 #
-# 解决Rust -- update crates.io过慢的问题
+# Fixes slow `cargo install-update` against crates.io by using a CN mirror index.
 # https://rsproxy.cn/
 # tricky:
 # https://github.com/nabijaczleweli/cargo-update/issues/248

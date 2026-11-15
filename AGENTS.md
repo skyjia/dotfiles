@@ -248,6 +248,17 @@ Run `just wash-macos-provenance` to clear quarantine and provenance attributes f
 downloaded files. It wraps the `wash-macos-provenance` fish function, which uses
 `xattr -cr` (not `xattr -d -r`, which errors when an attribute is absent).
 
+## Comment Conventions
+
+- **Comments in code are English only** — `justfile`, `*.fish`, `*.nu`, `*.toml`,
+  `*.sh`, and the `@keep` notes in `brew/.Brewfile`. No Chinese in code comments.
+  Prose docs (`README.md`, `AGENTS.md`, `PRACTICE.md`) may stay in whatever language
+  they are written in; this rule is about code comments and runtime output strings.
+- **Keep comments short.** State the constraint or the trap, not the reasoning trail.
+  Prefer one line over a paragraph; a comment that re-describes the next line is noise.
+- Comments that record a verified failure mode (e.g. "brew's asdf wrapper returns no
+  path once stderr is redirected") are worth their length; generic narration is not.
+
 ## Important Notes
 
 - **No tests or CI**: this is personal configuration, not a tested package.

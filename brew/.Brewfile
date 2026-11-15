@@ -281,19 +281,19 @@ cask "vlc"
 # Multiplayer code editor
 cask "zed"
 
-# --- 有意保留：以下条目当前也是其他包的依赖，剪枝会误删 --- @keep
-# 剪枝谓词是 brew leaves（已装且非任何已装包的依赖），沦为依赖即掉出清单；
-# 本节由 just dump-brew 原样保留。删掉某行即让它回归自动管理。
+# --- Intentionally kept: these are also someone else's dependency, so pruning drops them --- @keep
+# Prune predicate is `brew leaves` (installed and not a dependency of anything installed).
+# just dump-brew preserves this block verbatim. Deleting a line returns that package to automation.
 
-# 工具链：openssl 命令与 PKG_CONFIG_PATH 的指向，被 13-brew-openssl@4.fish 按名引用
+# Toolchain: backs the `openssl` command and PKG_CONFIG_PATH; referenced by name in 13-brew-openssl@4.fish
 brew "openssl@4"
 
-# OpenSSL 3：被 3 个非 Homebrew 二进制链接，brew 依赖图看不见 ——
-# ~/.cargo/bin/{cargo-outdated,cargo-install-update,cargo-install-update-config}
-# 待 openssl-sys 支持 OpenSSL 4 并重建它们后，此行可删
+# OpenSSL 3: linked at runtime by three non-Homebrew binaries that brew's dependency graph cannot see
+# (~/.cargo/bin/cargo-outdated, cargo-install-update, cargo-install-update-config).
+# Removable once openssl-sys supports OpenSSL 4 and those tools are rebuilt.
 brew "openssl@3"
 
-# 低频，但后续仍可能主动使用
+# Low frequency, but still plausibly used on purpose
 brew "bash"
 brew "curl"
 brew "dfu-util"
