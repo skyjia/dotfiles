@@ -71,6 +71,8 @@ brew "gnuplot"
 brew "golangci-lint"
 # Ping, but with a graph
 brew "gping"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
 # Next generation open source RPC library and framework
 brew "grpc"
 # Library for communicating with USB and Bluetooth HID devices
@@ -117,8 +119,6 @@ brew "pandoc"
 brew "pinentry-mac"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
-# Draw UML diagrams
-brew "plantuml"
 # Your Gateway to Embedded Software Development Excellence
 brew "platformio"
 # Tool for managing OCI containers and pods
@@ -297,7 +297,6 @@ brew "dfu-util"
 brew "gcc"
 brew "go"
 brew "gnupg"
-brew "graphviz"
 brew "lua"
 brew "protobuf"
 brew "qrencode"

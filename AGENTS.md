@@ -142,13 +142,12 @@ Python is intentionally **not** managed by asdf. Two layers, no overlap:
 
 - **asdf** — the user-facing manager for `nodejs`, `ruby` and `java` (pinned in
   `asdf/.tool-versions`, set globally via `asdf set -u <tool>`).
-- **brew** — `node`, `ruby`, `openjdk` may appear in `brew list`, but **only as
-  dependencies**: `node` ← `bitwarden-cli`, `ruby` ← `asciidoctor`, `openjdk` ← `plantuml`.
-  None of them is a user-facing runtime and none may be listed in the Brewfile; the
-  leaves-only prune in `just dump-brew` keeps them out automatically.
-- Consequence: any tool that needs a JVM should use asdf's Java, not brew's `openjdk`.
-  `brew plantuml` hard-depends on `openjdk`, so keeping it costs 374 M of a JVM that is
-  not the one in use.
+- **brew** — `node` and `ruby` may appear in `brew list`, but **only as dependencies**:
+  `node` ← `bitwarden-cli`, `ruby` ← `asciidoctor`. Neither is a user-facing runtime and
+  neither may be listed in the Brewfile; the leaves-only prune in `just dump-brew` keeps
+  them out automatically.
+- JVMs: asdf's Java is the only JVM in use. brew `openjdk` was removed 2026-11-15
+  together with `plantuml` (its sole dependent); nothing else pulls a JDK.
 
 ### npm globals
 
@@ -196,8 +195,12 @@ global npm tools. Two rules about it are easy to get wrong:
   escaped `brew autoremove`. `just dump-brew` therefore prunes to `brew leaves`
   (installed **and** not a dependency of anything installed).
 - Entries that are genuinely wanted but currently *are* someone else's dependency are
-  declared in the `@keep` block at the end of the Brewfile. That block is preserved
-  verbatim by `just dump-brew` and is the only hand-edited part of the file.
+  declared in the `@keep` block at the end of the Brewfile. That block is the only
+  hand-edited part of the file.
+- `@keep` is self-cleaning: an entry that later becomes a top-level leaf is dropped from
+  the block and reported once. Without that rule it is emitted twice (hit for real when
+  `graphviz` graduated after `plantuml` was removed). `just dump-brew` now asserts
+  uniqueness, because a `top-level + hand-kept = total` count hides duplication.
 - `brew bundle cleanup --global --force` removes anything outside the dependency
   closure of the Brewfile, which is what reclaims orphaned dependencies.
 - Cask `uninstall` stanzas may be `null`; then `brew uninstall --cask` only clears the
