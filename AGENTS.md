@@ -9,6 +9,11 @@ Personal dotfiles for macOS using GNU `stow` for symlink management. Not a
 build-and-test codebase — focus on file operations, configuration edits, and task
 automation.
 
+The human-facing cookbook for everyday add/remove/upgrade/clean operations across
+Homebrew, Python, npm, gems, cargo and embedded toolchains lives in
+`README.md → Daily Maintenance`. This file is the agent-facing rule set and deliberately
+overlaps it; keep both in sync when a maintenance rule changes.
+
 ## Key Commands
 
 **Never use plain bash/sh.** The justfile is configured to use `fish` shell.
