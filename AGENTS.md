@@ -27,6 +27,7 @@ just update-ai               # dws, bailian, claude, skillshare CLI tools
 just dump-brew               # Regenerate brew/.Brewfile from current installs
 just install-cargo-crates    # Install all cargo packages from crates.txt (new machine)
 just cargo-install <pkg>     # Install one cargo package and sync to crates.txt
+just sync-npm-defaults       # Install missing ~/.default-npm-packages into the active asdf Node
 
 just wash-macos-provenance   # Clear quarantine/provenance xattrs from downloads
 ```

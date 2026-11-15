@@ -44,6 +44,80 @@ npm-list:
     npm list -g --depth=0
     @echo
 
+# Install packages listed in ~/.default-npm-packages that the active Node is missing
+sync-npm-defaults:
+    #!/usr/bin/env fish
+    set -l pkgs_file $HOME/.default-npm-packages
+    if not test -e $pkgs_file
+        echo "No package file: $pkgs_file" >&2
+        exit 1
+    end
+
+    # 锁定当前激活的 asdf Node。brew 也提供一个同版本号的 node，其 npm 的 global root
+    # 指向 /opt/homebrew —— 不锁 PATH 就会把包装进 brew 而不是版本目录。这里与
+    # asdf-nodejs 插件同法：把目标版本的 bin 顶到 PATH 最前。
+    # 注意：不要给 asdf where 加 stderr 重定向 —— 实测 brew 的 asdf 一旦 stderr 被
+    # 重定向就报 "Version not installed" 且不返回路径，不重定向则正常。
+    set -l node_dir (asdf where nodejs)
+    if test -z "$node_dir"
+        # 兜底：按 asdf set -u 写入的全局 .tool-versions 直接拼版本目录
+        set -l ver (awk '$1 == "nodejs" { print $2 }' $HOME/.tool-versions ^/dev/null)
+        if test -n "$ver"; and test -d $HOME/.asdf/installs/nodejs/$ver
+            set node_dir $HOME/.asdf/installs/nodejs/$ver
+        end
+    end
+    if test -z "$node_dir"
+        echo "Cannot resolve active Node.js — check: asdf current nodejs" >&2
+        exit 1
+    end
+    set -lx PATH $node_dir/bin $PATH
+
+    npm --version >/dev/null
+    or begin
+        echo "npm is not usable in $node_dir" >&2
+        exit 1
+    end
+
+    # 期望清单：跳过注释与空行，每行取首个 token。
+    # 已知局限：行尾的 npm 标志不会转达（asdf-nodejs 会批量应用，此处只按包名安装）。
+    set -l specs (awk 'NF && $1 !~ /^#/ { printf "%s\n", $1 }' $pkgs_file)
+    if test (count $specs) -eq 0
+        echo "$pkgs_file lists no packages" >&2
+        exit 1
+    end
+
+    # npm ls 在依赖树不满足时退出码为 1，这里只取它的 JSON 输出，stderr 保持可见
+    set -l installed (npm ls --global --depth=0 --json | jq -r '.dependencies // {} | keys[]')
+
+    set -l inst_file (mktemp)
+    printf '%s\n' $installed >$inst_file
+    # name = spec 去掉尾部 @version/@tag，但保留 @scope 的前导 @
+    set -l missing (awk -v ins=$inst_file '
+        BEGIN { while ((getline n < ins) > 0) I[n] = 1 }
+        NF && $1 !~ /^#/ {
+            spec = $1
+            name = spec
+            if (substr(name, 1, 1) == "@") {
+                if (match(substr(name, 2), /@/)) name = substr(name, 1, RSTART)
+            } else if (match(name, /@/)) {
+                name = substr(name, 1, RSTART - 1)
+            }
+            if (!(name in I)) printf "%s\n", spec
+        }' $pkgs_file)
+    rm -f $inst_file
+
+    echo "Node:  $node_dir"
+    echo "清单:  "(count $specs)" 个    已装: "(count $installed)" 个"
+    if test (count $missing) -eq 0
+        echo "无缺失包，未做任何改动"
+        exit 0
+    end
+
+    echo "缺失:  $missing"
+    npm install --global $missing
+    asdf reshim nodejs
+    @echo
+
 
 # Update dws, bailian, claude, and skillshare CLI tools
 update-ai: update-dws update-bailian update-claude update-skillshare

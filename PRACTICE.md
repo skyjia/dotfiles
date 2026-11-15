@@ -20,6 +20,7 @@
 | 模式 | 说明 |
 |---|---|
 | **错误可见** | 不要加 `-` 前缀；失败应被看见 |
+| **别给 `asdf where` 加 stderr 重定向** | brew 的 asdf 包装脚本一旦被 `^/dev/null`/`^&1` 就报 `Version not installed` 且不返回路径，不重定向则正常（实测）。需要静默时改用「取值后判空 + 兜底解析」 |
 | **`$` 直接写** | Just 不转换 `$$`；awk 中直接写 `$1`（不是 `$$1`）|
 | **多行脚本用 shebang** | `#!/usr/bin/env fish` 让整个 recipe 作为单脚本运行（避免每行独立 `fish -c` 调用）|
 | **解耦 recipe 与逻辑** | 复杂逻辑提取为 shell function，recipe 只做薄封装 |
