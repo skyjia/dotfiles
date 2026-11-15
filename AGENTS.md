@@ -126,6 +126,28 @@ Non-stowable backup files live under `backups/` (git-tracked, stow-ignored via r
 
 ## Language Runtime Strategies
 
+### Scope model
+
+Every ecosystem has up to three scopes, and picking the wrong one is the most common way to
+make a mess here. `README.md → Daily Maintenance` documents the commands; these are the rules.
+
+| Scope | Meaning | Reproduced on a new machine? |
+| --- | --- | --- |
+| Global | machine-wide CLIs and runtimes | only if it has a committed manifest |
+| Project | declared in the project's own manifest | yes, from the repo |
+| Ephemeral | resolved per command (`uv run --with`, `npx`, `uvx`, `go run pkg@ver`) | no, and it should not be |
+
+- **Homebrew is global-only.** No project scope exists.
+- **Never install a library globally to serve one project** — `uv add`, `npm install`
+  (no `-g`), `bundle add`, `go get` are project commands; `-g` / `--global` means a CLI tool.
+- Manifests that must be committed for global scope: `brew/.Brewfile` (+ `@keep`),
+  `asdf/.default-npm-packages`, `rust/.cargo/crates.txt`.
+- Manifests that do **not** exist yet, so their global installs are unreproducible:
+  gems (`~/.default-gems` is supported by asdf-ruby but absent), Go tools (53 binaries in
+  `$GOPATH/bin` from 11 modules, nothing tracked). Say so rather than implying a reset works.
+- **Go is the exception to "Homebrew runtimes are dependencies only"**: asdf has no golang
+  plugin, so the toolchain is brew's `go`, held in `@keep` deliberately.
+
 ### Python
 
 Python is intentionally **not** managed by asdf. Two layers, no overlap:

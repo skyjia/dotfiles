@@ -198,7 +198,32 @@ surprises you can create here:
    shells (VSCode tasks, Claude Code, launchd) `/opt/homebrew/bin` comes first, and a bare
    `npm`/`pip3`/`gem` writes into that dependency prefix.
 
+### Two scopes — never mix them
+
+Every ecosystem below is documented as **Global** (machine-wide, survives projects, must be
+reproduced on a new machine) or **Project** (declared inside the project's own manifest).
+Some have a third scope, **Ephemeral**: resolved on demand for one command, recorded nowhere.
+
+| Ecosystem | Global | Project | Ephemeral | Global manifest that must be committed |
+| --- | --- | --- | --- | --- |
+| Homebrew | yes (the only scope it has) | — | — | `brew/.Brewfile` |
+| Python (uv) | `uv tool install` | `uv add` / `uv sync` | `uv run --with` | none yet — `uv tool list` is empty by choice |
+| npm | `npm -g` | `npm install` / `package.json` | `npx` | `asdf/.default-npm-packages` |
+| Ruby gems | `gem install` → `~/.gem` | `bundle install` / `Gemfile` | — | none yet (see Gems) |
+| cargo | `cargo install` | `cargo add` / `Cargo.toml` | `cargo install --git` one-offs | `rust/.cargo/crates.txt` |
+| Go | `go install` → `$GOPATH/bin` | `go get` / `go.mod` | `go run pkg@version` | **none — known gap** |
+| Homebrew casks | yes | — | — | `brew/.Brewfile` |
+
+The Python row is worth reading twice: `uv add` never touches the machine, `uv tool install`
+never touches the project, and `uv run --with` leaves no trace at all. Reinstalling a machine
+means replaying the *manifest* column only — anything you installed "globally" without a
+manifest entry is lost.
+
 ### Homebrew
+
+Homebrew is **global-only**. There is no project scope: it installs into
+`/opt/homebrew` for the whole machine, and the repo tracks exactly one global manifest.
+(`brew bundle` can read a repo-local `--file`, but this project always uses `--global`.)
 
 | Action | Command |
 | --- | --- |
@@ -236,19 +261,60 @@ the file; entries that later become top-level leaves are dropped from it automat
 
 ### Python
 
-There is deliberately **no global package environment**. Interpreters come from
-Homebrew (as dependencies); `uv` owns environments, locking and tool installs.
+There is deliberately **no global package environment** — "global Python" here means
+interpreters and CLI tools, never shared libraries. Interpreters come from Homebrew (as
+dependencies); `uv` owns environments, locking and tool installs.
+
+**Global — CLI tools only (`uv tool`)**
 
 | Action | Command |
 | --- | --- |
-| Add a dependency to a project | `uv add <pkg>` / `uv add --dev <pkg>` |
-| Remove one | `uv remove <pkg>` |
-| Sync a project to its lockfile | `uv sync` |
+| Install a Python CLI as a tool | `uv tool install <pkg>` |
+| Run it | `<cmd>` (entry points land in `~/.local/bin`) |
+| One-off run without installing | `uvx <pkg>@latest --help` / `uv tool run <pkg>` |
+| Upgrade all tools | `uv tool upgrade --all` |
+| List / audit / remove | `uv tool list`; `uv tool audit`; `uv tool uninstall <pkg>` |
+| Where things live | `uv tool dir` → `~/.local/share/uv/tools`; scripts → `~/.local/bin` |
+| PATH safety net | `uv tool update-shell` |
+
+Each tool gets its own isolated venv, so two tools needing different versions of one
+library do not conflict. Nothing is installed into `~/.local/lib/python…`.
+
+This project currently has **no** uv tools (`uv tool list` → empty). That is a decision, not
+an omission: the machine deliberately has no global `jupyter`, no global `ruff`. Note
+`~/.local/bin` also holds the `python` symlink into Homebrew's `python3`, so the directory is
+shared by two mechanisms — don't read it as "uv owns it".
+
+**Project — libraries (`uv add`, in the project directory)**
+
+| Action | Command |
+| --- | --- |
+| Add a dependency | `uv add <pkg>` / `uv add --dev <pkg>` |
+| Remove a dependency | `uv remove <pkg>` |
+| Apply the lockfile | `uv sync` |
 | Upgrade pinned deps | `uv lock --upgrade && uv sync` |
-| One-off script needing packages | `uv run --with pandas,matplotlib script.py` |
+| Run a project command | `uv run <cmd>` (uses the project's `.venv`) |
 | Jupyter for a project | `uv add --dev ipykernel`, then pick `./.venv` in the editor |
-| Choose an interpreter | `uv python install <ver>`; `uv python pin <ver>` per project |
-| Clean | `uv cache prune` (stale) / `uv cache clean` (everything) |
+| Pin the interpreter for this project | `uv python pin <ver>` (writes `.python-version`) |
+| Migrate a legacy `requirements.txt` | `uv add -r requirements.txt` or `uv pip install -r …` inside the venv |
+
+`uv add` writes `pyproject.toml` + `uv.lock` and cannot affect any other project. Existing
+projects to follow: `ai/learn-claude-code`, `skyjia@GitHub/print-cards`,
+`skyjia@GitHub/fapiao-extractor` (all with `uv.lock`, all pinned to `3.14`).
+
+**Ephemeral — neither scope (`uv run --with`)**
+
+| Action | Command |
+| --- | --- |
+| One-off script needing libraries | `uv run --with pandas,matplotlib script.py` |
+| Ad-hoc REPL with packages | `uv run --with numpy python -i -c '…'` |
+
+Resolved into a throwaway environment on each run; nothing is recorded, so it does not help
+on a new machine. Use this instead of polluting either real scope.
+
+**Interpreters**: `uv python install <ver>` / `uv python list`. Because
+`uv/.config/uv/uv.toml` sets `python-preference = "system"`, uv uses Homebrew's interpreter
+when it has one and only downloads otherwise — `brew` stays the primary source.
 
 Do **not** run bare `pip` or `pip3 install`: `pip3` belongs to Homebrew's `python@3.15`
 and writing into its prefix gets discarded on the next `brew upgrade`. `uv pip install`
@@ -256,45 +322,94 @@ inside an active project venv is fine.
 
 ### npm
 
-Global npm tools are manifest-driven, like Python projects:
+**Global — CLI tools, manifest-driven**
+
+The manifest is `asdf/.default-npm-packages` (symlinked as `~/.default-npm-packages`):
 
 ```bash
-cat ~/dotfiles/asdf/.default-npm-packages   # symlinked as ~/.default-npm-packages
+cat ~/dotfiles/asdf/.default-npm-packages   # typescript, eslint, bailian-cli
 ```
 
 | Action | Command |
 | --- | --- |
 | Add a global tool | add a line to `asdf/.default-npm-packages`, then `just sync-npm-defaults` |
-| Remove a global tool | `with-asdf-node npm uninstall -g <p>` and delete its line |
+| Remove a global tool | `with-asdf-node npm uninstall -g <p>` **and** delete its line |
 | Upgrade global tools | `just update-npm` |
 | What is outdated | `just check-npm-outdated` |
 | What is installed | `just npm-list` |
 
-Two specifics: `asdf-nodejs` reads `.default-npm-packages` **only when installing a Node
-version**, which is exactly what `just sync-npm-defaults` covers; and every global npm
-command must go through `with-asdf-node`, because Homebrew may ship the *same* Node
-version whose `npm` resolves `global root` to `/opt/homebrew`.
+Two traps here, both verified on this machine:
+
+- `asdf-nodejs` reads `.default-npm-packages` **only when installing a Node version**. Editing
+  the file alone does nothing to the active Node — that gap is what `just sync-npm-defaults`
+  exists to close.
+- Every global npm command must go through `with-asdf-node`. Homebrew may ship the *same*
+  Node version number, and its `npm` resolves `global root` to `/opt/homebrew`; without
+  pinning, globals silently land in the dependency prefix and vanish on `brew upgrade`.
+  The helper pins PATH the same way the asdf plugin does.
+
+**Project — libraries (`package.json`)**
+
+| Action | Command |
+| --- | --- |
+| Add a dependency | `npm install <p>` / `npm install -D <p>` (dev) |
+| Reproducible install | `npm ci` (installs exactly from `package-lock.json`) |
+| Upgrade | `npm update` / `npm outdated` |
+| Pin the Node version for this project | `.node-version` (read by asdf) or `.tool-versions` |
+| Run a project-local binary | `npx <cmd>` (prefers the local `node_modules/.bin`) |
+
+15 projects in `~/Codes` carry a `package.json`; `quartz` and `quartz-skyjia` pin Node via
+`.node-version`. `npm install <p>` without `-g` is project-scoped and is the default — never
+reach for `-g` to make a library available to one app.
+
+**Ephemeral**
+
+| Action | Command |
+| --- | --- |
+| Run a tool without installing | `npx <pkg>@<version> [args]` |
+
+Downloads into the npm cache and runs; nothing is added to the machine or the project.
 
 ### Ruby gems
 
 Ruby itself is asdf-managed (Homebrew's `ruby` exists only as `asciidoctor`'s dependency).
-`GEM_HOME` is set to `~/.gem` in both `zsh/.shared-env.zsh` and
-`fish/conf.d/cocoapods.fish`, and `~/.gem/bin` is on `PATH`.
+`GEM_HOME` is set to `~/.gem` in both `zsh/.shared-env.zsh:71` and
+`fish/conf.d/cocoapods.fish:3`, and `~/.gem/bin` is on `PATH`.
+
+**Global**
 
 | Action | Command |
 | --- | --- |
-| Install a gem | `gem install <g>` (installs into `~/.gem`) |
-| Per-project gems | `bundle install` in the project |
-| Upgrade | `gem update` / `bundle update` |
+| Install a gem | `gem install <g>` → `~/.gem` (`gem env` → INSTALLATION DIRECTORY) |
+| Upgrade | `gem update` |
 | Remove | `gem uninstall <g>` |
 | Clean | `gem cleanup` (drops stale versions); `~/.gem/specs` is re-fetchable metadata |
 
-Because `~/.gem` is shared, the hazard here is *not* the install prefix but **which Ruby
-compiled a native extension**: a gem built by Homebrew's `ruby` can fail under asdf's
-`ruby` and vice versa. Run `ruby -v` and `gem env | head -3` before installing anything
-with a C extension, and prefer `bundle` (project-local) over global gems for that case.
+**Project**
+
+| Action | Command |
+| --- | --- |
+| Declare deps | `Gemfile` + `bundle install` |
+| Run against the bundle | `bundle exec <cmd>` |
+| Upgrade | `bundle update` |
+| Reproducible install | `bundle install` reads `Gemfile.lock` |
+
+In practice this machine uses **only the global scope for gems**: `find ~/Codes ~/Documents
+-name Gemfile` returns 0, and there is no `~/.default-gems` even though asdf-ruby supports
+one (`ASDF_GEM_DEFAULT_PACKAGES_FILE`, read at Ruby-version install time, exactly like the
+npm file). Consequences worth knowing:
+
+- Global gems have **no committed manifest**, so they are not reproduced on a new machine.
+  If you want that, create `ruby/.default-gems`, `stow ruby`, and list the gems — the
+  plugin will then install them on every new Ruby version.
+- Because `~/.gem` is shared, the hazard is *not* the install prefix but **which Ruby
+  compiled a native extension**: a gem built by Homebrew's `ruby` can fail under asdf's
+  `ruby` and vice versa. Before installing anything with a C extension, check
+  `ruby -v && gem env | head -3`, and prefer `bundle` for that case.
 
 ### Cargo
+
+**Global — installed binaries**
 
 | Action | Command |
 | --- | --- |
@@ -303,22 +418,89 @@ with a C extension, and prefer `bundle` (project-local) over global gems for tha
 | Upgrade | `just update-rust` → `cargo install-update -a` |
 | Remove | `cargo uninstall <crate>` and delete its line from `crates.txt` |
 
+**Project — libraries**: declared in `Cargo.toml`, `cargo add <crate>`, `cargo update`,
+checked-in `Cargo.lock`. One example in `~/Codes` (`rust-wasm-demo`).
+
 Caveat worth knowing before pruning a `@keep` entry: cargo-built binaries link Homebrew
-libraries **by absolute path**, which is invisible to `brew leaves`. Check with
+libraries **by absolute path**, which is invisible to `brew leaves` — `openssl@3` survives
+in `@keep` precisely because three cargo binaries hard-link it. Check with
 `otool -L ~/.cargo/bin/<bin> | grep -i ssl`.
+
+### Go
+
+**Go is the exception to the "Homebrew runtimes are dependencies only" rule.** asdf has
+only `java`, `nodejs` and `ruby` plugins; the Go toolchain here is Homebrew's
+(`go` → `/opt/homebrew/opt/go/libexec/bin/go`), and `brew "go"` is held in `@keep` on
+purpose because it is a user-facing toolchain, not a stray dependency.
+
+`GOPATH=~/Codes/go` (set in `zsh/.shared-env.zsh:21` and read by `golang.fish`), so global
+tool binaries land in `~/Codes/go/bin`.
+
+**Global — installed commands**
+
+| Action | Command |
+| --- | --- |
+| Install a tool | `go install <module>/cmd/<tool>@latest` |
+| Upgrade | re-run with `@latest` (there is no `go install-update`) |
+| Remove | `rm ~/Codes/go/bin/<tool>` |
+| Inspect what a binary came from | `go version -m ~/Codes/go/bin/<tool>` |
+| Where they are | `$GOPATH/bin` → `~/Codes/go/bin`, already on `PATH` |
+
+There is **no manifest** for global Go tools, so nothing here is reproducible on a fresh
+machine — and the debt is not theoretical: `~/Codes/go/bin` currently holds **53 binaries
+tracing back to only 11 modules**, most of them one ancient `golang.org/x/tools@v0.1.10`
+install spree. To see the real inventory:
+
+```bash
+for f in ~/Codes/go/bin/*; do go version -m "$f" 2>/dev/null | awk -F'\t' -v n="$(basename "$f")" '$2=="mod"{print n"\t"$3"@"$4; exit}'; done | sort -k2
+```
+
+Worth cleaning up or recording in a `go/.global-tools.txt` the same way cargo uses
+`crates.txt`; until then, treat `~/Codes/go/bin` as unmanaged.
+
+**Project**
+
+| Action | Command |
+| --- | --- |
+| Add a dependency | `go get <pkg>@<ver>` (edits `go.mod`) |
+| Tidy | `go mod tidy` |
+| Reproduce exactly | `go mod download` + `go build` (go.mod/go.sum are the lock) |
+| Pin the toolchain | `toolchain` directive in `go.mod` |
+
+28 of your projects carry a `go.mod`, so this is the most-used project scope in the repo —
+`go get`/`go mod` is the working path, and `go install` is only for standalone commands.
+
+**Ephemeral**: `go run <module>@latest` runs a module without adding it anywhere.
 
 ### Embedded (eim / PlatformIO)
 
 Stay inside each tool's own commands; never delete inside their state directories.
 
+**Machine scope — toolchains (eim)**
+
 | Action | Command |
 | --- | --- |
 | Status | `just audit-embedded` |
-| What is reclaimable, and how | `just prune-embedded` — reports and prints commands, deletes nothing |
+| Reclaim candidates + the commands to use | `just prune-embedded` — reports only, deletes nothing |
 | Retire an IDF version | `eim remove <ver>` (also removes its activation scripts) |
 | Repair tool state | `eim fix` |
-| PlatformIO reclaim | `pio system prune --dry-run`, then `pio system prune` |
-| Retire a PIO platform | `pio pkg uninstall -g -p <spec>` — its packages become prunable after |
+| Run in a version's context | `eim run <cmd> <ver>` / `eim shell <ver>` |
+
+**PlatformIO — two scopes**
+
+| Scope | Action | Command |
+| --- | --- | --- |
+| Global | List installed platforms & tools | `pio pkg list -g` |
+| Global | Add a platform / tool | `pio pkg install -g -p <spec>` / `-t <spec>` (no `-a` flag exists) |
+| Global | Remove | `pio pkg uninstall -g -p <spec>` |
+| Global | What pio itself can reclaim | `pio system prune --dry-run`, then `pio system prune` |
+| Project | Declare libraries for one project | `lib_deps` in `platformio.ini`, resolved by `pio pkg install -e <env>` in that directory |
+| Project | Stale check | `pio pkg outdated -d <project>` — project-scoped; there is no `-g`, and no `pio pkg check` subcommand |
+
+Retiring a **global** platform (`pio pkg uninstall -g -p espressif32@6.7.0`) is the only way
+its packages become prunable — but that exact version is what
+`Codes/PlatformIO/Projects/Cardputer_Adv_Demo/platformio.ini` pins, so check project
+`platform =` lines before retiring anything.
 
 Keeping one toolchain at two versions because two retained IDF releases each require one
 is normal, not waste. Judge by what a retained version declares, never by size or version
@@ -326,14 +508,22 @@ recency.
 
 ### Caches at a glance
 
-| Where | Command | Note |
-| --- | --- | --- |
-| Homebrew downloads | `brew cleanup -s --prune=all` | plain `brew cleanup` keeps current-version files |
-| uv | `uv cache prune` / `uv cache clean` | |
-| npm | `with-asdf-node npm cache clean --force` | |
-| gem | `gem cleanup` | `~/.gem/specs` is regenerable |
-| PlatformIO | `pio system prune --cache` | `dist/` + `.cache/` are download caches |
-| eim | `eim install/fix --cleanup` | this flag means *temp files*, not old tool versions |
+Caches belong to no scope — they are safe to clear and simply refill.
+
+| Where | Command | Size now | Note |
+| --- | --- | --- | --- |
+| Go build cache | `go clean -cache` | 5.0 G | `~/Library/Caches/go-build` |
+| Go module cache | `go clean -modcache` | 4.7 G | `~/Codes/go/pkg/mod`; every module re-downloads |
+| Homebrew downloads | `brew cleanup -s --prune=all` | 5.7 G | plain `brew cleanup` keeps current-version files |
+| uv | `uv cache prune` / `uv cache clean` | — | |
+| npm | `with-asdf-node npm cache clean --force` | — | |
+| gem | `gem cleanup` | — | `~/.gem/specs` is regenerable |
+| PlatformIO | `pio system prune --cache` | — | `dist/` + `.cache/` are download caches |
+| eim | `eim install/fix --cleanup` | — | this flag means *temp files*, not old tool versions |
+
+The Go entry is the largest single reclaimable pool on this machine and is invisible to
+`brew cleanup`, `uv cache` and `pio system prune` — clear it with Go's own command or not
+at all.
 
 ## Legislation
 

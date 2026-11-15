@@ -125,6 +125,19 @@ shell 历史**不含** GUI、脚本内部调用与 shell hook，所以 `starship
 
 ---
 
+## 文档准确性：命令必须原样跑过
+写维护文档时我造出了**不存在 flag**，靠逐条执行才发现：
+- `pio pkg install -g -a espressif32` —— `pio pkg install` 无 `-a`（平台用 `-p`、工具 `-t`、库 `-l`）
+- `pio pkg check` —— 该子命令不存在（只有 list / install / uninstall / outdated）
+- `uv add -r`、`uv tool upgrade --all`、`uv tool audit`、`uv tool update-shell`、`go clean -modcache`
+  —— 这些是**验过为真**才留下的
+- `go version -m` 的输出是制表符分隔（`\tmod\t<路径>\t<版本>`），第一次用空格切分解析全落空
+
+规则：文档里每条命令先原样执行一次再写下来；`<占位符>` 之外不确定的 flag 一律先 `--help` 或
+实跑确认；引用项目路径也要 `test -e`。此外**按实测数字写现状**，不要写"应该没什么东西"——
+本轮正是靠清点才发现 `~/Codes/go/bin` 有 53 个无清单的二进制、Go 缓存 4.7G + 5.0G 约 10G，
+而这两块在我最初的文档里完全缺席。
+
 ## 工具自管状态的边界（eim / PlatformIO）
 **原则：判据来自工具自己，实现不越进工具的私有布局。** 违反这条会在两个方向上出错：误删在用
 的东西，或造出一个"看起来能删、其实永远不删"的包装。
