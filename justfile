@@ -26,22 +26,23 @@ update-editors: update-nvim update-vscode update-yazi
 # Update R packages, asdf plugins, and rust toolchain
 update-dev: update-r-packages update-asdf update-rust
 
-# Update npm packages globally
+# Update npm packages globally in the active asdf Node
 update-npm:
-    # Update npm packages globally
-    npm update -g
+    # Update npm packages globally in the active asdf Node
+    with-asdf-node npm update -g
     asdf reshim nodejs
     @echo
 
 # Check for outdated npm packages globally
 check-npm-outdated:
-    # Check for outdated npm packages globally
-    npm outdated -g
+    # Check for outdated npm packages globally in the active asdf Node
+    with-asdf-node npm outdated -g
     @echo
 
+# List all globally installed npm packages
 npm-list:
-    # List all globally installed npm packages
-    npm list -g --depth=0
+    # List globally installed npm packages of the active asdf Node
+    with-asdf-node npm list -g --depth=0
     @echo
 
 # Install packages listed in ~/.default-npm-packages that the active Node is missing
@@ -53,23 +54,10 @@ sync-npm-defaults:
         exit 1
     end
 
-    # 锁定当前激活的 asdf Node。brew 也提供一个同版本号的 node，其 npm 的 global root
-    # 指向 /opt/homebrew —— 不锁 PATH 就会把包装进 brew 而不是版本目录。这里与
-    # asdf-nodejs 插件同法：把目标版本的 bin 顶到 PATH 最前。
-    # 注意：不要给 asdf where 加 stderr 重定向 —— 实测 brew 的 asdf 一旦 stderr 被
-    # 重定向就报 "Version not installed" 且不返回路径，不重定向则正常。
-    set -l node_dir (asdf where nodejs)
-    if test -z "$node_dir"
-        # 兜底：按 asdf set -u 写入的全局 .tool-versions 直接拼版本目录
-        set -l ver (awk '$1 == "nodejs" { print $2 }' $HOME/.tool-versions ^/dev/null)
-        if test -n "$ver"; and test -d $HOME/.asdf/installs/nodejs/$ver
-            set node_dir $HOME/.asdf/installs/nodejs/$ver
-        end
-    end
-    if test -z "$node_dir"
-        echo "Cannot resolve active Node.js — check: asdf current nodejs" >&2
-        exit 1
-    end
+    # 锁定目标环境：brew 也可能装有一个同版本号的 node，其 npm 的 global root 指向
+    # /opt/homebrew —— 不锁定就会把包装进 brew 而不是版本目录。
+    set -l node_dir (resolve-asdf-node)
+    or exit 1
     set -lx PATH $node_dir/bin $PATH
 
     npm --version >/dev/null
@@ -113,10 +101,11 @@ sync-npm-defaults:
         exit 0
     end
 
+    # 注意：shebang 型 recipe 里不能用 @echo —— `@` 抑制回显是 just 的逐行语法，
+    # 在整段交给 fish 的脚本里它会变成一条名为 `@echo` 的命令。
     echo "缺失:  $missing"
     npm install --global $missing
     asdf reshim nodejs
-    @echo
 
 
 # Update dws, bailian, claude, and skillshare CLI tools

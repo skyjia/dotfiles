@@ -1,5 +1,6 @@
 # Package managers & build tools
 typescript
+eslint
 
 # AI tools
 bailian-cli
