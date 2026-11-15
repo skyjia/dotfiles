@@ -6,32 +6,18 @@ tap "farion1231/ccswitch", trusted: true
 tap "gbevin/tools", trusted: true
 tap "gm5dna/amateur-radio", trusted: true
 tap "runkids/tap"
-# C++ Common Libraries
-brew "abseil"
 # Universal Command-Line Interface for Alibaba Cloud
 brew "aliyun-cli"
 # Arduino command-line interface
 brew "arduino-cli"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@4"
-# Library for command-line editing
-brew "readline"
 # Download with resuming and segmented downloading
 brew "aria2"
-# YAML Parser
-brew "libyaml"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Text processor and publishing toolchain for AsciiDoc
 brew "asciidoctor"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Bourne-Again SHell, a UNIX command interpreter
-brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Secure and free password manager for all of your devices
@@ -40,20 +26,12 @@ brew "bitwarden-cli"
 brew "bottom"
 # New way of working with Protocol Buffers
 brew "buf"
-# Core application library for C
-brew "glib"
-# Low-level library for pixel manipulation
-brew "pixman"
 # Cross-platform make
 brew "cmake"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Get a file from an HTTP, HTTPS or FTP server
-brew "curl"
 # Modern diagram scripting language that turns text to diagrams
 brew "d2"
-# USB programmer
-brew "dfu-util"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Embeddable SQL OLAP Database Management System
@@ -66,10 +44,6 @@ brew "fastfetch"
 brew "fd"
 # Identify or delete duplicate files
 brew "fdupes"
-# QR Code generation
-brew "qrencode"
-# SDL2 compatibility layer that uses SDL3 behind the scenes
-brew "sdl2-compat"
 # Play, record, convert, and stream many audio and video codecs
 brew "ffmpeg-full"
 # Collection of GNU find, xargs, and locate
@@ -78,8 +52,6 @@ brew "findutils"
 brew "fish"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# GNU compiler collection
-brew "gcc"
 # Nonsense activity generator
 brew "genact"
 # GitHub command-line tool
@@ -94,26 +66,12 @@ brew "git-lfs"
 brew "glow"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
-# Cryptographic library based on the code from GnuPG
-brew "libgcrypt"
-# GNU Privacy Guard (OpenPGP)
-brew "gnupg"
-# Powerful, lightweight programming language
-brew "lua"
 # Command-driven, interactive function plotting
 brew "gnuplot"
-# Open source programming language to build simple/reliable/efficient software
-brew "go"
 # Fast linters runner for Go
 brew "golangci-lint"
 # Ping, but with a graph
 brew "gping"
-# Library to render SVG files using Cairo
-brew "librsvg"
-# Graph visualization software from AT&T and Bell Labs
-brew "graphviz"
-# Protocol buffers (Google's data interchange format)
-brew "protobuf"
 # Next generation open source RPC library and framework
 brew "grpc"
 # Library for communicating with USB and Bluetooth HID devices
@@ -152,8 +110,6 @@ brew "neovim"
 brew "nushell"
 # Tools for one-time password authentication systems
 brew "oath-toolkit"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
 # AI coding agent, built for the terminal
 brew "opencode"
 # Swiss-army knife of markup format conversion
@@ -164,8 +120,6 @@ brew "pinentry-mac"
 brew "pkgconf"
 # Draw UML diagrams
 brew "plantuml"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.14"
 # Your Gateway to Embedded Software Development Excellence
 brew "platformio"
 # Tool for managing OCI containers and pods
@@ -184,8 +138,6 @@ brew "protoc-gen-go"
 brew "protoc-gen-go-grpc"
 # Command-line YAML and XML processor that wraps jq
 brew "python-yq"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
 # Perl-powered file rename script with many helpful built-ins
 brew "rename"
 # Utility that provides fast incremental file transfer
@@ -328,3 +280,29 @@ cask "vcmi"
 cask "vlc"
 # Multiplayer code editor
 cask "zed"
+
+# --- 有意保留：以下条目当前也是其他包的依赖，剪枝会误删 --- @keep
+# 剪枝谓词是 brew leaves（已装且非任何已装包的依赖），沦为依赖即掉出清单；
+# 本节由 just dump-brew 原样保留。删掉某行即让它回归自动管理。
+
+# 工具链：openssl 命令与 PKG_CONFIG_PATH 的指向，被 13-brew-openssl@4.fish 按名引用
+brew "openssl@4"
+
+# OpenSSL 3：被 3 个非 Homebrew 二进制链接，brew 依赖图看不见 ——
+# ~/.cargo/bin/{cargo-outdated,cargo-install-update,cargo-install-update-config}
+# 待 openssl-sys 支持 OpenSSL 4 并重建它们后，此行可删
+brew "openssl@3"
+
+# 低频，但后续仍可能主动使用
+brew "bash"
+brew "curl"
+brew "dfu-util"
+brew "gcc"
+brew "go"
+brew "gnupg"
+brew "graphviz"
+brew "lua"
+brew "protobuf"
+brew "qrencode"
+brew "readline"
+brew "ripgrep"
