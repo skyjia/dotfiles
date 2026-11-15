@@ -85,7 +85,6 @@ cd ~/dotfiles && stow zsh        # also: fish, nushell, git, karabiner, yazi, ba
 | `odbc/` | ODBC database configuration (DuckDB driver DSN) |
 | `wget/` | wget configuration |
 | `ruby/` | Ruby configuration |
-| `hg/` | Mercurial configuration |
 
 Non-stowable working directory:
 - `logs/` — debug log output (not a stow package)
@@ -200,6 +199,30 @@ global npm tools. Two rules about it are easy to get wrong:
   installs all of them on a new machine; `just cargo-install <pkg>` installs one and
   appends it to the manifest (deduplicated). Install and update are decoupled:
   `install-cargo-crates` vs `update-rust` (`cargo install-update -a`).
+
+### Lean (elan)
+
+`~/.elan` is **in use — do not treat it as orphaned.** Its binaries live in
+`~/.elan/bin` (`elan`, `lean`, `lake`, `leanc`, `leanpkg`, …) and are wired into all three
+shells:
+
+| Shell | Wiring |
+|---|---|
+| fish | `fish/.config/fish/conf.d/lean.fish` → `ensure_add_to_fish_user_paths` |
+| zsh | `zsh/.shared-env.zsh` (sourced by both `.zshenv` and `.zlogin`) |
+| nushell | `nushell/autoload/13-lean.nu` → `path add` |
+
+Two non-obvious behaviours, both observed on this machine:
+
+- `default_toolchain` in `~/.elan/settings.toml` is `leanprover/lean4:stable`, a **channel
+  alias, not a pinned version**. When the channel's release is not installed, `elan show`
+  prints `(toolchain will be installed on first use)` and running `lean` outside a project
+  directory silently starts a ~900 MB download. Verify resolution with `elan show`.
+- elan downloads go through the **system proxy** (`localhost:6152`). When that proxy is
+  unhealthy the transfer stalls: the `elan install` process stays alive with a
+  `CLOSED`/`ESTABLISHED` socket while `~/.elan/tmp` stops growing. Diagnose with
+  `lsof -p <pid> | grep TCP` and a two-sample `du -sk ~/.elan/tmp`; a stale
+  `~/.elan/toolchains/*.lock` plus an incomplete `.tmp` dir is safe to remove.
 
 ## Shell Configuration Strategy
 

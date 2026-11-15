@@ -76,6 +76,12 @@ export PATH=$GEM_HOME/bin:$PATH
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
+# Lean (elan)
+# `default_toolchain` in ~/.elan/settings.toml is the channel alias `stable`; if that
+# release is missing, `lean` outside a project triggers an elan download (~900 MB).
+# Check resolution with: elan show
+export PATH="$PATH:$HOME/.elan/bin"
+
 # Export HOME local bin
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"

@@ -80,7 +80,6 @@
 | `karabiner/` | Karabiner-Elements configuration |
 | `cmux/` | Cmux configuration |
 | `git/` | Global git configuration and aliases |
-| `hg/` | Mercurial configuration |
 
 ### Scripting
 | Package | Description |
