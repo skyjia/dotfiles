@@ -93,6 +93,8 @@ brew "julia"
 brew "just"
 # Simple terminal UI for git commands
 brew "lazygit"
+# Fast and powerful Git hooks manager for any type of projects
+brew "lefthook"
 # JIT library for the GNU compiler collection
 brew "libgccjit"
 # General purpose TCP-IP emulator
