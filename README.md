@@ -119,6 +119,18 @@ Install stow with Homebrew:
 brew install stow
 ```
 
+#### Lefthook
+
+Git hooks are managed by [Lefthook](https://github.com/evilmartians/lefthook).
+
+Install lefthook with Homebrew:
+
+```shell
+brew install lefthook
+```
+
+After cloning the repo, run `lefthook install` to set up the Git hooks.
+
 ### 2 Clone and Apply `dotfiles`
 
 ```sh
