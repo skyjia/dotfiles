@@ -1,6 +1,7 @@
 # Package managers & build tools
 typescript
 eslint
+@biomejs/biome
 
 # AI tools
 bailian-cli
