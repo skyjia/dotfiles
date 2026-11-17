@@ -1,0 +1,22 @@
+# Lefthook configuration
+# Docs: https://github.com/evilmartians/lefthook
+
+post-checkout:
+  commands:
+    git-lfs:
+      run: git lfs post-checkout "$@"
+
+post-commit:
+  commands:
+    git-lfs:
+      run: git lfs post-commit "$@"
+
+post-merge:
+  commands:
+    git-lfs:
+      run: git lfs post-merge "$@"
+
+pre-push:
+  commands:
+    git-lfs:
+      run: git lfs pre-push "$@"
