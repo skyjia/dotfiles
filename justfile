@@ -318,6 +318,7 @@ update-rust:
     cargo install-update -a
     @echo
 
+
 # Install cargo packages from crates.txt manifest (for new machine setup)
 install-cargo-crates:
     # Installing cargo packages from manifest
@@ -381,4 +382,19 @@ update-bailian:
 update-skillshare:
     # Update Skillshare CLI
     skillshare upgrade --force
+    @echo
+
+# Clean package manager caches using each tool's native command.
+# No manual `rm` — only tool-managed cache cleanup.
+# Aggressive (requires re-download on next use): `go clean -modcache`, `brew cleanup --prune=all`
+# Safe (keeps current project deps): all others
+clean-tools-cache:
+    cargo cache --autoclean
+    npm cache clean --force
+    dotnet nuget locals all --clear
+    uv cache prune
+    gem cleanup
+    go clean -cache
+    go clean -modcache
+    brew cleanup --prune=all
     @echo

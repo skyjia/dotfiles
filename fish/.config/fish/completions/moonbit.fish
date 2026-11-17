@@ -194,7 +194,6 @@ complete -c moon -n "__fish_moon_using_subcommand run" -s d -l deny-warn -d 'Tre
 complete -c moon -n "__fish_moon_using_subcommand run" -l no-render -d 'Don\'t render diagnostics (in raw human-readable format)'
 complete -c moon -n "__fish_moon_using_subcommand run" -l output-json -d 'Output diagnostics in JSON format'
 complete -c moon -n "__fish_moon_using_subcommand run" -l enable-value-tracing -d 'Enable value tracing'
-complete -c moon -n "__fish_moon_using_subcommand run" -l virtual-process-tree -d 'Run Wasm descendants in the same virtual process tree (experimental)'
 complete -c moon -n "__fish_moon_using_subcommand run" -l frozen -d 'Do not sync dependencies, assuming local dependencies are up-to-date'
 complete -c moon -n "__fish_moon_using_subcommand run" -l build-only -d 'Only build, do not run the code'
 complete -c moon -n "__fish_moon_using_subcommand run" -l profile -d 'Profile the native executable using Time Profiler on macOS or perf on Linux'
